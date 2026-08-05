@@ -1,0 +1,90 @@
+<meta charset="utf-8">
+<title>對照表建置台 — 名所圖會 / 繪本江戶土產</title>
+<!--
+  §7-14 用的接觸印樣。
+  自動分類試過兩種特徵（墨佔比＋格子變異、左右頁低通後 std）都分不開圖與文——
+  名所圖會一個開頁常常左文右圖，分布重疊，再往下就要做真的影像分類器了，
+  為一次性作業不值得。改成「不分類，把人工那趟變快」。
+
+  用法：翻到有插圖的頁 → 點它 → 輸入百景編號（可多個，逗號分隔）→ Enter。
+  存在 localStorage，隨時「匯出 JSON」倒進 data/。
+  圖用 loading=lazy，瀏覽器只載看得到的，不必另外產縮圖。
+-->
+<style>
+  :root { color-scheme:dark }
+  body { margin:0; background:#12283c; color:#e9e1cf;
+         font-family:"Hiragino Mincho ProN","Yu Mincho",serif }
+  header { position:sticky; top:0; z-index:5; background:#0e2233ee; padding:10px 16px;
+           display:flex; gap:14px; align-items:center; border-bottom:1px solid #ffffff1f }
+  header b { font-weight:400; letter-spacing:.1em }
+  header .n { opacity:.6; font-size:13px }
+  button, select { font:inherit; font-size:13px; color:inherit; background:#ffffff1a;
+                   border:1px solid #ffffff33; border-radius:3px; padding:5px 10px; cursor:pointer }
+  #grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:8px; padding:12px }
+  figure { margin:0; position:relative; cursor:pointer; background:#0e2233 }
+  figure img { width:100%; display:block; aspect-ratio:4/3; object-fit:cover; object-position:top }
+  figure figcaption { position:absolute; left:0; bottom:0; right:0; font-size:11px; padding:3px 5px;
+                      background:#0e2233cc }
+  figure.tagged { outline:2px solid #c9a227 }
+  figure.tagged figcaption { background:#c9a227; color:#12283c }
+</style>
+
+<header>
+  <b>對照表建置台</b>
+  <select id="src">
+    <option value="meishozue">江戶名所圖會（1,242 開）</option>
+    <option value="miyage">繪本江戶土產（113 頁）</option>
+  </select>
+  <span class="n" id="n"></span>
+  <button id="exp">匯出 JSON</button>
+</header>
+<div id="grid"></div>
+
+<script type="module">
+const KEY = 'edo-hyakkei/plates';
+const tags = JSON.parse(localStorage[KEY] || '{}');
+const save = () => localStorage[KEY] = JSON.stringify(tags);
+
+const sets = {
+  meishozue: (await (await fetch('../data/meishozue.json')).json()).volumes
+    .flatMap((v, i) => Array.from({ length: v.pages }, (_, p) =>
+      ({ id: `v${String(i + 1).padStart(2, '0')}/p${String(p + 1).padStart(3, '0')}`,
+         src: `meishozue/v${String(i + 1).padStart(2, '0')}/p${String(p + 1).padStart(3, '0')}.jpg` }))),
+  miyage: (await (await fetch('../data/miyage.json')).json()).pages
+    .map(p => ({ id: `p${String(p.page).padStart(3, '0')}`,
+                 src: `miyage/p${String(p.page).padStart(3, '0')}.jpg` })),
+};
+
+function draw() {
+  const which = src.value;
+  grid.innerHTML = sets[which].map(x => {
+    const t = tags[`${which}/${x.id}`];
+    return `<figure class="${t ? 'tagged' : ''}" data-k="${which}/${x.id}">
+      <img loading="lazy" src="${x.src}" alt="${x.id}">
+      <figcaption>${x.id}${t ? ' → ' + t : ''}</figcaption></figure>`;
+  }).join('');
+  count();
+}
+const count = () => {
+  const which = src.value;
+  const n = Object.keys(tags).filter(k => k.startsWith(which + '/')).length;
+  document.getElementById('n').textContent = `已標 ${n} 頁`;
+};
+
+grid.onclick = e => {
+  const f = e.target.closest('figure');
+  if (!f) return;
+  const k = f.dataset.k;
+  const v = prompt(`${k}\n對應百景編號（多個用逗號，留空=取消標記）`, tags[k] || '');
+  if (v === null) return;
+  if (v.trim()) tags[k] = v.trim(); else delete tags[k];
+  save(); draw();
+};
+src.onchange = draw;
+document.getElementById('exp').onclick = () => {
+  const blob = new Blob([JSON.stringify(tags, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'plates.json'; a.click();
+};
+draw();
+</script>

@@ -1,0 +1,95 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>名所江戶百景・漫遊記</title>
+<style>
+  :root { --sea:#1b3a56; --land:#e9e1cf; --ink:#2a2622; --river:#4d7fa3; --gold:#c9a227; }
+  * { box-sizing:border-box; margin:0 }
+  body { background:var(--sea); color:var(--land); height:100vh; overflow:hidden;
+         font-family:"Hiragino Mincho ProN","Yu Mincho",serif }
+  #map { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none }
+  #map:active { cursor:grabbing }
+
+  /* 玩家點畫在最上層，不擋掉底下景點的點擊——紅點一定停在剛去過的景上面 */
+  #player { pointer-events:none }
+  .mark circle { fill:var(--ink); opacity:.28; transition:opacity .3s,fill .3s }
+  .mark text { font-size:15px; fill:var(--ink); opacity:0; paint-order:stroke;
+               stroke:var(--land); stroke-width:4; pointer-events:none; transition:opacity .3s }
+  .mark.open circle { fill:var(--gold); opacity:1; cursor:pointer }
+  #map.zoomed .mark.open text { opacity:1 }
+  .mark.got circle { fill:#7a9a6d; opacity:.9 }
+  .mark .ring { fill:none; stroke:var(--gold); stroke-width:1.5; opacity:.35; pointer-events:none }
+  .mark.open .ring { opacity:1 }
+  .mark:hover text { opacity:1 }
+
+  #hud { position:fixed; left:0; right:0; top:0; padding:14px 20px; display:flex;
+         gap:18px; align-items:baseline; background:linear-gradient(#0e2233dd,transparent) }
+  #date { font-size:22px; letter-spacing:.1em }
+  #left, #count { font-size:13px; opacity:.75 }
+  #count { margin-left:auto }
+  button { font:inherit; font-size:13px; color:var(--land); background:#ffffff1a;
+           border:1px solid #ffffff33; border-radius:3px; padding:5px 12px; cursor:pointer }
+  button:hover { background:#ffffff2e }
+  button.ghost { background:none }
+
+  #bar { position:fixed; left:0; right:0; bottom:0; padding:12px 20px 18px; text-align:center;
+         background:linear-gradient(transparent,#0e2233cc 40%) }
+  #era { width:min(420px,60vw); accent-color:var(--gold); vertical-align:middle }
+  #bar label { font-size:12px; opacity:.7; margin:0 10px }
+  #attr { font-size:10px; opacity:.4; margin-top:6px }   /* ODbL 要求標示出處 */
+
+  #toast { position:fixed; left:50%; top:64px; transform:translateX(-50%); padding:9px 18px;
+           background:#0e2233ee; border:1px solid #ffffff2e; border-radius:3px; font-size:14px;
+           opacity:0; pointer-events:none; transition:opacity .3s }
+  #toast.on { opacity:1 }
+
+  .overlay { position:fixed; inset:0; background:#0b1a28f2; display:grid; place-items:center;
+             padding:24px; overflow:auto; z-index:10 }
+  .overlay figure { display:flex; gap:28px; align-items:center; max-width:1100px }
+  .overlay img { max-height:82vh; max-width:56vw; box-shadow:0 8px 40px #0008 }
+  /* 圖會是橫幅跨頁，跟直幅的百景比例差很多，放寬一點才看得清地名 */
+  .overlay img.zue { max-width:66vw }
+  figcaption .hint { font-size:12px; opacity:.5; margin-top:14px; line-height:1.7 }
+  figcaption { max-width:300px }
+  figcaption .no { font-size:12px; opacity:.6; letter-spacing:.2em }
+  figcaption h2 { font-size:30px; margin:6px 0; font-weight:400 }
+  figcaption .ro { font-size:14px; opacity:.8 }
+  figcaption .en { font-size:13px; opacity:.55; margin-top:4px }
+  figcaption .pub { font-size:12px; opacity:.45; margin-top:10px }
+  .act { margin-top:22px; display:flex; gap:10px; flex-wrap:wrap }
+
+  .zukan .sheet { background:#12283c; border:1px solid #ffffff1f; padding:22px 26px;
+                  max-width:1000px; width:100% }
+  .zukan header { display:flex; align-items:baseline; gap:14px; margin-bottom:14px }
+  .zukan header h2 { font-weight:400; letter-spacing:.12em }
+  .zukan header span { opacity:.6; font-size:13px }
+  .zukan header button { margin-left:auto }
+  .zukan h3 { font-weight:400; font-size:16px; margin:14px 0 6px; opacity:.85 }
+  .zukan h3 span { font-size:12px; opacity:.55; margin-left:8px }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(58px,1fr)); gap:5px }
+  .cell { position:relative; aspect-ratio:2/3; background:#ffffff0d; border:1px solid #ffffff14;
+          display:grid; place-items:center }
+  .cell b { font-size:10px; opacity:.35; font-weight:400 }
+  .cell img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+  .cell.has b { display:none }
+</style>
+
+<svg id="map"></svg>
+
+<div id="hud">
+  <span id="date"></span>
+  <span id="left"></span>
+  <span id="count"></span>
+  <button id="book">歲時記</button>
+  <button id="reset" class="ghost">重來</button>
+</div>
+
+<div id="toast"></div>
+
+<div id="bar">
+  <label>2026 現在</label>
+  <input type="range" id="era" min="0" max="1000" value="1000">
+  <label>安政五年 1858</label>
+  <div id="attr">街圖資料 © OpenStreetMap contributors（ODbL）</div>
+</div>
+
+<script type="module" src="src/main.js"></script>

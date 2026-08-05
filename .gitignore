@@ -1,0 +1,12 @@
+# 素材不進版控：1GB 的掃描檔，而且每一份都能用 tools/ 重建。
+# 這也是每支腳本都附 self-check 的用意——repo 裡沒有圖，clone 完跑腳本就有。
+assets/
+research/meishozue/
+research/miyage/
+
+# 工具跑出來的中間產物
+.playwright-mcp/
+/*.png
+__pycache__/
+*.pyc
+.DS_Store

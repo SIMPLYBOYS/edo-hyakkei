@@ -1,0 +1,288 @@
+{
+  "work": "江戶名所圖會",
+  "note": "整冊掃描屬研究材料，落在 research/ 不進 build；遊戲只用 §7-7 配對後裁出的插圖",
+  "institution": "国立国会図書館",
+  "license": "PDM (public domain)",
+  "volumes": [
+    {
+      "pid": 2563380,
+      "label": "江戸名所図会 7巻. [1]",
+      "pages": 66,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563380/R{page:07d}",
+      "px": [
+        6579,
+        5637
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563380"
+    },
+    {
+      "pid": 2563381,
+      "label": "江戸名所図会 7巻. [2]",
+      "pages": 49,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563381/R{page:07d}",
+      "px": [
+        6508,
+        5539
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563381"
+    },
+    {
+      "pid": 2563382,
+      "label": "江戸名所図会 7巻. [3]",
+      "pages": 61,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563382/R{page:07d}",
+      "px": [
+        6622,
+        5567
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563382"
+    },
+    {
+      "pid": 2563383,
+      "label": "江戸名所図会 7巻. [4]",
+      "pages": 83,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563383/R{page:07d}",
+      "px": [
+        6748,
+        5595
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563383"
+    },
+    {
+      "pid": 2563384,
+      "label": "江戸名所図会 7巻. [5]",
+      "pages": 55,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563384/R{page:07d}",
+      "px": [
+        6663,
+        5552
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563384"
+    },
+    {
+      "pid": 2563385,
+      "label": "江戸名所図会 7巻. [6]",
+      "pages": 65,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563385/R{page:07d}",
+      "px": [
+        6931,
+        5721
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563385"
+    },
+    {
+      "pid": 2563386,
+      "label": "江戸名所図会 7巻. [7]",
+      "pages": 65,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563386/R{page:07d}",
+      "px": [
+        6761,
+        5651
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563386"
+    },
+    {
+      "pid": 2563387,
+      "label": "江戸名所図会 7巻. [8]",
+      "pages": 80,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563387/R{page:07d}",
+      "px": [
+        6959,
+        5651
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563387"
+    },
+    {
+      "pid": 2563388,
+      "label": "江戸名所図会 7巻. [9]",
+      "pages": 46,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563388/R{page:07d}",
+      "px": [
+        6804,
+        5651
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563388"
+    },
+    {
+      "pid": 2563389,
+      "label": "江戸名所図会 7巻. [10]",
+      "pages": 61,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563389/R{page:07d}",
+      "px": [
+        6804,
+        5680
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563389"
+    },
+    {
+      "pid": 2563390,
+      "label": "江戸名所図会 7巻. [11]",
+      "pages": 60,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563390/R{page:07d}",
+      "px": [
+        6790,
+        5693
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563390"
+    },
+    {
+      "pid": 2563391,
+      "label": "江戸名所図会 7巻. [12]",
+      "pages": 56,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563391/R{page:07d}",
+      "px": [
+        6734,
+        5735
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563391"
+    },
+    {
+      "pid": 2563392,
+      "label": "江戸名所図会 7巻. [13]",
+      "pages": 89,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563392/R{page:07d}",
+      "px": [
+        6847,
+        5637
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563392"
+    },
+    {
+      "pid": 2563393,
+      "label": "江戸名所図会 7巻. [14]",
+      "pages": 54,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563393/R{page:07d}",
+      "px": [
+        6777,
+        5623
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563393"
+    },
+    {
+      "pid": 2563394,
+      "label": "江戸名所図会 7巻. [15]",
+      "pages": 50,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563394/R{page:07d}",
+      "px": [
+        6777,
+        5651
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563394"
+    },
+    {
+      "pid": 2563395,
+      "label": "江戸名所図会 7巻. [16]",
+      "pages": 52,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563395/R{page:07d}",
+      "px": [
+        6620,
+        5567
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563395"
+    },
+    {
+      "pid": 2563396,
+      "label": "江戸名所図会 7巻. [17]",
+      "pages": 53,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563396/R{page:07d}",
+      "px": [
+        6636,
+        5567
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563396"
+    },
+    {
+      "pid": 2563397,
+      "label": "江戸名所図会 7巻. [18]",
+      "pages": 84,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563397/R{page:07d}",
+      "px": [
+        6663,
+        5525
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563397"
+    },
+    {
+      "pid": 2563398,
+      "label": "江戸名所図会 7巻. [19]",
+      "pages": 54,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563398/R{page:07d}",
+      "px": [
+        6692,
+        5552
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563398"
+    },
+    {
+      "pid": 2563399,
+      "label": "江戸名所図会 7巻. [20]",
+      "pages": 59,
+      "date": "天保5-7 [1834-1836]",
+      "rights": "PDM",
+      "creator": "松濤軒斎藤長秋 著||長谷川雪旦 画",
+      "iiif": "https://dl.ndl.go.jp/api/iiif/2563399/R{page:07d}",
+      "px": [
+        6607,
+        5568
+      ],
+      "url": "https://dl.ndl.go.jp/info:ndljp/pid/2563399"
+    }
+  ]
+}

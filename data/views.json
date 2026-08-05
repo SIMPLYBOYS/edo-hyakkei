@@ -1,0 +1,6771 @@
+[
+  {
+    "id": 1,
+    "accession": "30.1478.1",
+    "title": {
+      "ja": "日本橋雪晴",
+      "romaji": "Nihonbashi yukibare",
+      "en": "Nihonbashi, Clearing After Snow"
+    },
+    "season": "spring",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.684028,
+      "lng": 139.774444
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/001.jpg",
+      "pixel": "assets/pixel/001.png",
+      "meishozue": "assets/meishozue/001.jpg",
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": "名所圖會對照：同為日本橋本身"
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 001.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/100_views_edo_001.jpg",
+      "px": [
+        797,
+        1200
+      ],
+      "best_available_px": [
+        797,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121616/Nihonbashi_Clearing_After_Snow_No._1_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 2,
+    "accession": "30.1478.2",
+    "title": {
+      "ja": "霞がせき",
+      "romaji": "Kasumigaseki",
+      "en": "Kasumigaseki"
+    },
+    "season": "spring",
+    "published": "1857-01",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.675667,
+      "lng": 139.748972
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/002.jpg",
+      "pixel": "assets/pixel/002.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 002.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/100_views_edo_002.jpg",
+      "px": [
+        784,
+        1200
+      ],
+      "best_available_px": [
+        784,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121617/Kasumigaseki_No._2_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 3,
+    "accession": "30.1478.3",
+    "title": {
+      "ja": "山下町日比谷外さくら田",
+      "romaji": "Yamashita-chō Hibiya Soto-Sakurada",
+      "en": "Hibiya and Soto-Sakurada From Yamashita-Cho"
+    },
+    "season": "spring",
+    "published": "1857-12",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.673472,
+      "lng": 139.757667
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/003.jpg",
+      "pixel": "assets/pixel/003.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 003.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/55/100_views_edo_003.jpg",
+      "px": [
+        788,
+        1200
+      ],
+      "best_available_px": [
+        788,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121618/Hibiya_and_Soto-Sakurada_From_Yamashita-Cho_No._3_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 4,
+    "accession": "30.1478.4",
+    "title": {
+      "ja": "永代橋佃しま",
+      "romaji": "Eitaibashi Tsukudajima",
+      "en": "Tsukudajima From Eitai Bridge"
+    },
+    "season": "spring",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.677611,
+      "lng": 139.787417
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/004.jpg",
+      "pixel": "assets/pixel/004.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 004.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/100_views_edo_004.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121619/Tsukudajima_From_Eitai_Bridge_No._4_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 5,
+    "accession": "30.1478.5",
+    "title": {
+      "ja": "両ごく回向院元柳橋",
+      "romaji": "Ryōgoku Ekōin Moto-Yanagibashi",
+      "en": "Ryogoku Ekoin and Moto-Yanagibashi Bridge"
+    },
+    "season": "spring",
+    "published": "1857-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.693333,
+      "lng": 139.791944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/005.jpg",
+      "pixel": "assets/pixel/005.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 005.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/100_views_edo_005.jpg",
+      "px": [
+        803,
+        1200
+      ],
+      "best_available_px": [
+        803,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121620/Ryogoku_Ekoin_and_Moto-Yanagibashi_Bridge_No._5_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 6,
+    "accession": "30.1478.6",
+    "title": {
+      "ja": "馬喰町初音の馬場",
+      "romaji": "Bakuro-chō Hatsune no baba",
+      "en": "Hatsune Riding Grounds, Bakuro-cho"
+    },
+    "season": "spring",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.694611,
+      "lng": 139.783139
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/006.jpg",
+      "pixel": "assets/pixel/006.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 006.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/100_views_edo_006.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121621/Hatsune_Riding_Grounds_Bakuro-cho_No._6_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 7,
+    "accession": "30.1478.7",
+    "title": {
+      "ja": "大てんま町木綿店",
+      "romaji": "Ōtenma-chō momendana",
+      "en": "Cotton-Goods Lane, Odenma-cho"
+    },
+    "season": "spring",
+    "published": "1858-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.688528,
+      "lng": 139.776361
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/007.jpg",
+      "pixel": "assets/pixel/007.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 007.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/100_views_edo_007.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121622/Cotton-Goods_Lane_Odenma-cho_No._7_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 8,
+    "accession": "30.1478.8",
+    "title": {
+      "ja": "する賀てふ",
+      "romaji": "Suruga tefu",
+      "en": "Suruga-chō"
+    },
+    "season": "spring",
+    "published": "1856-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.68625,
+      "lng": 139.773944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/008.jpg",
+      "pixel": "assets/pixel/008.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 008.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/100_views_edo_008.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121623/Suruga-cho_No._8_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 9,
+    "accession": "30.1478.9",
+    "title": {
+      "ja": "筋違内八ツ小路",
+      "romaji": "Sujikai uchi Yatsukōji",
+      "en": "Yatsukoji, Inside Sujikai Gate"
+    },
+    "season": "spring",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.697361,
+      "lng": 139.769222
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/009.jpg",
+      "pixel": "assets/pixel/009.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 009.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/100_views_edo_009.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121624/Yatsukoji_Inside_Sujikai_Gate_No._9_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 10,
+    "accession": "30.1478.10",
+    "title": {
+      "ja": "神田明神 曙之景",
+      "romaji": "Kanda Myōjin akebono no kei",
+      "en": "Dawn at Kanda Myojin Shrine"
+    },
+    "season": "spring",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.701944,
+      "lng": 139.767917
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/010.jpg",
+      "pixel": "assets/pixel/010.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 010.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/100_views_edo_010.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121625/Dawn_at_Kanda_Myojin_Shrine_No._10_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 11,
+    "accession": "30.1478.11",
+    "title": {
+      "ja": "上野清水堂不忍ノ池",
+      "romaji": "Ueno Kiyomizu-dō Shinobazu no ike",
+      "en": "Kiyomizu Hall and Shinobazu Pond at Ueno"
+    },
+    "season": "spring",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.712611,
+      "lng": 139.773556
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/011.jpg",
+      "pixel": "assets/pixel/011.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 011.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/100_views_edo_011.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121626/Kiyomizu_Hall_and_Shinobazu_Pond_at_Ueno_No._11_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 12,
+    "accession": "30.1478.12",
+    "title": {
+      "ja": "上野山した",
+      "romaji": "Ueno Yamashita",
+      "en": "Ueno Yamashita"
+    },
+    "season": "spring",
+    "published": "1858-10",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.710556,
+      "lng": 139.773472
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/012.jpg",
+      "pixel": "assets/pixel/012.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 012.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/100_views_edo_012.jpg",
+      "px": [
+        796,
+        1200
+      ],
+      "best_available_px": [
+        796,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121627/Ueno_Yamashita_No._12_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 13,
+    "accession": "30.1478.13",
+    "title": {
+      "ja": "下谷広小路",
+      "romaji": "Shitaya Hirokōji",
+      "en": "Shitaya Hirokoji"
+    },
+    "season": "spring",
+    "published": "1856-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.707056,
+      "lng": 139.772694
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/013.jpg",
+      "pixel": "assets/pixel/013.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 013.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/100_views_edo_013.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121628/Shitaya_Hirokoji_No._13_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 14,
+    "accession": "30.1478.14",
+    "title": {
+      "ja": "日暮里寺院の林泉",
+      "romaji": "Nippori jiin no rinsen",
+      "en": "Temple Gardens, Nippori"
+    },
+    "season": "spring",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.731056,
+      "lng": 139.766028
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/014.jpg",
+      "pixel": "assets/pixel/014.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 014.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/100_views_edo_014.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121629/Temple_Gardens_Nippori_No._14_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 15,
+    "accession": "30.1478.15",
+    "title": {
+      "ja": "日暮里諏訪の台",
+      "romaji": "Nippori Suwanodai",
+      "en": "Suwa Bluff, Nippori"
+    },
+    "season": "spring",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.730861,
+      "lng": 139.767083
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/015.jpg",
+      "pixel": "assets/pixel/015.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 015.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/100_views_edo_015.jpg",
+      "px": [
+        793,
+        1200
+      ],
+      "best_available_px": [
+        793,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121630/Suwa_Bluff_Nippori_No._15_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 16,
+    "accession": "30.1478.16",
+    "title": {
+      "ja": "千駄木団子坂花屋敷",
+      "romaji": "Sendagi Dangozaka Hanayashiki",
+      "en": "Flower Pavilion, Dango Slope, Sendagi"
+    },
+    "season": "spring",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.725139,
+      "lng": 139.761222
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/016.jpg",
+      "pixel": "assets/pixel/016.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 016.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/100_views_edo_016.jpg",
+      "px": [
+        805,
+        1200
+      ],
+      "best_available_px": [
+        805,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121631/Flower_Pavilion_Dango_Slope_Sendagi_No._16_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 17,
+    "accession": "30.1478.17",
+    "title": {
+      "ja": "飛鳥山北の眺望",
+      "romaji": "Asukayama kita no chōbō",
+      "en": "View to the North from Asukayama"
+    },
+    "season": "spring",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.751389,
+      "lng": 139.738333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/017.jpg",
+      "pixel": "assets/pixel/017.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 017.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/100_views_edo_017.jpg",
+      "px": [
+        802,
+        1200
+      ],
+      "best_available_px": [
+        802,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121632/View_to_the_North_From_Asukayama_No._17_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 18,
+    "accession": "30.1478.18",
+    "title": {
+      "ja": "王子稲荷の社",
+      "romaji": "Ōji Inari no yashiro",
+      "en": "Oji Inari Shrine"
+    },
+    "season": "spring",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.756083,
+      "lng": 139.733333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/018.jpg",
+      "pixel": "assets/pixel/018.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 018.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/100_views_edo_018.jpg",
+      "px": [
+        791,
+        1200
+      ],
+      "best_available_px": [
+        791,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121633/Oji_Inari_Shrine_No._18_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 19,
+    "accession": "30.1478.19",
+    "title": {
+      "ja": "王子音無川堰棣 世俗大瀧ト唱",
+      "romaji": "Ōji Otonashigawa entei, sezoku Ōtaki to tonau",
+      "en": "Dam on the Otonashi River at Oji"
+    },
+    "season": "spring",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.752222,
+      "lng": 139.73575
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/019.jpg",
+      "pixel": "assets/pixel/019.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 019.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/100_views_edo_019.jpg",
+      "px": [
+        799,
+        1200
+      ],
+      "best_available_px": [
+        799,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121634/Dam_on_the_Otonashi_River_at_Oji_No._19_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 20,
+    "accession": "30.1478.20",
+    "title": {
+      "ja": "川口のわたし善光寺",
+      "romaji": "Kawaguchi no watashi Zenkōji",
+      "en": "The Kawaguchi Ferry and Zenkoji Temple"
+    },
+    "season": "spring",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.793889,
+      "lng": 139.721306
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/020.jpg",
+      "pixel": "assets/pixel/020.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 020.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/100_views_edo_020.jpg",
+      "px": [
+        792,
+        1200
+      ],
+      "best_available_px": [
+        792,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121635/The_Kawaguchi_Ferry_and_Zenkoji_Temple_No._20_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 21,
+    "accession": "30.1478.21",
+    "title": {
+      "ja": "芝愛宕山",
+      "romaji": "Shiba Atagoyama",
+      "en": "Mount Atago, Shiba"
+    },
+    "season": "spring",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.664778,
+      "lng": 139.748444
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/021.jpg",
+      "pixel": "assets/pixel/021.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 021.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/100_views_edo_021.jpg",
+      "px": [
+        795,
+        1200
+      ],
+      "best_available_px": [
+        795,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121636/Mount_Atago_Shiba_No._21_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 22,
+    "accession": "30.1478.22",
+    "title": {
+      "ja": "広尾ふる川",
+      "romaji": "Hiroo Furukawa",
+      "en": "Furukawa River, Hiroo"
+    },
+    "season": "spring",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.647149,
+      "lng": 139.731593
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/022.jpg",
+      "pixel": "assets/pixel/022.png",
+      "meishozue": "assets/meishozue/022.jpg",
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": "名所圖會對照：広尾／広尾ふる川 同地"
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:Brooklyn Museum - Furukawa River Hiroo - Utagawa Hiroshige (Ando).jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Brooklyn_Museum_-_Furukawa_River_Hiroo_-_Utagawa_Hiroshige_%28Ando%29.jpg",
+      "px": [
+        1077,
+        1536
+      ],
+      "best_available_px": [
+        1077,
+        1536
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/160364/Furukawa_River_Hiroo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 23,
+    "accession": "30.1478.23",
+    "title": {
+      "ja": "目黒千代か池",
+      "romaji": "Meguro Chiyogaike",
+      "en": "Chiyogaike Pond, Meguro"
+    },
+    "season": "spring",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.6375,
+      "lng": 139.712778
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/023.jpg",
+      "pixel": "assets/pixel/023.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 023.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/100_views_edo_023.jpg",
+      "px": [
+        797,
+        1200
+      ],
+      "best_available_px": [
+        797,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121638/Chiyogaike_Pond_Meguro_No._23_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 24,
+    "accession": "30.1478.24",
+    "title": {
+      "ja": "目黒新富士",
+      "romaji": "Meguro Shin-Fuji",
+      "en": "New Fuji, Meguro"
+    },
+    "season": "spring",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.643472,
+      "lng": 139.704861
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/024.jpg",
+      "pixel": "assets/pixel/024.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 024.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/100_views_edo_024.jpg",
+      "px": [
+        796,
+        1200
+      ],
+      "best_available_px": [
+        796,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121639/New_Fuji_Meguro_No._24_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 25,
+    "accession": "30.1478.25",
+    "title": {
+      "ja": "目黒元不二",
+      "romaji": "Meguro Moto-Fuji",
+      "en": "Original Fuji, Meguro"
+    },
+    "season": "spring",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.646667,
+      "lng": 139.701028
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/025.jpg",
+      "pixel": "assets/pixel/025.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 025.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/100_views_edo_025.jpg",
+      "px": [
+        804,
+        1200
+      ],
+      "best_available_px": [
+        804,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121640/Original_Fuji_Meguro_No._25_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 26,
+    "accession": "30.1478.26",
+    "title": {
+      "ja": "八景坂鎧掛松",
+      "romaji": "Hakkeizaka Yoroikakematsu",
+      "en": "Armor-Hanging Pine, Hakkeisaka"
+    },
+    "season": "spring",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.5885,
+      "lng": 139.726861
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/026.jpg",
+      "pixel": "assets/pixel/026.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 026.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/100_views_edo_026.jpg",
+      "px": [
+        808,
+        1200
+      ],
+      "best_available_px": [
+        808,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121641/Armor-Hanging_Pine_Hakkeisaka_No._26_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 27,
+    "accession": "30.1478.27",
+    "title": {
+      "ja": "蒲田の梅園",
+      "romaji": "Kamada no umezono",
+      "en": "Plum Garden, Kamata (Kamata no Umezono)"
+    },
+    "season": "spring",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.564722,
+      "lng": 139.726944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/027.jpg",
+      "pixel": "assets/pixel/027.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 027.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/100_views_edo_027.jpg",
+      "px": [
+        1029,
+        1536
+      ],
+      "best_available_px": [
+        1029,
+        1536
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121642/Plum_Garden_Kamata_Kamata_no_Umezono_No._27_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 28,
+    "accession": "30.1478.28",
+    "title": {
+      "ja": "品川御殿やま",
+      "romaji": "Shinagawa Gotenyama",
+      "en": "Gotenyama, Shinagawa"
+    },
+    "season": "spring",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.620417,
+      "lng": 139.736806
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/028.jpg",
+      "pixel": "assets/pixel/028.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 028.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/100_views_edo_028.jpg",
+      "px": [
+        796,
+        1200
+      ],
+      "best_available_px": [
+        796,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121643/Gotenyama_Shinagawa_No._28_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 29,
+    "accession": "30.1478.29",
+    "title": {
+      "ja": "砂むら元八まん",
+      "romaji": "Sunamura Moto-Hachiman",
+      "en": "Moto-Hachiman Shrine, Sumamura"
+    },
+    "season": "spring",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.669278,
+      "lng": 139.837667
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/029.jpg",
+      "pixel": "assets/pixel/029.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 029.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/100_views_edo_029.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121644/Moto-Hachiman_Shrine_Sumamura_No._29_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 30,
+    "accession": "30.1478.30",
+    "title": {
+      "ja": "亀戸梅屋舗",
+      "romaji": "Kameido Umeyashiki",
+      "en": "Plum Park in Kameido"
+    },
+    "season": "spring",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.704528,
+      "lng": 139.823917
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": null,
+      "pixel": null,
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": null,
+      "commentary": "Commons 無此圖，待他館補齊"
+    },
+    "source": null
+  },
+  {
+    "id": 31,
+    "accession": "30.1478.31",
+    "title": {
+      "ja": "吾嬬の森連理の梓",
+      "romaji": "Azuma no mori Renri no azusa",
+      "en": "Azuma Shrine and the Entwined Camphor"
+    },
+    "season": "spring",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.705528,
+      "lng": 139.826778
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/031.jpg",
+      "pixel": "assets/pixel/031.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 031.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/100_views_edo_031.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121645/Asuma_Shrine_and_the_Entwined_Camphor_No._31_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 32,
+    "accession": "30.1478.32",
+    "title": {
+      "ja": "柳しま",
+      "romaji": "Yanagishima",
+      "en": "Yanagishima"
+    },
+    "season": "spring",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.707583,
+      "lng": 139.818306
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/032.jpg",
+      "pixel": "assets/pixel/032.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 032.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/100_views_edo_032.jpg",
+      "px": [
+        791,
+        1200
+      ],
+      "best_available_px": [
+        791,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121646/Yanagishima_No._32_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 33,
+    "accession": "30.1478.33",
+    "title": {
+      "ja": "四ツ木通用水引ふね",
+      "romaji": "Yotsugi dōri yōsui hikifune",
+      "en": "Towboats Along the Yotsugi-dori Canal"
+    },
+    "season": "spring",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.735472,
+      "lng": 139.834444
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/033.jpg",
+      "pixel": "assets/pixel/033.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 033.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/100_views_edo_033.jpg",
+      "px": [
+        1672,
+        2434
+      ],
+      "best_available_px": [
+        1672,
+        2434
+      ],
+      "url": null,
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 34,
+    "accession": "30.1478.34",
+    "title": {
+      "ja": "真乳山山谷堀夜景",
+      "romaji": "Matsuchiyama San'yabori yakei",
+      "en": "Night View of the Matsuchiyama and Sam'ya Canal (Matsuchiyama San'yabori Yakei)"
+    },
+    "season": "spring",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.715917,
+      "lng": 139.806472
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/034.jpg",
+      "pixel": "assets/pixel/034.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 034.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/100_views_edo_034.jpg",
+      "px": [
+        801,
+        1200
+      ],
+      "best_available_px": [
+        801,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121648/Night_View_of_the_Matsuchiyama_and_Samya_Canal_Matsuchiyama_Sanyabori_Yakei_No._34_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 35,
+    "accession": "30.1478.35",
+    "title": {
+      "ja": "隅田川水神の森真崎",
+      "romaji": "Sumidagawa Suijin no mori Massaki",
+      "en": "Suijin Shrine and Massaki on the Sumida River (Sumidagawa Suijin no Mori Massaki)"
+    },
+    "season": "spring",
+    "published": "1856-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.732778,
+      "lng": 139.812722
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/035.jpg",
+      "pixel": "assets/pixel/035.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 035.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/100_views_edo_035.jpg",
+      "px": [
+        800,
+        1200
+      ],
+      "best_available_px": [
+        800,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121649/Suijin_Shrine_and_Massaki_on_the_Sumida_River_Sumidagawa_Suijin_no_Mori_Massaki_No._35_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 36,
+    "accession": "30.1478.36",
+    "title": {
+      "ja": "真崎辺より水神の森内川関屋の里を見る図",
+      "romaji": "Massaki atari yori Suijin no mori Uchigawa Sekiya no sato wo miru zu",
+      "en": "View From Massaki of Suijin Shrine, Uchigawa Inlet, and Sekiya"
+    },
+    "season": "spring",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.729722,
+      "lng": 139.808417
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/036.jpg",
+      "pixel": "assets/pixel/036.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 036.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/100_views_edo_036.jpg",
+      "px": [
+        786,
+        1200
+      ],
+      "best_available_px": [
+        786,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121650/View_From_Massaki_of_Suijin_Shrine_Uchigawa_Inlet_and_Sekiya_No._36_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 37,
+    "accession": "30.1478.37",
+    "title": {
+      "ja": "墨田河橋場の渡かわら竈",
+      "romaji": "Sumidagawa hashiba no watashi kawaragama",
+      "en": "Tile Kilns and Hashiba Ferry, Sumida River (Sumidagawa Hashiba no Watashi Kawaragawa)"
+    },
+    "season": "spring",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.728056,
+      "lng": 139.809722
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/037.jpg",
+      "pixel": "assets/pixel/037.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 037.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/100_views_edo_037.jpg",
+      "px": [
+        794,
+        1200
+      ],
+      "best_available_px": [
+        794,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121651/Tile_Kilns_and_Hashiba_Ferry_Sumida_River_Sumidagawa_Hashiba_no_Watashi_Kawaragawa_No._37_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 38,
+    "accession": "30.1478.38",
+    "title": {
+      "ja": "廓中東雲",
+      "romaji": "Kakuchū shinonome",
+      "en": "Dawn Inside the Yoshiwara"
+    },
+    "season": "spring",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.724222,
+      "lng": 139.796083
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/038.jpg",
+      "pixel": "assets/pixel/038.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 038.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/100_views_edo_038.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121652/Dawn_Inside_the_Yoshiwara_No._38_in_One_Hundred_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 39,
+    "accession": "30.1478.39",
+    "title": {
+      "ja": "吾妻橋 金龍山",
+      "romaji": "Azumabashi Kinryūzan enbo",
+      "en": "Distant View of Kinryuzan Temple and Azuma Bridge (Azumabashi Kinryuzan Enbo)"
+    },
+    "season": "spring",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.714444,
+      "lng": 139.804167
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/039.jpg",
+      "pixel": "assets/pixel/039.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 039.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/100_views_edo_039.jpg",
+      "px": [
+        559,
+        835
+      ],
+      "best_available_px": [
+        559,
+        835
+      ],
+      "url": null,
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 40,
+    "accession": "30.1478.40",
+    "title": {
+      "ja": "せき口上水端はせを庵椿やま",
+      "romaji": "Sekiguchi jōsuibata Bashōan Tsubakiyama",
+      "en": "Basho's Hermitage and Camellia Hill on the Kanda Aqueduct at Sekiguchi"
+    },
+    "season": "spring",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.712306,
+      "lng": 139.7235
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/040.jpg",
+      "pixel": "assets/pixel/040.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 040.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/100_views_edo_040.jpg",
+      "px": [
+        794,
+        1200
+      ],
+      "best_available_px": [
+        794,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121654/Bashos_Hermitage_and_Camellia_Hill_on_the_Kanda_Aqueduct_at_Sekiguchi_No._40_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 41,
+    "accession": "30.1478.41",
+    "title": {
+      "ja": "市ヶ谷八幡",
+      "romaji": "Ichigaya Hachiman",
+      "en": "Ichigaya Hachiman Shrine"
+    },
+    "season": "spring",
+    "published": "1858-10",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.692722,
+      "lng": 139.73375
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/041.jpg",
+      "pixel": "assets/pixel/041.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 041.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/100_views_edo_041.jpg",
+      "px": [
+        791,
+        1200
+      ],
+      "best_available_px": [
+        791,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121655/Ichigaya_Hachiman_Shrine_No._41_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 42,
+    "accession": "30.1478.42",
+    "title": {
+      "ja": "玉川堤の花",
+      "romaji": "Tamagawa tsutsumi no hana",
+      "en": "Blossoms on the Tama River Embankment"
+    },
+    "season": "spring",
+    "published": "1856-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.689333,
+      "lng": 139.702222
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/042.jpg",
+      "pixel": "assets/pixel/042.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 042.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/100_views_edo_042.jpg",
+      "px": [
+        787,
+        1200
+      ],
+      "best_available_px": [
+        787,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121656/Blossoms_on_the_Tama_River_Embankment_No._42_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 43,
+    "accession": "30.1478.43",
+    "title": {
+      "ja": "日本橋江戸ばし",
+      "romaji": "Nihonbashi Edobashi",
+      "en": "Nihonbashi Bridge and Edobashi Bridge (Nihonbashi to Edobashi)"
+    },
+    "season": "summer",
+    "published": "1857-12",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.684222,
+      "lng": 139.774667
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/043.jpg",
+      "pixel": "assets/pixel/043.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 043.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/100_views_edo_043.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121657/Nihonbashi_Bridge_and_Edobashi_Bridge_Nihonbashi_to_Edobashi_No._43_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 44,
+    "accession": "30.1478.44",
+    "title": {
+      "ja": "日本橋通一丁目略図",
+      "romaji": "Nihonbashi Tōri itchōme ryakuzu",
+      "en": "View of Nihonbashi Tori-itchome (Nihonbashi Tori-itchome Ryakuzu) )"
+    },
+    "season": "summer",
+    "published": "1858-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.6825,
+      "lng": 139.773694
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/044.jpg",
+      "pixel": "assets/pixel/044.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 044.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/100_views_edo_044.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121658/View_of_Nihonbashi_Tori-itchome_Nihonbashi_Tori-itchome_Ryakuzu_No._44_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 45,
+    "accession": "30.1478.45",
+    "title": {
+      "ja": "八ツ見のはし",
+      "romaji": "Yatsumi no hashi",
+      "en": "Yatsumi no hashi (Yatsumi Bridge)"
+    },
+    "season": "summer",
+    "published": "1856-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.684639,
+      "lng": 139.771333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/045.jpg",
+      "pixel": "assets/pixel/045.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 062.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/100_views_edo_062.jpg",
+      "px": [
+        4999,
+        7461
+      ],
+      "best_available_px": [
+        4999,
+        7461
+      ],
+      "url": null,
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 46,
+    "accession": "30.1478.46",
+    "title": {
+      "ja": "鎧の渡し小網町",
+      "romaji": "Yoroi no watashi Koami-chō",
+      "en": "Yoroi Ferry, Koami-cho (Yoroi no Watashi Koami-cho)"
+    },
+    "season": "summer",
+    "published": "1857-10",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.68225,
+      "lng": 139.77997
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/046.jpg",
+      "pixel": "assets/pixel/046.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 045.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/100_views_edo_045.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121659/Yoroi_Ferry_Koami-cho_Yoroi_no_Watashi_Koami-cho_No._46_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 47,
+    "accession": "30.1478.47",
+    "title": {
+      "ja": "昌平橋聖堂神田川",
+      "romaji": "Shōheibashi Seidō Kandagawa",
+      "en": "Seido and Kanda River From Shohei Bridge"
+    },
+    "season": "summer",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.698333,
+      "lng": 139.768889
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/047.jpg",
+      "pixel": "assets/pixel/047.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 046.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/100_views_edo_046.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121660/Seido_and_Kanda_River_From_Shohei_Bridge_No._47_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 48,
+    "accession": "30.1478.48",
+    "title": {
+      "ja": "水道橋駿河台",
+      "romaji": "Suidōbashi Surugadai",
+      "en": "Suido Bridge and Surugadai (Suidobashi Surugadai)"
+    },
+    "season": "summer",
+    "published": "1857-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.702083,
+      "lng": 139.755278
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/048.jpg",
+      "pixel": "assets/pixel/048.png",
+      "meishozue": "assets/meishozue/048.jpg",
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": "名所圖會對照：水道橋 同名"
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 063.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/100_views_edo_063.jpg",
+      "px": [
+        785,
+        1200
+      ],
+      "best_available_px": [
+        785,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121677/Suido_Bridge_and_Surugadai_Suidobashi_Surugadai_No._48_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 49,
+    "accession": "30.1478.49",
+    "title": {
+      "ja": "王子不動之瀧",
+      "romaji": "Ōji Fudō no taki",
+      "en": "Fudo Falls, Oji"
+    },
+    "season": "summer",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.751667,
+      "lng": 139.7335
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/049.jpg",
+      "pixel": "assets/pixel/049.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 047.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/100_views_edo_047.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121661/Fudo_Falls_Oji_No._49_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 50,
+    "accession": "30.1478.50",
+    "title": {
+      "ja": "角筈熊野十二社 俗称十二そう",
+      "romaji": "Tsunohazu Kumano Jūnisha zokushō Jūnisō",
+      "en": "Kumano Junisha Shrine, Tsunohazu"
+    },
+    "season": "summer",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.690833,
+      "lng": 139.688333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/050.jpg",
+      "pixel": "assets/pixel/050.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 064.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/100_views_edo_064.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121678/Kumano_Junisha_Shrine_Tsunohazu_No._50_in_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 51,
+    "accession": "30.1478.51",
+    "title": {
+      "ja": "糀町一丁目山王祭ねり込",
+      "romaji": "Kōjimachi itchōme Sannō Matsuri nerikomi",
+      "en": "Sanno Festival Procession at Kojimachi l-Chome"
+    },
+    "season": "summer",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.68375,
+      "lng": 139.74563
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/051.jpg",
+      "pixel": "assets/pixel/051.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 065.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/100_views_edo_065.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121679/Sanno_Festival_Procession_at_Kojimachi_l-Chome_No._51_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 52,
+    "accession": "30.1478.52",
+    "title": {
+      "ja": "赤坂桐畑",
+      "romaji": "Akasaka Kiribatake",
+      "en": "Akasaka Kiribatake"
+    },
+    "season": "summer",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.674167,
+      "lng": 139.737917
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/052.jpg",
+      "pixel": "assets/pixel/052.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 048.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/100_views_edo_048.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121662/Akasaka_Kiribatake_No._52_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 53,
+    "accession": "30.1478.53",
+    "title": {
+      "ja": "増上寺 塔赤羽根",
+      "romaji": "Zōjōjitō Akabane",
+      "en": "Zojoji Pagoda and Akabane"
+    },
+    "season": "summer",
+    "published": "1857-01",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.654639,
+      "lng": 139.745194
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/053.jpg",
+      "pixel": "assets/pixel/053.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 049.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/100_views_edo_049.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121663/Zojoji_Pagoda_and_Akabane_No._53_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 54,
+    "accession": "30.1478.54",
+    "title": {
+      "ja": "外桜田弁慶堀糀町",
+      "romaji": "Soto-Sakurada Benkeibori Kōjimachi",
+      "en": "Benkei Moat From Soto-Sakurada to Kojimachi"
+    },
+    "season": "summer",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.677306,
+      "lng": 139.750611
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/054.jpg",
+      "pixel": "assets/pixel/054.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 066.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/100_views_edo_066.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121680/Benkei_Moat_From_Soto-Sakurada_to_Kojimachi_No._54_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 55,
+    "accession": "30.1478.55",
+    "title": {
+      "ja": "佃しま住吉の祭",
+      "romaji": "Tsukudajima Sumiyoshi no matsuri",
+      "en": "Sumiyoshi Festival, Tsukudajima"
+    },
+    "season": "summer",
+    "published": "1857-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.668,
+      "lng": 139.783333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/055.jpg",
+      "pixel": "assets/pixel/055.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 050.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/100_views_edo_050.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121664/Sumiyoshi_Festival_Tsukudajima_No._55_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 56,
+    "accession": "30.1478.56",
+    "title": {
+      "ja": "深川萬年橋",
+      "romaji": "Fukagawa Mannenbashi",
+      "en": "Mannen Bridge, Fukagawa (Fukagawa Mannenbashi)"
+    },
+    "season": "summer",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.683472,
+      "lng": 139.794111
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/056.jpg",
+      "pixel": "assets/pixel/056.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 051.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/100_views_edo_051.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121665/Mannen_Bridge_Fukagawa_Fukagawa_Mannenbashi_No._56_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 57,
+    "accession": "30.1478.57",
+    "title": {
+      "ja": "みつまたわかれの淵",
+      "romaji": "Mitsumata Wakarenofuchi",
+      "en": "Mitsumata Wakarenofuchi"
+    },
+    "season": "summer",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.682028,
+      "lng": 139.790832
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/057.jpg",
+      "pixel": "assets/pixel/057.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 067.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/06/100_views_edo_067.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121681/Mitsumata_Wakarenofuchi_No._57_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 58,
+    "accession": "30.1478.58",
+    "title": {
+      "ja": "大はしあたけの夕立",
+      "romaji": "Ōhashi atake no yūdachi",
+      "en": "Sudden Shower Over Shin-Ohashi Bridge and Atake (Ohashi Atake no Yudachi)"
+    },
+    "season": "summer",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.685278,
+      "lng": 139.793056
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/058.jpg",
+      "pixel": "assets/pixel/058.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:Hiroshige Atake sous une averse soudaine.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Hiroshige_Atake_sous_une_averse_soudaine.jpg",
+      "px": [
+        919,
+        1435
+      ],
+      "best_available_px": [
+        919,
+        1435
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121666/Sudden_Shower_Over_Shin-Ohashi_Bridge_and_Atake_Ohashi_Atake_no_Yudachi_No._58_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 59,
+    "accession": "30.1478.59",
+    "title": {
+      "ja": "両国橋大川ばた",
+      "romaji": "Ryōgokubashi Ōkawabata",
+      "en": "Ryogoku Bridge and the Great Riverbank"
+    },
+    "season": "summer",
+    "published": "1856-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.693056,
+      "lng": 139.787694
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/059.jpg",
+      "pixel": "assets/pixel/059.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:Brooklyn Museum - Ryogoku Bridge and the Great Riverbank No 59 from One Hundred Views of Edo - Utagawa Hiroshige (Ando).jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Brooklyn_Museum_-_Ryogoku_Bridge_and_the_Great_Riverbank_No_59_from_One_Hundred_Views_of_Edo_-_Utagawa_Hiroshige_%28Ando%29.jpg",
+      "px": [
+        1023,
+        1536
+      ],
+      "best_available_px": [
+        1023,
+        1536
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121653/Ryogoku_Bridge_and_the_Great_Riverbank_No_59_from_One_Hundred_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 60,
+    "accession": "30.1478.60",
+    "title": {
+      "ja": "浅草川大川端宮戸川",
+      "romaji": "Asakusagawa Ōkawabata Miyatogawa",
+      "en": "Asakusa River, Great Riverbank, Miyato River"
+    },
+    "season": "summer",
+    "published": "1857-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.693972,
+      "lng": 139.787889
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/060.jpg",
+      "pixel": "assets/pixel/060.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 068.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/100_views_edo_068.jpg",
+      "px": [
+        795,
+        1200
+      ],
+      "best_available_px": [
+        795,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121682/Asakusa_River_Great_Riverbank_Miyato_River_No._60_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 61,
+    "accession": "30.1478.61",
+    "title": {
+      "ja": "浅草川首尾の松御厩河岸",
+      "romaji": "Asakusagawa shubi no matsu Oumayagashi",
+      "en": "Pine of Success and Oumayagashi, Asakusa River"
+    },
+    "season": "summer",
+    "published": "1856-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.700556,
+      "lng": 139.792167
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/061.jpg",
+      "pixel": "assets/pixel/061.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo oumaya.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/100_views_edo_oumaya.jpg",
+      "px": [
+        1022,
+        1536
+      ],
+      "best_available_px": [
+        1022,
+        1536
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121668/Pine_of_Success_and_Oumayagashi_Asakusa_River_No._61_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 62,
+    "accession": "30.1478.62",
+    "title": {
+      "ja": "駒形堂 吾嬬橋",
+      "romaji": "Komakatadō Azumabashi",
+      "en": "Komakata Hall and Azuma Bridge"
+    },
+    "season": "summer",
+    "published": "1857-01",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.708972,
+      "lng": 139.79675
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/062.jpg",
+      "pixel": "assets/pixel/062.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 055.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/100_views_edo_055.jpg",
+      "px": [
+        772,
+        1200
+      ],
+      "best_available_px": [
+        772,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121669/Komakata_Hall_and_Azuma_Bridge_No._62_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 63,
+    "accession": "30.1478.63",
+    "title": {
+      "ja": "綾瀬川鐘か淵",
+      "romaji": "Ayasegawa Kanegafuchi",
+      "en": "Ayase River and Kanegafuchi"
+    },
+    "season": "summer",
+    "published": "1857-01",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.739722,
+      "lng": 139.815278
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/063.jpg",
+      "pixel": "assets/pixel/063.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 069.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/100_views_edo_069.jpg",
+      "px": [
+        787,
+        1200
+      ],
+      "best_available_px": [
+        787,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121683/Ayase_River_and_Kanegafuchi_No._63_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 64,
+    "accession": "30.1478.64",
+    "title": {
+      "ja": "堀切の花菖蒲",
+      "romaji": "Horikiri no hanashōbu",
+      "en": "Horikiri Iris Garden (Horikiri no Hanashobu)"
+    },
+    "season": "summer",
+    "published": "1857-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.742361,
+      "lng": 139.825972
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/064.jpg",
+      "pixel": "assets/pixel/064.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "座標取自 ja.wikipedia 堀切菖蒲園（地點非視點，待 §7-15 查證）",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 056.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/100_views_edo_056.jpg",
+      "px": [
+        788,
+        1200
+      ],
+      "best_available_px": [
+        788,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121670/Horikiri_Iris_Garden_Horikiri_no_Hanashobu_No._64_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 65,
+    "accession": "30.1478.65",
+    "title": {
+      "ja": "亀戸天神 境内",
+      "romaji": "Kameidō Tenjin keidai",
+      "en": "Inside Kameido Tenjin Shrine (Kameido Tenjin Keidai)"
+    },
+    "season": "summer",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.702194,
+      "lng": 139.820972
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/065.jpg",
+      "pixel": "assets/pixel/065.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 057.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/100_views_edo_057.jpg",
+      "px": [
+        792,
+        1200
+      ],
+      "best_available_px": [
+        792,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121671/Inside_Kameido_Tenjin_Shrine_Kameido_Tenjin_Keidai_No._65_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 66,
+    "accession": "30.1478.66",
+    "title": {
+      "ja": "五百羅漢さゞゐ堂",
+      "romaji": "Gohyaku Rakan Sazaidō",
+      "en": "Spiral Hall, Five Hundred Rakan Temple"
+    },
+    "season": "summer",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.689583,
+      "lng": 139.826667
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/066.jpg",
+      "pixel": "assets/pixel/066.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 070.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/100_views_edo_070.jpg",
+      "px": [
+        779,
+        1200
+      ],
+      "best_available_px": [
+        779,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121684/Spiral_Hall_Five_Hundred_Rakan_Temple_No._66_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 67,
+    "accession": "30.1478.67",
+    "title": {
+      "ja": "逆井のわたし",
+      "romaji": "Sasakai no watashi",
+      "en": "Sakasai Ferry"
+    },
+    "season": "summer",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.695139,
+      "lng": 139.847583
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/067.jpg",
+      "pixel": "assets/pixel/067.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 058.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/100_views_edo_058.jpg",
+      "px": [
+        794,
+        1200
+      ],
+      "best_available_px": [
+        794,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121672/Sakasai_Ferry_No._67_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 68,
+    "accession": "30.1478.68",
+    "title": {
+      "ja": "深川八まん山ひらき",
+      "romaji": "Fukagawa Hachiman yamahiraki",
+      "en": "Open Garden at Fukagawa Hachiman Shrine"
+    },
+    "season": "summer",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.673056,
+      "lng": 139.7975
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/068.jpg",
+      "pixel": "assets/pixel/068.png",
+      "meishozue": "assets/meishozue/068.jpg",
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": "名所圖會對照：富岡八幡宮＝深川八まん"
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 059.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/100_views_edo_059.jpg",
+      "px": [
+        784,
+        1200
+      ],
+      "best_available_px": [
+        784,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121673/Open_Garden_at_Fukagawa_Hachiman_Shrine_No._68_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 69,
+    "accession": "30.1478.69",
+    "title": {
+      "ja": "深川三十三間堂",
+      "romaji": "Fukagawa Sanjusangendō",
+      "en": "Hall of Thirty-Three Bays, Fukagawa"
+    },
+    "season": "summer",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.671639,
+      "lng": 139.801472
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/069.jpg",
+      "pixel": "assets/pixel/069.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 071.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/100_views_edo_071.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121685/Hall_of_Thirty-Three_Bays_Fukagawa_No._69_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 70,
+    "accession": "30.1478.70",
+    "title": {
+      "ja": "中川口",
+      "romaji": "Nakagawaguchi",
+      "en": "Nakagawa River Mouth"
+    },
+    "season": "summer",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.686389,
+      "lng": 139.846667
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/070.jpg",
+      "pixel": "assets/pixel/070.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 060.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/100_views_edo_060.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121674/Nakagawa_River_Mouth_No._70_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 71,
+    "accession": "30.1478.71",
+    "title": {
+      "ja": "利根川ばらばらまつ",
+      "romaji": "Tonegawa barabara-matsu",
+      "en": "Scattered Pines, Tone River"
+    },
+    "season": "summer",
+    "published": "1856-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.677778,
+      "lng": 139.886389
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/071.jpg",
+      "pixel": "assets/pixel/071.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 061.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/100_views_edo_061.jpg",
+      "px": [
+        786,
+        1200
+      ],
+      "best_available_px": [
+        786,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121675/Scattered_Pines_Tone_River_No._71_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 72,
+    "accession": "30.1478.72",
+    "title": {
+      "ja": "はねたのわたし弁天の社",
+      "romaji": "Haneda no watashi Benten no yashiro",
+      "en": "Haneda Ferry and Benten Shrine (Haneda no Watashi Benten)"
+    },
+    "season": "summer",
+    "published": "1858-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.543333,
+      "lng": 139.743056
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/072.jpg",
+      "pixel": "assets/pixel/072.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 072.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/100_views_edo_072.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121686/Haneda_Ferry_and_Benten_Shrine_Haneda_no_Watashi_Benten_No._72_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 73,
+    "accession": "30.1478.73",
+    "title": {
+      "ja": "市中繁栄七夕祭",
+      "romaji": "Shichū han'ei Tanabata matsuri",
+      "en": "The City Flourishing, Tanabata Festival"
+    },
+    "season": "autumn",
+    "published": "1857-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.678056,
+      "lng": 139.7725
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/073.jpg",
+      "pixel": "assets/pixel/073.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 073.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/100_views_edo_073.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        5523,
+        8153
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121687/The_City_Flourishing_Tanabata_Festival_No._73_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 74,
+    "accession": "30.1478.74",
+    "title": {
+      "ja": "大伝馬町ごふく店",
+      "romaji": "Ōdenma-chō gofukudana",
+      "en": "Silk-Goods Lane, Odenma-cho"
+    },
+    "season": "autumn",
+    "published": "1858-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.690639,
+      "lng": 139.78025
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/074.jpg",
+      "pixel": "assets/pixel/074.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 074.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/100_views_edo_074.jpg",
+      "px": [
+        811,
+        1200
+      ],
+      "best_available_px": [
+        811,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121688/Silk-Goods_Lane_Odenma-cho_No._74_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 75,
+    "accession": "30.1478.75",
+    "title": {
+      "ja": "神田紺屋町",
+      "romaji": "Kanda konya-chō",
+      "en": "Dyers' Quarter, Kanda"
+    },
+    "season": "autumn",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.691667,
+      "lng": 139.774444
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/075.jpg",
+      "pixel": "assets/pixel/075.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:Hiroshige Le quartier des teinturiers de Kanda.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Hiroshige_Le_quartier_des_teinturiers_de_Kanda.jpg",
+      "px": [
+        798,
+        1200
+      ],
+      "best_available_px": [
+        798,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121689/Dyers_Quarter_Kanda_No._75_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 76,
+    "accession": "30.1478.76",
+    "title": {
+      "ja": "京橋竹がし",
+      "romaji": "Kyōbashi Takegashi",
+      "en": "Bamboo Yards, Kyōbashi Bridge"
+    },
+    "season": "autumn",
+    "published": "1857-12",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.675083,
+      "lng": 139.769028
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/076.jpg",
+      "pixel": "assets/pixel/076.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 076.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/100_views_edo_076.jpg",
+      "px": [
+        795,
+        1200
+      ],
+      "best_available_px": [
+        795,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121690/Bamboo_Yards_Kyobashi_Bridge_No._76_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 77,
+    "accession": "30.1478.77",
+    "title": {
+      "ja": "鉄砲洲稲荷橋湊神社",
+      "romaji": "Teppōzu Inaribashi Minato jinja",
+      "en": "Inari Bridge and Minato Shrine, Teppozu"
+    },
+    "season": "autumn",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.67375,
+      "lng": 139.780139
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/077.jpg",
+      "pixel": "assets/pixel/077.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 077.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/100_views_edo_077.jpg",
+      "px": [
+        804,
+        1200
+      ],
+      "best_available_px": [
+        804,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121691/Inari_Bridge_and_Minato_Shrine_Teppozu_No._77_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 78,
+    "accession": "30.1478.78",
+    "title": {
+      "ja": "鉄砲洲 築地門跡 （江戸百景余興）",
+      "romaji": "Teppōzu Tsukiji Monzeki",
+      "en": "Teppozu and Tsukiji Honganji Temple"
+    },
+    "season": "autumn",
+    "published": "1858-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.666667,
+      "lng": 139.780694
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/078.jpg",
+      "pixel": "assets/pixel/078.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 078.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/100_views_edo_078.jpg",
+      "px": [
+        780,
+        1200
+      ],
+      "best_available_px": [
+        780,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121692/Teppozu_and_Tsukiji_Honganji_Temple_No._78_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 79,
+    "accession": "30.1478.79",
+    "title": {
+      "ja": "芝神明増上寺 （江戸百景余興）",
+      "romaji": "Shiba Shinmei Zōjōji",
+      "en": "Shiba Shinmei Shrine and Zojoji Temple"
+    },
+    "season": "autumn",
+    "published": "1858-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.656861,
+      "lng": 139.754167
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/079.jpg",
+      "pixel": "assets/pixel/079.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 079.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/45/100_views_edo_079.jpg",
+      "px": [
+        792,
+        1200
+      ],
+      "best_available_px": [
+        792,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121693/Shiba_Shinmei_Shrine_and_Zojoji_Temple_No._79_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 80,
+    "accession": "30.1478.80",
+    "title": {
+      "ja": "金杉橋芝浦",
+      "romaji": "Kanasugibashi Shibaura",
+      "en": "Kanasugi Bridge and Shibaura"
+    },
+    "season": "autumn",
+    "published": "1857-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.653056,
+      "lng": 139.754056
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/080.jpg",
+      "pixel": "assets/pixel/080.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 080.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/100_views_edo_080.jpg",
+      "px": [
+        795,
+        1200
+      ],
+      "best_available_px": [
+        795,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121694/Kanasugi_Bridge_and_Shibaura_No._80_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 81,
+    "accession": "30.1478.81",
+    "title": {
+      "ja": "高輪うしまち",
+      "romaji": "Takanawa ushimachi",
+      "en": "Ushimachi, Takanawa"
+    },
+    "season": "autumn",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.63825,
+      "lng": 139.739722
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/081.jpg",
+      "pixel": "assets/pixel/081.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 081.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/100_views_edo_081.jpg",
+      "px": [
+        791,
+        1200
+      ],
+      "best_available_px": [
+        791,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121695/Ushimachi_Takanawa_No._81_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 82,
+    "accession": "30.1478.82",
+    "title": {
+      "ja": "月の岬",
+      "romaji": "Tsuki no Misaki",
+      "en": "Moon-Viewing Point ( Tsuki no Misaki )"
+    },
+    "season": "autumn",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.621944,
+      "lng": 139.740417
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/082.jpg",
+      "pixel": "assets/pixel/082.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 082.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/100_views_edo_082.jpg",
+      "px": [
+        744,
+        1104
+      ],
+      "best_available_px": [
+        744,
+        1104
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121696/Moon-Viewing_Point_No._82_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 83,
+    "accession": "30.1478.83",
+    "title": {
+      "ja": "品川すさき",
+      "romaji": "Shinagawa Susaki",
+      "en": "Shinagawa Susaki"
+    },
+    "season": "autumn",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.621278,
+      "lng": 139.742333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/083.jpg",
+      "pixel": "assets/pixel/083.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 083.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/100_views_edo_083.jpg",
+      "px": [
+        793,
+        1200
+      ],
+      "best_available_px": [
+        793,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121697/Shinagawa_Susaki_No._83_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 84,
+    "accession": "30.1478.84",
+    "title": {
+      "ja": "目黒爺々が茶屋",
+      "romaji": "Meguro jijigachaya",
+      "en": "Grandpa's Teahouse, Meguro"
+    },
+    "season": "autumn",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.640167,
+      "lng": 139.709111
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/084.jpg",
+      "pixel": "assets/pixel/084.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 084.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/100_views_edo_084.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121698/Grandpas_Teahouse_Meguro_No._84_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 85,
+    "accession": "30.1478.85",
+    "title": {
+      "ja": "紀ノ国坂赤坂溜池遠景",
+      "romaji": "Kinokunizaka Akasaka Tameike enkei",
+      "en": "Kinokuni Hill and Distant View of Akasaka Tameike"
+    },
+    "season": "autumn",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.679583,
+      "lng": 139.7325
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/085.jpg",
+      "pixel": "assets/pixel/085.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 085.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/100_views_edo_085.jpg",
+      "px": [
+        783,
+        1200
+      ],
+      "best_available_px": [
+        783,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121699/Kinokuni_Hill_and_Distant_View_of_Akasaka_Tameike_No._85_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 86,
+    "accession": "30.1478.86",
+    "title": {
+      "ja": "四ッ谷 内藤新宿",
+      "romaji": "Yotsuya Naitō Shinjuku",
+      "en": "Naito Shinjuku, Yotsuya"
+    },
+    "season": "autumn",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.689806,
+      "lng": 139.707083
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/086.jpg",
+      "pixel": "assets/pixel/086.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 086.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/100_views_edo_086.jpg",
+      "px": [
+        793,
+        1200
+      ],
+      "best_available_px": [
+        793,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121700/Naito_Shinjuku_Yotsuya_No._86_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 87,
+    "accession": "30.1478.87",
+    "title": {
+      "ja": "井の頭の池弁天の社",
+      "romaji": "Inokashira no ike Benten no yashiro",
+      "en": "Benten Shrine, Inokashira Pond"
+    },
+    "season": "autumn",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.699528,
+      "lng": 139.57475
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/087.jpg",
+      "pixel": "assets/pixel/087.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 087.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/100_views_edo_087.jpg",
+      "px": [
+        786,
+        1200
+      ],
+      "best_available_px": [
+        786,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121701/Benten_Shrine_Inokashira_Pond_No._87_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 88,
+    "accession": "30.1478.88",
+    "title": {
+      "ja": "王子滝の川",
+      "romaji": "Ōji Takinogawa",
+      "en": "Takinogawa, Oji"
+    },
+    "season": "autumn",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.752,
+      "lng": 139.729944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/088.jpg",
+      "pixel": "assets/pixel/088.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 088.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/100_views_edo_088.jpg",
+      "px": [
+        800,
+        1200
+      ],
+      "best_available_px": [
+        800,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121702/Takinogawa_Oji_No._88_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 89,
+    "accession": "30.1478.89",
+    "title": {
+      "ja": "上野山内月のまつ",
+      "romaji": "Ueno sannai Tsuki no matsu",
+      "en": "Moon Pine, Ueno"
+    },
+    "season": "autumn",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.712472,
+      "lng": 139.773083
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/089.jpg",
+      "pixel": "assets/pixel/089.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 089.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/100_views_edo_089.jpg",
+      "px": [
+        787,
+        1200
+      ],
+      "best_available_px": [
+        787,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121703/Moon_Pine_Ueno_No._89_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 90,
+    "accession": "30.1478.90",
+    "title": {
+      "ja": "猿わか町 よるの景",
+      "romaji": "Saruwaka-machi yoru no kei",
+      "en": "Night View of Saruwaka-machi (Saruwaka-machi Yoru no Kei)"
+    },
+    "season": "autumn",
+    "published": "1856-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.7175,
+      "lng": 139.800944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/090.jpg",
+      "pixel": "assets/pixel/090.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 90.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/100_views_edo_90.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121704/Night_View_of_Saruwaka-machi_Saruwaka-machi_Yoru_no_Kei_No._90_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 91,
+    "accession": "30.1478.91",
+    "title": {
+      "ja": "請地秋葉の境内",
+      "romaji": "Ukechi Akiba no keinai",
+      "en": "Inside Akiba Shrine, Ukeji"
+    },
+    "season": "autumn",
+    "published": "1857-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.716944,
+      "lng": 139.812861
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/091.jpg",
+      "pixel": "assets/pixel/091.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 091.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/100_views_edo_091.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121705/Inside_Akiba_Shrine_Ukeji_No._91_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 92,
+    "accession": "30.1478.92",
+    "title": {
+      "ja": "木母寺内川御前栽畑",
+      "romaji": "Mokubōji Uchigawa Gozensaibata",
+      "en": "Mokuboji Temple, Uchigawa Inlet, Gozensaihata"
+    },
+    "season": "autumn",
+    "published": "1857-12",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.733944,
+      "lng": 139.81425
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/092.jpg",
+      "pixel": "assets/pixel/092.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 092.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/100_views_edo_092.jpg",
+      "px": [
+        804,
+        1200
+      ],
+      "best_available_px": [
+        804,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121706/Mokuboji_Temple_Uchigawa_Inlet_Gozensaihata_No._92_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 93,
+    "accession": "30.1478.93",
+    "title": {
+      "ja": "にい宿のわたし",
+      "romaji": "Niijuku no watashi",
+      "en": "Niijuku Ferry"
+    },
+    "season": "autumn",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.763167,
+      "lng": 139.854306
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/093.jpg",
+      "pixel": "assets/pixel/093.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 093.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/100_views_edo_093.jpg",
+      "px": [
+        793,
+        1200
+      ],
+      "best_available_px": [
+        793,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121707/Niijuku_Ferry_No._93_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 94,
+    "accession": "30.1478.94",
+    "title": {
+      "ja": "真間の紅葉手古那の社継はし",
+      "romaji": "Mama no momiji Tekona no yashiro Tsugihashi",
+      "en": "Maple Trees at Mama, Tekona Shrine and Linked Bridge"
+    },
+    "season": "autumn",
+    "published": "1857-01",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.738333,
+      "lng": 139.909222
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/094.jpg",
+      "pixel": "assets/pixel/094.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 094.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/100_views_edo_094.jpg",
+      "px": [
+        783,
+        1200
+      ],
+      "best_available_px": [
+        783,
+        1200
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/121708/Maple_Trees_at_Mama_Tekona_Shrine_and_Linked_Bridge_No._94_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 95,
+    "accession": "30.1478.95",
+    "title": {
+      "ja": "鴻の台とね川風景",
+      "romaji": "Kōnodai Tonegawa Fūkei",
+      "en": "View of Konodai and the Tone River"
+    },
+    "season": "autumn",
+    "published": "1856-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.747778,
+      "lng": 139.8975
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/095.jpg",
+      "pixel": "assets/pixel/095.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 095.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/100_views_edo_095.jpg",
+      "px": [
+        792,
+        1200
+      ],
+      "best_available_px": [
+        792,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121709/View_of_Konodai_and_the_Tone_River_No._95_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 96,
+    "accession": "30.1478.96",
+    "title": {
+      "ja": "堀江ねこざね",
+      "romaji": "Horie Nekozane",
+      "en": "Horie and Nekozane"
+    },
+    "season": "autumn",
+    "published": "1856-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.659167,
+      "lng": 139.896944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/096.jpg",
+      "pixel": "assets/pixel/096.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 096.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/100_views_edo_096.jpg",
+      "px": [
+        2243,
+        3434
+      ],
+      "best_available_px": [
+        2243,
+        3434
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121710/Horie_and_Nekozane_No._96_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 97,
+    "accession": "30.1478.97",
+    "title": {
+      "ja": "小奈木川五本まつ",
+      "romaji": "Ongagigawa Gohonmatsu",
+      "en": "Five Pines, Onagi Canal"
+    },
+    "season": "autumn",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.685139,
+      "lng": 139.818056
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/097.jpg",
+      "pixel": "assets/pixel/097.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:Hiroshige, Five pines, Onagi Canal, 1856.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Hiroshige%2C_Five_pines%2C_Onagi_Canal%2C_1856.jpg",
+      "px": [
+        5417,
+        8175
+      ],
+      "best_available_px": [
+        5417,
+        8175
+      ],
+      "url": null,
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 98,
+    "accession": "30.1478.98",
+    "title": {
+      "ja": "両国花火",
+      "romaji": "Ryōgoku hanabi",
+      "en": "Fireworks at Ryogoku (Ryogoku Hanabi)"
+    },
+    "season": "autumn",
+    "published": "1858-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.693556,
+      "lng": 139.78875
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/098.jpg",
+      "pixel": "assets/pixel/098.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 098.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/100_views_edo_098.jpg",
+      "px": [
+        780,
+        1200
+      ],
+      "best_available_px": [
+        780,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121712/Fireworks_at_Ryogoku_Ryogoku_Hanabi_No._98_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 99,
+    "accession": "30.1478.99",
+    "title": {
+      "ja": "浅草金龍山",
+      "romaji": "Asakusa Kinryūzan",
+      "en": "Kinryuzan Temple, Asakusa (Asakusa Kinryuzan)"
+    },
+    "season": "winter",
+    "published": "1856-07",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.711111,
+      "lng": 139.796389
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/099.jpg",
+      "pixel": "assets/pixel/099.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 099.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/100_views_edo_099.jpg",
+      "px": [
+        713,
+        1087
+      ],
+      "best_available_px": [
+        713,
+        1087
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/49880/Kinryuzan_Temple_Asakusa_Asakusa_Kinryuzan_No._99_from_One_Hundred_Famous_View_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 100,
+    "accession": "30.1478.100",
+    "title": {
+      "ja": "よし原日本堤",
+      "romaji": "Yoshiwara Nihondzutsumi",
+      "en": "Nihon Embankment, Yoshiwara"
+    },
+    "season": "winter",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.724583,
+      "lng": 139.797278
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/100.jpg",
+      "pixel": "assets/pixel/100.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 100.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/100_views_edo_100.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121713/Nihon_Embankment_Yoshiwara_No._100_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 101,
+    "accession": "30.1478.101",
+    "title": {
+      "ja": "浅草田甫酉の町詣",
+      "romaji": "Asakusa tanbo Torinomachi mōde",
+      "en": "Asakusa Ricefields and Torinomachi Festival"
+    },
+    "season": "winter",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.7225,
+      "lng": 139.791944
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/101.jpg",
+      "pixel": "assets/pixel/101.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 101.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/100_views_edo_101.jpg",
+      "px": [
+        790,
+        1200
+      ],
+      "best_available_px": [
+        790,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121714/Asakusa_Ricefields_and_Torinomachi_Festival_No._101_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 102,
+    "accession": "30.1478.102",
+    "title": {
+      "ja": "蓑輪金杉三河しま",
+      "romaji": "Minowa Kanasugi Mikawashima",
+      "en": "Minowa, Kanasugi, Mikawashima"
+    },
+    "season": "winter",
+    "published": "1857-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.731944,
+      "lng": 139.779444
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/102.jpg",
+      "pixel": "assets/pixel/102.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 102.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/100_views_edo_102.jpg",
+      "px": [
+        798,
+        1200
+      ],
+      "best_available_px": [
+        798,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121715/Minowa_Kanasugi_Mikawashima_No._102_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 103,
+    "accession": "30.1478.103",
+    "title": {
+      "ja": "千住の大はし",
+      "romaji": "Senju no ōhashi",
+      "en": "Senju Great Bridge"
+    },
+    "season": "winter",
+    "published": "1856-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.739444,
+      "lng": 139.7975
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/103.jpg",
+      "pixel": "assets/pixel/103.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 103.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/100_views_edo_103.jpg",
+      "px": [
+        781,
+        1200
+      ],
+      "best_available_px": [
+        781,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121716/Senju_Great_Bridge_No._103_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 104,
+    "accession": "30.1478.104",
+    "title": {
+      "ja": "小梅堤",
+      "romaji": "Koumetsutsumi",
+      "en": "Koume Embankment"
+    },
+    "season": "winter",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.710639,
+      "lng": 139.808333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/104.jpg",
+      "pixel": "assets/pixel/104.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 104.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/100_views_edo_104.jpg",
+      "px": [
+        792,
+        1200
+      ],
+      "best_available_px": [
+        792,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121717/Koume_Embankment_No._104_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 105,
+    "accession": "30.1478.105",
+    "title": {
+      "ja": "御厩河岸",
+      "romaji": "Oumayagashi",
+      "en": "Oumayagashi"
+    },
+    "season": "winter",
+    "published": "1857-12",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.703667,
+      "lng": 139.793806
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/105.jpg",
+      "pixel": "assets/pixel/105.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 105.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/100_views_edo_105.jpg",
+      "px": [
+        1155,
+        1730
+      ],
+      "best_available_px": [
+        1155,
+        1730
+      ],
+      "url": null,
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 106,
+    "accession": "30.1478.106",
+    "title": {
+      "ja": "深川木場",
+      "romaji": "Fukagawa kiba",
+      "en": "Fukagawa Lumberyards"
+    },
+    "season": "winter",
+    "published": "1856-08",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.676389,
+      "lng": 139.808333
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/106.jpg",
+      "pixel": "assets/pixel/106.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 106.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/100_views_edo_106.jpg",
+      "px": [
+        776,
+        1200
+      ],
+      "best_available_px": [
+        776,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121718/Fukagawa_Lumberyards_No._106_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 107,
+    "accession": "30.1478.107",
+    "title": {
+      "ja": "深川州崎十万坪",
+      "romaji": "Fukagawa Susaki Jūmantsubo",
+      "en": "Fukagawa Susaki and Jumantsubo"
+    },
+    "season": "winter",
+    "published": "1857-05",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.679167,
+      "lng": 139.815833
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/107.jpg",
+      "pixel": "assets/pixel/107.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 107.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/100_views_edo_107.jpg",
+      "px": [
+        690,
+        1055
+      ],
+      "best_available_px": [
+        690,
+        1055
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121719/Fukagawa_Susaki_and_Jumantsubo_No._107_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 108,
+    "accession": "30.1478.108",
+    "title": {
+      "ja": "芝うらの風景",
+      "romaji": "Shibaura no fūkei",
+      "en": "View of Shiba Coast"
+    },
+    "season": "winter",
+    "published": "1856-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.658889,
+      "lng": 139.768611
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/108.jpg",
+      "pixel": "assets/pixel/108.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 108.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/100_views_edo_108.jpg",
+      "px": [
+        781,
+        1200
+      ],
+      "best_available_px": [
+        781,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121720/View_of_Shiba_Coast_No._108_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 109,
+    "accession": "30.1478.109",
+    "title": {
+      "ja": "南品川鮫洲海岸",
+      "romaji": "Minamishinagawa Samezu kaigan",
+      "en": "Minami-Shinagawa and Samezu Coast"
+    },
+    "season": "winter",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.606389,
+      "lng": 139.745278
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/109.jpg",
+      "pixel": "assets/pixel/109.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 109.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/100_views_edo_109.jpg",
+      "px": [
+        900,
+        1200
+      ],
+      "best_available_px": [
+        900,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121721/Minami-Shinagawa_and_Samezu_Coast_No._109_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 110,
+    "accession": "30.1478.110",
+    "title": {
+      "ja": "千束の池袈裟懸松",
+      "romaji": "Senzoku no ike Kesakakematsu",
+      "en": "Robe-Hanging Pine, Senzoku Pond"
+    },
+    "season": "winter",
+    "published": "1856-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.60125,
+      "lng": 139.691667
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/110.jpg",
+      "pixel": "assets/pixel/110.png",
+      "meishozue": "assets/meishozue/110.jpg",
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": "名所圖會對照：千束の池 同名"
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 110.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/94/100_views_edo_110.jpg",
+      "px": [
+        788,
+        1200
+      ],
+      "best_available_px": [
+        788,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121722/Robe-Hanging_Pine_Senzoku_Pond_No._110_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 111,
+    "accession": "30.1478.111",
+    "title": {
+      "ja": "目黒太鼓橋夕日の岡",
+      "romaji": "Meguro taikobashi Yūhi no oka",
+      "en": "Meguro Drum Bridge and Sunset Hill"
+    },
+    "season": "winter",
+    "published": "1857-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.632278,
+      "lng": 139.712222
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/111.jpg",
+      "pixel": "assets/pixel/111.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 111.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/100_views_edo_111.jpg",
+      "px": [
+        785,
+        1200
+      ],
+      "best_available_px": [
+        785,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121723/Meguro_Drum_Bridge_and_Sunset_Hill_No._111_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 112,
+    "accession": "30.1478.112",
+    "title": {
+      "ja": "愛宕下藪小路",
+      "romaji": "Atagoshita Yabukōji",
+      "en": "Atagoshita and Yabu Lane"
+    },
+    "season": "winter",
+    "published": "1857-12",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.668056,
+      "lng": 139.750722
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/112.jpg",
+      "pixel": "assets/pixel/112.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 112.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/100_views_edo_112.jpg",
+      "px": [
+        799,
+        1200
+      ],
+      "best_available_px": [
+        799,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121724/Atagoshita_and_Yabu_Lane_No._112_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 113,
+    "accession": "30.1478.113",
+    "title": {
+      "ja": "虎の門外あふひ坂",
+      "romaji": "Toranomon soto Aoizaka",
+      "en": "Aoi Slope, Outside Toranomon Gate"
+    },
+    "season": "winter",
+    "published": "1857-11",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.669611,
+      "lng": 139.747694
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/113.jpg",
+      "pixel": "assets/pixel/113.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 113.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/100_views_edo_113.jpg",
+      "px": [
+        789,
+        1200
+      ],
+      "best_available_px": [
+        789,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121725/Aoi_Slope_Outside_Toranomon_Gate_No._113_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 114,
+    "accession": "30.1478.114",
+    "title": {
+      "ja": "びくにはし雪中",
+      "romaji": "Bikunihashi setchū",
+      "en": "Bikuni Bridge in Snow"
+    },
+    "season": "winter",
+    "published": "1858-10",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.675917,
+      "lng": 139.766444
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/114.jpg",
+      "pixel": "assets/pixel/114.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 114.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/100_views_edo_114.jpg",
+      "px": [
+        786,
+        1200
+      ],
+      "best_available_px": [
+        786,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121726/Bikuni_Bridge_in_Snow_No._114_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 115,
+    "accession": "30.1478.115",
+    "title": {
+      "ja": "高田の馬場",
+      "romaji": "Takada no baba",
+      "en": "Takata Riding Grounds"
+    },
+    "season": "winter",
+    "published": "1857-02",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.71,
+      "lng": 139.715
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/115.jpg",
+      "pixel": "assets/pixel/115.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Wikimedia Commons",
+      "commons_file": "File:100 views edo 115.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/100_views_edo_115.jpg",
+      "px": [
+        796,
+        1200
+      ],
+      "best_available_px": [
+        796,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121727/Takata_Riding_Grounds_No._115_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 116,
+    "accession": "30.1478.116",
+    "title": {
+      "ja": "高田姿見のはし俤の橋砂利場",
+      "romaji": "Takata Sugatami no hashi Omokage no hashi Jariba",
+      "en": "Sugatami Bridge, Omokage Bridge, and Jariba at Takata"
+    },
+    "season": "winter",
+    "published": "1857-01",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.71325,
+      "lng": 139.71425
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/116.jpg",
+      "pixel": "assets/pixel/116.png",
+      "meishozue": "assets/meishozue/116.jpg",
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": "名所圖會對照：姿見の橋・俤の橋 兩座橋在兩邊標題都出現；圖中題簽亦確認"
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 116.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/100_views_edo_116.jpg",
+      "px": [
+        804,
+        1200
+      ],
+      "best_available_px": [
+        804,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121728/Sugatami_Bridge_Omokage_Bridge_and_Jariba_at_Takata_No._116_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 117,
+    "accession": "30.1478.117",
+    "title": {
+      "ja": "湯しま天神坂上眺望",
+      "romaji": "Yushima Tenjin sakaue chōbō",
+      "en": "Hilltop View, Yushima Tenjin Shrine"
+    },
+    "season": "winter",
+    "published": "1856-04",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.707778,
+      "lng": 139.768222
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/117.jpg",
+      "pixel": "assets/pixel/117.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:100 views edo 117.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/100_views_edo_117.jpg",
+      "px": [
+        783,
+        1200
+      ],
+      "best_available_px": [
+        783,
+        1200
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121729/Hilltop_View_Yushima_Tenjin_Shrine_No._117_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 118,
+    "accession": "30.1478.118",
+    "title": {
+      "ja": "王子装束ゑの木大晦日の狐火",
+      "romaji": "Ōji shōzoku wenoki ōtsugomorihi no kitsunebi",
+      "en": "New Year's Eve Foxfires at the Changing Tree, Ōji"
+    },
+    "season": "winter",
+    "published": "1857-09",
+    "attribution": "hiroshige",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.756417,
+      "lng": 139.737861
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/118.jpg",
+      "pixel": "assets/pixel/118.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:Hiroshige, New Year's Eve foxfires at the changing tree, Oji, 1857.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Hiroshige%2C_New_Year%27s_Eve_foxfires_at_the_changing_tree%2C_Oji%2C_1857.jpg",
+      "px": [
+        3352,
+        5115
+      ],
+      "best_available_px": [
+        3352,
+        5115
+      ],
+      "url": "http://www.brooklynmuseum.org/opencollection/objects/121730/New_Years_Eve_Foxfires_at_the_Changing_Tree,_Oji,_No._118_from_One_Hundred_Famous_Views_of_Edo",
+      "license": "Public domain"
+    }
+  },
+  {
+    "id": 119,
+    "accession": null,
+    "title": {
+      "ja": "赤坂桐畑雨中夕けい",
+      "romaji": "Akasaka kiribatake uchū yūkei",
+      "en": "View of the Kiribata (Paulownia Imperiales) Trees at Akasaka on a Rainy Evening"
+    },
+    "season": "winter",
+    "published": "1859-04",
+    "attribution": "hiroshige2",
+    "viewpoint": {
+      "lat": null,
+      "lng": null,
+      "confidence": "unknown"
+    },
+    "subject": {
+      "lat": 35.677611,
+      "lng": 139.73625
+    },
+    "bearing": null,
+    "place": {
+      "edo": null,
+      "modern_ward": null,
+      "modern_landmark": null
+    },
+    "conditions": {
+      "weather": null,
+      "time_of_day": null
+    },
+    "assets": {
+      "original": "assets/originals/119.jpg",
+      "pixel": "assets/pixel/119.png",
+      "meishozue": null,
+      "miyage": null
+    },
+    "distortions": [],
+    "notes": {
+      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "commentary": null
+    },
+    "source": {
+      "institution": "Brooklyn Museum",
+      "commons_file": "File:Brooklyn Museum - View of the Kiribata (Paulownia Imperiales) Trees at Akasaka on a Rainy Evening - Utagawa Hiroshige II.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Brooklyn_Museum_-_View_of_the_Kiribata_%28Paulownia_Imperiales%29_Trees_at_Akasaka_on_a_Rainy_Evening_-_Utagawa_Hiroshige_II.jpg",
+      "px": [
+        507,
+        768
+      ],
+      "best_available_px": [
+        507,
+        768
+      ],
+      "url": "https://www.brooklynmuseum.org/opencollection/objects/9773/View_of_the_Kiribata_Paulownia_Imperiales_Trees_at_Akasaka_on_a_Rainy_Evening",
+      "license": "Public domain"
+    }
+  }
+]
