@@ -49,13 +49,22 @@ def main():
         return
 
     DST.mkdir(parents=True, exist_ok=True)
+    # fetch-plates.py（Commons 逐幅插圖）與這支（NDL 整開頁裁切）會撞同一個檔名。
+    # 先前是誰後跑誰贏、而且不出聲——那種沉默的覆蓋遲早會讓人搞不清畫面是哪來的。
+    # 現在明講：NDL 版優先（整個開頁看得到上下文，§2.4 對照更完整），但要報出來。
+    overwritten = []
     for p, src in ok:
+        out = DST / f"{p['id']:03d}.jpg"
+        if out.exists() and not by[p["id"]]["assets"]["meishozue"] is False:
+            overwritten.append(p["id"])
         im = Image.open(src)
         w, h = im.size
         im.crop((int(w * CROP[0]), int(h * CROP[1]),
-                 int(w * CROP[2]), int(h * CROP[3]))).save(
-            DST / f"{p['id']:03d}.jpg", "JPEG", quality=88, optimize=True)
+                 int(w * CROP[2]), int(h * CROP[3]))).save(out, "JPEG", quality=88, optimize=True)
         by[p["id"]]["assets"]["meishozue"] = True
+    if overwritten:
+        print(f"\n覆蓋了 fetch-plates.py 的 Commons 版 {len(overwritten)} 張：{overwritten}")
+        print("  （NDL 整開頁優先；要用 Commons 版就重跑 fetch-plates.py --write）")
 
     (ROOT / "data" / "views.json").write_text(
         json.dumps(views, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
