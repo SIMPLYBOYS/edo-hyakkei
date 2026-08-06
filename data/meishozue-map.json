@@ -7,10 +7,12 @@
       "v01",
       "v02",
       "v03",
+      "v04-partial(p1-46)",
       "v12"
     ],
     "remaining": [
-      "v04-v11",
+      "v04 p47-81",
+      "v05-v11",
       "v13-v20"
     ],
     "total_volumes": 20
@@ -54,6 +56,22 @@
       "page": 17,
       "plate": "愛宕山",
       "view": "芝愛宕山",
+      "confidence": "high"
+    },
+    {
+      "id": 26,
+      "vol": "v04",
+      "page": 44,
+      "plate": "八景坂 鎧懸松",
+      "view": "八景坂鎧掛松",
+      "confidence": "high"
+    },
+    {
+      "id": 28,
+      "vol": "v04",
+      "page": 15,
+      "plate": "御殿山 御庭",
+      "view": "品川御殿やま",
       "confidence": "high"
     },
     {
@@ -123,6 +141,15 @@
       "view": "月の岬",
       "confidence": "medium",
       "note": "月の岬是高輪的賞月名所，畫的正是二十六夜待之夜；靠典故判定非字面對名"
+    },
+    {
+      "id": 83,
+      "vol": "v04",
+      "page": 20,
+      "plate": "洲崎弁天",
+      "view": "品川すさき",
+      "confidence": "high",
+      "note": "洲崎有兩處，深川那個是 no.107；本冊是品川，以冊次區域判別"
     },
     {
       "id": 112,
