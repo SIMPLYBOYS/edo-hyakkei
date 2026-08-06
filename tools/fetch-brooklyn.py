@@ -122,7 +122,9 @@ def build(found, clashes):
             "subject": ({"lat": float(c["lat"]), "lng": float(c["lng"])} if c["lat"] else None),
             "bearing": None,
             "place": {"edo": None, "modern_ward": None, "modern_landmark": None},
-            "conditions": {"weather": None, "time_of_day": None},
+            # weather 已拍板不做（§9.3），欄位一併移除——
+            # 不留沒有實作也沒有計畫的欄位，那是 §9.5 學到的事。
+            "conditions": {"time_of_day": None},
             # §9.5：只存推導不出來的東西。檔名一律是 {id:03d}.jpg，
             # 存路徑等於把同一條規則抄 119 遍，而且會說謊——檔案搬了、資料夾沒建，
             # 欄位不會自己更新（舊版有 118 筆指向不存在的 assets/pixel/）。
@@ -149,7 +151,7 @@ def build(found, clashes):
             "viewpoint": {"lat": None, "lng": None, "confidence": "unknown"},
             "subject": None, "bearing": None,
             "place": {"edo": None, "modern_ward": None, "modern_landmark": None},
-            "conditions": {"weather": None, "time_of_day": None},
+            "conditions": {"time_of_day": None},
             "assets": {"meishozue": False, "miyage": False},
             "distortions": [],
             "notes": {"geo": None, "commentary": "Commons 無此圖，待他館補齊"},
