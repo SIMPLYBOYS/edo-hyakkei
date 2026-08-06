@@ -1,10 +1,10 @@
 {
   "_": "§7-14 百景 ↔ 名所圖會 對照表。逐冊讀接觸印樣與上緣題簽建立，見 tools/make-sheet.py。",
   "_method": "1) make-sheet.py vNN 產整冊印樣挑出插圖頁 2) --strips 裁上緣讀題簽 3) 題名對回百景。每冊約 2–3 張圖即可讀完，不需逐頁細看。",
-  "_confidence": "high = 圖會題簽與百景標題指向同一個具體地名（鎧之渡／新大橋／姿見の橋這類獨一無二的名字）。題簽是版刻小字，判讀有極限——只收敢確定的，寧可漏不可錯配。",
+  "_confidence": "high = 圖會題簽與百景標題字面上指向同一個獨一無二的地名（鎧之渡／新大橋／姿見の橋）。medium = 同一處但名稱不同，需要知識判定而非字面比對（西本願寺＝築地門跡）。題簽是版刻小字，判讀有極限——寧可漏不可錯配。",
   "_progress": {
-    "done": ["v01", "v02-partial", "v12"],
-    "remaining": ["v02 後半", "v03-v11", "v13-v20"],
+    "done": ["v01", "v02", "v12"],
+    "remaining": ["v03-v11", "v13-v20"],
     "total_volumes": 20
   },
   "pairs": [
@@ -12,7 +12,10 @@
     { "id": 7,   "vol": "v01", "page": 40, "plate": "大傳馬町 木綿店",     "view": "大てんま町木綿店",       "confidence": "high" },
     { "id": 8,   "vol": "v01", "page": 38, "plate": "駿河町 三井呉服店",   "view": "する賀てふ",           "confidence": "high" },
     { "id": 48,  "vol": "v01", "page": 53, "plate": "御茶の水 水道橋",     "view": "水道橋駿河台",         "confidence": "high" },
+    { "id": 4,   "vol": "v02", "page": 32, "plate": "永代橋",            "view": "永代橋佃しま",          "confidence": "high" },
     { "id": 46,  "vol": "v02", "page": 18, "plate": "鎧之渡",            "view": "鎧の渡し小網町",        "confidence": "high" },
+    { "id": 78,  "vol": "v02", "page": 40, "plate": "西本願寺",          "view": "鉄砲洲 築地門跡",       "confidence": "medium",
+      "note": "築地門跡＝西本願寺江戶別院（築地本願寺），同一寺不同稱呼；本冊涵蓋新川・佃島・鉄砲洲，區域吻合" },
     { "id": 58,  "vol": "v02", "page": 12, "plate": "新大橋",            "view": "大はしあたけの夕立",     "confidence": "high" },
     { "id": 115, "vol": "v12", "page": 4,  "plate": "高田の馬場",         "view": "高田の馬場",           "confidence": "high" },
     { "id": 116, "vol": "v12", "page": 11, "plate": "姿見の橋",          "view": "高田姿見のはし俤の橋砂利場", "confidence": "high" }
