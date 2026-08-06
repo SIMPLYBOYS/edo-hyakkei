@@ -24,6 +24,7 @@ CROP = (0.055, 0.075, 0.945, 0.845)
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--prune", action="store_true", help="清掉對照表已無的舊圖檔")
     args = ap.parse_args()
 
     m = json.loads((ROOT / "data" / "meishozue-map.json").read_text(encoding="utf-8"))
@@ -65,6 +66,20 @@ def main():
     if overwritten:
         print(f"\n覆蓋了 fetch-plates.py 的 Commons 版 {len(overwritten)} 張：{overwritten}")
         print("  （NDL 整開頁優先；要用 Commons 版就重跑 fetch-plates.py --write）")
+
+    # 撤銷配對時圖檔會留下來，變成「資料說沒有、檔案卻在」的矛盾。
+    # 預設只警告不刪——刪檔要明講才做。
+    live = {p["id"] for p in m["pairs"]} | {v["id"] for v in views
+                                            if v["assets"]["meishozue"] and v["id"] not in
+                                            {q["id"] for q in m["pairs"]}}
+    stale = sorted(int(f.stem) for f in DST.glob("*.jpg") if int(f.stem) not in live)
+    if stale:
+        print(f"\n⚠️ 對照表已無、但圖檔還在：{stale}")
+        print("   加 --prune 可清掉（assets/ 是 gitignore 的衍生目錄，刪了能重建）")
+        if args.prune:
+            for i in stale:
+                (DST / f"{i:03d}.jpg").unlink()
+            print(f"   已清除 {len(stale)} 張")
 
     (ROOT / "data" / "views.json").write_text(
         json.dumps(views, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
