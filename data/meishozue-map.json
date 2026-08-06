@@ -1,0 +1,12 @@
+{
+  "_": "§7-14 百景 ↔ 名所圖會 對照表。逐冊讀接觸印樣與上緣題簽建立，見 tools/make-sheet.py。",
+  "_method": "1) make-sheet.py vNN 產整冊印樣挑出插圖頁 2) --strips 裁上緣讀題簽 3) 題名對回百景。每冊約 2–3 張圖即可讀完，不需逐頁細看。",
+  "_progress": { "done": ["v01-partial", "v12"], "total_volumes": 20 },
+  "pairs": [
+    { "id": 1,   "vol": "v01", "page": 36, "plate": "日本橋 魚市",        "view": "日本橋雪晴" },
+    { "id": 7,   "vol": "v01", "page": 40, "plate": "大傳馬町 木綿店",     "view": "大てんま町木綿店" },
+    { "id": 8,   "vol": "v01", "page": 38, "plate": "駿河町 三井呉服店",   "view": "する賀てふ" },
+    { "id": 115, "vol": "v12", "page": 4,  "plate": "高田の馬場",          "view": "高田の馬場" },
+    { "id": 116, "vol": "v12", "page": 11, "plate": "姿見の橋",            "view": "高田姿見のはし俤の橋砂利場" }
+  ]
+}

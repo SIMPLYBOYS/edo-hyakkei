@@ -353,7 +353,7 @@
       "time_of_day": null
     },
     "assets": {
-      "meishozue": false,
+      "meishozue": true,
       "miyage": false
     },
     "distortions": [],
@@ -407,7 +407,7 @@
       "time_of_day": null
     },
     "assets": {
-      "meishozue": false,
+      "meishozue": true,
       "miyage": false
     },
     "distortions": [],
@@ -6171,7 +6171,7 @@
       "time_of_day": null
     },
     "assets": {
-      "meishozue": false,
+      "meishozue": true,
       "miyage": false
     },
     "distortions": [],
