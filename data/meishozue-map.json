@@ -51,7 +51,8 @@
     "next_priority": "v14-v20。未配對的 89 景高度集中在江戶北東（王子・日暮里・淺草・上野・隅田川兩岸・龜戶・深川），那正是 v14-v20 的範圍，產出率應遠高於 v08-v13。",
     "yield_by_zone": "江戶外 v05/v06/v10：0 組。西郊 v08/v09/v11/v13：3 組。核心 v14-v17：14 組。深川本所龜戶 v18：9 組。隅田川東岸 v19：進行中。→ 產出率由地理決定，不是讀法問題。",
     "verified_negative": {
-      "no.92": "v19 p009(文字) / p010(庵崎鳥瞰) / p027(純文字) 皆已看過整頁，都不是。待查其他頁或其他冊。"
+      "no.92": "v19 p009(文字) / p010(庵崎鳥瞰) / p027(純文字) 皆已看過整頁，都不是。待查其他頁或其他冊。",
+      "no.26": "v04/p044 是純文字頁（八景坂・鎧懸松的文字條目），不是插圖。與 no.92 同型失誤。插圖可能在 p043 或 p045。"
     }
   },
   "pairs": [
@@ -61,7 +62,10 @@
       "page": 36,
       "plate": "日本橋 魚市",
       "view": "日本橋雪晴",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同景",
+      "note": "同一座橋與魚市，廣重退後加了富士"
     },
     {
       "id": 2,
@@ -70,7 +74,9 @@
       "plate": "霞ヶ関",
       "view": "霞がせき",
       "confidence": "high",
-      "note": "p016 另有「霞ヶ関古圖」，是古地圖版；p015 才是本景"
+      "note": "同一條坡道，兩側屋敷牆與石垣對上",
+      "verified": "整頁比對",
+      "relation": "同景"
     },
     {
       "id": 4,
@@ -78,7 +84,10 @@
       "page": 32,
       "plate": "永代橋",
       "view": "永代橋佃しま",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "同一座永代橋，廣重貼到橋墩、圖會是鳥瞰"
     },
     {
       "id": 5,
@@ -86,7 +95,10 @@
       "page": 30,
       "plate": "回向院 開帳",
       "view": "両ごく回向院元柳橋",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "同為回向院但不同面向：廣重畫院外的櫓與河，圖會畫院內開帳人潮"
     },
     {
       "id": 7,
@@ -94,7 +106,10 @@
       "page": 40,
       "plate": "大傳馬町 木綿店",
       "view": "大てんま町木綿店",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同景",
+      "note": "同一排木綿店，暖簾商標一致"
     },
     {
       "id": 8,
@@ -102,7 +117,10 @@
       "page": 38,
       "plate": "駿河町 三井呉服店",
       "view": "する賀てふ",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同景",
+      "note": "★同一條街同樣的三井店舖；圖會的富士只是地平線小三角，廣重放大到主宰畫面"
     },
     {
       "id": 10,
@@ -110,7 +128,10 @@
       "page": 6,
       "plate": "神田明神社",
       "view": "神田明神 曙之景",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "圖會是神社與街區鳥瞰，廣重是殿內迴廊"
     },
     {
       "id": 11,
@@ -119,7 +140,9 @@
       "plate": "清水観音堂 秋色櫻",
       "view": "上野清水堂不忍ノ池",
       "confidence": "high",
-      "note": "清水堂＝清水観音堂；鄰頁 p024/p025 是不忍池與中島辨財天"
+      "note": "圖會是上野山與不忍池全景，廣重是清水堂與月の松特寫",
+      "verified": "整頁比對",
+      "relation": "同地"
     },
     {
       "id": 12,
@@ -137,7 +160,10 @@
       "page": 32,
       "plate": "王子稲荷社",
       "view": "王子稲荷の社",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "圖會是王子稲荷山鳥瞰，廣重是社殿特寫"
     },
     {
       "id": 20,
@@ -145,7 +171,10 @@
       "page": 43,
       "plate": "川口 善光寺",
       "view": "川口のわたし善光寺",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "圖會是善光寺與平原鳥瞰，廣重是荒川河岸"
     },
     {
       "id": 21,
@@ -153,7 +182,8 @@
       "page": 17,
       "plate": "愛宕山",
       "view": "芝愛宕山",
-      "confidence": "high"
+      "confidence": "high",
+      "todo": "配的 p017 主要是愛宕下街區鳥瞰；p018「愛宕社 其二」可能才是社殿本身"
     },
     {
       "id": 22,
@@ -162,15 +192,8 @@
       "plate": "廣尾原",
       "view": "広尾ふる川",
       "confidence": "high",
-      "note": "即先前 Commons 那張 Hiroo-no-hara 的出處。鄰頁 p032「廣尾 水車」畫的是古川上的水車，可能更貼近廣重那張，日後可換"
-    },
-    {
-      "id": 26,
-      "vol": "v04",
-      "page": 44,
-      "plate": "八景坂 鎧懸松",
-      "view": "八景坂鎧掛松",
-      "confidence": "high"
+      "note": "即先前 Commons 那張 Hiroo-no-hara 的出處。鄰頁 p032「廣尾 水車」畫的是古川上的水車，可能更貼近廣重那張，日後可換",
+      "todo": "配的 p031 廣尾原是草原無河；鄰頁 p032「廣尾 水車」畫古川，應更貼近"
     },
     {
       "id": 27,
@@ -178,7 +201,10 @@
       "page": 75,
       "plate": "蒲田里梅園",
       "view": "蒲田の梅園",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "同為蒲田梅園"
     },
     {
       "id": 28,
@@ -186,7 +212,10 @@
       "page": 15,
       "plate": "御殿山 御庭",
       "view": "品川御殿やま",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同景",
+      "note": "同為御殿山花見，人群與櫻樹皆合"
     },
     {
       "id": 30,
@@ -195,7 +224,9 @@
       "plate": "梅屋敷（臥龍梅）",
       "view": "亀戸梅屋舗",
       "confidence": "high",
-      "note": "臥龍梅即亀戸梅屋敷的名木；鄰頁 p057/p058 亦為亀戸邑。此景先前只有 AIC 版圖，現補上圖會出處"
+      "note": "同為亀戸梅屋敷",
+      "verified": "整頁比對",
+      "relation": "同地"
     },
     {
       "id": 31,
@@ -493,5 +524,6 @@
       "confidence": "high",
       "note": "装束榎＝装束ゑの木"
     }
-  ]
+  ],
+  "_relation": "同景＝兩張畫同一個場景，可玩 §2.4 的找不同。同地＝地點相同但尺度或面向不同（圖會鳥瞰 vs 廣重特寫），只能用來定位視點。2026/08/06 複核發現：strips 階段挑的是「第一個出現該地名的頁」，不是「畫同一場景的頁」，因此 同地 佔多數。"
 }

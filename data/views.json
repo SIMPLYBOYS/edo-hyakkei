@@ -1379,7 +1379,7 @@
       "time_of_day": null
     },
     "assets": {
-      "meishozue": true,
+      "meishozue": false,
       "miyage": false
     },
     "distortions": [],
