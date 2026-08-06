@@ -1,23 +1,152 @@
 {
   "_": "§7-14 百景 ↔ 名所圖會 對照表。逐冊讀接觸印樣與上緣題簽建立，見 tools/make-sheet.py。",
-  "_method": "1) make-sheet.py vNN 產整冊印樣挑出插圖頁 2) --strips 裁上緣讀題簽 3) 題名對回百景。每冊約 2–3 張圖即可讀完，不需逐頁細看。",
+  "_method": "1) make-sheet.py vNN 產整冊印樣挑出插圖頁 2) --strips 裁上緣讀題簽 3) 題名對回百景。每冊約 2–3 張圖即可讀完，不需逐頁細看。 一批 strips 最多 18 頁，超過題簽會糊。另：先用 views.json 的座標查出「本冊區域內還沒配對的景」，帶著清單去讀，比讀完再碰運氣有效率得多。",
   "_confidence": "high = 圖會題簽與百景標題字面上指向同一個獨一無二的地名（鎧之渡／新大橋／姿見の橋）。medium = 同一處但名稱不同，需要知識判定而非字面比對（西本願寺＝築地門跡）。題簽是版刻小字，判讀有極限——寧可漏不可錯配。",
   "_progress": {
-    "done": ["v01", "v02", "v12"],
-    "remaining": ["v03-v11", "v13-v20"],
+    "done": [
+      "v01",
+      "v02",
+      "v03",
+      "v12"
+    ],
+    "remaining": [
+      "v04-v11",
+      "v13-v20"
+    ],
     "total_volumes": 20
   },
   "pairs": [
-    { "id": 1,   "vol": "v01", "page": 36, "plate": "日本橋 魚市",        "view": "日本橋雪晴",           "confidence": "high" },
-    { "id": 7,   "vol": "v01", "page": 40, "plate": "大傳馬町 木綿店",     "view": "大てんま町木綿店",       "confidence": "high" },
-    { "id": 8,   "vol": "v01", "page": 38, "plate": "駿河町 三井呉服店",   "view": "する賀てふ",           "confidence": "high" },
-    { "id": 48,  "vol": "v01", "page": 53, "plate": "御茶の水 水道橋",     "view": "水道橋駿河台",         "confidence": "high" },
-    { "id": 4,   "vol": "v02", "page": 32, "plate": "永代橋",            "view": "永代橋佃しま",          "confidence": "high" },
-    { "id": 46,  "vol": "v02", "page": 18, "plate": "鎧之渡",            "view": "鎧の渡し小網町",        "confidence": "high" },
-    { "id": 78,  "vol": "v02", "page": 40, "plate": "西本願寺",          "view": "鉄砲洲 築地門跡",       "confidence": "medium",
-      "note": "築地門跡＝西本願寺江戶別院（築地本願寺），同一寺不同稱呼；本冊涵蓋新川・佃島・鉄砲洲，區域吻合" },
-    { "id": 58,  "vol": "v02", "page": 12, "plate": "新大橋",            "view": "大はしあたけの夕立",     "confidence": "high" },
-    { "id": 115, "vol": "v12", "page": 4,  "plate": "高田の馬場",         "view": "高田の馬場",           "confidence": "high" },
-    { "id": 116, "vol": "v12", "page": 11, "plate": "姿見の橋",          "view": "高田姿見のはし俤の橋砂利場", "confidence": "high" }
+    {
+      "id": 1,
+      "vol": "v01",
+      "page": 36,
+      "plate": "日本橋 魚市",
+      "view": "日本橋雪晴",
+      "confidence": "high"
+    },
+    {
+      "id": 4,
+      "vol": "v02",
+      "page": 32,
+      "plate": "永代橋",
+      "view": "永代橋佃しま",
+      "confidence": "high"
+    },
+    {
+      "id": 7,
+      "vol": "v01",
+      "page": 40,
+      "plate": "大傳馬町 木綿店",
+      "view": "大てんま町木綿店",
+      "confidence": "high"
+    },
+    {
+      "id": 8,
+      "vol": "v01",
+      "page": 38,
+      "plate": "駿河町 三井呉服店",
+      "view": "する賀てふ",
+      "confidence": "high"
+    },
+    {
+      "id": 21,
+      "vol": "v03",
+      "page": 17,
+      "plate": "愛宕山",
+      "view": "芝愛宕山",
+      "confidence": "high"
+    },
+    {
+      "id": 46,
+      "vol": "v02",
+      "page": 18,
+      "plate": "鎧之渡",
+      "view": "鎧の渡し小網町",
+      "confidence": "high"
+    },
+    {
+      "id": 48,
+      "vol": "v01",
+      "page": 53,
+      "plate": "御茶の水 水道橋",
+      "view": "水道橋駿河台",
+      "confidence": "high"
+    },
+    {
+      "id": 53,
+      "vol": "v03",
+      "page": 3,
+      "plate": "三縁山 増上寺",
+      "view": "増上寺 塔赤羽根",
+      "confidence": "high",
+      "note": "三縁山是増上寺的山號"
+    },
+    {
+      "id": 58,
+      "vol": "v02",
+      "page": 12,
+      "plate": "新大橋",
+      "view": "大はしあたけの夕立",
+      "confidence": "high"
+    },
+    {
+      "id": 78,
+      "vol": "v02",
+      "page": 40,
+      "plate": "西本願寺",
+      "view": "鉄砲洲 築地門跡",
+      "confidence": "medium",
+      "note": "築地門跡＝西本願寺江戶別院（築地本願寺），同一寺不同稱呼；本冊涵蓋新川・佃島・鉄砲洲，區域吻合"
+    },
+    {
+      "id": 79,
+      "vol": "v03",
+      "page": 13,
+      "plate": "神明宮",
+      "view": "芝神明増上寺",
+      "confidence": "high",
+      "note": "神明宮＝芝大神宮；本冊涵蓋芝・愛宕一帶"
+    },
+    {
+      "id": 81,
+      "vol": "v03",
+      "page": 47,
+      "plate": "高輪 牛町",
+      "view": "高輪うしまち",
+      "confidence": "high"
+    },
+    {
+      "id": 82,
+      "vol": "v03",
+      "page": 49,
+      "plate": "高輪海道 二十六夜待",
+      "view": "月の岬",
+      "confidence": "medium",
+      "note": "月の岬是高輪的賞月名所，畫的正是二十六夜待之夜；靠典故判定非字面對名"
+    },
+    {
+      "id": 112,
+      "vol": "v03",
+      "page": 16,
+      "plate": "藪小路",
+      "view": "愛宕下藪小路",
+      "confidence": "high"
+    },
+    {
+      "id": 115,
+      "vol": "v12",
+      "page": 4,
+      "plate": "高田の馬場",
+      "view": "高田の馬場",
+      "confidence": "high"
+    },
+    {
+      "id": 116,
+      "vol": "v12",
+      "page": 11,
+      "plate": "姿見の橋",
+      "view": "高田姿見のはし俤の橋砂利場",
+      "confidence": "high"
+    }
   ]
 }

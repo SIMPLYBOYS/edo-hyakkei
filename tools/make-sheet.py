@@ -44,7 +44,12 @@ def sheet(vol):
 
 
 def strips(vol, nums, width=1500, frac=0.30):
-    """裁每頁上緣 frac 高度，直向堆疊。題簽在上緣，這樣能保住解析度。"""
+    """裁每頁上緣 frac 高度，直向堆疊。題簽在上緣，這樣能保住解析度。
+
+    ⚠️ 一批最多約 18 頁。實測 24 頁疊成 7776px 後，讀取端會把整張縮到寬 386px，
+    題簽就糊了——高度換寬度，超過就白做。寧可多跑兩批。"""
+    if len(nums) > 18:
+        print(f"  ⚠️ 一批 {len(nums)} 頁過多，題簽會糊；建議拆成 ≤18 頁")
     imgs = []
     for n in nums:
         p = SRC / vol / f"p{n:03d}.jpg"
