@@ -1,5 +1,6 @@
 // 單張畫面呈現。進一景 → 看畫 → 收入歲時記。
 import { seasonJa } from './calendar.js';
+import { plate, hires, meishozue } from './paths.js';
 
 export function showView(v, { onCollect, onClose }) {
   const el = document.createElement('div');
@@ -9,8 +10,8 @@ export function showView(v, { onCollect, onClose }) {
       <!-- 展示用 originals（Commons／布魯克林版，裁到畫面本身）。
            assets/hires 多半是 NDL 的檔案級全幅拍攝，帶色卡比例尺館標，
            那批是給 §2.4 研究用的，不能直接當遊戲畫面。缺的才退回 hires（如 no.30 是 AIC 版，乾淨）。 -->
-      <img src="assets/originals/${String(v.id).padStart(3, '0')}.jpg" alt="${v.title.ja ?? ''}"
-           onerror="this.onerror=null;this.src='assets/hires/${String(v.id).padStart(3, '0')}.jpg'">
+      <img src="${plate(v.id)}" alt="${v.title.ja ?? ''}"
+           onerror="this.onerror=null;this.src='${hires(v.id)}'">
       <figcaption>
         <div class="no">第 ${v.id} 景 · ${seasonJa(v.season)}</div>
         <h2>${v.title.ja ?? '(缺標題)'}</h2>
@@ -35,7 +36,7 @@ export function showView(v, { onCollect, onClose }) {
     let zue = false;
     flip.onclick = () => {
       zue = !zue;
-      img.src = zue ? v.assets.meishozue : print;
+      img.src = zue ? meishozue(v.id) : print;
       img.classList.toggle('zue', zue);
       flip.textContent = zue ? '看廣重的版本' : '看《名所圖會》';
     };

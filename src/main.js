@@ -15,10 +15,16 @@ const load = () => {
 };
 const save = s => localStorage[SAVE] = JSON.stringify(s);
 
-const [views, geo] = await Promise.all([
+const [all, geo] = await Promise.all([
   fetch('data/views.json').then(r => r.json()),
   fetch('data/geo/modern.json').then(r => r.json()).then(g => g.layers),
 ]);
+// no.119 赤坂桐畑是二代廣重 1859 年補的一枚，不屬於廣重的 118 景。
+// 資料裡留著（那是完整的），但遊戲只玩 1–118——先前地圖收得到、歲時記卻不算，
+// 會跑出「119 / 118」這種分數。要一致就兩邊都排除。
+// （這一枚該怎麼記在全集裡是 §6.1 未決的另一個問題，與此無關。）
+const views = all.filter(v => v.id <= 118);
+const TOTAL = views.length;
 const state = load();
 
 const map = createMap(document.getElementById('map'), views, geo, pick);
@@ -29,8 +35,7 @@ function paint() {
   document.getElementById('date').textContent = clock.label;
   document.getElementById('left').textContent =
     `${seasonJa(clock.season)}還剩 ${clock.daysLeftInSeason} 日`;
-  const n = state.collected.length;
-  document.getElementById('count').textContent = `${n} / ${views.filter(v => v.id <= 118).length}`;
+  document.getElementById('count').textContent = `${state.collected.length} / ${TOTAL}`;
   save(state);
 }
 

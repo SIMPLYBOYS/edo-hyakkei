@@ -73,7 +73,7 @@ def main():
         if not out.exists():
             out.write_bytes(fetch(url, UA, timeout=180).read())
             time.sleep(0.6)
-        by[vid]["assets"]["meishozue"] = f"assets/meishozue/{vid:03d}.jpg"
+        by[vid]["assets"]["meishozue"] = True      # 路徑推導得出，這裡只記「有沒有」
         by[vid]["notes"]["commentary"] = f"名所圖會對照：{why}"
         n += 1
         print(f"  no.{vid:>3}  {out.name}  {out.stat().st_size // 1024}KB  ({why})")

@@ -30,14 +30,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/001.jpg",
-      "pixel": "assets/pixel/001.png",
-      "meishozue": "assets/meishozue/001.jpg",
-      "miyage": null
+      "meishozue": true,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": "名所圖會對照：同為日本橋本身"
     },
     "source": {
@@ -87,14 +85,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/002.jpg",
-      "pixel": "assets/pixel/002.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -144,14 +140,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/003.jpg",
-      "pixel": "assets/pixel/003.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -201,14 +195,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/004.jpg",
-      "pixel": "assets/pixel/004.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -258,14 +250,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/005.jpg",
-      "pixel": "assets/pixel/005.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -315,14 +305,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/006.jpg",
-      "pixel": "assets/pixel/006.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -372,14 +360,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/007.jpg",
-      "pixel": "assets/pixel/007.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -429,14 +415,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/008.jpg",
-      "pixel": "assets/pixel/008.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -486,14 +470,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/009.jpg",
-      "pixel": "assets/pixel/009.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -543,14 +525,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/010.jpg",
-      "pixel": "assets/pixel/010.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -600,14 +580,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/011.jpg",
-      "pixel": "assets/pixel/011.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -657,14 +635,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/012.jpg",
-      "pixel": "assets/pixel/012.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -714,14 +690,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/013.jpg",
-      "pixel": "assets/pixel/013.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -771,14 +745,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/014.jpg",
-      "pixel": "assets/pixel/014.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -828,14 +800,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/015.jpg",
-      "pixel": "assets/pixel/015.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -885,14 +855,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/016.jpg",
-      "pixel": "assets/pixel/016.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -942,14 +910,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/017.jpg",
-      "pixel": "assets/pixel/017.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -999,14 +965,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/018.jpg",
-      "pixel": "assets/pixel/018.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1056,14 +1020,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/019.jpg",
-      "pixel": "assets/pixel/019.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1113,14 +1075,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/020.jpg",
-      "pixel": "assets/pixel/020.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1170,14 +1130,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/021.jpg",
-      "pixel": "assets/pixel/021.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1227,14 +1185,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/022.jpg",
-      "pixel": "assets/pixel/022.png",
-      "meishozue": "assets/meishozue/022.jpg",
-      "miyage": null
+      "meishozue": true,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": "名所圖會對照：広尾／広尾ふる川 同地"
     },
     "source": {
@@ -1284,14 +1240,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/023.jpg",
-      "pixel": "assets/pixel/023.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1341,14 +1295,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/024.jpg",
-      "pixel": "assets/pixel/024.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1398,14 +1350,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/025.jpg",
-      "pixel": "assets/pixel/025.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1455,14 +1405,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/026.jpg",
-      "pixel": "assets/pixel/026.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1512,14 +1460,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/027.jpg",
-      "pixel": "assets/pixel/027.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1569,14 +1515,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/028.jpg",
-      "pixel": "assets/pixel/028.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1626,14 +1570,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/029.jpg",
-      "pixel": "assets/pixel/029.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1683,10 +1625,8 @@
       "time_of_day": null
     },
     "assets": {
-      "original": null,
-      "pixel": null,
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
@@ -1726,14 +1666,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/031.jpg",
-      "pixel": "assets/pixel/031.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1783,14 +1721,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/032.jpg",
-      "pixel": "assets/pixel/032.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1840,14 +1776,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/033.jpg",
-      "pixel": "assets/pixel/033.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1897,14 +1831,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/034.jpg",
-      "pixel": "assets/pixel/034.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -1954,14 +1886,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/035.jpg",
-      "pixel": "assets/pixel/035.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2011,14 +1941,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/036.jpg",
-      "pixel": "assets/pixel/036.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2068,14 +1996,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/037.jpg",
-      "pixel": "assets/pixel/037.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2125,14 +2051,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/038.jpg",
-      "pixel": "assets/pixel/038.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2182,14 +2106,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/039.jpg",
-      "pixel": "assets/pixel/039.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2239,14 +2161,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/040.jpg",
-      "pixel": "assets/pixel/040.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2296,14 +2216,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/041.jpg",
-      "pixel": "assets/pixel/041.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2353,14 +2271,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/042.jpg",
-      "pixel": "assets/pixel/042.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2410,14 +2326,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/043.jpg",
-      "pixel": "assets/pixel/043.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2467,14 +2381,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/044.jpg",
-      "pixel": "assets/pixel/044.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2524,14 +2436,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/045.jpg",
-      "pixel": "assets/pixel/045.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2581,14 +2491,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/046.jpg",
-      "pixel": "assets/pixel/046.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2638,14 +2546,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/047.jpg",
-      "pixel": "assets/pixel/047.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2695,14 +2601,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/048.jpg",
-      "pixel": "assets/pixel/048.png",
-      "meishozue": "assets/meishozue/048.jpg",
-      "miyage": null
+      "meishozue": true,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": "名所圖會對照：水道橋 同名"
     },
     "source": {
@@ -2752,14 +2656,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/049.jpg",
-      "pixel": "assets/pixel/049.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2809,14 +2711,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/050.jpg",
-      "pixel": "assets/pixel/050.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2866,14 +2766,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/051.jpg",
-      "pixel": "assets/pixel/051.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2923,14 +2821,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/052.jpg",
-      "pixel": "assets/pixel/052.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -2980,14 +2876,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/053.jpg",
-      "pixel": "assets/pixel/053.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3037,14 +2931,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/054.jpg",
-      "pixel": "assets/pixel/054.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3094,14 +2986,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/055.jpg",
-      "pixel": "assets/pixel/055.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3151,14 +3041,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/056.jpg",
-      "pixel": "assets/pixel/056.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3208,14 +3096,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/057.jpg",
-      "pixel": "assets/pixel/057.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3265,14 +3151,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/058.jpg",
-      "pixel": "assets/pixel/058.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3322,14 +3206,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/059.jpg",
-      "pixel": "assets/pixel/059.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3379,14 +3261,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/060.jpg",
-      "pixel": "assets/pixel/060.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3436,14 +3316,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/061.jpg",
-      "pixel": "assets/pixel/061.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3493,14 +3371,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/062.jpg",
-      "pixel": "assets/pixel/062.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3550,14 +3426,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/063.jpg",
-      "pixel": "assets/pixel/063.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3607,10 +3481,8 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/064.jpg",
-      "pixel": "assets/pixel/064.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
@@ -3664,14 +3536,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/065.jpg",
-      "pixel": "assets/pixel/065.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3721,14 +3591,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/066.jpg",
-      "pixel": "assets/pixel/066.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3778,14 +3646,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/067.jpg",
-      "pixel": "assets/pixel/067.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3835,14 +3701,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/068.jpg",
-      "pixel": "assets/pixel/068.png",
-      "meishozue": "assets/meishozue/068.jpg",
-      "miyage": null
+      "meishozue": true,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": "名所圖會對照：富岡八幡宮＝深川八まん"
     },
     "source": {
@@ -3892,14 +3756,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/069.jpg",
-      "pixel": "assets/pixel/069.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -3949,14 +3811,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/070.jpg",
-      "pixel": "assets/pixel/070.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4006,14 +3866,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/071.jpg",
-      "pixel": "assets/pixel/071.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4063,14 +3921,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/072.jpg",
-      "pixel": "assets/pixel/072.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4120,14 +3976,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/073.jpg",
-      "pixel": "assets/pixel/073.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4177,14 +4031,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/074.jpg",
-      "pixel": "assets/pixel/074.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4234,14 +4086,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/075.jpg",
-      "pixel": "assets/pixel/075.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4291,14 +4141,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/076.jpg",
-      "pixel": "assets/pixel/076.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4348,14 +4196,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/077.jpg",
-      "pixel": "assets/pixel/077.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4405,14 +4251,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/078.jpg",
-      "pixel": "assets/pixel/078.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4462,14 +4306,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/079.jpg",
-      "pixel": "assets/pixel/079.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4519,14 +4361,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/080.jpg",
-      "pixel": "assets/pixel/080.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4576,14 +4416,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/081.jpg",
-      "pixel": "assets/pixel/081.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4633,14 +4471,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/082.jpg",
-      "pixel": "assets/pixel/082.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4690,14 +4526,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/083.jpg",
-      "pixel": "assets/pixel/083.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4747,14 +4581,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/084.jpg",
-      "pixel": "assets/pixel/084.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4804,14 +4636,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/085.jpg",
-      "pixel": "assets/pixel/085.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4861,14 +4691,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/086.jpg",
-      "pixel": "assets/pixel/086.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4918,14 +4746,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/087.jpg",
-      "pixel": "assets/pixel/087.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -4975,14 +4801,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/088.jpg",
-      "pixel": "assets/pixel/088.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5032,14 +4856,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/089.jpg",
-      "pixel": "assets/pixel/089.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5089,14 +4911,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/090.jpg",
-      "pixel": "assets/pixel/090.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5146,14 +4966,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/091.jpg",
-      "pixel": "assets/pixel/091.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5203,14 +5021,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/092.jpg",
-      "pixel": "assets/pixel/092.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5260,14 +5076,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/093.jpg",
-      "pixel": "assets/pixel/093.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5317,14 +5131,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/094.jpg",
-      "pixel": "assets/pixel/094.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5374,14 +5186,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/095.jpg",
-      "pixel": "assets/pixel/095.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5431,14 +5241,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/096.jpg",
-      "pixel": "assets/pixel/096.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5488,14 +5296,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/097.jpg",
-      "pixel": "assets/pixel/097.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5545,14 +5351,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/098.jpg",
-      "pixel": "assets/pixel/098.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5602,14 +5406,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/099.jpg",
-      "pixel": "assets/pixel/099.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5659,14 +5461,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/100.jpg",
-      "pixel": "assets/pixel/100.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5716,14 +5516,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/101.jpg",
-      "pixel": "assets/pixel/101.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5773,14 +5571,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/102.jpg",
-      "pixel": "assets/pixel/102.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5830,14 +5626,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/103.jpg",
-      "pixel": "assets/pixel/103.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5887,14 +5681,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/104.jpg",
-      "pixel": "assets/pixel/104.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -5944,14 +5736,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/105.jpg",
-      "pixel": "assets/pixel/105.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6001,14 +5791,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/106.jpg",
-      "pixel": "assets/pixel/106.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6058,14 +5846,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/107.jpg",
-      "pixel": "assets/pixel/107.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6115,14 +5901,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/108.jpg",
-      "pixel": "assets/pixel/108.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6172,14 +5956,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/109.jpg",
-      "pixel": "assets/pixel/109.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6229,14 +6011,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/110.jpg",
-      "pixel": "assets/pixel/110.png",
-      "meishozue": "assets/meishozue/110.jpg",
-      "miyage": null
+      "meishozue": true,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": "名所圖會對照：千束の池 同名"
     },
     "source": {
@@ -6286,14 +6066,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/111.jpg",
-      "pixel": "assets/pixel/111.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6343,14 +6121,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/112.jpg",
-      "pixel": "assets/pixel/112.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6400,14 +6176,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/113.jpg",
-      "pixel": "assets/pixel/113.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6457,14 +6231,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/114.jpg",
-      "pixel": "assets/pixel/114.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6514,14 +6286,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/115.jpg",
-      "pixel": "assets/pixel/115.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6571,14 +6341,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/116.jpg",
-      "pixel": "assets/pixel/116.png",
-      "meishozue": "assets/meishozue/116.jpg",
-      "miyage": null
+      "meishozue": true,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": "名所圖會對照：姿見の橋・俤の橋 兩座橋在兩邊標題都出現；圖中題簽亦確認"
     },
     "source": {
@@ -6628,14 +6396,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/117.jpg",
-      "pixel": "assets/pixel/117.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6685,14 +6451,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/118.jpg",
-      "pixel": "assets/pixel/118.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {
@@ -6742,14 +6506,12 @@
       "time_of_day": null
     },
     "assets": {
-      "original": "assets/originals/119.jpg",
-      "pixel": "assets/pixel/119.png",
-      "meishozue": null,
-      "miyage": null
+      "meishozue": false,
+      "miyage": false
     },
     "distortions": [],
     "notes": {
-      "geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查",
+      "geo": null,
       "commentary": null
     },
     "source": {

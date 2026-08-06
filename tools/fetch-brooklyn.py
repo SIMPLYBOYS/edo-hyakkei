@@ -123,13 +123,14 @@ def build(found, clashes):
             "bearing": None,
             "place": {"edo": None, "modern_ward": None, "modern_landmark": None},
             "conditions": {"weather": None, "time_of_day": None},
-            "assets": {
-                "original": f"assets/originals/{n:03d}.jpg",
-                "pixel": f"assets/pixel/{n:03d}.png",
-                "meishozue": None, "miyage": None,
-            },
+            # §9.5：只存推導不出來的東西。檔名一律是 {id:03d}.jpg，
+            # 存路徑等於把同一條規則抄 119 遍，而且會說謊——檔案搬了、資料夾沒建，
+            # 欄位不會自己更新（舊版有 118 筆指向不存在的 assets/pixel/）。
+            # 這兩個欄位回答的是「有沒有對照圖」，那才是推導不出來的資訊。
+            "assets": {"meishozue": False, "miyage": False},
             "distortions": [],
-            "notes": {"geo": "subject 座標來自 Commons，屬地點非視點，待 §7-6 調查", "commentary": None},
+            # notes 只放這一筆特有的事。119 筆都一樣的句子不是資料，是雜訊。
+            "notes": {"geo": None, "commentary": None},
             "source": {
                 "institution": "Brooklyn Museum" if c["brooklyn_scan"] else "Wikimedia Commons",
                 "commons_file": c["file"], "image_url": c["url"],
@@ -149,7 +150,7 @@ def build(found, clashes):
             "subject": None, "bearing": None,
             "place": {"edo": None, "modern_ward": None, "modern_landmark": None},
             "conditions": {"weather": None, "time_of_day": None},
-            "assets": {"original": None, "pixel": None, "meishozue": None, "miyage": None},
+            "assets": {"meishozue": False, "miyage": False},
             "distortions": [],
             "notes": {"geo": None, "commentary": "Commons 無此圖，待他館補齊"},
             "source": None,
