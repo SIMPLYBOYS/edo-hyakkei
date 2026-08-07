@@ -7,9 +7,13 @@
 ## 跑起來
 
 ```bash
-python3 -m http.server 8000     # 用了原生 ES modules，file:// 開不起來
+python3 tools/serve.py          # 用了原生 ES modules，file:// 開不起來
 open http://localhost:8000
 ```
+
+用 `tools/serve.py` 不用 `python3 -m http.server`：後者不送 Cache-Control，
+改了 `src/*.js` 之後常常 index.html 是新的、模組卻是舊的——
+**畫面看起來更新了但行為沒變，比完全沒更新更難察覺。**
 
 repo 裡**沒有圖**（見下方「重建素材」）。第一次 clone 完要先跑腳本把素材抓下來。
 
