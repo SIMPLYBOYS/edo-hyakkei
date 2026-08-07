@@ -40,6 +40,15 @@
   #bar label { font-size:12px; opacity:.7; margin:0 10px }
   #attr { font-size:10px; opacity:.4; margin-top:6px }   /* ODbL 要求標示出處 */
 
+  /* 縮放控制：快捷鍵藏著等於不存在，要有看得見的按鈕 */
+  #zoom { position:fixed; right:20px; bottom:96px; display:flex; flex-direction:column; gap:1px }
+  #zoom button { width:38px; height:38px; padding:0; font-size:17px; line-height:1;
+                 background:#0e2233d9; border:1px solid #ffffff2e; border-radius:0 }
+  #zoom button:first-child { border-radius:4px 4px 0 0 }
+  #zoom button:last-child { border-radius:0 0 4px 4px; font-size:12px; height:30px }
+  #zoom button + button { border-top:none }
+  #zoom button:disabled { opacity:.3; cursor:default; background:#0e2233d9 }
+
   #toast { position:fixed; left:50%; top:64px; transform:translateX(-50%); padding:9px 18px;
            background:#0e2233ee; border:1px solid #ffffff2e; border-radius:3px; font-size:14px;
            opacity:0; pointer-events:none; transition:opacity .3s }
@@ -96,6 +105,12 @@
 </div>
 
 <div id="toast"></div>
+
+<div id="zoom">
+  <button id="zin" title="放大（+ 或雙擊）">＋</button>
+  <button id="zout" title="縮小（−）">−</button>
+  <button id="zfit" title="全圖（0）">全図</button>
+</div>
 
 <div id="bar">
   <label>2026 現在</label>

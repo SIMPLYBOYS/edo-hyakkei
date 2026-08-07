@@ -103,7 +103,8 @@ export function createMap(svg, views, geo, onPick) {
 
   // 平移縮放：直接改 viewBox，不需要任何函式庫
   let vb = { x: 0, y: 0, w: W, h: H };
-  const apply = () => svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+  let onChange = () => {};
+  const apply = () => { svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`); onChange(); };
   const toSvg = e => {
     const r = svg.getBoundingClientRect();
     const s = Math.max(r.width / vb.w, r.height / vb.h);   // 對應 slice
@@ -183,7 +184,18 @@ export function createMap(svg, views, geo, onPick) {
 
   fitAll();   // 開場就看得到整張圖，不是一上來就被裁掉一半
 
+  const centre = () => [vb.x + vb.w / 2, vb.y + vb.h / 2];
+
   return {
+    zoomIn: () => zoomTo(vb.w / 1.6, ...centre()),
+    zoomOut: () => zoomTo(vb.w * 1.6, ...centre()),
+    fitAll,
+    // 縮放按鈕要能反映「還能不能再縮」，否則按下去沒反應會像壞掉
+    atMax: () => vb.w >= MAX - 1,
+    atMin: () => vb.w <= MIN + 1,
+    // 註冊當下就先跑一次：初始的 fitAll() 發生在 createMap 內部、
+    // 外部還來不及註冊，不補這一下開場按鈕狀態會是錯的
+    onChange: cb => { onChange = cb; cb(); },
     // 只有「地點對 + 季節對」的景才亮起來——同一地點不同季節是不同的景（§2.2）
     render(state, clock) {
       for (const v of views) {

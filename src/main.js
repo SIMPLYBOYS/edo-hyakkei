@@ -69,6 +69,12 @@ function say(msg) {
   timer = setTimeout(() => el.classList.remove('on'), 2600);
 }
 
+zin.onclick = map.zoomIn;
+zout.onclick = map.zoomOut;
+zfit.onclick = map.fitAll;
+// 按到底了就把按鈕變灰——按下去沒反應會讓人以為壞了
+map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); });
+
 document.getElementById('era').oninput = e => map.setEra(e.target.value / 1000);
 document.getElementById('book').onclick = () => showZukan(views, state);
 document.getElementById('reset').onclick = () => {
