@@ -83,9 +83,15 @@ export function createMap(svg, views, geo, onPick) {
     const [x, y] = project(v.subject.lng, v.subject.lat);
     const g = document.createElementNS(svg.namespaceURI, 'g');
     g.setAttribute('class', 'mark');
-    // 有《名所圖會》對照的景加一圈——目前只有 6 景（§2.4 試跑），
-    // 不標的話玩家得逐個點開才知道哪個能對照
-    g.innerHTML = `${v.assets.meishozue ? `<circle class="ring" cx="${x}" cy="${y}" r="11"/>` : ''}
+    // 有《名所圖會》對照的景加一圈，玩家才知道哪個能切換對照。
+    // 有方位角的畫一道視線扇形——那是 §7-15 從畫中地標推出來的廣重視線方向，
+    // 不確定度約 ±30°，所以畫成扇形不是箭頭：形狀本身就在說「大概往這邊」。
+    const cone = v.bearing == null ? '' : (() => {
+      const r = 26, half = 30 * Math.PI / 180, a = (v.bearing - 90) * Math.PI / 180;
+      const p = (t) => `${(x + r * Math.cos(t)).toFixed(1)} ${(y + r * Math.sin(t)).toFixed(1)}`;
+      return `<path class="cone" d="M${x} ${y} L${p(a - half)} A${r} ${r} 0 0 1 ${p(a + half)} Z"/>`;
+    })();
+    g.innerHTML = `${cone}${v.assets.meishozue ? `<circle class="ring" cx="${x}" cy="${y}" r="11"/>` : ''}
       <circle cx="${x}" cy="${y}" r="6"/>
       <text x="${x + 10}" y="${y + 5}">${v.title.ja ?? v.id}</text>`;
     g.onclick = e => { e.stopPropagation(); if (!dragged()) onPick(v); };
