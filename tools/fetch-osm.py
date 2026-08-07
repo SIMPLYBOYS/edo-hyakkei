@@ -106,6 +106,10 @@ def main():
     print(f"Overpass 回傳 {len(els)} 個 way")
 
     seen = {e["id"] for e in els if e.get("type") == "way"}
+    bs, bw, bn, be = (float(x) for x in BBOX.split(","))
+    def inbox(p):
+        return bw <= p[0] <= be and bs <= p[1] <= bn
+
     geo, cand = {}, {}
     for e in els:
         tags = e.get("tags") or {}
@@ -130,35 +134,43 @@ def main():
             # OSM 把一條河切成很多段（隅田川 17 段），同名只留最長的一段當錨點，
             # 否則同一個名字會沿著河出現十幾次。
             if n and layer in ("water_line", "water_area", "park"):
-                if extent(raw) > extent(cand.get(n, ([[0, 0], [0, 0]], None))[0]):
-                    cand[n] = (raw, layer)
+                # 比大小要用「框內那一段」，不是整條。整條最長的那一段有可能
+                # 完全落在框外（真間川、玉川上水都是），選它當代表就等於沒有錨點。
+                ins = [p for p in raw if inbox(p)]
+                if ins and extent(ins) > cand.get(n, (0,))[0]:
+                    cand[n] = (extent(ins), ins, layer)
 
+    # 錨點只取框內的點。Overpass 回的是「與 bbox 相交的整條 way」，
+    # 拿整條的中點當錨點，長河的名字會掉到畫紙外面去
+    # （實測：真間川往東、玉川上水往西、江戸川往北，三個都飄在圖框外）。
     labels = []
-    for n, (raw, layer) in sorted(cand.items()):
-        xs = [p[0] for p in raw]; ys = [p[1] for p in raw]
+    for n, (size, ins, layer) in sorted(cand.items()):
         # 線用中點（沿著河擺），面用外接框中心（擺在水域裡）
         if layer == "water_line":
-            anchor = raw[len(raw) // 2]
+            anchor = ins[len(ins) // 2]
         else:
+            xs = [p[0] for p in ins]; ys = [p[1] for p in ins]
             anchor = [round((min(xs) + max(xs)) / 2, 5), round((min(ys) + max(ys)) / 2, 5)]
+        # size 也是框內那段算的——決定的是「在畫面上看起來多大」，
+        # 框外那段再長也不影響要不要標名字
         labels.append({"name": n, "kind": layer,
-                       "lng": anchor[0], "lat": anchor[1],
-                       "size": round(extent(raw), 4)})   # 大小用來決定標籤要縮到多近才顯示
+                       "lng": anchor[0], "lat": anchor[1], "size": round(size, 4)})
     labels.sort(key=lambda l: -l["size"])
 
     for k in sorted(geo):
         print(f"  {k:<11} {len(geo[k]):>5} 條 / {sum(len(w) for w in geo[k]):>6} 點")
     print(f"  {'labels':<11} {len(labels):>5} 個地名")
 
-    out = ROOT / "data" / "geo" / "modern.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({
+    # 先組好內容、跑完所有檢查，最後才落地。
+    # 先前是寫檔在前、assert 在後——檢查擋下來的時候壞資料已經蓋掉好資料了
+    # （實測踩過：一次 assert 失敗留下一份少了兩個地名的 modern.json）。
+    text = json.dumps({
         "source": "OpenStreetMap contributors",
         "license": "ODbL 1.0 — 使用時必須標示出處",
         "bbox": BBOX, "layers": geo, "labels": labels,
-    }, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-    kb = out.stat().st_size / 1024
-    print(f"\n寫出 {out.relative_to(ROOT)}：{kb:.0f}KB")
+    }, ensure_ascii=False, separators=(",", ":")) + "\n"
+    kb = len(text.encode("utf-8")) / 1024
+    print(f"\n準備寫出 {kb:.0f}KB")
     print("最大的 12 個地名:", "・".join(l["name"] for l in labels[:12]))
 
     assert geo.get("water_line") and geo.get("rail"), "關鍵圖層是空的，查詢可能失效"
@@ -166,12 +178,12 @@ def main():
     # 江戶城的堀是這份資料的賣點（見檔頭），抓不到就是查詢或 bbox 壞了
     moats = [l["name"] for l in labels if "濠" in l["name"] or "淵" in l["name"]]
     assert len(moats) >= 3, f"江戶城的堀只抓到 {moats}，bbox 或查詢可能不對"
-    # Overpass 回的是「與 bbox 相交的整條 way」，所以錨點本來就會有一些落在框外
-    # （多摩川、江戸川這種長河尤其明顯）。要驗的是重心對不對，不是每一個都在框內。
-    s, w, n, e = (float(x) for x in BBOX.split(","))
-    inside = [l for l in labels if w <= l["lng"] <= e and s <= l["lat"] <= n]
-    assert len(inside) > len(labels) * 0.7, \
-        f"只有 {len(inside)}/{len(labels)} 個地名落在畫框內，bbox 可能設錯了"
+    # 錨點現在一律取自框內的點，所以這裡可以嚴格驗——有一個在框外就是算錯了。
+    # 先前放寬成 70% 是錯的：它讓真間川、玉川上水、江戸川三個名字飄在畫紙外面，
+    # 一路到使用者截圖才發現。「大部分是對的」不是一個檢查。
+    stray = [l["name"] for l in labels
+             if not (bw <= l["lng"] <= be and bs <= l["lat"] <= bn)]
+    assert not stray, f"這些地名的錨點落在畫框外：{stray}"
     print(f"江戶城的堀抓到 {len(moats)} 個:", "・".join(moats))
     # 廣重畫最多次的幾個水體。這幾個先前全數缺席（都是 relation），
     # 而且缺席時完全不會報錯——所以要點名驗，不能只看總數。
@@ -190,6 +202,11 @@ def main():
         lost = [n for n in want if n not in got]
         assert not lost, f"edo-places.json 這些名字在 OSM 已經找不到了：{lost}"
         print(f"白名單 {len(want)} 個地名全部對得上")
+
+    out = ROOT / "data" / "geo" / "modern.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(text, encoding="utf-8")
+    print(f"寫出 {out.relative_to(ROOT)}")
     print("self-check ok")
 
 

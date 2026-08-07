@@ -97,7 +97,12 @@ export function createMap(svg, views, geo, places, onPick) {
   // 為什麼不能用規則自動挑（畫框內含舞浜，OSM 有迪士尼的 Hudson River），
   // 見該檔的 _why_not_automatic。
   const placesG = svg.querySelector('#places');
-  const labels = places.map(p => {
+  const labels = places.filter(p => {
+    // 錨點在畫紙外的一律不畫。#places 不在 #sheet 的裁切裡（裁了字會被切一半），
+    // 所以這裡得自己擋——否則名字會飄在圖框外的留白上，看起來像跑版。
+    const [x, y] = project(p.lng, p.lat);
+    return x >= 0 && x <= W && y >= 0 && y <= H;
+  }).map(p => {
     const [x, y] = project(p.lng, p.lat);
     const t = document.createElementNS(svg.namespaceURI, 'text');
     t.setAttribute('class', `place ${p.kind}`);
