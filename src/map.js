@@ -20,11 +20,15 @@ const MODERN = [
 // 而且畫得比手描準。留著只會在海面上多兩條戳出去的線。
 const DAIBA = [[139.7745, 35.6295], [139.7695, 35.6325]]; // 品川台場（1854 築）
 
-// 畫框要涵蓋所有景（王子、千住在北邊 35.75 上下），比 §3.2 原型放大
-const B = { w: 139.66, e: 139.92, s: 35.50, n: 35.82 };
-// 收邊點要遠遠落在任何縮放看得到的範圍外，否則縮到底時陸地多邊形的邊界會露出來，
-// 內陸看起來變成海。南邊那段沿 lng 139.745 往下走再往西——那條線以西是川崎橫濱，
-// 確實是陸地，所以這樣收邊不會把海畫成陸。
+// 畫框。四邊都由「景的實際範圍 + 一點邊」決定，不是隨手取的整數：
+// 西邊到 139.565 是為了收進 no.87 井の頭の池弁天の社（139.575），
+// 它在三鷹，比第二西的景還西 11km——舊畫框 139.66 根本裝不下它。
+// 順帶把長寬比從 0.66（直幅）拉到 1.08，橫向視窗看全図時的空白少一半。
+const B = { w: 139.565, e: 139.925, s: 35.535, n: 35.805 };
+// 收邊點：把陸地多邊形收在畫框外很遠的地方，這樣畫框內不會露出多邊形的邊。
+// 它畫出去多遠不重要——所有地理圖層都裁在畫框內（clipPath #sheet），
+// 這是 2026/08/07 補的：先前沒裁，這條收邊線一路畫到 lng 139.25／lat 35.10，
+// 縮小時整個畫面是一片沒有任何資料的米色，看起來就像地圖沒載入。
 const CLOSE = [[140.25, 35.70], [140.25, 36.15], [139.25, 36.15], [139.25, 35.10], [139.745, 35.10]];
 
 const K = Math.cos((B.s + B.n) / 2 * Math.PI / 180);
@@ -44,8 +48,8 @@ const multi = ways => ways.map(w => d(w)).join('');
 
 export function createMap(svg, views, geo, onPick) {
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-  // slice 不是 meet：畫框是直幅、視窗多半是橫的，用 meet 會留兩條黑邊。
-  // 反正有 pan/zoom，讓它填滿、看不到的用拖的。
+  // slice 不是 meet：讓內容填滿視窗，看不到的用拖的。
+  // 畫框外現在是 --off 的留白，就算 slice 裁掉一點也不會出現沒資料的區域。
   svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
   const edoLand = `${d([...EDO, ...CLOSE])}Z`;
   svg.innerHTML = `
@@ -54,7 +58,13 @@ export function createMap(svg, views, geo, onPick) {
            填海區的碼頭與運河會浮在海面上——那些地方當年還是海。
            代價是現代圖層的港區沒有細節，但這是講江戶的地圖，不缺那塊。 -->
       <clipPath id="land"><path d="${edoLand}"/></clipPath>
+      <!-- 地圖是一張有邊的紙。所有地理圖層都裁在這個矩形內，
+           框外交給 body 的 --sea 底色——那是「圖到此為止」，不是海也不是陸。
+           不裁的話陸地多邊形會一路鋪到框外幾十公里，全是沒資料的米色。 -->
+      <clipPath id="sheet"><rect x="0" y="0" width="${W}" height="${H}"/></clipPath>
     </defs>
+    <g clip-path="url(#sheet)">
+    <rect x="0" y="0" width="${W}" height="${H}" fill="var(--sea)"/>
     <path d="${edoLand}" fill="var(--land)"/>
     <path id="reclaimed" d="${d([...MODERN, ...EDO.slice().reverse()])}Z"
           fill="var(--land)" stroke="var(--land)" stroke-width="1.5"/>
@@ -75,6 +85,10 @@ export function createMap(svg, views, geo, onPick) {
       const [x, y] = project(p[0], p[1]);
       return `<rect x="${x - 5}" y="${y - 5}" width="10" height="10" transform="rotate(20 ${x} ${y})"/>`;
     }).join('')}</g>
+    </g>
+    <!-- 紙的邊。沒有它，框外的底色會跟灣內的海連成一片，看不出圖到哪裡結束 -->
+    <rect x="0" y="0" width="${W}" height="${H}" fill="none"
+          stroke="#000" stroke-opacity=".28" stroke-width="2"/>
     <g id="marks"></g>
     <circle id="player" r="7" fill="#c0392b" stroke="#fff" stroke-width="2.5"/>`;
 
@@ -116,14 +130,12 @@ export function createMap(svg, views, geo, onPick) {
   // 結果是**永遠看不到整張圖**——王子與羽田無法同時入鏡。那就是「格局很僵」的成因。
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-  // 🔴 2026/08/07：上一版把「開場視角」與「縮小極限」設成同一個值，
-  // 於是遊戲一開就停在縮到最小的狀態——畫面五成以上是畫框 B 的四角，
-  // 那裡只有收邊多邊形的平坦陸地與海，沒有任何 OSM 細節。
-  // 使用者的回報是「地圖沒有載入進來」。它有載入，只是開場對準了空白。
-  // 兩者必須分開：開場對準江戶本體，縮小極限才是「全部景入鏡」。
+  // 🔴 2026/08/07「地圖是空白的」修了兩層，兩層都要留著才不會復發：
+  //   1. 開場視角與縮小極限本來是同一個值，遊戲一開就停在縮到最小
+  //   2. 更根本的是地理圖層沒有邊——陸地多邊形鋪到框外幾十公里全是米色
+  // 只修 1 的話縮小仍然是一片空白；只修 2 的話開場仍然離得太遠。
 
-  // 景的座標分布——開場與全図都由它決定，不由畫框 B 決定。
-  // B 是給投影用的畫框，它的四角本來就沒東西。
+  // 景的座標分布，只用來決定開場要對準哪裡（畫框本身已照景的範圍訂好）。
   const XS = [], YS = [];
   for (const v of views) {
     if (!v.subject) continue;
@@ -148,16 +160,13 @@ export function createMap(svg, views, geo, onPick) {
   };
 
   const MIN = W / 16;
-  // 縮到底 = 全部景入鏡（含最西的 no.87 井の頭，它在 B 之外約 8km）。
-  // 再往外只是看更多空白，沒有意義。
+  // 縮到底 = 整張紙入鏡加一點邊。再往外只是看更多 --off 的留白，沒有意義。
   let MAX = Infinity;
-  const remax = () => {
-    MAX = cover(Math.max(...XS) - Math.min(...XS) + PAD * 2,
-                Math.max(...YS) - Math.min(...YS) + PAD * 2);
-  };
+  const remax = () => { MAX = cover(W + PAD * 2, H + PAD * 2); };
   remax();
 
-  const fitAll = () => frame(Math.min(...XS), Math.max(...XS), Math.min(...YS), Math.max(...YS));
+  // 全図 = 看見整張紙。畫框 B 是照景的範圍訂的，所以「整張紙」必然含全部 118 景。
+  const fitAll = () => frame(0, W, 0, H);
   // 開場：框住江戶本體（景的 5–95 百分位）。用全図開場會把城縮成中央一小塊，
   // 而王子與羽田這種邊緣景本來就該用拖的找。
   const fitCity = () => frame(pct(XS, .05), pct(XS, .95), pct(YS, .05), pct(YS, .95));

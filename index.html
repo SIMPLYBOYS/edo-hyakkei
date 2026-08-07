@@ -2,9 +2,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>名所江戶百景・漫遊記</title>
 <style>
-  :root { --sea:#1b3a56; --land:#e9e1cf; --ink:#2a2622; --river:#4d7fa3; --gold:#c9a227; }
+  :root { --sea:#1b3a56; --land:#e9e1cf; --ink:#2a2622; --river:#4d7fa3; --gold:#c9a227;
+          /* 圖框外。與 --sea 同色系但更暗——不然灣內的海會跟框外連成一片 */
+          --off:#101d29; }
   * { box-sizing:border-box; margin:0 }
-  body { background:var(--sea); color:var(--land); height:100vh; overflow:hidden;
+  body { background:var(--off); color:var(--land); height:100vh; overflow:hidden;
          font-family:"Hiragino Mincho ProN","Yu Mincho",serif }
   #map { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none }
   #map:active { cursor:grabbing }
