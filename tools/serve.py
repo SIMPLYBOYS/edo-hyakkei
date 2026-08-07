@@ -16,7 +16,13 @@ from pathlib import Path
 
 class NoCache(SimpleHTTPRequestHandler):
     def end_headers(self):
-        self.send_header("Cache-Control", "no-store, must-revalidate")
+        # 🔴 這些 header 擋不住所有情況。實測：把 data/views.json 從硬碟移走，
+        # 瀏覽器仍然 fetch 到 200 與完整內容（伺服器對缺檔確實回 404，curl 驗過）。
+        # 真正靠得住的是 src/main.js 那邊在 localhost 給 URL 加 ?t=timestamp。
+        # 這裡留著是多一層，不是保證。
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
         super().end_headers()
 
 

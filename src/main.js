@@ -23,8 +23,13 @@ const fatal = msg => document.body.insertAdjacentHTML('beforeend',
 addEventListener('error', e => fatal(e.message));
 addEventListener('unhandledrejection', e => fatal(e.reason?.message ?? e.reason));
 
+// 本機開發一律繞過快取。serve.py 已經送 no-store，實測仍然擋不住：
+// 把 data/views.json 從硬碟移走之後，瀏覽器照樣 fetch 到 200 與完整內容。
+// 拿到舊資料的症狀（欄位不見、畫面跟程式對不上）比多一次傳輸難查太多。
+// 線上（GitHub Pages）不加，那裡本來就該讓瀏覽器快取。
+const DEV = ['localhost', '127.0.0.1', ''].includes(location.hostname);
 const grab = async url => {
-  const r = await fetch(url);
+  const r = await fetch(DEV ? `${url}?t=${Date.now()}` : url);
   if (!r.ok) throw new Error(`${url} → HTTP ${r.status}`);   // fetch 對 404 不會 reject
   return r.json();
 };
@@ -38,8 +43,12 @@ const [all, world, edo] = await Promise.all([
 // §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
 // 座標只有一個來源，重抓才不會有兩份會對不上的位置。
 // fetch-osm.py 的 self-check 會驗這個 join 沒斷。
-const anchor = new Map(world.labels.map(l => [l.name, l]));
-const places = edo.places.map(p => ({ ...p, ...anchor.get(p.osm) }))
+// labels 是 2026/08/07 才加進 modern.json 的欄位。舊的檔案沒有它——
+// 而瀏覽器**真的會**餵舊檔案給你（實測：no-store 擋不住，見該次 commit）。
+// 少一個裝飾用的欄位不該讓整張地圖消失，所以這裡一律當作可能不存在。
+if (!world.labels) console.warn('modern.json 沒有 labels 欄位——多半是快取到舊檔，強制重新整理看看');
+const anchor = new Map((world.labels ?? []).map(l => [l.name, l]));
+const places = (edo.places ?? []).map(p => ({ ...p, ...anchor.get(p.osm) }))
   .filter(p => p.lng != null);
 // no.119 赤坂桐畑是二代廣重 1859 年補的一枚，不屬於廣重的 118 景。
 // 資料裡留著（那是完整的），但遊戲只玩 1–118——先前地圖收得到、歲時記卻不算，
