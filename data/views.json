@@ -412,7 +412,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "富士山",
+        "note": "圖會裡富士只是街道盡頭地平線上的一個小三角；廣重把它放大到佔滿畫面上半，成為整條街的收束點。",
+        "hitbox": {
+          "x": 0.45,
+          "y": 0.22,
+          "r": 0.2
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null,
@@ -3115,7 +3126,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "removal",
+        "target": "遠景與富士山",
+        "note": "圖會從同一座新大橋望出去畫得到富士與對岸市街；廣重讓暴雨把整個遠景抹平，只剩一片灰。",
+        "hitbox": {
+          "x": 0.5,
+          "y": 0.18,
+          "r": 0.24
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -4361,7 +4383,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "牛車の車輪",
+        "note": "圖會畫的是整條牛車町與往來的牛車；廣重把其中一個車輪放大到佔據畫面右半，町與海退成背景。",
+        "hitbox": {
+          "x": 0.58,
+          "y": 0.48,
+          "r": 0.34
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -4415,7 +4448,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "removal",
+        "target": "二十六夜待の群衆",
+        "note": "圖會畫高輪海岸擠滿等月的人群與林立的茶屋；廣重站在其中一間茶屋內，畫面只剩宴席的殘骸與海上的月——人全部不在了。",
+        "hitbox": {
+          "x": 0.48,
+          "y": 0.62,
+          "r": 0.3
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -4633,7 +4677,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "馬",
+        "note": "圖會畫內藤新宿驛街上往來的馱馬與旅人；廣重只留下一匹馬的後半身與地上的糞，街景被擠到左側細長的一條。",
+        "hitbox": {
+          "x": 0.55,
+          "y": 0.55,
+          "r": 0.3
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -4687,7 +4742,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "井之頭池",
+        "note": "圖會裡井之頭池只是廣闊丘陵田野中的一小片水面；廣重讓它填滿畫面中段。這是 spec 立項時就記下的案例，現已有圖可證。",
+        "hitbox": {
+          "x": 0.5,
+          "y": 0.45,
+          "r": 0.3
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -4741,7 +4807,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "岩壁",
+        "note": "圖會裡石神井川是開闊的淺谷，兩岸岩壁低緩；廣重把崖壁壓進前景、拉高落差，河道收窄成一條深溝。",
+        "hitbox": {
+          "x": 0.6,
+          "y": 0.55,
+          "r": 0.26
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null

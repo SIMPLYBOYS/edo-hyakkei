@@ -58,6 +58,15 @@
   figcaption .ro { font-size:14px; opacity:.8 }
   figcaption .en { font-size:13px; opacity:.55; margin-top:4px }
   figcaption .pub { font-size:12px; opacity:.45; margin-top:10px }
+  .plate { position:relative; display:inline-block; line-height:0 }
+  /* 找到的地方才顯示——標在前面就變成看圖說故事 */
+  .found { position:absolute; transform:translate(-50%,-50%); border:2px solid var(--gold);
+           border-radius:50%; pointer-events:none; animation:pop .4s ease-out }
+  @keyframes pop { from { transform:translate(-50%,-50%) scale(1.6); opacity:0 } }
+  .hunt { font-size:13px; color:var(--gold); margin-top:16px; line-height:1.7 }
+  #tally { font-size:13px; opacity:0; max-height:0; transition:opacity .4s; line-height:1.8 }
+  #tally.on { opacity:.85; max-height:none; margin-top:10px }
+  #tally b { display:block; color:var(--gold); font-weight:400; margin-bottom:2px }
   .act { margin-top:22px; display:flex; gap:10px; flex-wrap:wrap }
 
   .zukan .sheet { background:#12283c; border:1px solid #ffffff1f; padding:22px 26px;
