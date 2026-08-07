@@ -131,11 +131,50 @@ export function createMap(svg, views, geo, places, onPick) {
     for (const m of pins) m.g.setAttribute('transform', `translate(${m.x} ${m.y}) scale(${px})`);
     player.setAttribute('r', (px * 7).toFixed(2));
     player.setAttribute('stroke-width', (px * 2.5).toFixed(2));
+
+    // 先決定地名的文字內容（避讓要用字數估寬度，得先知道字是什麼）
     for (const l of labels) {
-      l.el.style.display = l.span / vb.w > SHOW ? '' : 'none';
       // 滑到 1858 那側就換成當時的名字（弁慶濠→弁慶堀）——只有 9 個真的不同
       const want = era > 0.5 && l.edo ? l.edo : l.now;
       if (l.el.textContent !== want) l.el.textContent = want;
+    }
+
+    // ── 標籤避讓 ────────────────────────────────────────────────
+    // 同一塊地方只留一個名字：按優先序試放，放不下的就不放。
+    // 寬度用「字數 × 字級」估，不呼叫 getBBox()——那會強制 layout，
+    // 滾輪連續縮放時每格要量一百多個，代價付不起。都是全形字，1 字約 1em。
+    // 一切都在地圖單位下比較：整張圖是等比縮放的，不必換算到螢幕座標。
+    const boxes = [];
+    const place = (cx, cy, w, h) => {
+      const x0 = cx - w / 2, x1 = cx + w / 2, y0 = cy - h / 2, y1 = cy + h / 2;
+      for (const b of boxes) if (x0 < b[2] && x1 > b[0] && y0 < b[3] && y1 > b[1]) return false;
+      boxes.push([x0, y0, x1, y1]);
+      return true;
+    };
+    // 只跟畫面內的標籤搶位置，畫面外的不該佔位
+    const visH = svg.getBoundingClientRect().height * px;
+    const vy = vb.y + (vb.h - visH) / 2;
+    const onScreen = (x, y) => x > vb.x && x < vb.x + vb.w && y > vy && y < vy + visH;
+
+    // 優先序：這季可收 → 收過的 → 江戶地名。
+    // 前兩者是遊戲內容，地名是襯底；讓襯底讓位比較不痛。
+    const zoomed = svg.classList.contains('zoomed');
+    for (const want of ['open', 'got']) {
+      for (const m of pins) {
+        const t = m.g.querySelector('text');
+        const show = zoomed && m.g.classList.contains(want) && onScreen(m.x, m.y)
+          // 文字靠左起排在點的右邊（x=11），所以中心要往右推半個字串寬
+          && place(m.x + px * (11 + t.textContent.length * 13 / 2), m.y + px * 2,
+                   px * 13 * t.textContent.length, px * 15);
+        if (m.g.classList.contains(want)) t.style.display = show ? '' : 'none';
+      }
+    }
+    for (const l of labels) {
+      const n = l.el.textContent.length;
+      l.el.style.display =
+        l.span / vb.w > SHOW && onScreen(+l.el.getAttribute('x'), +l.el.getAttribute('y'))
+        && place(+l.el.getAttribute('x'), +l.el.getAttribute('y') - px * 4,
+                 px * 12 * n, px * 14) ? '' : 'none';
     }
   }
 
@@ -307,8 +346,10 @@ export function createMap(svg, views, geo, places, onPick) {
         if (open) marks.append(g);
       }
       const [px, py] = project(state.pos.lng, state.pos.lat);
-      const p = svg.querySelector('#player');
-      p.setAttribute('cx', px); p.setAttribute('cy', py);
+      player.setAttribute('cx', px); player.setAttribute('cy', py);
+      // 收了一景之後 open/got 變了，標籤的優先序跟著變——
+      // relabel 平常只在縮放時跑，這裡要補一次，否則新收的景名要等到下次縮放才出現。
+      relabel();
     },
     setEra(t) {                                 // 0=現代 1=1858，§3.2 那支滑桿
       era = t; relabel();
