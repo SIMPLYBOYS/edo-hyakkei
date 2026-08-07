@@ -29,6 +29,18 @@
   /* 被避讓擠掉的景名。用 class 而非 inline display，:hover 才叫得回來 */
   #map.zoomed .mark.open text.crowded, #map.zoomed .mark.got text.crowded { opacity:0 }
 
+  /* 可收的景擴一圈暈。金點是全圖唯一「按下去會發生事」的東西，
+     不動的話跟灰點只差顏色。形狀畫在原點（見 map.js），所以 scale 就是繞自己的中心。
+     慢、淡、錯開——這是水墨調的地圖，不是通知紅點。 */
+  .mark .pulse { fill:var(--gold); opacity:0; pointer-events:none }
+  .mark.open .pulse { animation:ripple 2.8s ease-out infinite }
+  @keyframes ripple {
+    0%        { transform:scale(1);   opacity:.45 }
+    60%, 100% { transform:scale(3.2); opacity:0 }
+  }
+  /* 會暈車的人把動畫關掉是基本的，不是可選項 */
+  @media (prefers-reduced-motion:reduce) { .mark.open .pulse { animation:none } }
+
   /* 滑鼠回饋。點得到的東西要看起來點得到——不在季的景點下去也有話說
      （會告訴你那是哪一季的景），所以一律給 pointer。 */
   .mark { cursor:pointer }

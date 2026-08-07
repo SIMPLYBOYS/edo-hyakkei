@@ -206,7 +206,10 @@ export function createMap(svg, views, geo, places, onPick) {
       const p = t => `${(r * Math.cos(t)).toFixed(1)} ${(r * Math.sin(t)).toFixed(1)}`;
       return `<path class="cone" d="M0 0 L${p(a - half)} A${r} ${r} 0 0 1 ${p(a + half)} Z"/>`;
     })();
-    g.innerHTML = `${cone}${v.assets.meishozue ? '<circle class="ring" r="11"/>' : ''}
+    // 可收的景會擴一圈暈（CSS 的 .pulse）。錯開起始時間，否則全圖同時呼吸
+    // 像跑馬燈；錯開之後比較像水面上零星的漣漪。用 id 當種子，重整不會變。
+    g.innerHTML = `${cone}<circle class="pulse" r="7" style="animation-delay:${(v.id % 9) * 0.34}s"/>
+      ${v.assets.meishozue ? '<circle class="ring" r="11"/>' : ''}
       <circle r="7"/>
       <text x="11" y="5">${v.title.ja ?? v.id}</text>`;
     g.onclick = e => { e.stopPropagation(); if (!dragged()) onPick(v); };
