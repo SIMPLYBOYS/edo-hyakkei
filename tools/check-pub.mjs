@@ -32,32 +32,38 @@ for (const v of views) {
 // 我先前每一支模擬在無景可收時都寫 day++，而那個動作在遊戲裡不存在：
 // **模擬的是一個有「等待」的遊戲，而遊戲沒有。**
 //
-// 所以這裡照遊戲的真實規則跑一遍，兩個方向都驗：
-function playthrough({ canWait }) {
-  let day = 0, got = new Set(), waited = 0;
+// 所以這裡照遊戲的真實規則跑一遍，兩個方向都驗。
+// 2026/08/08：規則改成「按季節鈕＝把時鐘推進到那個季節」（§2.2），
+// 舊的「待つ」被吸收掉了，但要驗的東西不變——沒有推進手段就會卡死。
+function playthrough({ canJump }) {
+  let day = 0, got = new Set(), jumps = 0, jumped = 0;
+  const openAt = (d, s) => views.filter(v => !got.has(v.id) && v.season === s
+    && pubDay(v.published) <= d);
   for (let guard = 0; guard < 5000; guard++) {
-    const season = clockFrom(day).season;
-    const open = views.filter(v => !got.has(v.id) && v.season === season
-      && pubDay(v.published) <= day);
+    const open = openAt(day, clockFrom(day).season);
     if (open.length) { got.add(open[0].id); day += DAYS_PER_VIEW; continue; }
-    if (!canWait) break;                       // 沒有等待手段 → 卡死
-    let next = day + 1;
-    while (next < day + 730 && !views.some(v => !got.has(v.id)
-      && v.season === clockFrom(next).season && pubDay(v.published) <= next)) next++;
-    if (next >= day + 730) break;
-    waited += next - day; day = next;
+    if (!canJump) break;                       // 沒有推進手段 → 卡死
+    let best = null;
+    for (const s of ['spring', 'summer', 'autumn', 'winter']) {
+      for (let d = day + 1; d < day + 800; d++) {
+        if (clockFrom(d).season !== s) continue;
+        if (openAt(d, s).length) { if (best === null || d < best) best = d; break; }
+      }
+    }
+    if (best === null) break;
+    jumps++; jumped += best - day; day = best;
   }
-  return { got: got.size, day, waited };
+  return { got: got.size, day, jumps, jumped };
 }
 
-const stuck = playthrough({ canWait: false });
+const stuck = playthrough({ canJump: false });
 assert.ok(stuck.got < views.length,
-  '沒有等待手段竟然收得完？那 waitOn() 就是多餘的，回去確認規則');
-const ok = playthrough({ canWait: true });
+  '沒有季節鈕竟然收得完？那季節鈕就是多餘的，回去確認規則');
+const ok = playthrough({ canJump: true });
 assert.equal(ok.got, views.length,
-  `即使能等待也只收到 ${ok.got}/${views.length}——遊戲不可完成`);
-console.log(`可完成性：不能等待 → 卡在 ${stuck.got}/${views.length}（第 ${stuck.day} 日）；`
-  + `能等待 → ${ok.got}/${views.length}，第 ${ok.day} 日、其中等待 ${ok.waited} 日`);
+  `即使能跳季節也只收到 ${ok.got}/${views.length}——遊戲不可完成`);
+console.log(`可完成性：不能跳季節 → 卡在 ${stuck.got}/${views.length}（第 ${stuck.day} 日）；`
+  + `能跳 → ${ok.got}/${views.length}，第 ${ok.day} 日、跳 ${ok.jumps} 次共 ${ok.jumped} 日`);
 
 const byYear = {};
 for (const v of views) (byYear[v.published.slice(0, 4)] ??= []).push(v);

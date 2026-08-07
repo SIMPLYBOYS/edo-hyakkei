@@ -73,9 +73,15 @@
   #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
               font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
   #left, #count { font-size:13px; opacity:.75 }
-  /* 待つ：唯一不靠收景推進時間的手段。沒有它遊戲會卡死在 89/118（見 main.js）。
-     無景可收時加金框——那時它是玩家唯一能按的東西。 */
-  #wait.urgent { border-color:var(--gold); color:var(--gold) }
+  /* §2.2 季節由玩家選。按下去＝把時鐘推進到那個季節——日期永遠是真的，
+     出版與事件照舊。這同時取代了舊的「待つ」，並消掉整類卡死 bug。 */
+  #seasons { display:inline-flex; gap:1px }
+  #seasons button { border-radius:0; padding:5px 11px }
+  #seasons button:first-child { border-radius:3px 0 0 3px }
+  #seasons button:last-child { border-radius:0 3px 3px 0 }
+  #seasons button + button { border-left:none }
+  #seasons button.now { background:var(--gold); color:#12283c; border-color:var(--gold) }
+  #seasons button:disabled { opacity:.3; cursor:default }
   #count { margin-left:auto }
   button { font:inherit; font-size:13px; color:var(--land); background:#ffffff1a;
            border:1px solid #ffffff33; border-radius:3px; padding:5px 12px; cursor:pointer }
@@ -196,7 +202,7 @@
 <div id="hud">
   <span id="date"></span>
   <span id="left"></span>
-  <button id="wait" title="跳到下一個有景可收的日子">待つ</button>
+  <span id="seasons"></span>
   <button id="hunt" title="給你一張畫，你指出它畫的是哪裡">視点狩り</button>
   <span id="count"></span>
   <button id="book">歲時記</button>

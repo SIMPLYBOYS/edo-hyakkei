@@ -72,11 +72,6 @@ const map = createMap(document.getElementById('map'), views, world.layers, place
 // §2.6：已經出版的景數。玩家看到地圖稀疏時，這個數字是唯一的解釋。
 const published = day => views.filter(v => pubDay(v.published) <= day).length;
 
-// 系列最後一枚出版的日子。廣重歿於安政五年九月六日（1858-10-12），
-// 而最後一枚就出在那前後——查資料時算出來只差一天，不是我編的。
-// 過了這天，地圖再也不會長出新的景：剩下的只是還沒輪到它的季節。
-const LAST_PUB = Math.max(...views.map(v => pubDay(v.published)));
-
 function paint() {
   const clock = clockFrom(state.day);
   map.render(state, clock);
@@ -88,9 +83,11 @@ function paint() {
     `${seasonJa(clock.season)}還剩 ${clock.daysLeftInSeason} 日`
     + (pub < TOTAL ? ` ・ 廣重已出 ${pub} 景` : '');
   document.getElementById('count').textContent = `${state.collected.length} / ${TOTAL}`;
-  // 當季沒東西可收時，「待つ」是玩家唯一能按的東西，要看得出來
-  document.getElementById('wait').classList
-    .toggle('urgent', state.collected.length < TOTAL && !anythingOpen(state.day));
+  // 目前所在的季節標亮；那一季已經收齊的就變灰（按了也沒用）
+  for (const b of seasonBar.children) {
+    b.classList.toggle('now', b.dataset.s === clock.season);
+    b.disabled = !views.some(v => !state.collected.includes(v.id) && v.season === b.dataset.s);
+  }
   save(state);
 }
 
@@ -146,19 +143,39 @@ function advance(days) {
   }
 }
 
-/** 待つ：跳到下一個「有景可收」的日子。時間仍然只前進，季節與出版一樣擋著，
- *  差別只在玩家不再被卡死。上限兩年是保險，正常情況最多等一季。 */
-function waitOn() {
-  if (state.collected.length === TOTAL) return say('一百十八景都收齊了');
-  for (let d = state.day + 1; d <= state.day + 730; d++) {
-    if (anythingOpen(d)) {
-      const n = d - state.day;
-      advance(n);
-      return say(`等了 ${n} 日——${clockFrom(state.day).label}`);
-    }
+// §2.2 季節由玩家選（2026/08/08 改）。舊版是「收到換季為止」，
+// 那個限制**不產生任何決策**——沒有取捨、沒有技巧，只是強迫你按四季輪替看畫。
+// 現在按季節鈕＝把時鐘推進到那個季節。
+//
+// 為什麼是「推進時鐘」而不是「切換濾鏡」：日期要永遠是真的。
+// 出版閘門（§2.6）與史實事件（§2.9）都掛在日期上，濾鏡會讓它們失去意義。
+// 這也順便吸收掉舊的「待つ」，並消掉整類卡死 bug。
+const SEASONS = [['spring', '春'], ['summer', '夏'], ['autumn', '秋'], ['winter', '冬']];
+
+/** 那個季節下一次「有景可收」是哪一天；沒有就回 null */
+function nextOpen(season) {
+  for (let d = state.day + 1; d <= state.day + 800; d++) {
+    if (clockFrom(d).season === season && anythingOpen(d)) return d;
   }
-  say('往後兩年都沒有可收的景，這不該發生');
+  return null;
 }
+
+function goSeason(season) {
+  if (state.collected.length === TOTAL) return say('一百十八景都收齊了');
+  if (clockFrom(state.day).season === season && anythingOpen(state.day)) {
+    return say(`已經在${seasonJa(season)}了`);
+  }
+  const d = nextOpen(season);
+  if (d == null) return say(`${seasonJa(season)}的景都收齊了`);
+  const n = d - state.day;
+  advance(n);
+  say(`${seasonJa(season)}へ——${clockFrom(state.day).label}（${n} 日後）`);
+}
+
+const seasonBar = document.getElementById('seasons');
+seasonBar.innerHTML = SEASONS.map(([k, ja]) =>
+  `<button data-s="${k}">${ja}</button>`).join('');
+for (const b of seasonBar.children) b.onclick = () => goSeason(b.dataset.s);
 
 // §2.9 事件通知。一步九日，理論上可能一次跨過兩件，所以做成佇列依序顯示。
 // seen_in_data 那行是這個功能的重點：它寫的是 views.json 裡看得到的事實
@@ -178,28 +195,26 @@ function showEvents([e, ...rest]) {
   document.body.append(el);
 }
 
-// 收滿 118 景。先前這裡什麼都不會發生——計數器停在 118/118 就沒了，
-// 玩家花了遊戲內三年多，遊戲一句話都沒說。
+// 收滿 118 景。先前這裡什麼都不會發生——計數器停在 118/118 就沒了。
 //
-// 內容全是查證過的事實，沒有一句是修辭。以現行起點（1857-02）與 D=8 實測：
-// 玩家收滿在第 1151 日（万延元年 春），最後一枚出版在第 607 日，
-// 廣重歿於第 618 日。也就是說**最後那 544 日他已經不在了**。
+// 🔴 2026/08/08 改成開放結局。原本寫的是「廣重歿於…你在他停筆之後又獨自走了
+// N 日」——那在季節綁死時還算數，因為每個人的路徑都一樣。
+// **季節改成玩家自選之後，路徑是他自己挑的**，那句話就變成替別人的旅程下結論。
+// 廣重之死留在它本來的位置：你走到 1858 年秋天時會遇到的一件事（§2.9 事件），
+// 不是通關獎勵。這裡只報你自己的數字，不加敘事。
 function showEnd() {
   const clock = clockFrom(state.day);
-  const alone = state.day - LAST_PUB;
   const el = document.createElement('div');
   el.className = 'overlay ending';
   el.innerHTML = `<div class="sheet">
     <h2>歳時記 満</h2>
-    <p class="date">${clock.label}</p>
+    <p class="date">${clock.label}<span class="dim">　${clock.iso}</span></p>
     <p>一百十八景走完，歷時 ${(state.day / 365).toFixed(1)} 年。</p>
-    <p class="note">廣重歿於安政五年九月六日，系列的最後一枚就出在那前後。
-      你在他停筆之後又獨自走了 ${alone} 日，把剩下的季節等完。</p>
     <p class="note dim">第百十九枚〈赤坂桐畑雨中夕けい〉是二代廣重於安政六年四月補的，
       不在這一百十八景之內。</p>
     <div class="act">
       <button id="endbook">看歲時記</button>
-      <button id="endclose" class="ghost">閉じる</button>
+      <button id="endclose" class="ghost">続ける</button>
     </div></div>`;
   el.querySelector('#endclose').onclick = () => { el.remove(); paint(); };
   el.querySelector('#endbook').onclick = () => { el.remove(); showZukan(views, state, paint); };
@@ -223,7 +238,6 @@ map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); })
 
 const eraInput = document.getElementById('era');
 eraInput.oninput = () => map.setEra(eraInput.value / 1000);
-document.getElementById('wait').onclick = waitOn;
 // §2.10 原型：獨立模式，不動主循環的任何狀態
 document.getElementById('hunt').onclick = () => showHunt(views, map, paint);
 document.getElementById('book').onclick = () => showZukan(views, state);
