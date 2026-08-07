@@ -63,6 +63,11 @@ const map = createMap(document.getElementById('map'), views, world.layers, place
 // §2.6：已經出版的景數。玩家看到地圖稀疏時，這個數字是唯一的解釋。
 const published = day => views.filter(v => pubDay(v.published) <= day).length;
 
+// 系列最後一枚出版的日子。廣重歿於安政五年九月六日（1858-10-12），
+// 而最後一枚就出在那前後——查資料時算出來只差一天，不是我編的。
+// 過了這天，地圖再也不會長出新的景：剩下的只是還沒輪到它的季節。
+const LAST_PUB = Math.max(...views.map(v => pubDay(v.published)));
+
 function paint() {
   const clock = clockFrom(state.day);
   map.render(state, clock);
@@ -93,13 +98,45 @@ function pick(v) {
       state.day += DAYS_PER_VIEW;              // 時間只由入景推進
       paint();
       const c = clockFrom(state.day);
+      if (state.collected.length === TOTAL) return showEnd();
       // 新出版的景是無聲地長在地圖上的，不講一聲玩家不會發現（§2.6）
       const fresh = published(state.day) - before;
-      if (fresh) say(`廣重又出了 ${fresh} 景`);
+      // 跨過最後一枚出版的那一刻要說清楚，否則玩家只會覺得「怎麼不再長了」
+      if (before < TOTAL && published(state.day) === TOTAL) {
+        say('廣重畫完了最後一枚——此後地圖不會再長出新的景');
+      } else if (fresh) say(`廣重又出了 ${fresh} 景`);
       else if (c.season !== clock.season) say(`季節轉了——${seasonJa(c.season)}`);
     },
     onClose: paint,
   });
+}
+
+// 收滿 118 景。先前這裡什麼都不會發生——計數器停在 118/118 就沒了，
+// 玩家花了遊戲內三年多，遊戲一句話都沒說。
+//
+// 內容全是查證過的事實，沒有一句是修辭：
+// 玩家收滿大約在第 1187 日（安政六年夏），而廣重歿於第 821 日前後，
+// 系列最後一枚出在第 822 日。也就是說**最後那段路他已經不在了**。
+function showEnd() {
+  const clock = clockFrom(state.day);
+  const alone = state.day - LAST_PUB;
+  const el = document.createElement('div');
+  el.className = 'overlay ending';
+  el.innerHTML = `<div class="sheet">
+    <h2>歳時記 満</h2>
+    <p class="date">${clock.label}</p>
+    <p>一百十八景走完，歷時 ${(state.day / 365).toFixed(1)} 年。</p>
+    <p class="note">廣重歿於安政五年九月六日，系列的最後一枚就出在那前後。
+      你在他停筆之後又獨自走了 ${alone} 日，把剩下的季節等完。</p>
+    <p class="note dim">第百十九枚〈赤坂桐畑雨中夕けい〉是二代廣重於安政六年四月補的，
+      不在這一百十八景之內。</p>
+    <div class="act">
+      <button id="endbook">看歲時記</button>
+      <button id="endclose" class="ghost">閉じる</button>
+    </div></div>`;
+  el.querySelector('#endclose').onclick = () => { el.remove(); paint(); };
+  el.querySelector('#endbook').onclick = () => { el.remove(); showZukan(views, state, paint); };
+  document.body.append(el);
 }
 
 let timer;
