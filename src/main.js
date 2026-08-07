@@ -87,6 +87,9 @@ function paint() {
     `${seasonJa(clock.season)}還剩 ${clock.daysLeftInSeason} 日`
     + (pub < TOTAL ? ` ・ 廣重已出 ${pub} 景` : '');
   document.getElementById('count').textContent = `${state.collected.length} / ${TOTAL}`;
+  // 當季沒東西可收時，「待つ」是玩家唯一能按的東西，要看得出來
+  document.getElementById('wait').classList
+    .toggle('urgent', state.collected.length < TOTAL && !anythingOpen(state.day));
   save(state);
 }
 
@@ -103,28 +106,57 @@ function pick(v) {
   paint();
   showView(v, {
     onCollect() {
-      const was = state.day, before = published(was);
       state.collected.push(v.id);
-      state.day += DAYS_PER_VIEW;              // 時間只由入景推進
-      paint();
-      const c = clockFrom(state.day);
-      if (state.collected.length === TOTAL) return showEnd();
-      // 這一步跨過了哪些史實事件（§2.9）。事件優先於下面那些提示：
-      // 台風跟「又出了三景」同時發生時，該講的是台風。
-      // 收下第一景時另外補講起點之前的事——那是他走進這座城時，城剛經歷過的。
-      const crossed = EVENTS.filter(e => e.day > was && e.day <= state.day)
-        .concat(state.collected.length === 1 ? EVENTS.filter(e => e.day <= 0) : []);
-      if (crossed.length) return showEvents(crossed.sort((a, b) => a.day - b.day));
-      // 新出版的景是無聲地長在地圖上的，不講一聲玩家不會發現（§2.6）
-      const fresh = published(state.day) - before;
-      // 跨過最後一枚出版的那一刻要說清楚，否則玩家只會覺得「怎麼不再長了」
-      if (before < TOTAL && published(state.day) === TOTAL) {
-        say('廣重畫完了最後一枚——此後地圖不會再長出新的景');
-      } else if (fresh) say(`廣重又出了 ${fresh} 景`);
-      else if (c.season !== clock.season) say(`季節轉了——${seasonJa(c.season)}`);
+      advance(DAYS_PER_VIEW);                  // 入景耗日（§2.1）
     },
     onClose: paint,
   });
+}
+
+/** 這一天有沒有景可收 */
+const anythingOpen = day => {
+  const s = clockFrom(day).season;
+  return views.some(v => !state.collected.includes(v.id)
+    && v.season === s && pubDay(v.published) <= day);
+};
+
+// 🔴 2026/08/08：時間推進集中在這裡，因為先前**只有**入景會推進日期，
+// 而那會讓遊戲卡死。實測（照遊戲真正的規則，不是模擬裡那個會 day++ 的版本）：
+// 收到第 89 景、第 712 日時當季已無景可收，於是日期再也不動，剩下 29 景永遠拿不到。
+// 我跑過的每一支模擬在無景可收時都寫 day++，那個動作在遊戲裡不存在——
+// **模擬的是一個有「等待」的遊戲，而遊戲沒有。**
+function advance(days) {
+  const was = state.day, before = published(was);
+  state.day += days;
+  paint();
+  if (state.collected.length === TOTAL) return showEnd();
+  // 跨過的史實事件優先講（§2.9）：台風跟「又出了三景」同時發生時，該講的是台風。
+  // 收下第一景時另外補講起點之前的事——那是他走進這座城時，城剛經歷過的。
+  const crossed = EVENTS.filter(e => e.day > was && e.day <= state.day)
+    .concat(state.collected.length === 1 ? EVENTS.filter(e => e.day <= 0) : []);
+  if (crossed.length) return showEvents(crossed.sort((a, b) => a.day - b.day));
+  const fresh = published(state.day) - before;
+  // 跨過最後一枚出版的那一刻要說清楚，否則玩家只會覺得「怎麼不再長了」
+  if (before < TOTAL && published(state.day) === TOTAL) {
+    say('廣重畫完了最後一枚——此後地圖不會再長出新的景');
+  } else if (fresh) say(`廣重又出了 ${fresh} 景`);
+  else if (clockFrom(state.day).season !== clockFrom(was).season) {
+    say(`季節轉了——${seasonJa(clockFrom(state.day).season)}`);
+  }
+}
+
+/** 待つ：跳到下一個「有景可收」的日子。時間仍然只前進，季節與出版一樣擋著，
+ *  差別只在玩家不再被卡死。上限兩年是保險，正常情況最多等一季。 */
+function waitOn() {
+  if (state.collected.length === TOTAL) return say('一百十八景都收齊了');
+  for (let d = state.day + 1; d <= state.day + 730; d++) {
+    if (anythingOpen(d)) {
+      const n = d - state.day;
+      advance(n);
+      return say(`等了 ${n} 日——${clockFrom(state.day).label}`);
+    }
+  }
+  say('往後兩年都沒有可收的景，這不該發生');
 }
 
 // §2.9 事件通知。一步九日，理論上可能一次跨過兩件，所以做成佇列依序顯示。
@@ -190,6 +222,7 @@ map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); })
 
 const eraInput = document.getElementById('era');
 eraInput.oninput = () => map.setEra(eraInput.value / 1000);
+document.getElementById('wait').onclick = waitOn;
 document.getElementById('book').onclick = () => showZukan(views, state);
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }

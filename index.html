@@ -73,6 +73,9 @@
   #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
               font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
   #left, #count { font-size:13px; opacity:.75 }
+  /* 待つ：唯一不靠收景推進時間的手段。沒有它遊戲會卡死在 89/118（見 main.js）。
+     無景可收時加金框——那時它是玩家唯一能按的東西。 */
+  #wait.urgent { border-color:var(--gold); color:var(--gold) }
   #count { margin-left:auto }
   button { font:inherit; font-size:13px; color:var(--land); background:#ffffff1a;
            border:1px solid #ffffff33; border-radius:3px; padding:5px 12px; cursor:pointer }
@@ -168,6 +171,7 @@
 <div id="hud">
   <span id="date"></span>
   <span id="left"></span>
+  <button id="wait" title="跳到下一個有景可收的日子">待つ</button>
   <span id="count"></span>
   <button id="book">歲時記</button>
   <button id="reset" class="ghost">重來</button>
