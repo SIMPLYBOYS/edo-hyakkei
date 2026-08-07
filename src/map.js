@@ -116,22 +116,51 @@ export function createMap(svg, views, geo, onPick) {
   // 結果是**永遠看不到整張圖**——王子與羽田無法同時入鏡。那就是「格局很僵」的成因。
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-  // slice 會裁滿畫面，所以「看得到全圖」需要的 viewBox 比內容本身還寬——
-  // 寬到讓 viewBox 的長寬比追上視窗的長寬比為止。橫向視窗算出來通常是內容的兩倍以上。
-  function fitWidth() {
-    const r = svg.getBoundingClientRect();
-    return W * Math.max(1, (r.width / r.height) / (W / H));
-  }
-  // 縮小的極限就是「剛好看得到全圖」，不再往外——再縮只是看更多空白，沒有意義
-  const MIN = W / 16;
-  let MAX = fitWidth();
+  // 🔴 2026/08/07：上一版把「開場視角」與「縮小極限」設成同一個值，
+  // 於是遊戲一開就停在縮到最小的狀態——畫面五成以上是畫框 B 的四角，
+  // 那裡只有收邊多邊形的平坦陸地與海，沒有任何 OSM 細節。
+  // 使用者的回報是「地圖沒有載入進來」。它有載入，只是開場對準了空白。
+  // 兩者必須分開：開場對準江戶本體，縮小極限才是「全部景入鏡」。
 
-  function fitAll() {
-    const nw = fitWidth();
-    vb = { x: (W - nw) / 2, y: (H - (H / W) * nw) / 2, w: nw, h: (H / W) * nw };
-    svg.classList.remove('zoomed');
-    apply();
+  // 景的座標分布——開場與全図都由它決定，不由畫框 B 決定。
+  // B 是給投影用的畫框，它的四角本來就沒東西。
+  const XS = [], YS = [];
+  for (const v of views) {
+    if (!v.subject) continue;
+    const [x, y] = project(v.subject.lng, v.subject.lat);
+    XS.push(x); YS.push(y);
   }
+  const pct = (a, p) => a.slice().sort((m, n) => m - n)[Math.round(p * (a.length - 1))];
+
+  // slice 會裁滿畫面：要讓一塊矩形完整入鏡，viewBox 得寬到長寬比追上視窗。
+  // 直幅的內容擺在橫幅的視窗裡，算出來的寬度會比矩形本身寬不少，這是幾何不是 bug。
+  const cover = (w, h) => {
+    const r = svg.getBoundingClientRect();
+    return Math.max(w, h * (r.width / r.height));
+  };
+  const PAD = 40;
+  const frame = (x0, x1, y0, y1) => {
+    const nw = clamp(cover(x1 - x0 + PAD * 2, y1 - y0 + PAD * 2), MIN, MAX);
+    vb = { x: (x0 + x1) / 2 - nw / 2, y: (y0 + y1) / 2 - (H / W) * nw / 2,
+           w: nw, h: (H / W) * nw };
+    svg.classList.toggle('zoomed', nw < W * 0.45);
+    apply();
+  };
+
+  const MIN = W / 16;
+  // 縮到底 = 全部景入鏡（含最西的 no.87 井の頭，它在 B 之外約 8km）。
+  // 再往外只是看更多空白，沒有意義。
+  let MAX = Infinity;
+  const remax = () => {
+    MAX = cover(Math.max(...XS) - Math.min(...XS) + PAD * 2,
+                Math.max(...YS) - Math.min(...YS) + PAD * 2);
+  };
+  remax();
+
+  const fitAll = () => frame(Math.min(...XS), Math.max(...XS), Math.min(...YS), Math.max(...YS));
+  // 開場：框住江戶本體（景的 5–95 百分位）。用全図開場會把城縮成中央一小塊，
+  // 而王子與羽田這種邊緣景本來就該用拖的找。
+  const fitCity = () => frame(pct(XS, .05), pct(XS, .95), pct(YS, .05), pct(YS, .95));
 
   function zoomTo(nw, cx, cy) {
     nw = clamp(nw, MIN, MAX);
@@ -154,7 +183,7 @@ export function createMap(svg, views, geo, onPick) {
     zoomTo(vb.w * k, cx, cy);
   };
   svg.ondblclick = e => { const [cx, cy] = toSvg(e); zoomTo(vb.w / 2, cx, cy); };
-  addEventListener('resize', () => { MAX = fitWidth(); });
+  addEventListener('resize', remax);   // 視窗長寬比變了，全図需要的寬度也變了
   addEventListener('keydown', e => {
     if (document.querySelector('.overlay')) return;      // 看畫時不要動地圖
     const c = { x: vb.x + vb.w / 2, y: vb.y + vb.h / 2 };
@@ -183,7 +212,7 @@ export function createMap(svg, views, geo, onPick) {
   // 拖曳結束時滑鼠常常正好停在某個景上，不擋掉的話一拖就誤入該景
   dragged = () => moved > 6;
 
-  fitAll();   // 開場就看得到整張圖，不是一上來就被裁掉一半
+  fitCity();  // 開場對準江戶本體。用 fitAll() 開場就是「地圖沒載入」那個 bug
 
   const centre = () => [vb.x + vb.w / 2, vb.y + vb.h / 2];
 
