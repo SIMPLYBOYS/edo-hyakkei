@@ -105,11 +105,23 @@
 
   /* §2.10 視點狩獵。刻意不用 .overlay——玩家要一邊看畫一邊點地圖，
      全屏遮罩就把地圖擋掉了。所以做成靠邊的面板，地圖照常拖放縮放。 */
-  #hunt-ui { position:fixed; left:20px; top:64px; bottom:96px; width:min(380px,34vw);
+  #hunt-ui { position:fixed; left:20px; top:64px; bottom:96px; width:min(560px,44vw);
              display:flex; flex-direction:column; gap:14px; z-index:20; pointer-events:none }
   #hunt-ui > * { pointer-events:auto }
-  #hunt-ui img { width:100%; flex:1; min-height:0; object-fit:contain;
-                 object-position:top; filter:drop-shadow(0 6px 24px #0009) }
+  /* 出題圖用固定長寬比的框，遮罩才對得準（圖會插圖都是 1.35–1.40 的橫幅）。
+     揭曉的廣重是直幅，另給 .tall。 */
+  #hunt-ui .qimg { position:relative; width:100%; aspect-ratio:1.37;
+                   filter:drop-shadow(0 6px 24px #0009) }
+  #hunt-ui .qimg img { width:100%; height:100%; object-fit:contain; object-position:top }
+  #hunt-ui .qimg img.tall { object-fit:contain; height:auto; max-height:52vh }
+  /* 🔴 opacity 只能給文字，不能給整個偽元素——寫在這裡會讓整條遮罩變半透明，
+     題簽照樣看得見。命中測試查不出來（元素確實在上層），是把遮罩塗紅才發現的。 */
+  #hunt-ui .qimg.masked::after {
+    content:'題簽已遮'; position:absolute; left:0; right:0; top:0; height:20%;
+    background:#12283c; border-bottom:1px solid #ffffff2e;
+    font-size:11px; letter-spacing:.2em; color:#ffffff8c;
+    display:grid; place-items:center;
+  }
   #hunt-ui .body { background:#12283ceb; border:1px solid #ffffff1f; border-radius:4px;
                    padding:16px 18px; line-height:1.9 }
   #hunt-ui .n { font-size:12px; opacity:.5; letter-spacing:.2em }
