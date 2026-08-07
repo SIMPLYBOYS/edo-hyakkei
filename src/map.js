@@ -51,13 +51,17 @@ export function createMap(svg, views, geo, places, onPick) {
   // slice 不是 meet：讓內容填滿視窗，看不到的用拖的。
   // 畫框外現在是 --off 的留白，就算 slice 裁掉一點也不會出現沒資料的區域。
   svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-  const edoLand = `${d([...EDO, ...CLOSE])}Z`;
+  // 江戶的海岸線不再需要自己的多邊形：底層畫現代陸地，1858 那側靠 #reclaimed
+  // 把新生地蓋成海蓋出來。少一個多邊形，兩條海岸線也不會再對不齊。
+  const modernLand = `${d([...MODERN, ...CLOSE])}Z`;
   svg.innerHTML = `
     <defs>
-      <!-- OSM 圖層一律裁在江戶陸地內。不裁的話推到 1858 時，
-           填海區的碼頭與運河會浮在海面上——那些地方當年還是海。
-           代價是現代圖層的港區沒有細節，但這是講江戶的地圖，不缺那塊。 -->
-      <clipPath id="land"><path d="${edoLand}"/></clipPath>
+      <!-- 🔴 2026/08/07 改：OSM 圖層改裁在**現代**陸地內，不是江戶陸地。
+           先前裁在江戶陸地，代價是新生地那塊永遠空白——推到 2026 時，
+           目黒川、立会川這些河會斷在填海地的邊緣，流不進海裡，看起來就是壞的。
+           改法是反過來：裁在較大的現代陸地，然後在 1858 那側用海把新生地蓋回去
+           （下面的 #reclaimed）。這樣兩個年代都對，而且不必把圖層畫兩份。 -->
+      <clipPath id="land"><path d="${modernLand}"/></clipPath>
       <!-- 地圖是一張有邊的紙。所有地理圖層都裁在這個矩形內，
            框外交給 body 的 --sea 底色——那是「圖到此為止」，不是海也不是陸。
            不裁的話陸地多邊形會一路鋪到框外幾十公里，全是沒資料的米色。 -->
@@ -65,9 +69,8 @@ export function createMap(svg, views, geo, places, onPick) {
     </defs>
     <g clip-path="url(#sheet)">
     <rect x="0" y="0" width="${W}" height="${H}" fill="var(--sea)"/>
-    <path d="${edoLand}" fill="var(--land)"/>
-    <path id="reclaimed" d="${d([...MODERN, ...EDO.slice().reverse()])}Z"
-          fill="var(--land)" stroke="var(--land)" stroke-width="1.5"/>
+    <!-- 底層畫的是現代陸地（含新生地），江戶的海岸線靠上面的 #reclaimed 蓋出來 -->
+    <path d="${modernLand}" fill="var(--land)"/>
     <g clip-path="url(#land)">
     <path id="park" d="${multi(geo.park)}Z" fill="#b9c4a6" opacity=".5"/>
     <!-- 堀與川是江戶就有的（半蔵濠、千鳥ヶ淵、日本橋川…），兩個年代都畫 -->
@@ -81,6 +84,11 @@ export function createMap(svg, views, geo, places, onPick) {
             stroke-dasharray="5 3" opacity=".7"/>
     </g>
     </g>
+    <!-- 新生地。1858 那側用海把它蓋回去——連同上面畫的碼頭運河一起蓋掉，
+         那些地方當年是海。畫在 OSM 之後、台場之前：台場就在這塊裡面，
+         擺在後面才不會被自己的海蓋掉。 -->
+    <path id="reclaimed" d="${d([...MODERN, ...EDO.slice().reverse()])}Z"
+          fill="var(--sea)" stroke="var(--sea)" stroke-width="1.5"/>
     <g id="daiba" fill="var(--land)" stroke="#b8ad93">${DAIBA.map(p => {
       const [x, y] = project(p[0], p[1]);
       return `<rect x="${x - 5}" y="${y - 5}" width="10" height="10" transform="rotate(20 ${x} ${y})"/>`;
@@ -355,7 +363,9 @@ export function createMap(svg, views, geo, places, onPick) {
     },
     setEra(t) {                                 // 0=現代 1=1858，§3.2 那支滑桿
       era = t; relabel();
-      svg.querySelector('#reclaimed').style.opacity = 1 - t;
+      // #reclaimed 現在畫的是海不是陸：t=1（1858）時不透明，把新生地蓋成海；
+      // t=0（現代）時透明，露出底下的新生地與它上面的河與路。
+      svg.querySelector('#reclaimed').style.opacity = t;
       svg.querySelector('#daiba').style.opacity = t;
       svg.querySelector('#modern').style.opacity = 1 - t;   // 鐵路幹道只屬於現代
     },
