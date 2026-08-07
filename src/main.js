@@ -3,6 +3,7 @@
 import { clockFrom, dateDay, DAYS_PER_VIEW, pubDay, seasonJa } from './calendar.js';
 import { createMap } from './map.js';
 import { showView } from './view.js';
+import { showHunt } from './hunt.js';
 import { showZukan } from './zukan.js';
 
 const SAVE = 'edo-hyakkei/v1';
@@ -223,6 +224,8 @@ map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); })
 const eraInput = document.getElementById('era');
 eraInput.oninput = () => map.setEra(eraInput.value / 1000);
 document.getElementById('wait').onclick = waitOn;
+// §2.10 原型：獨立模式，不動主循環的任何狀態
+document.getElementById('hunt').onclick = () => showHunt(views, map, paint);
 document.getElementById('book').onclick = () => showZukan(views, state);
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }

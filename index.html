@@ -97,6 +97,31 @@
   #zoom button + button { border-top:none }
   #zoom button:disabled { opacity:.3; cursor:default; background:#0e2233d9 }
 
+  /* §2.10 視點狩獵。刻意不用 .overlay——玩家要一邊看畫一邊點地圖，
+     全屏遮罩就把地圖擋掉了。所以做成靠邊的面板，地圖照常拖放縮放。 */
+  #hunt-ui { position:fixed; left:20px; top:64px; bottom:96px; width:min(380px,34vw);
+             display:flex; flex-direction:column; gap:14px; z-index:20; pointer-events:none }
+  #hunt-ui > * { pointer-events:auto }
+  #hunt-ui img { width:100%; flex:1; min-height:0; object-fit:contain;
+                 object-position:top; filter:drop-shadow(0 6px 24px #0009) }
+  #hunt-ui .body { background:#12283ceb; border:1px solid #ffffff1f; border-radius:4px;
+                   padding:16px 18px; line-height:1.9 }
+  #hunt-ui .n { font-size:12px; opacity:.5; letter-spacing:.2em }
+  #hunt-ui .q { font-size:14px; opacity:.85 }
+  #hunt-ui h3 { font-size:20px; font-weight:400; margin:2px 0 }
+  #hunt-ui .why { font-size:12px; opacity:.6; line-height:1.8; margin-top:6px }
+  #hunt-ui .verdict { font-size:24px; letter-spacing:.15em }
+  #hunt-ui .verdict.good { color:var(--gold) }
+  #hunt-ui .verdict.bad { opacity:.55 }
+  #hunt-ui .verdict span { font-size:13px; letter-spacing:0; opacity:.6; margin-left:10px }
+  #hunt-ui .list { list-style:none; font-size:13px; margin:10px 0 }
+  #hunt-ui .list li { display:flex; justify-content:space-between; gap:12px; opacity:.85 }
+  #hunt-ui .list b { font-weight:400; opacity:.6 }
+  #hunt-ui .act { margin-top:14px }
+  /* 狩獵時標記整組藏起來——它們本身就是答案 */
+  #map.hunting #marks, #map.hunting #player { display:none }
+  #map.hunting { cursor:crosshair }
+
   /* 開場失敗時唯一看得到的東西。白畫面查過兩輪，不要再有第三輪。 */
   #err { position:fixed; inset:auto 0 0 0; margin:auto; top:50%; transform:translateY(-50%);
          max-width:520px; padding:22px 26px; background:#3a1f1f; border:1px solid #ffffff2e;
@@ -172,6 +197,7 @@
   <span id="date"></span>
   <span id="left"></span>
   <button id="wait" title="跳到下一個有景可收的日子">待つ</button>
+  <button id="hunt" title="給你一張畫，你指出它畫的是哪裡">視点狩り</button>
   <span id="count"></span>
   <button id="book">歲時記</button>
   <button id="reset" class="ghost">重來</button>

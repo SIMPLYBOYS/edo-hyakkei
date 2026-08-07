@@ -39,6 +39,11 @@ export const project = (lng, lat) => [
   (lng - B.w) / (B.e - B.w) * W,
   (B.n - lat) / (B.n - B.s) * H,
 ];
+/** project 的反函式。§2.10 視點狩獵要把玩家點的位置換回經緯度。 */
+export const unproject = (x, y) => [
+  B.w + x / W * (B.e - B.w),
+  B.n - y / H * (B.n - B.s),
+];
 const d = pts => pts.map(p => project(p[0], p[1]))
   .map(([x, y], i) => `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`).join('');
 
@@ -99,10 +104,26 @@ export function createMap(svg, views, geo, places, onPick) {
           stroke="#000" stroke-opacity=".28" stroke-width="2"/>
     <g id="places"></g>
     <g id="marks"></g>
+    <!-- §2.10 視點狩獵：玩家的針與揭曉時的正解 -->
+    <g id="huntlayer" style="display:none">
+      <path id="pin" d="M0 0 l-7 -12 a7 7 0 1 1 14 0 z" fill="var(--gold)"
+            stroke="#fffdf5" stroke-width="1.5" style="display:none"/>
+      <g id="truth" style="display:none">
+        <circle r="8" fill="none" stroke="#7a9a6d" stroke-width="2.5"/>
+        <circle r="3" fill="#7a9a6d"/>
+      </g>
+      <line id="link" stroke="#fffdf5" stroke-width="1.5" stroke-dasharray="4 4"
+            opacity=".7" style="display:none"/>
+    </g>
     <circle id="player" r="7" fill="#c0392b" stroke="#fff" stroke-width="2.5"/>`;
 
   const marks = svg.querySelector('#marks');
   const player = svg.querySelector('#player');
+  const huntG = svg.querySelector('#huntlayer');
+  const pinEl = svg.querySelector('#pin');
+  const truthEl = svg.querySelector('#truth');
+  const linkEl = svg.querySelector('#link');
+  let pinAt = null, truthAt = null;      // 地圖座標，relabel() 重設 transform 用
   const pins = [];              // 標記的地圖座標，relabel() 每次縮放重設 transform
 
   // §2.7 江戶地名。只畫 data/edo-places.json 挑過的 62 個——
@@ -139,6 +160,11 @@ export function createMap(svg, views, geo, places, onPick) {
     for (const m of pins) m.g.setAttribute('transform', `translate(${m.x} ${m.y}) scale(${px})`);
     player.setAttribute('r', (px * 7).toFixed(2));
     player.setAttribute('stroke-width', (px * 2.5).toFixed(2));
+    // 針與正解跟標記同一套：形狀用螢幕像素畫在原點，scale 回去
+    if (pinAt) pinEl.setAttribute('transform', `translate(${pinAt[0]} ${pinAt[1]}) scale(${px})`);
+    if (truthAt) truthEl.setAttribute('transform', `translate(${truthAt[0]} ${truthAt[1]}) scale(${px})`);
+    linkEl.setAttribute('stroke-width', (px * 1.5).toFixed(2));
+    linkEl.setAttribute('stroke-dasharray', `${(px * 4).toFixed(1)} ${(px * 4).toFixed(1)}`);
 
     // 先決定地名的文字內容（避讓要用字數估寬度，得先知道字是什麼）
     for (const l of labels) {
@@ -326,6 +352,14 @@ export function createMap(svg, views, geo, places, onPick) {
   // 拖曳結束時滑鼠常常正好停在某個景上，不擋掉的話一拖就誤入該景
   dragged = () => moved > 6;
 
+  // §2.10 狩獵模式：點地圖等於下針，不是選景。
+  // 標記整組藏起來——一來不能點，二來它們本身就是答案。
+  let onPin = null;
+  svg.addEventListener('click', e => {
+    if (!onPin || dragged()) return;
+    onPin(...unproject(...toSvg(e)));
+  });
+
   fitCity();  // 開場對準江戶本體。用 fitAll() 開場就是「地圖沒載入」那個 bug
 
   const centre = () => [vb.x + vb.w / 2, vb.y + vb.h / 2];
@@ -363,6 +397,32 @@ export function createMap(svg, views, geo, places, onPick) {
       // 收了一景之後 open/got 變了，標籤的優先序跟著變——
       // relabel 平常只在縮放時跑，這裡要補一次，否則新收的景名要等到下次縮放才出現。
       relabel();
+    },
+    // §2.10 視點狩獵。標記整組藏起來——它們本身就是答案。
+    hunt: {
+      on(cb) { onPin = cb; huntG.style.display = ''; svg.classList.add('hunting'); },
+      off() {
+        onPin = null; huntG.style.display = 'none'; svg.classList.remove('hunting');
+        this.clear();
+      },
+      clear() {
+        pinAt = truthAt = null;
+        pinEl.style.display = truthEl.style.display = linkEl.style.display = 'none';
+      },
+      pin(lng, lat) {
+        pinAt = project(lng, lat);
+        pinEl.style.display = ''; relabel();
+      },
+      reveal(lng, lat) {
+        truthAt = project(lng, lat);
+        truthEl.style.display = '';
+        if (pinAt) {
+          linkEl.setAttribute('x1', pinAt[0]); linkEl.setAttribute('y1', pinAt[1]);
+          linkEl.setAttribute('x2', truthAt[0]); linkEl.setAttribute('y2', truthAt[1]);
+          linkEl.style.display = '';
+        }
+        relabel();
+      },
     },
     setEra(t) {                                 // 0=現代 1=1858，§3.2 那支滑桿
       era = t; relabel();
