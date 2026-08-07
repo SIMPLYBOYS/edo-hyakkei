@@ -117,10 +117,13 @@ zfit.onclick = map.fitAll;
 // 按到底了就把按鈕變灰——按下去沒反應會讓人以為壞了
 map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); });
 
-document.getElementById('era').oninput = e => map.setEra(e.target.value / 1000);
+const eraInput = document.getElementById('era');
+eraInput.oninput = () => map.setEra(eraInput.value / 1000);
 document.getElementById('book').onclick = () => showZukan(views, state);
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }
 };
-map.setEra(1);
+// 用滑桿當下的值開場，不要寫死 1——瀏覽器重整時會還原表單值，
+// 寫死的話滑桿位置與地圖年代會對不上。
+eraInput.oninput();
 paint();

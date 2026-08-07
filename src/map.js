@@ -166,7 +166,9 @@ export function createMap(svg, views, geo, places, onPick) {
           // 文字靠左起排在點的右邊（x=11），所以中心要往右推半個字串寬
           && place(m.x + px * (11 + t.textContent.length * 13 / 2), m.y + px * 2,
                    px * 13 * t.textContent.length, px * 15);
-        if (m.g.classList.contains(want)) t.style.display = show ? '' : 'none';
+        // 用 class 不用 inline display：inline 的 display:none 連 :hover 都蓋掉，
+        // 被擠掉的景名就再也叫不出來了（上一版的退步）。交給 CSS 才有 hover 的餘地。
+        if (m.g.classList.contains(want)) t.classList.toggle('crowded', !show);
       }
     }
     for (const l of labels) {
