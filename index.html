@@ -29,6 +29,13 @@
   .mark.open .cone, .mark.got .cone { opacity:.22 }
   .mark:hover text { opacity:1 }
 
+  /* §2.7 江戶地名。font-size 與 stroke-width 由 map.js 每次縮放時設在 #places 上，
+     用來抵銷 viewBox 縮放——寫死在這裡的話一拉近字就變巨大。 */
+  #places text { fill:#33506b; paint-order:stroke; stroke:var(--land);
+                 text-anchor:middle; pointer-events:none; opacity:.8 }
+  #places .garden { fill:#55703f }
+  #places .river, #places .canal { font-style:italic }
+
   #hud { position:fixed; left:0; right:0; top:0; padding:14px 20px; display:flex;
          gap:18px; align-items:baseline; background:linear-gradient(#0e2233dd,transparent) }
   #date { font-size:22px; letter-spacing:.1em }

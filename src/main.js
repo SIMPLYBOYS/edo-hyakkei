@@ -15,10 +15,17 @@ const load = () => {
 };
 const save = s => localStorage[SAVE] = JSON.stringify(s);
 
-const [all, geo] = await Promise.all([
+const [all, world, edo] = await Promise.all([
   fetch('data/views.json').then(r => r.json()),
-  fetch('data/geo/modern.json').then(r => r.json()).then(g => g.layers),
+  fetch('data/geo/modern.json').then(r => r.json()),
+  fetch('data/edo-places.json').then(r => r.json()),
 ]);
+// §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
+// 座標只有一個來源，重抓才不會有兩份會對不上的位置。
+// fetch-osm.py 的 self-check 會驗這個 join 沒斷。
+const anchor = new Map(world.labels.map(l => [l.name, l]));
+const places = edo.places.map(p => ({ ...p, ...anchor.get(p.osm) }))
+  .filter(p => p.lng != null);
 // no.119 赤坂桐畑是二代廣重 1859 年補的一枚，不屬於廣重的 118 景。
 // 資料裡留著（那是完整的），但遊戲只玩 1–118——先前地圖收得到、歲時記卻不算，
 // 會跑出「119 / 118」這種分數。要一致就兩邊都排除。
@@ -27,7 +34,7 @@ const views = all.filter(v => v.id <= 118);
 const TOTAL = views.length;
 const state = load();
 
-const map = createMap(document.getElementById('map'), views, geo, pick);
+const map = createMap(document.getElementById('map'), views, world.layers, places, pick);
 
 // §2.6：已經出版的景數。玩家看到地圖稀疏時，這個數字是唯一的解釋。
 const published = day => views.filter(v => pubDay(v.published) <= day).length;

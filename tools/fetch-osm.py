@@ -24,13 +24,23 @@ from fetchlib import fetch
 ROOT = Path(__file__).resolve().parent.parent
 UA = "edo-hyakkei/0.1 (research; contact: ferrari828@gmail.com)"
 API = "https://overpass-api.de/api/interpreter"
-BBOX = "35.50,139.66,35.82,139.92"          # 與 src/map.js 的畫框一致
+# 與 src/map.js 的畫框 B 一致。2026/08/07 西邊推到 139.565 收 no.87 井の頭，
+# 舊 bbox 只到 139.66，那一景先前落在街圖資料之外 1.1km，站在一片空白上。
+BBOX = "35.535,139.565,35.805,139.925"
 
+# 🔴 2026/08/07：原本只查 way["natural"="water"]，漏掉了不忍池——
+# 它在 OSM 是 relation（multipolygon）而且標成 natural=wetland + water=pond，
+# 兩個條件都不符。上野恩賜公園、小名木川同樣是 relation。
+# 廣重畫最多次的那口池子從來沒上過圖，而且不會有任何錯誤訊息。
+# 所以：水域與公園一律 way + rel 都查，natural 放寬到 water|wetland。
 QUERY = f"""[out:json][timeout:240];
 (
   way["waterway"~"^(river|canal)$"]({BBOX});
-  way["natural"="water"]({BBOX});
+  rel["waterway"~"^(river|canal)$"]({BBOX});
+  way["natural"~"^(water|wetland)$"]({BBOX});
+  rel["natural"~"^(water|wetland)$"]({BBOX});
   way["leisure"="park"]["name"]({BBOX});
+  rel["leisure"="park"]["name"]({BBOX});
   way["railway"="rail"]["usage"!="industrial"]["service"!~"."]({BBOX});
   way["highway"~"^(motorway|trunk|primary)$"]({BBOX});
 );
@@ -40,7 +50,7 @@ out geom;"""
 def classify(t):
     if t.get("waterway") in ("river", "canal"):
         return "water_line"
-    if t.get("natural") == "water":
+    if t.get("natural") in ("water", "wetland"):
         return "water_area"
     if t.get("leisure") == "park":
         return "park"
@@ -67,6 +77,22 @@ def simplify(pts, tol):
     return out
 
 
+def parts(e, seen):
+    """把一個 element 攤成幾條線。way 是一條；relation（multipolygon）是每個外環一條。
+
+    只取 outer：inner 是水中的島（不忍池的弁天島就是），畫出來會多一圈黑邊。
+    代價是島會被水蓋掉，但這個尺度看不出來，不值得為它做偶奇填充。
+
+    seen 是已經單獨回傳過的 way id。河川的 relation 只是把沿線的 way 串起來，
+    那些 way 我們已經查到了——不扣掉會整條河畫兩次（實測 water_line
+    從 632 條變成 1411 條、檔案破 2MB）。只有 relation 獨有的成員才要留。
+    """
+    if e.get("type") == "way":
+        return [e.get("geometry") or []]
+    return [m.get("geometry") or [] for m in (e.get("members") or [])
+            if m.get("role") in ("outer", "", None) and m.get("ref") not in seen]
+
+
 def extent(pts):
     xs = [p[0] for p in pts]; ys = [p[1] for p in pts]
     return max(xs) - min(xs) + max(ys) - min(ys)
@@ -79,38 +105,91 @@ def main():
     els = json.load(fetch(url, UA, timeout=300, retry_on=(429, 502, 503, 504)))["elements"]
     print(f"Overpass 回傳 {len(els)} 個 way")
 
-    geo, named = {}, []
+    seen = {e["id"] for e in els if e.get("type") == "way"}
+    geo, cand = {}, {}
     for e in els:
-        layer = classify(e.get("tags") or {})
-        g = e.get("geometry") or []
-        if not layer or len(g) < 2:
+        tags = e.get("tags") or {}
+        layer = classify(tags)
+        if not layer:
             continue
-        raw = [[round(p["lon"], 5), round(p["lat"], 5)] for p in g]
-        pts = simplify(raw, TOL[layer])
-        # 路口切出來的碎段留著只是徒增檔案大小，畫出來也看不到
-        if len(pts) < 2 or extent(raw) < TOL[layer] * 3:
-            continue
-        geo.setdefault(layer, []).append(pts)
-        n = (e.get("tags") or {}).get("name")
-        if n and layer == "water_line":
-            named.append(n)
+        n = tags.get("name")
+        for g in parts(e, seen):
+            # relation 的成員幾何可能缺節點（跨出 bbox 的那段），過濾掉
+            raw = [[round(p["lon"], 5), round(p["lat"], 5)]
+                   for p in g if p and "lon" in p and "lat" in p]
+            if len(raw) < 2:
+                continue
+            pts = simplify(raw, TOL[layer])
+            # 路口切出來的碎段留著只是徒增檔案大小，畫出來也看不到
+            if len(pts) < 2 or extent(raw) < TOL[layer] * 3:
+                continue
+            geo.setdefault(layer, []).append(pts)
+
+            # 地名。江戶城的堀連名字都沒改（半蔵濠、千鳥ヶ淵…），這些字就是江戶層本身。
+            # 只留水系與綠地：道路鐵路的名字全是現代的，標上去會毀掉 1858 那一側。
+            # OSM 把一條河切成很多段（隅田川 17 段），同名只留最長的一段當錨點，
+            # 否則同一個名字會沿著河出現十幾次。
+            if n and layer in ("water_line", "water_area", "park"):
+                if extent(raw) > extent(cand.get(n, ([[0, 0], [0, 0]], None))[0]):
+                    cand[n] = (raw, layer)
+
+    labels = []
+    for n, (raw, layer) in sorted(cand.items()):
+        xs = [p[0] for p in raw]; ys = [p[1] for p in raw]
+        # 線用中點（沿著河擺），面用外接框中心（擺在水域裡）
+        if layer == "water_line":
+            anchor = raw[len(raw) // 2]
+        else:
+            anchor = [round((min(xs) + max(xs)) / 2, 5), round((min(ys) + max(ys)) / 2, 5)]
+        labels.append({"name": n, "kind": layer,
+                       "lng": anchor[0], "lat": anchor[1],
+                       "size": round(extent(raw), 4)})   # 大小用來決定標籤要縮到多近才顯示
+    labels.sort(key=lambda l: -l["size"])
 
     for k in sorted(geo):
         print(f"  {k:<11} {len(geo[k]):>5} 條 / {sum(len(w) for w in geo[k]):>6} 點")
+    print(f"  {'labels':<11} {len(labels):>5} 個地名")
 
     out = ROOT / "data" / "geo" / "modern.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps({
         "source": "OpenStreetMap contributors",
         "license": "ODbL 1.0 — 使用時必須標示出處",
-        "bbox": BBOX, "layers": geo,
+        "bbox": BBOX, "layers": geo, "labels": labels,
     }, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     kb = out.stat().st_size / 1024
     print(f"\n寫出 {out.relative_to(ROOT)}：{kb:.0f}KB")
-    print("水系名稱樣本:", sorted(set(named))[:10])
+    print("最大的 12 個地名:", "・".join(l["name"] for l in labels[:12]))
 
     assert geo.get("water_line") and geo.get("rail"), "關鍵圖層是空的，查詢可能失效"
     assert kb < 2000, f"{kb:.0f}KB 太大，開場會被拖垮，抽稀要再狠一點"
+    # 江戶城的堀是這份資料的賣點（見檔頭），抓不到就是查詢或 bbox 壞了
+    moats = [l["name"] for l in labels if "濠" in l["name"] or "淵" in l["name"]]
+    assert len(moats) >= 3, f"江戶城的堀只抓到 {moats}，bbox 或查詢可能不對"
+    # Overpass 回的是「與 bbox 相交的整條 way」，所以錨點本來就會有一些落在框外
+    # （多摩川、江戸川這種長河尤其明顯）。要驗的是重心對不對，不是每一個都在框內。
+    s, w, n, e = (float(x) for x in BBOX.split(","))
+    inside = [l for l in labels if w <= l["lng"] <= e and s <= l["lat"] <= n]
+    assert len(inside) > len(labels) * 0.7, \
+        f"只有 {len(inside)}/{len(labels)} 個地名落在畫框內，bbox 可能設錯了"
+    print(f"江戶城的堀抓到 {len(moats)} 個:", "・".join(moats))
+    # 廣重畫最多次的幾個水體。這幾個先前全數缺席（都是 relation），
+    # 而且缺席時完全不會報錯——所以要點名驗，不能只看總數。
+    must = ["不忍池", "隅田川", "神田川", "日本橋川", "半蔵濠"]
+    got = {l["name"] for l in labels}
+    missing = [m for m in must if m not in got]
+    assert not missing, f"點名驗失敗，這幾個沒抓到：{missing}"
+    print("點名驗過:", "・".join(must))
+
+    # data/edo-places.json 是人工挑的白名單，靠名字字串連到這份檔案。
+    # OSM 隨時可能改名或拆併，連結斷掉不會有任何錯誤——地名只是默默不見了。
+    # 所以重抓完一定要對一次。
+    curated = ROOT / "data" / "edo-places.json"
+    if curated.exists():
+        want = [p["osm"] for p in json.loads(curated.read_text(encoding="utf-8"))["places"]]
+        lost = [n for n in want if n not in got]
+        assert not lost, f"edo-places.json 這些名字在 OSM 已經找不到了：{lost}"
+        print(f"白名單 {len(want)} 個地名全部對得上")
     print("self-check ok")
 
 

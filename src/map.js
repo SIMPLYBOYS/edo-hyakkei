@@ -46,7 +46,7 @@ const d = pts => pts.map(p => project(p[0], p[1]))
 // 一條一個 <path> 會讓瀏覽器吃掉五千多個節點，pan/zoom 立刻卡。
 const multi = ways => ways.map(w => d(w)).join('');
 
-export function createMap(svg, views, geo, onPick) {
+export function createMap(svg, views, geo, places, onPick) {
   svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
   // slice 不是 meet：讓內容填滿視窗，看不到的用拖的。
   // 畫框外現在是 --off 的留白，就算 slice 裁掉一點也不會出現沒資料的區域。
@@ -89,8 +89,40 @@ export function createMap(svg, views, geo, onPick) {
     <!-- 紙的邊。沒有它，框外的底色會跟灣內的海連成一片，看不出圖到哪裡結束 -->
     <rect x="0" y="0" width="${W}" height="${H}" fill="none"
           stroke="#000" stroke-opacity=".28" stroke-width="2"/>
+    <g id="places"></g>
     <g id="marks"></g>
     <circle id="player" r="7" fill="#c0392b" stroke="#fff" stroke-width="2.5"/>`;
+
+  // §2.7 江戶地名。只畫 data/edo-places.json 挑過的 62 個——
+  // 為什麼不能用規則自動挑（畫框內含舞浜，OSM 有迪士尼的 Hudson River），
+  // 見該檔的 _why_not_automatic。
+  const placesG = svg.querySelector('#places');
+  const labels = places.map(p => {
+    const [x, y] = project(p.lng, p.lat);
+    const t = document.createElementNS(svg.namespaceURI, 'text');
+    t.setAttribute('class', `place ${p.kind}`);
+    t.setAttribute('x', x.toFixed(1));
+    t.setAttribute('y', y.toFixed(1));
+    t.textContent = p.osm;
+    placesG.append(t);
+    // span = 這個地物在地圖座標上的跨距。地物要在畫面上佔到一定比例才標名字，
+    // 否則皇居那二十條堀在遠處會疊成一坨墨。
+    return { el: t, span: p.size / (B.e - B.w) * W, edo: p.edo, now: p.osm };
+  });
+  const SHOW = 0.06;
+  let era = 1;
+  function relabel() {
+    // 字級與描邊要抵銷縮放，否則 viewBox 一變字就跟著放大縮小
+    const px = vb.w / svg.getBoundingClientRect().width;
+    placesG.setAttribute('font-size', (px * 12).toFixed(2));
+    placesG.setAttribute('stroke-width', (px * 3).toFixed(2));
+    for (const l of labels) {
+      l.el.style.display = l.span / vb.w > SHOW ? '' : 'none';
+      // 滑到 1858 那側就換成當時的名字（弁慶濠→弁慶堀）——只有 9 個真的不同
+      const want = era > 0.5 && l.edo ? l.edo : l.now;
+      if (l.el.textContent !== want) l.el.textContent = want;
+    }
+  }
 
   const marks = svg.querySelector('#marks');
   const nodes = new Map();
@@ -119,7 +151,10 @@ export function createMap(svg, views, geo, onPick) {
   // 平移縮放：直接改 viewBox，不需要任何函式庫
   let vb = { x: 0, y: 0, w: W, h: H };
   let onChange = () => {};
-  const apply = () => { svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`); onChange(); };
+  const apply = () => {
+    svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    relabel(); onChange();
+  };
   const toSvg = e => {
     const r = svg.getBoundingClientRect();
     const s = Math.max(r.width / vb.w, r.height / vb.h);   // 對應 slice
@@ -258,6 +293,7 @@ export function createMap(svg, views, geo, onPick) {
       p.setAttribute('cx', px); p.setAttribute('cy', py);
     },
     setEra(t) {                                 // 0=現代 1=1858，§3.2 那支滑桿
+      era = t; relabel();
       svg.querySelector('#reclaimed').style.opacity = 1 - t;
       svg.querySelector('#daiba').style.opacity = t;
       svg.querySelector('#modern').style.opacity = 1 - t;   // 鐵路幹道只屬於現代
