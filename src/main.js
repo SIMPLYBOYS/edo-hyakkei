@@ -1,6 +1,6 @@
 // 進入點：狀態、遇景判定、存檔。
 // ponytail: 遇景邏輯只有十幾行，沒有另開 roam.js——一個檔就講得完的事不必拆兩個。
-import { clockFrom, DAYS_PER_VIEW, pubDay, seasonJa } from './calendar.js';
+import { clockFrom, dateDay, DAYS_PER_VIEW, pubDay, seasonJa } from './calendar.js';
 import { createMap } from './map.js';
 import { showView } from './view.js';
 import { showZukan } from './zukan.js';
@@ -34,11 +34,13 @@ const grab = async url => {
   return r.json();
 };
 
-const [all, world, edo] = await Promise.all([
+const [all, world, edo, hist] = await Promise.all([
   grab('data/views.json'),
   grab('data/geo/modern.json'),
   // 地名只是裝飾，掛掉不該連地圖一起拖下水（§2.7）
   grab('data/edo-places.json').catch(e => (console.warn('江戶地名層略過:', e), { places: [] })),
+  // 史實事件同理，掛掉只是少了註腳（§2.9）
+  grab('data/events.json').catch(e => (console.warn('史實事件層略過:', e), { events: [] })),
 ]);
 // §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
 // 座標只有一個來源，重抓才不會有兩份會對不上的位置。
@@ -50,6 +52,12 @@ if (!world.labels) console.warn('modern.json 沒有 labels 欄位——多半是
 const anchor = new Map((world.labels ?? []).map(l => [l.name, l]));
 const places = (edo.places ?? []).map(p => ({ ...p, ...anchor.get(p.osm) }))
   .filter(p => p.lng != null);
+// §2.9 史實事件。日期換算成遊戲日，跨過去的時候講一聲。
+// 這些事件**不改變任何數值**——理由見 events.json 的 _no_mechanics：
+// 它們真正的機制後果早就在資料裡了（台風之後三個月，地圖確實不長新的景）。
+const EVENTS = (hist.events ?? []).map(e => ({ ...e, day: dateDay(e.date) }))
+  .sort((a, b) => a.day - b.day);
+
 // no.119 赤坂桐畑是二代廣重 1859 年補的一枚，不屬於廣重的 118 景。
 // 資料裡留著（那是完整的），但遊戲只玩 1–118——先前地圖收得到、歲時記卻不算，
 // 會跑出「119 / 118」這種分數。要一致就兩邊都排除。
@@ -93,12 +101,18 @@ function pick(v) {
   paint();
   showView(v, {
     onCollect() {
-      const before = published(state.day);
+      const was = state.day, before = published(was);
       state.collected.push(v.id);
       state.day += DAYS_PER_VIEW;              // 時間只由入景推進
       paint();
       const c = clockFrom(state.day);
       if (state.collected.length === TOTAL) return showEnd();
+      // 這一步跨過了哪些史實事件（§2.9）。事件優先於下面那些提示：
+      // 台風跟「又出了三景」同時發生時，該講的是台風。
+      // 收下第一景時另外補講起點之前的事——那是他走進這座城時，城剛經歷過的。
+      const crossed = EVENTS.filter(e => e.day > was && e.day <= state.day)
+        .concat(state.collected.length === 1 ? EVENTS.filter(e => e.day <= 0) : []);
+      if (crossed.length) return showEvents(crossed.sort((a, b) => a.day - b.day));
       // 新出版的景是無聲地長在地圖上的，不講一聲玩家不會發現（§2.6）
       const fresh = published(state.day) - before;
       // 跨過最後一枚出版的那一刻要說清楚，否則玩家只會覺得「怎麼不再長了」
@@ -111,12 +125,30 @@ function pick(v) {
   });
 }
 
+// §2.9 事件通知。一步九日，理論上可能一次跨過兩件，所以做成佇列依序顯示。
+// seen_in_data 那行是這個功能的重點：它寫的是 views.json 裡看得到的事實
+// （台風之後三個月沒有出版），**不是「因為台風所以沒出版」**。
+// 兩件事並列擺著，玩家自己看——與 §2.4 變造同一條規矩。
+function showEvents([e, ...rest]) {
+  if (!e) return paint();
+  const el = document.createElement('div');
+  el.className = 'overlay ending event';
+  el.innerHTML = `<div class="sheet">
+    <p class="date">${e.day <= 0 ? '在你出發之前　' : ''}${e.wareki}<span class="dim">　${e.date}</span></p>
+    <h2>${e.title}</h2>
+    <p class="note">${e.note}</p>
+    ${e.seen_in_data ? `<p class="note seen">這套系列的出版紀錄裡：${e.seen_in_data}</p>` : ''}
+    <div class="act"><button id="evok">知道了</button></div></div>`;
+  el.querySelector('#evok').onclick = () => { el.remove(); showEvents(rest); };
+  document.body.append(el);
+}
+
 // 收滿 118 景。先前這裡什麼都不會發生——計數器停在 118/118 就沒了，
 // 玩家花了遊戲內三年多，遊戲一句話都沒說。
 //
-// 內容全是查證過的事實，沒有一句是修辭：
-// 玩家收滿大約在第 1187 日（安政六年夏），而廣重歿於第 821 日前後，
-// 系列最後一枚出在第 822 日。也就是說**最後那段路他已經不在了**。
+// 內容全是查證過的事實，沒有一句是修辭。以現行起點（1857-02）與 D=8 實測：
+// 玩家收滿在第 1151 日（万延元年 春），最後一枚出版在第 607 日，
+// 廣重歿於第 618 日。也就是說**最後那 544 日他已經不在了**。
 function showEnd() {
   const clock = clockFrom(state.day);
   const alone = state.day - LAST_PUB;

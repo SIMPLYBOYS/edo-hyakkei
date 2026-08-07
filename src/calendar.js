@@ -1,34 +1,54 @@
 // 曆法。模型見 spec §2.1：時間只由「入景」推進，漫遊不耗時間。
 //
-// 一景 9 日。原本是 3 日（§9.2 反推：無出版閘門時空等最少）；加上 §2.6
-// 「出版才出現」後 3 日變成最差解——收景比出版快太多，七成遊戲時間在等紙。
-// 9 日不是調出來的，是量出來的：廣重 1856-02→1858-10 印完 118 枚，約 8.3 日一枚。
-// 讓玩家的速度等於廣重的速度，兩個閘門就重合而不是相乘（空等 68% → 11%）。
+// 一景 8 日。量出來的：廣重 1856-02→1858-10 印完 118 枚，約 8.3 日一枚。
+// （原本是 3 日，§9.2 在沒有出版閘門時反推的；§2.6 加上閘門後 3 日變成最差解——
+//  收景比出版快太多，七成遊戲時間在等紙。當時取 9，是把 8.3 四捨五入上去。）
+//
+// 2026/08/08 季節改用真實月份之後重新掃過，8 比 9 明顯好，也更貼近 8.3：
+//   D=7 → 3.08 年 / 空等 26%
+//   D=8 → 3.15 年 / 空等 18%   ← 取這個，最接近廣重的三年而且空等最少
+//   D=9 → 4.05 年 / 空等 28%
+// 卡住的是春：42 景 × D 日必須塞進每年約 89 天的春天，D 一大就多吃一個春。
 // 改這個數字前先重跑 tools/pacing-sim.js 與 tools/check-pub.mjs。
-export const DAYS_PER_VIEW = 9;
+export const DAYS_PER_VIEW = 8;
 
 const SEASONS = ['spring', 'summer', 'autumn', 'winter'];
 const SEASON_JA = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' };
-const SEASON_DAYS = 365 / 4;
 
-// 遊戲起點：安政三年七月（1856-07）。系列本身始於 1856-02，玩家晚五個月才上路，
-// 已經出版的那批視為「你出發時架上已有」。
+// 遊戲起點：安政四年正月（1857-02-01）。系列始於 1856-02，玩家晚一年才上路，
+// 先前出版的 57 枚視為「你出發時架上已有」；其餘 61 枚在遊戲進行中陸續問世。
 // 這個對齊是「出版才出現」的基礎——遊戲內的一天就是史實的一天。
 //
-// 為什麼是七月：起點只影響開局手上有多少，**完全不影響節奏**。
-// 卡住總時長的是最後一枚出版（1858-10）加上季節輪替，不是起點。實測：
-//   1856-04 → 開局 4 個金點、3.28 年、空等 134 日（11%）
-//   1856-07 → 開局 12 個金點、3.28 年、空等 134 日（11%）
-// 四月開局全圖只有 4 個點可以按，太空；七月三倍於此而代價為零。
-// 仍然看得到 118 景中的 90 景在遊戲中陸續出版，「陪廣重畫」的敘事不受影響。
-const START_YEAR = 1856, START_MONTH = 7;
+// 🔴 起點必須落在春天的第一天。季節改用真實月份之後（見下），起點的相位
+// 變成節奏的關鍵：春有 42 景是最卡的一季，開局若不在春，等於整整浪費一個春。
+//   1856-07（夏）→ 4.64 年 / 空等 37%
+//   1856-11（冬）→ 4.30 年 / 空等 32%
+//   1857-02（春）→ 3.15 年 / 空等 18%   ← 取這個
+// 先前寫「起點完全不影響節奏」，那是等分四季時才成立的話，現在不成立了。
+const START = Date.UTC(1857, 1, 1);          // 月份 0-based：1 = 二月
+const DAY_MS = 86400000;
 
-/** views.json 的 published（YYYY-MM）換算成遊戲內第幾日；早於起點的一律當第 0 日。 */
-export function pubDay(published) {
-  if (!published) return 0;
-  const [y, m] = published.split('-').map(Number);
-  return Math.max(0, Math.round(((y - START_YEAR) * 12 + (m - START_MONTH)) * 30.44));
+// 🔴 季節必須從真實月份算，不能假設「第 0 日是春天」。
+// 先前就是那樣寫的，起點還在 1856-04 時大致對得上；把起點移到七月之後
+// 整套季節偏了三個月——玩家會在真實的七月收梅花，而事件層一擺出真實日期
+// 這個矛盾就藏不住（安政江戸台風 1856-09-23 被標成「春 八十四日」）。
+//
+// 對應取舊曆：春＝正月〜三月，換算新曆約二〜四月，其餘依此類推。
+// 這是近似——舊曆月份會漂移——但比「起點即春天」誠實得多。
+const SEASON_OF_MONTH = [3, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3];  // 一月…十二月
+
+const dateOf = day => new Date(START + day * DAY_MS);
+
+/** YYYY-MM 或 YYYY-MM-DD → 遊戲內第幾日。省略日則視為當月一日。 */
+export function dateDay(iso) {
+  const [y, m, d = 1] = iso.split('-').map(Number);
+  return Math.round((Date.UTC(y, m - 1, d) - START) / DAY_MS);
 }
+
+/** views.json 的 published（YYYY-MM）→ 遊戲日；早於起點的一律當第 0 日
+ *  （那批視為「你出發時架上已有」，見上面的起點說明）。 */
+export const pubDay = published => (published ? Math.max(0, dateDay(published)) : 0);
+
 const ERA = [[1854, '安政'], [1860, '万延'], [1861, '文久']];
 const KANJI = '〇一二三四五六七八九';
 
@@ -37,19 +57,25 @@ const kanjiNum = n => n < 10 ? KANJI[n] : n < 20 ? '十' + (n % 10 ? KANJI[n % 1
 
 function era(year) {
   const [start, name] = ERA.filter(([y]) => y <= year).pop();
-  return `${name}${kanjiNum(year - start + 1)}年`;
+  const n = year - start + 1;
+  return `${name}${n === 1 ? '元' : kanjiNum(n)}年`;   // 改元那年是「元年」，不是「一年」
 }
 
+/** 這一天是不是某一季的第一天（用來算季內第幾日與還剩幾日） */
+const seasonAt = day => SEASON_OF_MONTH[dateOf(day).getUTCMonth()];
+
 export function clockFrom(day = 0) {
-  const inYear = ((day % 365) + 365) % 365;
-  const year = START_YEAR + Math.floor(day / 365);
-  const season = SEASONS[Math.min(3, Math.floor(inYear / SEASON_DAYS))];
-  const dayOfSeason = Math.floor(inYear - SEASONS.indexOf(season) * SEASON_DAYS) + 1;
+  const d = dateOf(day);
+  const year = d.getUTCFullYear();
+  const s = seasonAt(day);
+  // 往前後掃到季節換手的地方。一季約 91 天，掃這點量不值得做數學。
+  let first = day; while (seasonAt(first - 1) === s) first--;
+  let next = day + 1; while (seasonAt(next) === s) next++;
   return {
-    day, year, season,
+    day, year, season: SEASONS[s],
     // 這一季還剩幾天——玩家要靠它決定「這個春天還來不來得及再收一景」
-    daysLeftInSeason: Math.ceil((SEASONS.indexOf(season) + 1) * SEASON_DAYS - inYear),
-    label: `${era(year)} ${SEASON_JA[season]} ${kanjiNum(dayOfSeason)}日`,
+    daysLeftInSeason: next - day,
+    label: `${era(year)} ${SEASON_JA[SEASONS[s]]} ${kanjiNum(day - first + 1)}日`,
   };
 }
 
