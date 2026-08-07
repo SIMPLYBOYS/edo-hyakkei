@@ -48,3 +48,6 @@ export function clockFrom(day = 0) {
 }
 
 export const seasonJa = s => SEASON_JA[s];
+// 給 UI 用：DAYS_PER_VIEW 改了，畫面上的字要跟著改。
+// 先前 view.js 把「耗三日」寫死，D 改成 9 之後那行說了兩天的謊。
+export const kanjiDays = kanjiNum;

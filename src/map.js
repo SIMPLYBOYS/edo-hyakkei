@@ -93,6 +93,10 @@ export function createMap(svg, views, geo, places, onPick) {
     <g id="marks"></g>
     <circle id="player" r="7" fill="#c0392b" stroke="#fff" stroke-width="2.5"/>`;
 
+  const marks = svg.querySelector('#marks');
+  const player = svg.querySelector('#player');
+  const pins = [];              // 標記的地圖座標，relabel() 每次縮放重設 transform
+
   // §2.7 江戶地名。只畫 data/edo-places.json 挑過的 62 個——
   // 為什麼不能用規則自動挑（畫框內含舞浜，OSM 有迪士尼的 Hudson River），
   // 見該檔的 _why_not_automatic。
@@ -117,10 +121,16 @@ export function createMap(svg, views, geo, places, onPick) {
   const SHOW = 0.06;
   let era = 1;
   function relabel() {
-    // 字級與描邊要抵銷縮放，否則 viewBox 一變字就跟著放大縮小
+    // 字級與描邊要抵銷縮放，否則 viewBox 一變字就跟著放大縮小。
+    // 景名（#marks）跟地名（#places）都要，兩邊在畫面上才是同一個尺度。
     const px = vb.w / svg.getBoundingClientRect().width;
     placesG.setAttribute('font-size', (px * 12).toFixed(2));
     placesG.setAttribute('stroke-width', (px * 3).toFixed(2));
+    // 標記整組等比縮回螢幕尺度：圓點、圖會環、視線扇形、景名一次全對。
+    // 形狀是用螢幕像素畫在原點的，scale(px) 之後在畫面上就是那個像素數。
+    for (const m of pins) m.g.setAttribute('transform', `translate(${m.x} ${m.y}) scale(${px})`);
+    player.setAttribute('r', (px * 7).toFixed(2));
+    player.setAttribute('stroke-width', (px * 2.5).toFixed(2));
     for (const l of labels) {
       l.el.style.display = l.span / vb.w > SHOW ? '' : 'none';
       // 滑到 1858 那側就換成當時的名字（弁慶濠→弁慶堀）——只有 9 個真的不同
@@ -129,7 +139,6 @@ export function createMap(svg, views, geo, places, onPick) {
     }
   }
 
-  const marks = svg.querySelector('#marks');
   const nodes = new Map();
   let dragged = () => false;                   // 下面 pan/zoom 那段會覆寫
   for (const v of views) {
@@ -140,17 +149,21 @@ export function createMap(svg, views, geo, places, onPick) {
     // 有《名所圖會》對照的景加一圈，玩家才知道哪個能切換對照。
     // 有方位角的畫一道視線扇形——那是 §7-15 從畫中地標推出來的廣重視線方向，
     // 不確定度約 ±30°，所以畫成扇形不是箭頭：形狀本身就在說「大概往這邊」。
+    // 形狀一律畫在原點、用「螢幕像素」當單位，實際位置與大小交給 transform。
+    // 先前是把座標與半徑直接寫進 cx/cy/r（地圖單位），於是拉近時整個標記跟著脹大——
+    // 縮放放寬之後，市中心會變成一堆蓋住地圖的大圓餅。
     const cone = v.bearing == null ? '' : (() => {
       const r = 26, half = 30 * Math.PI / 180, a = (v.bearing - 90) * Math.PI / 180;
-      const p = (t) => `${(x + r * Math.cos(t)).toFixed(1)} ${(y + r * Math.sin(t)).toFixed(1)}`;
-      return `<path class="cone" d="M${x} ${y} L${p(a - half)} A${r} ${r} 0 0 1 ${p(a + half)} Z"/>`;
+      const p = t => `${(r * Math.cos(t)).toFixed(1)} ${(r * Math.sin(t)).toFixed(1)}`;
+      return `<path class="cone" d="M0 0 L${p(a - half)} A${r} ${r} 0 0 1 ${p(a + half)} Z"/>`;
     })();
-    g.innerHTML = `${cone}${v.assets.meishozue ? `<circle class="ring" cx="${x}" cy="${y}" r="11"/>` : ''}
-      <circle cx="${x}" cy="${y}" r="6"/>
-      <text x="${x + 10}" y="${y + 5}">${v.title.ja ?? v.id}</text>`;
+    g.innerHTML = `${cone}${v.assets.meishozue ? '<circle class="ring" r="11"/>' : ''}
+      <circle r="7"/>
+      <text x="11" y="5">${v.title.ja ?? v.id}</text>`;
     g.onclick = e => { e.stopPropagation(); if (!dragged()) onPick(v); };
     marks.append(g);
     nodes.set(v.id, g);
+    pins.push({ g, x, y });
   }
 
   // 平移縮放：直接改 viewBox，不需要任何函式庫

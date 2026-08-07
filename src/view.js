@@ -1,5 +1,5 @@
 // 單張畫面呈現。進一景 → 看畫 → 收入歲時記。
-import { seasonJa } from './calendar.js';
+import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
 import { plate, hires, meishozue } from './paths.js';
 
 export function showView(v, { onCollect, onClose }) {
@@ -23,7 +23,7 @@ export function showView(v, { onCollect, onClose }) {
         ${v.distortions.length ? `<div class="hunt">廣重在這張畫裡動了手腳。點畫面找找看。</div>
         <div id="tally"></div>` : ''}
         <div class="act">
-          <button id="collect">收入歲時記（耗三日）</button>
+          <button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>
           ${v.assets.meishozue ? '<button id="flip" class="ghost">看《名所圖會》</button>' : ''}
           <button id="leave" class="ghost">先不看</button>
         </div>

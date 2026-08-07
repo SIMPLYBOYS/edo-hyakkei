@@ -14,11 +14,16 @@
   /* 玩家點畫在最上層，不擋掉底下景點的點擊——紅點一定停在剛去過的景上面 */
   #player { pointer-events:none }
   .mark circle { fill:var(--ink); opacity:.28; transition:opacity .3s,fill .3s }
-  .mark text { font-size:15px; fill:var(--ink); opacity:0; paint-order:stroke;
+  /* 標記整組由 map.js 套 scale() 縮回螢幕尺度，所以這裡的數字就是螢幕像素。
+     先前圓點與字都是地圖單位，拉近時會脹成蓋住地圖的大圓餅。 */
+  .mark text { font-size:13px; fill:var(--ink); opacity:0; paint-order:stroke;
                stroke:var(--land); stroke-width:4; pointer-events:none; transition:opacity .3s }
   .mark.open circle { fill:var(--gold); opacity:1; cursor:pointer }
   #map.zoomed .mark.open text { opacity:1 }
   .mark.got circle { fill:#7a9a6d; opacity:.9 }
+  /* §2.8 收過的景把地名留在圖上——歲時記把自己寫回地圖。
+     顏色跟著 .got 的點走，一眼分得出「我去過」與「這季可收」。 */
+  #map.zoomed .mark.got text { opacity:.9; fill:#4f6b45 }
 /* §2.6 還沒出版的景整個不存在——地圖隨遊戲內時間一張張長出來。
    用 display:none 而非 opacity:0，否則滑鼠仍會 hover 到看不見的東西。 */
 .mark.unpub { display:none }
