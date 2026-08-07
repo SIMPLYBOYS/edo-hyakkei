@@ -323,7 +323,10 @@
       "page": 12,
       "plate": "新大橋",
       "view": "大はしあたけの夕立",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同景",
+      "note": "★同一座新大橋與橋墩支撐結構；圖會是晴天有富士，廣重加上暴雨、拿掉富士"
     },
     {
       "id": 62,
@@ -331,7 +334,10 @@
       "page": 25,
       "plate": "駒形堂 清水稲荷",
       "view": "駒形堂 吾嬬橋",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "圖會給的是河岸街區全景，非駒形堂特寫"
     },
     {
       "id": 63,
@@ -339,7 +345,10 @@
       "page": 34,
       "plate": "浅源寺 鐘ヶ淵",
       "view": "綾瀬川鐘か淵",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "note": "同一段河灣，圖會是全景"
     },
     {
       "id": 65,
@@ -348,7 +357,9 @@
       "plate": "亀戸 天満宮",
       "view": "亀戸天神 境内",
       "confidence": "high",
-      "note": "p053 另有祭礼神輿渡御之圖"
+      "note": "圖會是天満宮與街區鳥瞰，廣重是太鼓橋與藤花特寫",
+      "verified": "整頁比對",
+      "relation": "同地"
     },
     {
       "id": 66,
@@ -357,7 +368,10 @@
       "plate": "五百羅漢寺 三匝堂",
       "view": "五百羅漢さゞゐ堂",
       "confidence": "high",
-      "note": "三匝堂＝さざゐ堂＝栄螺堂（同讀サザイドウ），寫法完全不同但指同一座螺旋堂"
+      "note": "三匝堂＝さざゐ堂＝栄螺堂（同讀サザイドウ），寫法完全不同但指同一座螺旋堂",
+      "verified": "整頁比對",
+      "relation": "同地",
+      "todo": "配的 v18/p034 右頁大片文字、左頁街區全景，非三匝堂本身的插圖。識別無誤（三匝堂＝さざゐ堂），頁碼待改；p047 亦題三匝堂可查"
     },
     {
       "id": 68,
@@ -366,7 +380,9 @@
       "plate": "冨岡八幡宮",
       "view": "深川八まん山ひらき",
       "confidence": "high",
-      "note": "富岡八幡＝深川八まん。先前 Commons 已有此配對，這裡補上 NDL 頁面出處"
+      "note": "圖會是八幡宮街區鳥瞰，廣重是山開きの庭園",
+      "verified": "整頁比對",
+      "relation": "同地"
     },
     {
       "id": 72,
@@ -374,7 +390,10 @@
       "page": 80,
       "plate": "羽田 辯財天社",
       "view": "はねたのわたし弁天の社",
-      "confidence": "high"
+      "confidence": "high",
+      "verified": "整頁比對",
+      "relation": "同景",
+      "note": "同一座海濱鳥居與社叢"
     },
     {
       "id": 78,
@@ -393,7 +412,9 @@
       "plate": "神明宮",
       "view": "芝神明増上寺",
       "confidence": "high",
-      "note": "神明宮＝芝大神宮；本冊涵蓋芝・愛宕一帶"
+      "note": "同為神明宮的祭禮人潮",
+      "verified": "整頁比對",
+      "relation": "同景"
     },
     {
       "id": 81,
