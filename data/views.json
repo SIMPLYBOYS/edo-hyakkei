@@ -19,7 +19,7 @@
       "lat": 35.684028,
       "lng": 139.774444
     },
-    "bearing": null,
+    "bearing": 249.5,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -35,7 +35,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": "名所圖會對照：同為日本橋本身"
+      "commentary": "名所圖會對照：同為日本橋本身",
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -235,7 +236,7 @@
       "lat": 35.693333,
       "lng": 139.791944
     },
-    "bearing": null,
+    "bearing": 249.3,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -251,7 +252,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -397,7 +399,7 @@
       "lat": 35.68625,
       "lng": 139.773944
     },
-    "bearing": null,
+    "bearing": 249.4,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -413,7 +415,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -775,7 +778,7 @@
       "lat": 35.730861,
       "lng": 139.767083
     },
-    "bearing": null,
+    "bearing": 29.0,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -791,7 +794,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -883,7 +887,7 @@
       "lat": 35.751389,
       "lng": 139.738333
     },
-    "bearing": null,
+    "bearing": 32.1,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -899,7 +903,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Wikimedia Commons",
@@ -937,7 +942,7 @@
       "lat": 35.756083,
       "lng": 139.733333
     },
-    "bearing": null,
+    "bearing": 32.7,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -953,7 +958,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -1261,7 +1267,7 @@
       "lat": 35.643472,
       "lng": 139.704861
     },
-    "bearing": null,
+    "bearing": 250.7,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -1277,7 +1283,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -1315,7 +1322,7 @@
       "lat": 35.646667,
       "lng": 139.701028
     },
-    "bearing": null,
+    "bearing": 250.4,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -1331,7 +1338,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -1679,7 +1687,7 @@
       "lat": 35.707583,
       "lng": 139.818306
     },
-    "bearing": null,
+    "bearing": 24.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -1695,7 +1703,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -1841,7 +1850,7 @@
       "lat": 35.732778,
       "lng": 139.812722
     },
-    "bearing": null,
+    "bearing": 25.7,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -1857,7 +1866,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -1895,7 +1905,7 @@
       "lat": 35.729722,
       "lng": 139.808417
     },
-    "bearing": null,
+    "bearing": 25.9,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -1911,7 +1921,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -1949,7 +1960,7 @@
       "lat": 35.728056,
       "lng": 139.809722
     },
-    "bearing": null,
+    "bearing": 25.7,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -1965,7 +1976,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -2057,7 +2069,7 @@
       "lat": 35.714444,
       "lng": 139.804167
     },
-    "bearing": null,
+    "bearing": 248.3,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -2073,7 +2085,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Wikimedia Commons",
@@ -2381,7 +2394,7 @@
       "lat": 35.684639,
       "lng": 139.771333
     },
-    "bearing": null,
+    "bearing": 249.4,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -2397,7 +2410,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Wikimedia Commons",
@@ -2435,7 +2449,7 @@
       "lat": 35.68225,
       "lng": 139.77997
     },
-    "bearing": null,
+    "bearing": 289.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -2451,7 +2465,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Nihonbashi」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -2705,7 +2720,7 @@
       "lat": 35.68375,
       "lng": 139.74563
     },
-    "bearing": null,
+    "bearing": 76.0,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -2721,7 +2736,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Edo Castle」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -2867,7 +2883,7 @@
       "lat": 35.677306,
       "lng": 139.750611
     },
-    "bearing": null,
+    "bearing": 12.7,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -2883,7 +2899,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Edo Castle」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -2975,7 +2992,7 @@
       "lat": 35.683472,
       "lng": 139.794111
     },
-    "bearing": null,
+    "bearing": 249.9,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -2991,7 +3008,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -3029,7 +3047,7 @@
       "lat": 35.682028,
       "lng": 139.790832
     },
-    "bearing": null,
+    "bearing": 249.9,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -3045,7 +3063,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -3191,7 +3210,7 @@
       "lat": 35.693972,
       "lng": 139.787889
     },
-    "bearing": null,
+    "bearing": 25.8,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -3207,7 +3226,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -3893,7 +3913,7 @@
       "lat": 35.678056,
       "lng": 139.7725
     },
-    "bearing": null,
+    "bearing": 249.8,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -3909,7 +3929,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -4001,7 +4022,7 @@
       "lat": 35.691667,
       "lng": 139.774444
     },
-    "bearing": null,
+    "bearing": 249.1,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -4017,7 +4038,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -4109,7 +4131,7 @@
       "lat": 35.67375,
       "lng": 139.780139
     },
-    "bearing": null,
+    "bearing": 250.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -4125,7 +4147,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -4487,7 +4510,7 @@
       "lat": 35.640167,
       "lng": 139.709111
     },
-    "bearing": null,
+    "bearing": 251.0,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -4503,7 +4526,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -4541,7 +4565,7 @@
       "lat": 35.679583,
       "lng": 139.7325
     },
-    "bearing": null,
+    "bearing": 71.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -4557,7 +4581,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Edo Castle」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -5081,7 +5106,7 @@
       "lat": 35.747778,
       "lng": 139.8975
     },
-    "bearing": null,
+    "bearing": 248.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -5097,7 +5122,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -5135,7 +5161,7 @@
       "lat": 35.659167,
       "lng": 139.896944
     },
-    "bearing": null,
+    "bearing": 252.9,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -5151,7 +5177,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -5405,7 +5432,7 @@
       "lat": 35.7225,
       "lng": 139.791944
     },
-    "bearing": null,
+    "bearing": 247.6,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -5421,7 +5448,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Fuji」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -5729,7 +5757,7 @@
       "lat": 35.679167,
       "lng": 139.815833
     },
-    "bearing": null,
+    "bearing": 23.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -5745,7 +5773,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -5837,7 +5866,7 @@
       "lat": 35.606389,
       "lng": 139.745278
     },
-    "bearing": null,
+    "bearing": 25.2,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -5853,7 +5882,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Mount Tsukuba」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
@@ -6107,7 +6137,7 @@
       "lat": 35.675917,
       "lng": 139.766444
     },
-    "bearing": null,
+    "bearing": 310.0,
     "place": {
       "edo": null,
       "modern_ward": null,
@@ -6123,7 +6153,8 @@
     "distortions": [],
     "notes": {
       "geo": null,
-      "commentary": null
+      "commentary": null,
+      "bearing": "由畫中地標「Edo Castle」推得；視野內非畫面中心，不確定度約 ±30°。基準座標見 tools/derive-bearing.py"
     },
     "source": {
       "institution": "Brooklyn Museum",
