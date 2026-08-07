@@ -15,10 +15,25 @@ const load = () => {
 };
 const save = s => localStorage[SAVE] = JSON.stringify(s);
 
+// 白畫面是這個專案最貴的 bug：查過兩輪才知道一次是伺服器被關掉、
+// 一次是別的原因。沒有訊息就沒有線索，所以任何開場失敗一律印在畫面上。
+const fatal = msg => document.body.insertAdjacentHTML('beforeend',
+  `<div id="err"><b>地圖載入失敗</b><code>${msg}</code>
+   <small>先確認 <code>python3 tools/serve.py</code> 還開著，再看 Console</small></div>`);
+addEventListener('error', e => fatal(e.message));
+addEventListener('unhandledrejection', e => fatal(e.reason?.message ?? e.reason));
+
+const grab = async url => {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`${url} → HTTP ${r.status}`);   // fetch 對 404 不會 reject
+  return r.json();
+};
+
 const [all, world, edo] = await Promise.all([
-  fetch('data/views.json').then(r => r.json()),
-  fetch('data/geo/modern.json').then(r => r.json()),
-  fetch('data/edo-places.json').then(r => r.json()),
+  grab('data/views.json'),
+  grab('data/geo/modern.json'),
+  // 地名只是裝飾，掛掉不該連地圖一起拖下水（§2.7）
+  grab('data/edo-places.json').catch(e => (console.warn('江戶地名層略過:', e), { places: [] })),
 ]);
 // §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
 // 座標只有一個來源，重抓才不會有兩份會對不上的位置。

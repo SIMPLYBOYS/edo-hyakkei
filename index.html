@@ -61,6 +61,13 @@
   #zoom button + button { border-top:none }
   #zoom button:disabled { opacity:.3; cursor:default; background:#0e2233d9 }
 
+  /* 開場失敗時唯一看得到的東西。白畫面查過兩輪，不要再有第三輪。 */
+  #err { position:fixed; inset:auto 0 0 0; margin:auto; top:50%; transform:translateY(-50%);
+         max-width:520px; padding:22px 26px; background:#3a1f1f; border:1px solid #ffffff2e;
+         border-radius:4px; text-align:center; line-height:2; z-index:99 }
+  #err code { display:block; font-size:12px; opacity:.8; word-break:break-all; margin:8px 0 }
+  #err small { font-size:12px; opacity:.55 }
+
   #toast { position:fixed; left:50%; top:64px; transform:translateX(-50%); padding:9px 18px;
            background:#0e2233ee; border:1px solid #ffffff2e; border-radius:3px; font-size:14px;
            opacity:0; pointer-events:none; transition:opacity .3s }
