@@ -21,8 +21,10 @@ const DAIBA = [[139.7745, 35.6295], [139.7695, 35.6325]]; // 品川台場（1854
 
 // 畫框要涵蓋所有景（王子、千住在北邊 35.75 上下），比 §3.2 原型放大
 const B = { w: 139.66, e: 139.92, s: 35.50, n: 35.82 };
-// 收邊點刻意落在畫框外，才不會看到接縫
-const CLOSE = [[139.94, 35.700], [139.94, 35.86], [139.62, 35.86], [139.62, 35.47], [139.745, 35.47]];
+// 收邊點要遠遠落在任何縮放看得到的範圍外，否則縮到底時陸地多邊形的邊界會露出來，
+// 內陸看起來變成海。南邊那段沿 lng 139.745 往下走再往西——那條線以西是川崎橫濱，
+// 確實是陸地，所以這樣收邊不會把海畫成陸。
+const CLOSE = [[140.25, 35.70], [140.25, 36.15], [139.25, 36.15], [139.25, 35.10], [139.745, 35.10]];
 
 const K = Math.cos((B.s + B.n) / 2 * Math.PI / 180);
 const W = 1000;
@@ -108,17 +110,56 @@ export function createMap(svg, views, geo, onPick) {
     return [vb.x + (e.clientX - r.left - (r.width - vb.w * s) / 2) / s,
             vb.y + (e.clientY - r.top - (r.height - vb.h * s) / 2) / s];
   };
-  svg.onwheel = e => {
-    e.preventDefault();
-    const k = e.deltaY > 0 ? 1.12 : 1 / 1.12;
-    const nw = Math.min(W, Math.max(W / 12, vb.w * k));
-    const [cx, cy] = toSvg(e);
+  // 舊版把縮小上限鎖在初始 viewBox（Math.min(W,…)），加上 slice 會裁滿畫面，
+  // 結果是**永遠看不到整張圖**——王子與羽田無法同時入鏡。那就是「格局很僵」的成因。
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // slice 會裁滿畫面，所以「看得到全圖」需要的 viewBox 比內容本身還寬——
+  // 寬到讓 viewBox 的長寬比追上視窗的長寬比為止。橫向視窗算出來通常是內容的兩倍以上。
+  function fitWidth() {
+    const r = svg.getBoundingClientRect();
+    return W * Math.max(1, (r.width / r.height) / (W / H));
+  }
+  // 縮小的極限就是「剛好看得到全圖」，不再往外——再縮只是看更多空白，沒有意義
+  const MIN = W / 16;
+  let MAX = fitWidth();
+
+  function fitAll() {
+    const nw = fitWidth();
+    vb = { x: (W - nw) / 2, y: (H - (H / W) * nw) / 2, w: nw, h: (H / W) * nw };
+    svg.classList.remove('zoomed');
+    apply();
+  }
+
+  function zoomTo(nw, cx, cy) {
+    nw = clamp(nw, MIN, MAX);
     const f = nw / vb.w;
     vb = { x: cx - (cx - vb.x) * f, y: cy - (cy - vb.y) * f, w: nw, h: (H / W) * nw };
-    // 拉近才顯示地名，不然 40 幾個標籤在市中心疊成一團
-    svg.classList.toggle('zoomed', nw < W * 0.45);
+    // 別讓地圖被拖到畫面外完全不見：中心點限制在內容範圍加半個畫面的餘裕
+    vb.x = clamp(vb.x, -vb.w * 0.6, W - vb.w * 0.4);
+    vb.y = clamp(vb.y, -vb.h * 0.6, H - vb.h * 0.4);
+    svg.classList.toggle('zoomed', nw < W * 0.45);  // 拉近才顯示地名，否則市中心疊成一團
     apply();
+  }
+
+  svg.onwheel = e => {
+    e.preventDefault();
+    // 依滾動量連續縮放，不是每格固定倍率——觸控板一次會送出很多小事件，
+    // 固定倍率會跳得很兇。ctrlKey 是 Mac 觸控板雙指捏合，幅度要放大。
+    const px = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY;
+    const k = Math.exp(clamp(px, -80, 80) * (e.ctrlKey ? 0.012 : 0.0022));
+    const [cx, cy] = toSvg(e);
+    zoomTo(vb.w * k, cx, cy);
   };
+  svg.ondblclick = e => { const [cx, cy] = toSvg(e); zoomTo(vb.w / 2, cx, cy); };
+  addEventListener('resize', () => { MAX = fitWidth(); });
+  addEventListener('keydown', e => {
+    if (document.querySelector('.overlay')) return;      // 看畫時不要動地圖
+    const c = { x: vb.x + vb.w / 2, y: vb.y + vb.h / 2 };
+    if (e.key === '=' || e.key === '+') zoomTo(vb.w / 1.5, c.x, c.y);
+    if (e.key === '-' || e.key === '_') zoomTo(vb.w * 1.5, c.x, c.y);
+    if (e.key === '0') fitAll();                         // 迷路了按 0 回到全圖
+  });
   // 不要用 setPointerCapture：capture 之後 pointerup 落在 svg 上，
   // click 就改派到 svg 而不是景點那個 <g>，onclick 永遠不會觸發。
   // svg 本來就滿版，不 capture 也不會跟丟。
@@ -132,11 +173,15 @@ export function createMap(svg, views, geo, onPick) {
     if (!drag) return;
     const [x, y] = toSvg(e);
     moved += Math.abs(x - drag.x) + Math.abs(y - drag.y);
-    vb.x -= x - drag.x; vb.y -= y - drag.y;
+    // 拖曳同樣要夾住，否則可以把地圖整個拖出畫面外
+    vb.x = clamp(vb.x - (x - drag.x), -vb.w * 0.6, W - vb.w * 0.4);
+    vb.y = clamp(vb.y - (y - drag.y), -vb.h * 0.6, H - vb.h * 0.4);
     apply();
   };
   // 拖曳結束時滑鼠常常正好停在某個景上，不擋掉的話一拖就誤入該景
   dragged = () => moved > 6;
+
+  fitAll();   // 開場就看得到整張圖，不是一上來就被裁掉一半
 
   return {
     // 只有「地點對 + 季節對」的景才亮起來——同一地點不同季節是不同的景（§2.2）
