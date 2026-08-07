@@ -1,6 +1,6 @@
 // 進入點：狀態、遇景判定、存檔。
 // ponytail: 遇景邏輯只有十幾行，沒有另開 roam.js——一個檔就講得完的事不必拆兩個。
-import { clockFrom, DAYS_PER_VIEW, seasonJa } from './calendar.js';
+import { clockFrom, DAYS_PER_VIEW, pubDay, seasonJa } from './calendar.js';
 import { createMap } from './map.js';
 import { showView } from './view.js';
 import { showZukan } from './zukan.js';
@@ -29,12 +29,17 @@ const state = load();
 
 const map = createMap(document.getElementById('map'), views, geo, pick);
 
+// §2.6：已經出版的景數。玩家看到地圖稀疏時，這個數字是唯一的解釋。
+const published = day => views.filter(v => pubDay(v.published) <= day).length;
+
 function paint() {
   const clock = clockFrom(state.day);
   map.render(state, clock);
   document.getElementById('date').textContent = clock.label;
+  const pub = published(state.day);
   document.getElementById('left').textContent =
-    `${seasonJa(clock.season)}還剩 ${clock.daysLeftInSeason} 日`;
+    `${seasonJa(clock.season)}還剩 ${clock.daysLeftInSeason} 日`
+    + (pub < TOTAL ? ` ・ 廣重已出 ${pub} 景` : '');
   document.getElementById('count').textContent = `${state.collected.length} / ${TOTAL}`;
   save(state);
 }
@@ -42,6 +47,8 @@ function paint() {
 function pick(v) {
   const clock = clockFrom(state.day);
   if (state.collected.includes(v.id)) return say(`${v.title.ja} 已經收過了`);
+  // §2.6 出版才出現。地圖上本來就藏起來了，這裡是點不到的保險（歲時記／鍵盤都可能繞過）。
+  if (pubDay(v.published) > state.day) return say(`${v.title.ja} 廣重還沒畫`);
   // 同一地點在不同季節是不同的景（§2.2）——季節不對就是遇不到
   if (v.season !== clock.season) {
     return say(`${v.title.ja} 是${seasonJa(v.season)}的景，現在是${seasonJa(clock.season)}`);
@@ -50,11 +57,15 @@ function pick(v) {
   paint();
   showView(v, {
     onCollect() {
+      const before = published(state.day);
       state.collected.push(v.id);
       state.day += DAYS_PER_VIEW;              // 時間只由入景推進
       paint();
       const c = clockFrom(state.day);
-      if (c.season !== clock.season) say(`季節轉了——${seasonJa(c.season)}`);
+      // 新出版的景是無聲地長在地圖上的，不講一聲玩家不會發現（§2.6）
+      const fresh = published(state.day) - before;
+      if (fresh) say(`廣重又出了 ${fresh} 景`);
+      else if (c.season !== clock.season) say(`季節轉了——${seasonJa(c.season)}`);
     },
     onClose: paint,
   });

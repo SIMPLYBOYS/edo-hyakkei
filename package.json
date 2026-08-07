@@ -1,0 +1,6 @@
+{
+  "name": "edo-hyakkei",
+  "private": true,
+  "type": "module",
+  "description": "沒有相依套件——這個檔案只為了讓 node 跟瀏覽器一樣把 .js 當 ES module 讀，否則 tools/ 下的檢查腳本 import 不了 src/。"
+}

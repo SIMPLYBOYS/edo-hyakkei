@@ -2,6 +2,7 @@
 // 不用 Leaflet 的理由見 §4.3；不用 canvas 是因為 viewBox 本身就是免費的 pan/zoom。
 //
 // ponytail: 海岸線是讀圖手描的近似值，足夠驗證視覺效果（§3.2 已驗證成立）。
+import { pubDay } from './calendar.js';
 // 正式版換國土地理院向量 + 明治迅速測圖／江戶切繪圖 georeference。
 
 const EDO = [ // 1858 安政五年 汀線
@@ -201,11 +202,15 @@ export function createMap(svg, views, geo, onPick) {
       for (const v of views) {
         const g = nodes.get(v.id);
         if (!g) continue;
+        // §2.6 出版才出現：那張畫在史實上還沒印出來，地圖上就不該有點。
+        // 整個藏起來（不是畫成灰點）是重點——地圖會隨遊戲內時間一張張長出來。
+        const unpub = pubDay(v.published) > state.day;
         const got = state.collected.includes(v.id);
-        const open = v.season === clock.season && !got;
+        const open = !unpub && v.season === clock.season && !got;
+        g.classList.toggle('unpub', unpub);
         g.classList.toggle('got', got);
         g.classList.toggle('open', open);
-        g.classList.toggle('closed', !got && !open);
+        g.classList.toggle('closed', !unpub && !got && !open);
         // 標記依編號順序畫，後面的一律蓋住前面的——景點在市中心擠成一團時，
         // 不在季的點會把可收的點整個吸走。把可收的提到最上層才點得到。
         if (open) marks.append(g);

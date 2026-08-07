@@ -17,6 +17,9 @@
   .mark.open circle { fill:var(--gold); opacity:1; cursor:pointer }
   #map.zoomed .mark.open text { opacity:1 }
   .mark.got circle { fill:#7a9a6d; opacity:.9 }
+/* §2.6 還沒出版的景整個不存在——地圖隨遊戲內時間一張張長出來。
+   用 display:none 而非 opacity:0，否則滑鼠仍會 hover 到看不見的東西。 */
+.mark.unpub { display:none }
   .mark .ring { fill:none; stroke:var(--gold); stroke-width:1.5; opacity:.35; pointer-events:none }
   .mark.open .ring { opacity:1 }
   /* 視線扇形：畫成扇不畫成箭頭，因為方位有 ±30° 不確定度（見 §7-15） */

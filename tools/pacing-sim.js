@@ -2,7 +2,7 @@
 // §9.2 —「1 步 ≈ 半日」到底合不合理？跑法： node tools/pacing-sim.js
 //
 // 問題：118 景綁季節，走路要花時間。走路和等季節，哪個才是真正的瓶頸？
-const assert = require('node:assert');
+import assert from 'node:assert';
 
 const CITY_KM = 12;                    // 江戶東西約 12km（品川↔葛西）
 const CITY_KM_NS = 7.2;                // 南北較窄
@@ -130,3 +130,46 @@ assert.ok(g.idle / g.steps > 0.5, '空步比例低於預期，模型可能寫錯
 assert.equal(simDays(5, 42).left, 0, '模型B 沒收完');
 assert.ok(simDays(6, 42).years > simDays(2, 42).years, '模型B：D 越大該花越久');
 console.log('\nself-check ok');
+
+// ── 模型 C：加上「出版才出現」——景要等到廣重畫出來才收得到 ──────────
+// 起因是使用者提的「資訊隨時間更迭」。查資料才發現一個巧合：
+// 出版期間 1856-02→1859-04，而遊戲從安政三年(1856)春起算，**兩者是同一段時間**。
+// 玩家等於陪著廣重把這套畫做出來。
+// 用遊戲本身的 pubDay，不自己再算一次——模擬跟遊戲對出版日的定義若不同，
+// 這支模擬就在替另一個遊戲調參數。
+import { readFileSync } from 'node:fs';
+import { pubDay } from '../src/calendar.js';
+const PUB = JSON.parse(readFileSync(new URL('../data/views.json', import.meta.url), 'utf8'))
+  .filter(v => v.id <= 118 && v.published)
+  .map(v => ({ id: v.id, season: v.season, pub: pubDay(v.published) }));
+
+function simPub(D) {
+  const v = PUB.map(x => ({ ...x, got: false }));
+  let day = 0, left = v.length, idle = 0, waitPub = 0;
+  while (left && day < 365 * 12) {
+    const season = SEASONS.map((n, i) => i)[Math.floor((day % 365) / SEASON_DAYS)];
+    const name = ['spring', 'summer', 'autumn', 'winter'][season];
+    const open = v.filter(t => !t.got && t.season === name && t.pub <= day);
+    if (!open.length) {
+      // 分辨「這季沒景」與「景還沒出版」——後者是新機制帶來的等待
+      const seasonAny = v.some(t => !t.got && t.season === name);
+      if (seasonAny) waitPub++; else idle++;
+      day += 1;
+      continue;
+    }
+    open[0].got = true; left--; day += D;
+  }
+  return { days: day, years: day / 365, idle, waitPub, left };
+}
+
+{
+  console.log('\n【模型C】再加上「出版才出現」：');
+  console.log('  D日   完成年數   等季節   等出版   未收');
+  for (const D of [3, 4, 5]) {
+    const r = simPub(D);
+    console.log(`  ${pad(D, 2)}日 ${pad(r.years.toFixed(2), 9)} ${pad(r.idle, 8)} ${pad(r.waitPub, 8)} ${pad(r.left, 6)}`);
+  }
+  const r = simPub(3);
+  console.log(`\n→ D=3 加出版限制：${r.years.toFixed(2)} 年（原本 1.09 年）。`);
+  console.log(`  廣重本人畫了三年（1856-58）——這個延長不是灌水，是史實。`);
+}
