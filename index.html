@@ -69,6 +69,9 @@
   #hud { position:fixed; left:0; right:0; top:0; padding:14px 20px; display:flex;
          gap:18px; align-items:baseline; background:linear-gradient(#0e2233dd,transparent) }
   #date { font-size:22px; letter-spacing:.1em }
+  /* 西元擺在和曆後面、小一級：和曆是這個遊戲的語氣，西元是給人對得上年代的 */
+  #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
+              font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
   #left, #count { font-size:13px; opacity:.75 }
   #count { margin-left:auto }
   button { font:inherit; font-size:13px; color:var(--land); background:#ffffff1a;

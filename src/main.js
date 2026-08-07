@@ -79,7 +79,9 @@ const LAST_PUB = Math.max(...views.map(v => pubDay(v.published)));
 function paint() {
   const clock = clockFrom(state.day);
   map.render(state, clock);
-  document.getElementById('date').textContent = clock.label;
+  // 和曆＋西元並置。年號認不出年代，而事件框用的是西元，兩邊要對得起來（§2.9）
+  document.getElementById('date').innerHTML =
+    `${clock.label}<span class="ad">${clock.iso}</span>`;
   const pub = published(state.day);
   document.getElementById('left').textContent =
     `${seasonJa(clock.season)}還剩 ${clock.daysLeftInSeason} 日`

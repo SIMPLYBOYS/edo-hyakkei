@@ -49,14 +49,21 @@ export function dateDay(iso) {
  *  （那批視為「你出發時架上已有」，見上面的起點說明）。 */
 export const pubDay = published => (published ? Math.max(0, dateDay(published)) : 0);
 
-const ERA = [[1854, '安政'], [1860, '万延'], [1861, '文久']];
+// 改元是年中發生的，不是一月一日。用「哪一年開始」判斷會把改元前的月份算錯——
+// 實測：1860-02-01 會被標成「万延元年」，但那時還是安政七年（万延 1860-03-18 改元）。
+// 年號用實際改元日判斷，年次仍由起始年推算（万延元年＝1860、安政四年＝1857）。
+const ERA = [
+  ['1854-11-27', 1854, '安政'],
+  ['1860-03-18', 1860, '万延'],
+  ['1861-03-29', 1861, '文久'],
+];
 const KANJI = '〇一二三四五六七八九';
 
 const kanjiNum = n => n < 10 ? KANJI[n] : n < 20 ? '十' + (n % 10 ? KANJI[n % 10] : '')
   : KANJI[Math.floor(n / 10)] + '十' + (n % 10 ? KANJI[n % 10] : '');
 
-function era(year) {
-  const [start, name] = ERA.filter(([y]) => y <= year).pop();
+function era(iso, year) {
+  const [, start, name] = ERA.filter(([from]) => from <= iso).pop();
   const n = year - start + 1;
   return `${name}${n === 1 ? '元' : kanjiNum(n)}年`;   // 改元那年是「元年」，不是「一年」
 }
@@ -67,6 +74,7 @@ const seasonAt = day => SEASON_OF_MONTH[dateOf(day).getUTCMonth()];
 export function clockFrom(day = 0) {
   const d = dateOf(day);
   const year = d.getUTCFullYear();
+  const iso = d.toISOString().slice(0, 10);
   const s = seasonAt(day);
   // 往前後掃到季節換手的地方。一季約 91 天，掃這點量不值得做數學。
   let first = day; while (seasonAt(first - 1) === s) first--;
@@ -75,7 +83,9 @@ export function clockFrom(day = 0) {
     day, year, season: SEASONS[s],
     // 這一季還剩幾天——玩家要靠它決定「這個春天還來不來得及再收一景」
     daysLeftInSeason: next - day,
-    label: `${era(year)} ${SEASON_JA[SEASONS[s]]} ${kanjiNum(day - first + 1)}日`,
+    label: `${era(iso, year)} ${SEASON_JA[SEASONS[s]]} ${kanjiNum(day - first + 1)}日`,
+    // 和曆年號對現代人沒有直覺，而事件框（§2.9）用的是西元——兩邊要對得起來。
+    iso,
   };
 }
 
