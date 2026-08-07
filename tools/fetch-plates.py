@@ -78,11 +78,20 @@ def main():
         n += 1
         print(f"  no.{vid:>3}  {out.name}  {out.stat().st_size // 1024}KB  ({why})")
 
+    # 🔴 2026/08/08 修兩件：
+    # 1) 舊 assert 是 linked == n，拿「views.json 裡的總數」比「本支處理的 6 筆」。
+    #    對照表長到 52 筆之後必然失敗——而真正該驗的是「我碰的這幾筆有沒有回填成功」。
+    #    主力抓圖是 extract-plates.py（NDL 整開頁），這支只補 Commons 那 6 筆。
+    # 2) 先前寫檔在 assert 之前，檢查擋下來時壞資料已經落地了（fetch-osm.py 同款）。
+    mine = [vid for vid, (t, _) in PAIRS.items() if t in got]
+    bad = [vid for vid in mine if not by[vid]["assets"]["meishozue"]]
+    assert not bad, f"這幾筆沒回填成功：{bad}"
+    assert n == len(mine), f"下載 {n} 筆與應處理 {len(mine)} 筆不符"
+
     (ROOT / "data" / "views.json").write_text(
         json.dumps(views, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     linked = sum(1 for v in views if v["assets"]["meishozue"])
-    print(f"\nviews.json 已標記 {linked} 景有圖會對照")
-    assert linked == n, "回填數與下載數不符"
+    print(f"\nviews.json 共 {linked} 景有圖會對照（本支處理其中 {n} 筆）")
     print("self-check ok")
 
 
