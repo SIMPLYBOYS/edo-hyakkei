@@ -1399,7 +1399,7 @@
     },
     "assets": {
       "meishozue": false,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [],
     "notes": {
@@ -2688,7 +2688,7 @@
     },
     "assets": {
       "meishozue": false,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [],
     "notes": {
@@ -4740,13 +4740,13 @@
     },
     "assets": {
       "meishozue": true,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [
       {
         "type": "scale",
         "target": "井之頭池",
-        "note": "圖會裡井之頭池只是廣闊丘陵田野中的一小片水面；廣重讓它填滿畫面中段。這是 spec 立項時就記下的案例，現已有圖可證。",
+        "note": "圖會裡井之頭池只是廣闊丘陵田野中的一小片水面；廣重讓它填滿畫面中段。★★而且不只是「別人畫得小」——**廣重自己的《繪本江戶土產》也畫得節制**（水約佔三分之一，弁天社在左下樹叢、遠山橫過上緣）。同一雙手、同一個地方，只是這一次要當戲。按「看《江戶土產》」可以自己比。",
         "hitbox": {
           "x": 0.5,
           "y": 0.45,
@@ -6171,7 +6171,7 @@
     },
     "assets": {
       "meishozue": false,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [],
     "notes": {
