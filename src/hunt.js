@@ -110,6 +110,14 @@ export function showHunt(views, map, onDone) {
 
   const el = document.createElement('div');
   el.id = 'hunt-ui';
+  // 🔴 離開鈕以前寫在各畫面的 innerHTML 裡，而揭曉那頁忘了寫——
+  // 答完第一題就出不去，只能一路按到結果。每個畫面各自負責同一顆鈕，
+  // 就一定會有一頁漏掉。改成掛在會被重寫的區塊外面，三個畫面共用一顆。
+  el.innerHTML = '<button id="hquit" class="ghost">やめる</button><div id="hbody"></div>';
+  const body = el.querySelector('#hbody');
+  el.querySelector('#hquit').onclick = quit;
+  const esc = e => { if (e.key === 'Escape') quit(); };
+  addEventListener('keydown', esc);
   document.body.append(el);
   map.hunt.on((lng, lat) => {                  // 點地圖＝下針
     guess = { lng, lat };
@@ -123,18 +131,14 @@ export function showHunt(views, map, onDone) {
     guess = null;
     map.hunt.clear();
     // masked：遮住頂部那一帶（題簽與和歌都在那裡）
-    el.innerHTML = `
+    body.innerHTML = `
       <div class="qimg masked"><img src="${rounds[i].src(v.id)}" alt=""></div>
       <div class="body">
         <p class="n">${i + 1} / ${rounds.length}　${rounds[i].from}</p>
         <p class="q">這是江戶的哪裡？在地圖上點一下</p>
-        <div class="act">
-          <button id="hgo" disabled>ここだ</button>
-          <button id="hquit" class="ghost">やめる</button>
-        </div>
+        <div class="act"><button id="hgo" disabled>ここだ</button></div>
       </div>`;
     el.querySelector('#hgo').onclick = answer;
-    el.querySelector('#hquit').onclick = quit;
   }
 
   function answer() {
@@ -144,7 +148,7 @@ export function showHunt(views, map, onDone) {
     results.push({ v, d, pts });
     map.hunt.reveal(v.subject.lng, v.subject.lat);
     // 揭曉：廣重的畫在上、圖會不再遮罩在下——落差就是這個模式的收尾
-    el.innerHTML = `
+    body.innerHTML = `
       <div class="qimg"><img src="${plate(v.id)}" alt="" class="tall"></div>
       <div class="body">
         <p class="verdict ${pts >= 4 ? 'good' : pts <= 2 ? 'bad' : ''}">${word}
@@ -162,18 +166,17 @@ export function showHunt(views, map, onDone) {
     const total = results.reduce((a, r) => a + r.pts, 0);
     const best = results.reduce((a, r) => (r.d < a.d ? r : a));
     map.hunt.clear();
-    el.innerHTML = `
+    el.querySelector('#hquit').textContent = '閉じる';   // 走到底了，這顆不再是「放棄」
+    body.innerHTML = `
       <div class="body">
         <h3>視点狩り</h3>
         <p class="verdict">${total} / ${results.length * 5}</p>
         <ul class="list">${results.map(r =>
           `<li><span>${r.v.title.ja}</span><b>${dist(r.d)}</b></li>`).join('')}</ul>
         <p class="why">最も近かったのは「${best.v.title.ja}」（${dist(best.d)}）。</p>
-        <div class="act"><button id="hquit">閉じる</button></div>
       </div>`;
-    el.querySelector('#hquit').onclick = quit;
   }
 
-  function quit() { map.hunt.off(); el.remove(); onDone?.(); }
+  function quit() { map.hunt.off(); removeEventListener('keydown', esc); el.remove(); onDone?.(); }
   ask();
 }

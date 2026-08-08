@@ -108,6 +108,12 @@
   #hunt-ui { position:fixed; left:20px; top:64px; bottom:96px; width:min(560px,44vw);
              display:flex; flex-direction:column; gap:14px; z-index:20; pointer-events:none }
   #hunt-ui > * { pointer-events:auto }
+  /* 離開鈕獨立於 #hbody 之外，換頁時不會被重寫掉——三個畫面都退得出去。
+     🔴 .ghost 是透明底，而這顆鈕直接浮在地圖上：米色字壓在米色陸地上等於沒有。
+     其他鈕都躺在 .body 的深底裡才看得見，這顆得自己帶一塊底。 */
+  #hunt-ui > #hquit { align-self:flex-start; font-size:12px; padding:5px 12px;
+                      background:#12283ceb; border-color:#ffffff2e }
+  #hunt-ui #hbody { display:flex; flex-direction:column; gap:14px; min-height:0 }
   /* 出題圖用固定長寬比的框，遮罩才對得準（圖會插圖都是 1.35–1.40 的橫幅）。
      揭曉的廣重是直幅，另給 .tall。 */
   #hunt-ui .qimg { position:relative; width:100%; aspect-ratio:1.37;
