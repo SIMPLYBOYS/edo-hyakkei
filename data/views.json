@@ -302,7 +302,7 @@
     },
     "assets": {
       "meishozue": false,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [],
     "notes": {
@@ -5466,7 +5466,7 @@
     },
     "assets": {
       "meishozue": false,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [],
     "notes": {
@@ -5629,7 +5629,7 @@
     },
     "assets": {
       "meishozue": false,
-      "miyage": false
+      "miyage": true
     },
     "distortions": [],
     "notes": {
