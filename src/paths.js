@@ -7,3 +7,4 @@ export const plate = id => `assets/originals/${n(id)}.jpg`;   // 展示用，裁
 export const hires = id => `assets/hires/${n(id)}.jpg`;       // 研究用，多半含色卡比例尺
 export const thumb = id => `assets/thumbs/${n(id)}.jpg`;      // 歲時記
 export const meishozue = id => `assets/meishozue/${n(id)}.jpg`;
+export const miyage = id => `assets/miyage/${n(id)}.jpg`;   // §7-12 廣重自己的另一種答案

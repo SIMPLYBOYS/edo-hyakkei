@@ -18,13 +18,19 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "research" / "meishozue"
+# 名所圖會是 research/meishozue/vNN/，繪本江戶土產是 research/miyage/（平的一層）。
+# 兩邊都是「一疊連號的開頁掃描」，同一套流程就夠用，不必為它另寫一支工具。
+def src(vol):
+    for c in (ROOT / "research" / "meishozue" / vol, ROOT / "research" / vol):
+        if c.is_dir():
+            return c
+    raise SystemExit(f"找不到 {vol}：research/meishozue/{vol} 與 research/{vol} 都不存在")
 DST = ROOT / "research" / "sheets"
 CELL, COLS = 300, 7
 
 
 def sheet(vol):
-    pages = sorted((SRC / vol).glob("*.jpg"))
+    pages = sorted(src(vol).glob("*.jpg"))
     if not pages:
         return None
     rows = (len(pages) + COLS - 1) // COLS
@@ -52,7 +58,7 @@ def strips(vol, nums, width=1500, frac=0.30):
         print(f"  ⚠️ 一批 {len(nums)} 頁過多，題簽會糊；建議拆成 ≤18 頁")
     imgs = []
     for n in nums:
-        p = SRC / vol / f"p{n:03d}.jpg"
+        p = src(vol) / f"p{n:03d}.jpg"
         if not p.exists():
             continue
         im = Image.open(p).convert("RGB")
@@ -80,7 +86,7 @@ if "--strips" in sys.argv:
     sys.exit()
 
 vols = [a for a in sys.argv[1:] if not a.startswith("-")] or \
-       sorted(d.name for d in SRC.iterdir() if d.is_dir())
+       sorted(d.name for d in (ROOT / "research" / "meishozue").iterdir() if d.is_dir()) + ["miyage"]
 for v in vols:
     r = sheet(v)
     print(f"  {v}  {r[1]:>3}頁 → {r[0].name} {r[2][0]}x{r[2][1]} "

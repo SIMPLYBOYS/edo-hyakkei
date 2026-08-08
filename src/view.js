@@ -1,6 +1,6 @@
 // 單張畫面呈現。進一景 → 看畫 → 收入歲時記。
 import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
-import { plate, hires, meishozue } from './paths.js';
+import { plate, hires, meishozue, miyage } from './paths.js';
 
 export function showView(v, { onCollect, onClose }) {
   const el = document.createElement('div');
@@ -25,10 +25,14 @@ export function showView(v, { onCollect, onClose }) {
         <div class="act">
           <button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>
           ${v.assets.meishozue ? '<button id="flip" class="ghost">看《名所圖會》</button>' : ''}
+          ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
           <button id="leave" class="ghost">先不看</button>
         </div>
         ${v.assets.meishozue ? `<p class="hint">《名所圖會》是地誌——俯瞰、寫實、地名齊全。
           廣重畫的是同一個地方，但他動了手腳。兩邊對著看。</p>` : ''}
+        ${v.assets.miyage ? `<p class="hint">《繪本江戶土產》是<b>廣重本人</b>畫的同一個地方。
+          跟圖會比是「別人怎麼畫」，跟土產比是<b>他自己怎麼畫</b>——
+          同一雙手，只是用途不同。</p>` : ''}
       </figcaption>
     </figure>`;
 
@@ -57,17 +61,32 @@ export function showView(v, { onCollect, onClose }) {
     };
   }
 
-  // §2.4 找廣重的謊言：同一景切換到寫實版本。目前只有 6 景有對照圖（見 §7-14）。
-  const flip = el.querySelector('#flip');
-  if (flip) {
-    const img = el.querySelector('img');
-    const print = img.getAttribute('src');
-    let zue = false;
-    flip.onclick = () => {
-      zue = !zue;
-      img.src = zue ? meishozue(v.id) : print;
-      img.classList.toggle('zue', zue);
-      flip.textContent = zue ? '看廣重的版本' : '看《名所圖會》';
+  // §2.4 找廣重的謊言：同一景切換到別人／他自己畫的版本。
+  //   《名所圖會》＝雪旦的寫實鳥瞰，回答「那裡實際長什麼樣」
+  //   《繪本江戶土產》＝**廣重本人**的繪本版，回答「他自己另一次怎麼畫」
+  // 後者才拿掉「不同畫家」這個干擾——同一雙手，只是用途不同。
+  //
+  // 兩顆鈕各自負責一個來源、再按一次回到廣重。做成單一循環鈕的話，
+  // 玩家不知道下一下會看到什麼。
+  const img = el.querySelector('img');
+  const print = img.getAttribute('src');
+  const flips = [
+    ['#flip', meishozue, '《名所圖會》', true],
+    ['#flip2', miyage, '《江戶土產》', false],
+  ].map(([sel, path, label, wide]) => {
+    const b = el.querySelector(sel);
+    return b && { b, path, label, wide, on: false };
+  }).filter(Boolean);
+
+  for (const f of flips) {
+    f.b.onclick = () => {
+      const want = !f.on;
+      for (const g of flips) {          // 一次只開一個，其餘復位
+        g.on = g === f && want;
+        g.b.textContent = g.on ? '看廣重的版本' : `看${g.label}`;
+      }
+      img.src = want ? f.path(v.id) : print;
+      img.classList.toggle('zue', want && f.wide);
     };
   }
   el.querySelector('#collect').onclick = () => { el.remove(); onCollect(); };
