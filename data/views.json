@@ -1346,7 +1346,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "真富士與人造的富士塚",
+        "note": "這是一組對調。土產裡兩座富士的份量差不多：元不二只是林間一個小丘，真富士在遠處。百景把人造的塚推到眼前佔住畫面，真的富士反而縮成左邊一枚小白影——找找看它在哪。",
+        "hitbox": {
+          "x": 0.14,
+          "y": 0.43,
+          "r": 0.13
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null,
@@ -2310,7 +2321,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "橋的構材",
+        "note": "土產從側面畫整座江戸橋，橋是完整的一個東西。百景鑽到橋下，把一根黑色的橋柱與幾根竹竿放大到橫過整個畫面——橋本身反而只剩遠處一條線。",
+        "hitbox": {
+          "x": 0.12,
+          "y": 0.32,
+          "r": 0.2
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -3462,7 +3484,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "菖蒲",
+        "note": "土產是站在遠處看整片菖蒲田與賞花的人，花是密密的一層。百景走進田裡，三兩朵放大到與遠處的田埂等高——同一雙手，一次畫田，一次畫花。",
+        "hitbox": {
+          "x": 0.25,
+          "y": 0.24,
+          "r": 0.26
+        }
+      }
+    ],
     "notes": {
       "geo": "座標取自 ja.wikipedia 堀切菖蒲園（地點非視點，待 §7-15 查證）",
       "commentary": null
@@ -4112,7 +4145,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "removal",
+        "target": "富士山",
+        "note": "土產的同一處竹河岸是白天，竹束後面看得到富士。百景改成夜景，天空只剩一輪月——富士不見了。",
+        "hitbox": {
+          "x": 0.62,
+          "y": 0.16,
+          "r": 0.24
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -5522,7 +5566,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "removal",
+        "target": "酉の市の人出",
+        "note": "土產把熊手立滿田野、人群擠在其中，那是祭典本身。百景把整場祭典關到窗外：格子窗內只有一隻貓，田裡剩幾條遠遠的人影與富士。",
+        "hitbox": {
+          "x": 0.5,
+          "y": 0.33,
+          "r": 0.22
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null,

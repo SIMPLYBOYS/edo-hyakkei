@@ -23,15 +23,21 @@ def main():
     vp = ROOT / "data" / "views.json"
     views = json.loads(vp.read_text(encoding="utf-8"))
     by = {v["id"]: v for v in views}
-    pairs = {p["id"]: p for p in json.loads(
-        (ROOT / "data" / "meishozue-map.json").read_text(encoding="utf-8"))["pairs"]}
+    # 對照來源有兩種，變造只要**至少有一種**能並排就成立。
+    # 這條檢查原本寫「必須有圖會」，那是土產還沒接上時的假設；
+    # 2026/08/08 起有五筆的證據來源是土產（廣重本人），比圖會更沒有干擾。
+    def load(name):
+        return {q["id"]: q for q in json.loads(
+            (ROOT / "data" / name).read_text(encoding="utf-8"))["pairs"]}
+    zue, miya = load("meishozue-map.json"), load("miyage-map.json")
 
     n = 0
     for k, items in d["views"].items():
         vid = int(k)
         assert vid in by, f"no.{vid} 不在 views.json"
         # 每一筆變造都該有可比對的圖會頁——沒有對照就沒有「並排指出來」這回事
-        assert vid in pairs, f"no.{vid} 沒有圖會對照，不該有 distortions"
+        assert vid in zue or vid in miya, \
+        f"no.{vid} 圖會與土產都沒有對照，不該有 distortions（並排不出來就不能寫）"
         for it in items:
             assert it["type"] in TYPES, f"no.{vid} 的 type「{it['type']}」不在 §6.2 定義內"
             h = it["hitbox"]
@@ -39,8 +45,9 @@ def main():
         if args.write:
             by[vid]["distortions"] = items
         n += len(items)
-        print(f"  no.{vid:>3}  {len(items)} 筆  ← {pairs[vid]['vol']}/p{pairs[vid]['page']:03d} "
-              f"「{pairs[vid]['plate']}」")
+        src, q = ("圖會", zue[vid]) if vid in zue else ("土產", miya[vid])
+        where = f"{q.get('vol', '')}/p{q['page']:03d}".lstrip("/")
+        print(f"  no.{vid:>3}  {len(items)} 筆  ← {src} {where}「{q['plate']}」")
 
     print(f"\n共 {n} 筆變造，涵蓋 {len(d['views'])} 景")
     if args.write:
