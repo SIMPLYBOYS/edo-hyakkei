@@ -119,7 +119,17 @@
   #hunt-ui .qimg { position:relative; width:100%; aspect-ratio:1.37;
                    filter:drop-shadow(0 6px 24px #0009) }
   #hunt-ui .qimg img { width:100%; height:100%; object-fit:contain; object-position:top }
-  #hunt-ui .qimg img.tall { object-fit:contain; height:auto; max-height:52vh }
+  /* 揭曉的廣重是直幅，而且要點得到——.found 的座標是相對容器的百分比，
+     所以框必須剛好包住圖。object-fit 的留白會讓整組圈偏掉。
+     只鎖高度、寬度自動，比例才不會被壓；64vw 是為了不撐出 44vw 的面板。
+
+     高度定在框上、圖填滿 100%——面板塞不下時兩者一起縮，框才永遠等於圖。
+     高度寫在圖上的話 flex 只壓得到框，框矮圖 14%，整組圈就往上偏。
+     讓步的是圖不是字：說明與「次へ」不縮，不然揭曉的內容會被卷到看不見。 */
+  #hunt-ui .qimg.plate { width:auto; aspect-ratio:auto; align-self:flex-start;
+                         height:min(52vh,64vw); min-height:150px }
+  #hunt-ui .qimg.plate img { width:auto; height:100% }
+  #hunt-ui #hbody .body { flex:none }
   /* 🔴 opacity 只能給文字，不能給整個偽元素——寫在這裡會讓整條遮罩變半透明，
      題簽照樣看得見。命中測試查不出來（元素確實在上層），是把遮罩塗紅才發現的。 */
   #hunt-ui .qimg.masked::after {

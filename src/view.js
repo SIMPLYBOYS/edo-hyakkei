@@ -1,6 +1,7 @@
 // 單張畫面呈現。進一景 → 看畫 → 收入歲時記。
 import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
 import { plate, hires, meishozue, miyage } from './paths.js';
+import { findLies } from './lie.js';
 
 export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
   const el = document.createElement('div');
@@ -38,37 +39,15 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
 
   // §2.4 的玩法是玩家「自己找」，所以 hitbox 不預先顯示——
   // 標出來就變成看圖說故事，找到的當下才有「他動了手腳」的感覺。
-  // 🔴 這個 Set 以前是純區域變數——找到的手腳一關畫面就忘了，
-  // 重開同一景又從頭來過。玩家做了事，遊戲卻沒記住。
-  // 現在由 main.js 從存檔傳進來，找到時回報出去（§2.5 那條「必做或選做」
-  // 之所以懸而未決，正是因為它其實什麼都沒算）。
-  const found = new Set(seen);
+  // 🔴 已找到的清單以前是純區域變數，一關畫面就忘了；現在由 main.js
+  // 從存檔傳進來，找到時回報出去（§2.5：選做，但要記得）。
+  // 命中判定本身在 lie.js，跟狩獵揭曉共用同一套。
   if (v.distortions.length) {
-    const img0 = el.querySelector('img');
     const tally = el.querySelector('#tally');
-    img0.style.cursor = 'crosshair';
-    // 已經找過的重開時直接標出來——找過的東西不該叫人再找一次
-    const drawFound = i => {
-      const d = v.distortions[i];
-      const mark = document.createElement('div');
-      mark.className = 'found';
-      mark.style.cssText = `left:${d.hitbox.x * 100}%;top:${d.hitbox.y * 100}%;`
-        + `width:${d.hitbox.r * 200}%;padding-bottom:${d.hitbox.r * 200}%`;
-      img0.parentElement.append(mark);
-      tally.innerHTML = `<b>${d.target}</b>${d.note}`;
-      tally.classList.add('on');
-    };
-    for (const i of found) drawFound(i);
-    img0.onclick = e => {
-      const r = img0.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      const hit = v.distortions.findIndex((d, i) =>
-        !found.has(i) && Math.hypot(px - d.hitbox.x, py - d.hitbox.y) < d.hitbox.r);
-      if (hit < 0) return;
-      found.add(hit);
-      onFind?.(hit);
-      drawFound(hit);
-    };
+    findLies(el.querySelector('img'), v, seen, {
+      onFind,
+      onShow(d) { tally.innerHTML = `<b>${d.target}</b>${d.note}`; tally.classList.add('on'); },
+    });
   }
 
   // §2.4 找廣重的謊言：同一景切換到別人／他自己畫的版本。

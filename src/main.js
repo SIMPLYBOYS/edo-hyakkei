@@ -92,6 +92,9 @@ function paint() {
   save(state);
 }
 
+// 找到廣重動的手腳就記一筆。看畫（§2.4）與狩獵揭曉（§2.10）共用同一格。
+const noteLie = (id, i) => { (state.found[id] ??= []).push(i); save(state); };
+
 function pick(v) {
   const clock = clockFrom(state.day);
   if (state.collected.includes(v.id)) return say(`${v.title.ja} 已經收過了`);
@@ -105,13 +108,11 @@ function pick(v) {
   paint();
   showView(v, {
     // §2.5 結案：找廣重的謊言是**選做**，但要記得。
+    // 在看畫找到、還是在狩獵揭曉找到，都存進同一格——同一個變造只算一次。
     // 先前 found 是 view.js 的區域變數，關掉畫面就忘了——
     // 玩家做了事而遊戲沒記住，那才是真正的問題，不是「算不算完成度」。
     found: state.found[v.id] ?? [],
-    onFind(i) {
-      (state.found[v.id] ??= []).push(i);
-      save(state);
-    },
+    onFind: i => noteLie(v.id, i),
     onCollect() {
       state.collected.push(v.id);
       advance(DAYS_PER_VIEW);                  // 入景耗日（§2.1）
@@ -247,8 +248,10 @@ map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); })
 
 const eraInput = document.getElementById('era');
 eraInput.oninput = () => map.setEra(eraInput.value / 1000);
-// §2.10 原型：獨立模式，不動主循環的任何狀態
-document.getElementById('hunt').onclick = () => showHunt(views, map, paint);
+// §2.10 視點狩獵。不動收集進度與日期，但揭曉頁能找變造，那筆要記住——
+// 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
+document.getElementById('hunt').onclick = () =>
+  showHunt(views, map, { found: state.found, onFind: noteLie, onDone: paint });
 document.getElementById('book').onclick = () => showZukan(views, state);
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }

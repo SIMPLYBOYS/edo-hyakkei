@@ -18,6 +18,7 @@
 // 但都落在頂部那一帶——而那裡是天空／遠山／和歌。出題時遮掉頂部，
 // 幾乎不損失地理資訊；揭曉時整張放出來。
 import { meishozue, miyage, plate } from './paths.js';
+import { findLies } from './lie.js';
 
 // 題庫。挑選標準：出題那張要讀得出地形，而且要涵蓋整個畫框。
 // 這是人工判斷，理由逐筆寫在後面（與 fetch-plates.py 的 PAIRS 同一個規矩）。
@@ -97,7 +98,7 @@ const BANDS = [
 const band = d => BANDS.find(([lim]) => d <= lim);
 const dist = d => (d < 1 ? `${Math.round(d * 1000)} m` : `${d.toFixed(1)} km`);
 
-export function showHunt(views, map, onDone) {
+export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
   const rounds = draw(views).map(([id, , why]) => ({ v: views.find(x => x.id === id), why }))
     // 兩種對照都能出題。優先圖會——它是寫實鳥瞰，最適合「讀地形」；
     // 沒有圖會就用土產，那是廣重自己的繪本版，同樣讀得出地物。
@@ -120,9 +121,14 @@ export function showHunt(views, map, onDone) {
   addEventListener('keydown', esc);
   document.body.append(el);
   map.hunt.on((lng, lat) => {                  // 點地圖＝下針
+    // 🔴 揭曉頁沒有 #hgo。答案都公布了還在收針，直接對 null 設 disabled——
+    // 而 main.js 的全域 error handler 會把它變成整片紅色的致命錯誤框。
+    // 地圖在揭曉時照樣點得到（要看答案在哪），所以這條路一定會有人走到。
+    const go = el.querySelector('#hgo');
+    if (!go) return;
     guess = { lng, lat };
     map.hunt.pin(lng, lat);
-    el.querySelector('#hgo').disabled = false;
+    go.disabled = false;
     el.querySelector('.q').textContent = '再點可以改；決定了就按下面';
   });
 
@@ -147,18 +153,30 @@ export function showHunt(views, map, onDone) {
     const [, word, pts] = band(d);
     results.push({ v, d, pts });
     map.hunt.reveal(v.subject.lng, v.subject.lat);
-    // 揭曉：廣重的畫在上、圖會不再遮罩在下——落差就是這個模式的收尾
+    // 揭曉：換成廣重畫的同一個地方。你剛剛讀的是寫實版，落差在這一刻才看得到。
+    const lies = v.distortions?.length;
     body.innerHTML = `
-      <div class="qimg"><img src="${plate(v.id)}" alt="" class="tall"></div>
+      <div class="qimg plate"><img src="${plate(v.id)}" alt=""></div>
       <div class="body">
         <p class="verdict ${pts >= 4 ? 'good' : pts <= 2 ? 'bad' : ''}">${word}
           <span>差 ${dist(d)}</span></p>
         <h3>${v.title.ja}</h3>
+        ${lies ? '<p class="hunt">同一個地方，廣重動了手腳。點畫面找找看。</p>' : ''}
+        <div id="tally"></div>
         <p class="why">${why}</p>
         <div class="act">
           <button id="hnext">${i + 1 < rounds.length ? '次へ' : '結果'}</button>
         </div>
       </div>`;
+    // 不直接把答案印出來——印了，玩家之後在 §2.4 打開同一景就沒得找。
+    // 找到的算同一筆，跟看畫那邊共用存檔。
+    if (lies) {
+      const tally = body.querySelector('#tally');
+      findLies(body.querySelector('img'), v, found[v.id] ?? [], {
+        onFind: n => onFind?.(v.id, n),
+        onShow(x) { tally.innerHTML = `<b>${x.target}</b>${x.note}`; tally.classList.add('on'); },
+      });
+    }
     el.querySelector('#hnext').onclick = () => { i++; i < rounds.length ? ask() : summary(); };
   }
 
