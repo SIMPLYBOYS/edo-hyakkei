@@ -2,7 +2,7 @@
 import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
 import { plate, hires, meishozue, miyage } from './paths.js';
 
-export function showView(v, { onCollect, onClose }) {
+export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
   const el = document.createElement('div');
   el.className = 'overlay';
   el.innerHTML = `
@@ -38,11 +38,27 @@ export function showView(v, { onCollect, onClose }) {
 
   // §2.4 的玩法是玩家「自己找」，所以 hitbox 不預先顯示——
   // 標出來就變成看圖說故事，找到的當下才有「他動了手腳」的感覺。
-  const found = new Set();
+  // 🔴 這個 Set 以前是純區域變數——找到的手腳一關畫面就忘了，
+  // 重開同一景又從頭來過。玩家做了事，遊戲卻沒記住。
+  // 現在由 main.js 從存檔傳進來，找到時回報出去（§2.5 那條「必做或選做」
+  // 之所以懸而未決，正是因為它其實什麼都沒算）。
+  const found = new Set(seen);
   if (v.distortions.length) {
     const img0 = el.querySelector('img');
     const tally = el.querySelector('#tally');
     img0.style.cursor = 'crosshair';
+    // 已經找過的重開時直接標出來——找過的東西不該叫人再找一次
+    const drawFound = i => {
+      const d = v.distortions[i];
+      const mark = document.createElement('div');
+      mark.className = 'found';
+      mark.style.cssText = `left:${d.hitbox.x * 100}%;top:${d.hitbox.y * 100}%;`
+        + `width:${d.hitbox.r * 200}%;padding-bottom:${d.hitbox.r * 200}%`;
+      img0.parentElement.append(mark);
+      tally.innerHTML = `<b>${d.target}</b>${d.note}`;
+      tally.classList.add('on');
+    };
+    for (const i of found) drawFound(i);
     img0.onclick = e => {
       const r = img0.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
@@ -50,14 +66,8 @@ export function showView(v, { onCollect, onClose }) {
         !found.has(i) && Math.hypot(px - d.hitbox.x, py - d.hitbox.y) < d.hitbox.r);
       if (hit < 0) return;
       found.add(hit);
-      const d = v.distortions[hit];
-      const mark = document.createElement('div');
-      mark.className = 'found';
-      mark.style.cssText = `left:${d.hitbox.x * 100}%;top:${d.hitbox.y * 100}%;` +
-        `width:${d.hitbox.r * 200}%;padding-bottom:${d.hitbox.r * 200}%`;
-      img0.parentElement.append(mark);
-      tally.innerHTML = `<b>${d.target}</b>${d.note}`;
-      tally.classList.add('on');
+      onFind?.(hit);
+      drawFound(hit);
     };
   }
 

@@ -9,9 +9,10 @@ import { showZukan } from './zukan.js';
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
   try {
-    return { pos: { lat: 35.684, lng: 139.7745 }, day: 0, collected: [], ...JSON.parse(localStorage[SAVE]) };
+    return { pos: { lat: 35.684, lng: 139.7745 }, day: 0, collected: [], found: {},
+             ...JSON.parse(localStorage[SAVE]) };
   } catch {
-    return { pos: { lat: 35.684, lng: 139.7745 }, day: 0, collected: [] };  // 日本橋起點
+    return { pos: { lat: 35.684, lng: 139.7745 }, day: 0, collected: [], found: {} };  // 日本橋起點
   }
 };
 const save = s => localStorage[SAVE] = JSON.stringify(s);
@@ -103,6 +104,14 @@ function pick(v) {
   state.pos = { lat: v.subject.lat, lng: v.subject.lng };   // 漫遊不耗時間（§2.1）
   paint();
   showView(v, {
+    // §2.5 結案：找廣重的謊言是**選做**，但要記得。
+    // 先前 found 是 view.js 的區域變數，關掉畫面就忘了——
+    // 玩家做了事而遊戲沒記住，那才是真正的問題，不是「算不算完成度」。
+    found: state.found[v.id] ?? [],
+    onFind(i) {
+      (state.found[v.id] ??= []).push(i);
+      save(state);
+    },
     onCollect() {
       state.collected.push(v.id);
       advance(DAYS_PER_VIEW);                  // 入景耗日（§2.1）

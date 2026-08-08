@@ -22,8 +22,13 @@ export function showZukan(views, state, onClose) {
     </section>`;
   }).join('');
   const total = views.length;   // main.js 已經濾掉 no.119
+  // §2.5 結案：找廣重的謊言是**選做**——它有自己的計數，不併進 118 的分數。
+  // 22 景有手腳、118 景要收，把兩者加在一起只會讓兩個數字都變得沒有意義。
+  const traps = views.reduce((n, v) => n + (v.distortions?.length ?? 0), 0);
+  const got = views.reduce((n, v) => n + (state.found?.[v.id]?.length ?? 0), 0);
   el.innerHTML = `<div class="sheet">
     <header><h2>歲時記</h2><span>${state.collected.length} / ${total}</span>
+      ${traps ? `<span class="traps">廣重的手腳 ${got} / ${traps}</span>` : ''}
       <button id="x" class="ghost">閉じる</button></header>
     ${groups}</div>`;
   el.querySelector('#x').onclick = () => { el.remove(); onClose?.(); };
