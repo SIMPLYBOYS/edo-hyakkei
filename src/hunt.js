@@ -17,11 +17,11 @@
 // 圖會的題簽也印在畫面上（070 在右上、094 在左上），位置不固定，
 // 但都落在頂部那一帶——而那裡是天空／遠山／和歌。出題時遮掉頂部，
 // 幾乎不損失地理資訊；揭曉時整張放出來。
-import { meishozue, plate } from './paths.js';
+import { meishozue, miyage, plate } from './paths.js';
 
-// 挑選標準：圖會那張要讀得出地形，而且六題要有難度梯度與地理跨度。
+// 挑選標準：出題那張要讀得出地形，而且整組要有難度梯度與地理跨度。
 // 這是人工判斷，理由逐筆寫在後面（與 fetch-plates.py 的 PAIRS 同一個規矩）。
-// 池子是「有圖會對照的 52 景」（§7-14），要擴充從那裡挑。
+// 池子是「有任一種對照的 73 景」——圖會 52、土產 30、其中 9 景兩種都有。
 const HUNT = [
   [1,   '圖會畫的是日本橋魚市：橋、河、兩岸町屋。開場題，形狀最好認'],
   [58,  '新大橋橫跨大川。圖會是晴天的鳥瞰，橋墩結構與河寬清楚'],
@@ -30,6 +30,12 @@ const HUNT = [
   [70,  '兩條河的匯流口，渡場、石垣、載客的船。中川與小名木川交會處'],
   [87,  '★最難：它根本不在江戶，在三鷹。答錯不要緊——'
         + '重點是揭曉時你會發現這套百景的範圍比想像大'],
+  // 這兩題的出題圖來自《繪本江戶土產》（它們沒有圖會對照）。
+  // 土產是廣重自己的繪本，同樣讀得出地物，而且揭曉時的落差是「同一雙手」。
+  [111, '石造的太鼓橋跨在谷上，兩側是坡地與樹。土產是無雪的平常日子，'
+        + '揭曉才知道百景把它埋進大雪'],
+  [64,  '菖蒲田與其旁的河。土產畫的是整片田與賞花的人——'
+        + '揭曉時三兩朵放大到與遠景等高'],
 ];
 
 const km = (a, b) => {                       // 這個尺度用等距近似就夠，不需要 haversine
@@ -47,7 +53,11 @@ const dist = d => (d < 1 ? `${Math.round(d * 1000)} m` : `${d.toFixed(1)} km`);
 
 export function showHunt(views, map, onDone) {
   const rounds = HUNT.map(([id, why]) => ({ v: views.find(x => x.id === id), why }))
-    .filter(r => r.v?.assets.meishozue);       // 沒有圖會就出不了題
+    // 兩種對照都能出題。優先圖會——它是寫實鳥瞰，最適合「讀地形」；
+    // 沒有圖會就用土產，那是廣重自己的繪本版，同樣讀得出地物。
+    .map(r => r.v?.assets.meishozue ? { ...r, src: meishozue, from: '江戶名所圖會' }
+            : r.v?.assets.miyage ? { ...r, src: miyage, from: '繪本江戶土產' } : null)
+    .filter(Boolean);
   if (!rounds.length) return onDone?.();
   let i = 0, guess = null;
   const results = [];
@@ -68,9 +78,9 @@ export function showHunt(views, map, onDone) {
     map.hunt.clear();
     // masked：遮住頂部那一帶（題簽與和歌都在那裡）
     el.innerHTML = `
-      <div class="qimg masked"><img src="${meishozue(v.id)}" alt=""></div>
+      <div class="qimg masked"><img src="${rounds[i].src(v.id)}" alt=""></div>
       <div class="body">
-        <p class="n">${i + 1} / ${rounds.length}　江戶名所圖會</p>
+        <p class="n">${i + 1} / ${rounds.length}　${rounds[i].from}</p>
         <p class="q">這是江戶的哪裡？在地圖上點一下</p>
         <div class="act">
           <button id="hgo" disabled>ここだ</button>

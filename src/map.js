@@ -221,7 +221,9 @@ export function createMap(svg, views, geo, places, onPick) {
     const [x, y] = project(v.subject.lng, v.subject.lat);
     const g = document.createElementNS(svg.namespaceURI, 'g');
     g.setAttribute('class', 'mark');
-    // 有《名所圖會》對照的景加一圈，玩家才知道哪個能切換對照。
+    // 有對照的景加一圈，玩家才知道哪個能切換版本。
+    // 圖會或土產任一種就給一圈；**兩種都有給雙圈**——那是同一景三種畫法，
+    // §2.4 最好的教材，值得在圖上就看得出來。
     // 有方位角的畫一道視線扇形——那是 §7-15 從畫中地標推出來的廣重視線方向，
     // 不確定度約 ±30°，所以畫成扇形不是箭頭：形狀本身就在說「大概往這邊」。
     // 形狀一律畫在原點、用「螢幕像素」當單位，實際位置與大小交給 transform。
@@ -235,7 +237,8 @@ export function createMap(svg, views, geo, places, onPick) {
     // 可收的景會擴一圈暈（CSS 的 .pulse）。錯開起始時間，否則全圖同時呼吸
     // 像跑馬燈；錯開之後比較像水面上零星的漣漪。用 id 當種子，重整不會變。
     g.innerHTML = `${cone}<circle class="pulse" r="7" style="animation-delay:${(v.id % 9) * 0.34}s"/>
-      ${v.assets.meishozue ? '<circle class="ring" r="11"/>' : ''}
+      ${v.assets.meishozue || v.assets.miyage ? '<circle class="ring" r="11"/>' : ''}
+      ${v.assets.meishozue && v.assets.miyage ? '<circle class="ring" r="14.5"/>' : ''}
       <circle r="7"/>
       <text x="11" y="5">${v.title.ja ?? v.id}</text>`;
     g.onclick = e => { e.stopPropagation(); if (!dragged()) onPick(v); };
