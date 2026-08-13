@@ -4081,7 +4081,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "船頭の脚と櫓",
+        "note": "圖會把羽田弁財天社整個攤開：兩座鳥居、社殿、松、茶屋與參拜的人，地形一目瞭然。廣重鑽進渡船裡往外看——船夫的兩條腿與一支櫓佔住畫面左側與上緣，社縮成左邊一小片，海上的鳥居只剩一個點。",
+        "hitbox": {
+          "x": 0.3,
+          "y": 0.14,
+          "r": 0.15
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -4711,7 +4722,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "洲崎の社叢",
+        "note": "圖會從遠處看洲崎：那道沙嘴是海面上細細的一條，上面的社與村屋只是幾個小點，海上的帆船比它們還大。廣重把同一道沙嘴推到眼前——松林、社殿、鳥居、石垣一樣一樣看得清楚，海退到後面成了背景。",
+        "hitbox": {
+          "x": 0.62,
+          "y": 0.7,
+          "r": 0.12
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -5135,7 +5157,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "町の人と影",
+        "note": "土產從屋頂上方看猿若町：只有一排芝居小屋的屋根、幟與櫓，街道被屋頂擋住，一個人也看不到。百景降到街面正中——同一條町兩側的看板、櫓與滿街的人全在眼前，而且換成了夜裡，每個人腳下拖著一道月光的長影。",
+        "hitbox": {
+          "x": 0.42,
+          "y": 0.82,
+          "r": 0.15
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -5243,7 +5276,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "座敷の軒",
+        "note": "圖會從高處把整片武蔵野攤開：木母寺的伽藍、梅若塚、水神宮、內川與遠處的隅田川，什麼都在畫裡，什麼都小。廣重降到水面高度——右邊一棟茶屋的簷、柱與障子推到眼前佔住畫面邊緣，木母寺本身反而一點都看不到了。",
+        "hitbox": {
+          "x": 0.86,
+          "y": 0.45,
+          "r": 0.12
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -5351,7 +5395,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "楓の枝",
+        "note": "圖會把真間的丘陵整個攤開：弘法寺的伽藍、上山的石段、麓的村與田、遠處的海，地形一目瞭然。廣重讓一株楓的枝從上方與兩側伸進來，紅葉圍成一個洞——同一片地景只剩中間那一小塊看得到，其餘全被葉子擋住。",
+        "hitbox": {
+          "x": 0.45,
+          "y": 0.5,
+          "r": 0.14
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -5938,7 +5993,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "手前の木",
+        "note": "土產的小梅堤是遠望的平景：堤、水路、兩座木橋與散在的茶屋，中間沒有任何東西擋著。百景在同一處立起一株樹——樹幹從畫面上緣直插到下緣，把堤與遠田切成兩半，堀的水也從土產的淡藍變成近黑的深藍。",
+        "hitbox": {
+          "x": 0.63,
+          "y": 0.65,
+          "r": 0.1
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -6100,7 +6166,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "鷲",
+        "note": "圖會畫的是州崎弁財天社：社殿、玉垣、參道、茶屋與門前町的人，滿滿一整片。廣重站在同一片海邊，把社與町全部拿掉——底下只剩一片雪覆的空濕地，然後在上面放了一隻俯衝的鷲，佔住畫面上半。",
+        "hitbox": {
+          "x": 0.42,
+          "y": 0.33,
+          "r": 0.15
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null,
@@ -6264,7 +6341,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "袈裟懸松",
+        "note": "圖會裡袈裟懸松只是池畔小丘上一株低矮橫張的松，跟旁邊的茶屋、旅人、驢馬擺在一起，看得出它其實不高。百景把它放大到樹冠比底下整棟茶屋還大，盤據畫面正中——池被擠成左邊一道深藍的帶子。",
+        "hitbox": {
+          "x": 0.7,
+          "y": 0.46,
+          "r": 0.14
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": "名所圖會對照：千束の池 同名"
@@ -6318,7 +6406,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "太鼓橋",
+        "note": "土產裡這座太鼓橋在左下角，小小的一座，是雪原風景裡的一個物件。百景把同一座橋拉到畫面最下緣橫過整個底部，還鑽到橋底下去——石造的拱、橋墩與水都看得見，橋上的人比土產整座橋還大。",
+        "hitbox": {
+          "x": 0.33,
+          "y": 0.83,
+          "r": 0.15
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
