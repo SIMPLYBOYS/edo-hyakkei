@@ -98,7 +98,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "空と凧",
+        "note": "圖會裡霞ヶ関是一條被大名行列塞滿的坂道——駕籠、騎馬、挑夫、傘，數十人佔住整個畫面，天空幾乎不存在。廣重把同一條坂壓到畫面最下緣一條窄帶，上面四分之三全部讓給天與幾隻風箏。",
+        "hitbox": {
+          "x": 0.48,
+          "y": 0.12,
+          "r": 0.15
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -260,7 +271,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "removal",
+        "target": "回向院の境内",
+        "note": "圖會畫的是回向院開帳：境內擠滿數百人、幟與奉納所，寺就是整幅畫。廣重站在同一處卻背對境內，讓一座相撲的太鼓櫓骨架佔住畫面左半——寺與人群全部不在畫裡，只剩隅田川、船與遠處的富士。",
+        "hitbox": {
+          "x": 0.18,
+          "y": 0.5,
+          "r": 0.15
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null,
@@ -868,7 +890,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "紅い霞",
+        "note": "土產把花屋敷與底下的花樹之間留成空白的霞，兩層看得穿。百景在同一個位置壓上一整片濃紅——樓閣浮在紅霞之上，底下的花海被切開，成了兩個不相連的世界。",
+        "hitbox": {
+          "x": 0.28,
+          "y": 0.44,
+          "r": 0.16
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -1086,7 +1119,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "善光寺",
+        "note": "圖會整幅畫的就是善光寺：伽藍在畫面中央，四周是林、田與聚落，河不在畫裡。廣重反過來——荒川斜切整個畫面佔去四分之三，筏與渡船在上面漂，善光寺縮成右上角樹叢裡的一片屋頂。",
+        "hitbox": {
+          "x": 0.68,
+          "y": 0.16,
+          "r": 0.12
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -1488,7 +1532,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "梅の幹",
+        "note": "圖會從遠處俯瞰蒲田：梅園只是廣闊田野中一片密密的小樹叢，水路與田佔了大半，一株樹都認不出來。廣重走進園裡，讓兩三株梅的樹幹頂天立地撐滿整個畫面——田野與遠景全部不見了。",
+        "hitbox": {
+          "x": 0.46,
+          "y": 0.72,
+          "r": 0.12
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -1799,7 +1854,18 @@
       "meishozue": false,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "用水",
+        "note": "土產裡這條用水是遠景中一道淺淺的細流，與平坦的原野幾乎同高，看不出深淺。百景把它拉成一道深藍色的大 S——從畫面最下緣一路蜿蜒到地平線，兩岸的堤被拉高成斜面，水濃到發黑。",
+        "hitbox": {
+          "x": 0.4,
+          "y": 0.84,
+          "r": 0.14
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -2528,7 +2594,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "addition",
+        "target": "手前の女と傘",
+        "note": "圖會的鎧の渡し一覽無遺：對岸一排白牆土藏、河中滿載的渡船、岸邊的荷役，沒有任何東西擋在前面。百景在同一個渡口的右側立起一個女人的背影與一把黑傘，佔去畫面三分之一——土藏那一排只能從她的肩旁看過去。",
+        "hitbox": {
+          "x": 0.87,
+          "y": 0.4,
+          "r": 0.12
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null,
@@ -3885,7 +3962,18 @@
       "meishozue": true,
       "miyage": false
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "岸の番所",
+        "note": "圖會站在岸上：一座大屋根的番所與石垣佔住畫面左三分之一，連椽子都數得出來，水路只是它背後的背景。廣重把自己抬到高處去畫水路本身——三叉的中川口整個攤開成 Y 字，那座番所縮成左下角一片認不出來的黃屋頂。",
+        "hitbox": {
+          "x": 0.08,
+          "y": 0.9,
+          "r": 0.1
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
@@ -5535,7 +5623,18 @@
       "meishozue": true,
       "miyage": true
     },
-    "distortions": [],
+    "distortions": [
+      {
+        "type": "scale",
+        "target": "大提灯",
+        "note": "圖會把浅草寺整座攤開：五重塔、本堂、鐘樓、仁王門與參道上的數百人，一棟一棟數得出來。廣重站到雷門底下，讓一盞提燈佔住畫面上方三分之一——它比遠處的五重塔還大，寺本身縮成雪裡的一小片。",
+        "hitbox": {
+          "x": 0.62,
+          "y": 0.13,
+          "r": 0.2
+        }
+      }
+    ],
     "notes": {
       "geo": null,
       "commentary": null
