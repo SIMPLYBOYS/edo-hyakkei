@@ -46,6 +46,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
     const tally = el.querySelector('#tally');
     findLies(el.querySelector('img'), v, seen, {
       onFind,
+      prompt: el.querySelector('.hunt'),      // 空點三次後這行會變成提示
       onShow(d) { tally.innerHTML = `<b>${d.target}</b>${d.note}`; tally.classList.add('on'); },
     });
   }

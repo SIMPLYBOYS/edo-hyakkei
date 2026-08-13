@@ -178,6 +178,7 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
       const tally = body.querySelector('#tally');
       findLies(body.querySelector('img'), v, found[v.id] ?? [], {
         onFind: n => onFind?.(v.id, n),
+        prompt: body.querySelector('.hunt'),
         onShow(x) { tally.innerHTML = `<b>${x.target}</b>${x.note}`; tally.classList.add('on'); },
       });
     }
