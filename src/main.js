@@ -95,6 +95,10 @@ function paint() {
 // 找到廣重動的手腳就記一筆。看畫（§2.4）與狩獵揭曉（§2.10）共用同一格。
 const noteLie = (id, i) => { (state.found[id] ??= []).push(i); save(state); };
 
+// 從歲時記翻回來重看。不移動、不耗日、不能再收一次——收過的畫本來就是你的了，
+// 再看一次不該有代價。變造照樣找得，記在同一格。
+const reopen = v => showView(v, { found: state.found[v.id] ?? [], onFind: i => noteLie(v.id, i) });
+
 function pick(v) {
   const clock = clockFrom(state.day);
   if (state.collected.includes(v.id)) return say(`${v.title.ja} 已經收過了`);
@@ -227,7 +231,8 @@ function showEnd() {
       <button id="endclose" class="ghost">続ける</button>
     </div></div>`;
   el.querySelector('#endclose').onclick = () => { el.remove(); paint(); };
-  el.querySelector('#endbook').onclick = () => { el.remove(); showZukan(views, state, paint); };
+  el.querySelector('#endbook').onclick = () =>
+    { el.remove(); showZukan(views, state, { onClose: paint, onPick: reopen }); };
   document.body.append(el);
 }
 
@@ -252,7 +257,7 @@ eraInput.oninput = () => map.setEra(eraInput.value / 1000);
 // 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
 document.getElementById('hunt').onclick = () =>
   showHunt(views, map, { found: state.found, onFind: noteLie, onDone: paint });
-document.getElementById('book').onclick = () => showZukan(views, state);
+document.getElementById('book').onclick = () => showZukan(views, state, { onPick: reopen });
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }
 };

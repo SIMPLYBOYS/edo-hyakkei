@@ -227,6 +227,10 @@
   .cell b { font-size:10px; opacity:.35; font-weight:400 }
   .cell img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
   .cell.has b { display:none }
+  /* 收過的點得開大圖；沒收的是空格，不該看起來能按 */
+  .cell.has { cursor:pointer; transition:border-color .15s }
+  .cell.has:hover { border-color:var(--gold) }
+  .cell.has:hover img { opacity:.85 }
 </style>
 
 <svg id="map"></svg>

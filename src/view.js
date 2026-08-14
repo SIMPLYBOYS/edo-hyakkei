@@ -24,10 +24,11 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
         ${v.distortions.length ? `<div class="hunt">廣重在這張畫裡動了手腳。點畫面找找看。</div>
         <div id="tally"></div>` : ''}
         <div class="act">
-          <button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>
+          <!-- 沒有 onCollect＝從歲時記翻回來重看的，已經收過了，不能再收一次 -->
+          ${onCollect ? `<button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>` : ''}
           ${v.assets.meishozue ? '<button id="flip" class="ghost">看《名所圖會》</button>' : ''}
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
-          <button id="leave" class="ghost">先不看</button>
+          <button id="leave" class="ghost">${onCollect ? '先不看' : '閉じる'}</button>
         </div>
         ${v.assets.meishozue ? `<p class="hint">《名所圖會》是地誌——俯瞰、寫實、地名齊全。
           廣重畫的是同一個地方，但他動了手腳。兩邊對著看。</p>` : ''}
@@ -79,8 +80,9 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
       img.classList.toggle('zue', want && f.wide);
     };
   }
-  el.querySelector('#collect').onclick = () => { el.remove(); onCollect(); };
-  el.querySelector('#leave').onclick = () => { el.remove(); onClose(); };
-  el.onclick = e => { if (e.target === el) { el.remove(); onClose(); } };
+  const close = () => { el.remove(); onClose?.(); };
+  if (onCollect) el.querySelector('#collect').onclick = () => { el.remove(); onCollect(); };
+  el.querySelector('#leave').onclick = close;
+  el.onclick = e => { if (e.target === el) close(); };
   document.body.append(el);
 }

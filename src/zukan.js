@@ -5,7 +5,7 @@ import { thumb } from './paths.js';
 
 const ORDER = ['spring', 'summer', 'autumn', 'winter'];
 
-export function showZukan(views, state, onClose) {
+export function showZukan(views, state, { onClose, onPick } = {}) {
   const el = document.createElement('div');
   el.className = 'overlay zukan';
   const groups = ORDER.map(s => {
@@ -15,7 +15,9 @@ export function showZukan(views, state, onClose) {
       <h3>${seasonJa(s)}<span>${got} / ${list.length}</span></h3>
       <div class="grid">${list.map(v => {
         const has = state.collected.includes(v.id);
-        return `<div class="cell ${has ? 'has' : ''}" title="${v.title.ja ?? v.id}">
+        // 收過的才點得開——沒收的格子是空白，那個空白本身就是內容
+        return `<div class="cell ${has ? 'has' : ''}" data-id="${v.id}"
+                     title="${has ? `${v.title.ja ?? v.id}（點開看大圖）` : v.title.ja ?? v.id}">
           ${has ? `<img src="${thumb(v.id)}" alt="${v.title.ja ?? ''}">` : ''}
           <b>${v.id}</b></div>`;
       }).join('')}</div>
@@ -32,6 +34,11 @@ export function showZukan(views, state, onClose) {
       <button id="x" class="ghost">閉じる</button></header>
     ${groups}</div>`;
   el.querySelector('#x').onclick = () => { el.remove(); onClose?.(); };
-  el.onclick = e => { if (e.target === el) { el.remove(); onClose?.(); } };
+  el.onclick = e => {
+    // 縮圖點得開大圖。歲時記不關掉——看完那一張要能接著翻下一張。
+    const cell = e.target.closest('.cell.has');
+    if (cell) return onPick?.(views.find(v => v.id === +cell.dataset.id));
+    if (e.target === el) { el.remove(); onClose?.(); }
+  };
   document.body.append(el);
 }
