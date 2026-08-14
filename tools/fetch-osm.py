@@ -43,8 +43,25 @@ QUERY = f"""[out:json][timeout:240];
   rel["leisure"="park"]["name"]({BBOX});
   way["railway"="rail"]["usage"!="industrial"]["service"!~"."]({BBOX});
   way["highway"~"^(motorway|trunk|primary)$"]({BBOX});
+  node["place"="city"]["name"]({BBOX});
 );
 out geom;"""
+
+# 現代地名。只取 place=city——框內剛好 31 個（23 區＋周邊市），密度跟江戶
+# 那 62 個地名相當。再往下一層 quarter 有 653 個、neighbourhood 4097 個，
+# 那不是地名是噪音，標籤避讓會把它們絕大多數丟掉，只留下隨機的一小撮。
+#
+# 東京都排掉：它在 OSM 也標成 place=city，但那是都本身，錨點落在都廳，
+# 跟旁邊的新宿区疊在一起講同一件事。
+#
+# 浦安市排掉的理由不一樣，而且是遮蔽而非修正：它的錨點落在我們這份圖資
+# 的海面上，名字浮在一片藍色上看起來就是壞掉。真正的問題是東側的陸地邊界
+# ——浦安幾乎整個是戰後填海，這份 modern 圖層畫不出來。排掉它只是不讓那個
+# 破綻被一個標籤指出來，**東邊的海岸線本身還是不對的**。
+SKIP_CITY = {"東京都", "浦安市"}
+# 區的直徑大致就是這個級距。size 決定「畫面上要多大才標名字」，
+# 給實際尺度而不是給一個必定通過的大數，遠近才有一致的疏密。
+CITY_SIZE = 0.045
 
 
 def classify(t):
@@ -110,9 +127,17 @@ def main():
     def inbox(p):
         return bw <= p[0] <= be and bs <= p[1] <= bn
 
-    geo, cand = {}, {}
+    geo, cand, cities = {}, {}, []
     for e in els:
         tags = e.get("tags") or {}
+        # 現代地名是 node，沒有 geometry，走不進下面那條抽稀的路
+        if e.get("type") == "node" and tags.get("place") == "city":
+            n = tags.get("name")
+            if n and n not in SKIP_CITY and inbox([e["lon"], e["lat"]]):
+                cities.append({"name": n, "kind": "city",
+                               "lng": round(e["lon"], 5), "lat": round(e["lat"], 5),
+                               "size": CITY_SIZE})
+            continue
         layer = classify(tags)
         if not layer:
             continue
@@ -156,6 +181,7 @@ def main():
         labels.append({"name": n, "kind": layer,
                        "lng": anchor[0], "lat": anchor[1], "size": round(size, 4)})
     labels.sort(key=lambda l: -l["size"])
+    labels += sorted(cities, key=lambda l: l["name"])   # 現代地名獨立一批，前端只在現代側畫
 
     for k in sorted(geo):
         print(f"  {k:<11} {len(geo[k]):>5} 條 / {sum(len(w) for w in geo[k]):>6} 點")
@@ -178,6 +204,12 @@ def main():
     # 江戶城的堀是這份資料的賣點（見檔頭），抓不到就是查詢或 bbox 壞了
     moats = [l["name"] for l in labels if "濠" in l["name"] or "淵" in l["name"]]
     assert len(moats) >= 3, f"江戶城的堀只抓到 {moats}，bbox 或查詢可能不對"
+    # 現代地名同樣用點檢查，不看總數——「抓到 30 個」不保證抓到的是哪 30 個。
+    # 這五個是畫框正中心那幾區，少了任何一個就是 place=city 的標法變了。
+    got = {l["name"] for l in labels if l["kind"] == "city"}
+    must = {"千代田区", "中央区", "台東区", "墨田区", "新宿区"}
+    assert must <= got, f"現代地名少了 {must - got}"
+    assert "東京都" not in got, "東京都該被排掉（錨點在都廳，跟新宿区疊著）"
     # 錨點現在一律取自框內的點，所以這裡可以嚴格驗——有一個在框外就是算錯了。
     # 先前放寬成 70% 是錯的：它讓真間川、玉川上水、江戸川三個名字飄在畫紙外面，
     # 一路到使用者截圖才發現。「大部分是對的」不是一個檢查。

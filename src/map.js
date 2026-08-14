@@ -145,7 +145,8 @@ export function createMap(svg, views, geo, places, onPick) {
     placesG.append(t);
     // span = 這個地物在地圖座標上的跨距。地物要在畫面上佔到一定比例才標名字，
     // 否則皇居那二十條堀在遠處會疊成一坨墨。
-    return { el: t, span: p.size / (B.e - B.w) * W, edo: p.edo, now: p.osm };
+    return { el: t, span: p.size / (B.e - B.w) * W, edo: p.edo, now: p.osm,
+             city: p.kind === 'city' };
   });
   const SHOW = 0.06;
   let era = 1;
@@ -205,10 +206,15 @@ export function createMap(svg, views, geo, places, onPick) {
         if (m.g.classList.contains(want)) t.classList.toggle('crowded', !show);
       }
     }
-    for (const l of labels) {
+    // 江戶地名先排，區名撿剩下的位置。水系與堀是這張圖的骨架，
+    // 區名是「現在這裡叫什麼」的註腳，讓註腳讓位比較不痛。
+    for (const l of [...labels.filter(l => !l.city), ...labels.filter(l => l.city)]) {
       const n = l.el.textContent.length;
-      l.el.style.display =
-        l.span / vb.w > SHOW && onScreen(+l.el.getAttribute('x'), +l.el.getAttribute('y'))
+      // 區名只活在現代側：1858 年沒有新宿区，滑過去就該不見。
+      // 江戶那 62 個是水系與堀，那些名字兩個時代都通，所以不受這條管。
+      const inEra = !l.city || era <= 0.5;
+      l.el.style.display = inEra
+        && l.span / vb.w > SHOW && onScreen(+l.el.getAttribute('x'), +l.el.getAttribute('y'))
         && place(+l.el.getAttribute('x'), +l.el.getAttribute('y') - px * 4,
                  px * 12 * n, px * 14) ? '' : 'none';
     }

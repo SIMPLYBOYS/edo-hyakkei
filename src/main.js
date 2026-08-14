@@ -54,6 +54,11 @@ if (!world.labels) console.warn('modern.json 沒有 labels 欄位——多半是
 const anchor = new Map((world.labels ?? []).map(l => [l.name, l]));
 const places = (edo.places ?? []).map(p => ({ ...p, ...anchor.get(p.osm) }))
   .filter(p => p.lng != null);
+// 現代地名（23 區＋周邊市，OSM 的 place=city）。跟江戶地名走同一套避讓與縮放，
+// 差別只在 kind——地圖只在滑桿推到現代側時畫它們。
+// 江戶那 62 個是水系與堀，那些名字兩個時代都通；區名不是，1858 年沒有新宿区。
+places.push(...(world.labels ?? []).filter(l => l.kind === 'city')
+  .map(l => ({ ...l, osm: l.name, edo: null })));
 // §2.9 史實事件。日期換算成遊戲日，跨過去的時候講一聲。
 // 這些事件**不改變任何數值**——理由見 events.json 的 _no_mechanics：
 // 它們真正的機制後果早就在資料裡了（台風之後三個月，地圖確實不長新的景）。
