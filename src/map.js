@@ -333,27 +333,57 @@ export function createMap(svg, views, geo, places, onPick) {
   };
   svg.ondblclick = e => { const [cx, cy] = toSvg(e); zoomTo(vb.w / 2, cx, cy); };
   addEventListener('resize', remax);   // 視窗長寬比變了，全図需要的寬度也變了
-  // 方向鍵走一步＝畫面的六分之一。整格會暈，太小又要按半天；
-  // 用比例而不是固定距離，拉近時走小步、拉遠時走大步，兩種尺度都合手。
-  const STEP = 1 / 6;
+  // 方向鍵是按住連續走，不是一下跳一格。
+  // 交給作業系統的按鍵重複也不行——先卡半秒再暴衝，那不叫綿密，
+  // 所以自己開 rAF，每一幀推一點點。
+  //
+  // 速度定成「每秒走幾個畫面寬」而不是「每幀走幾單位」：
+  //   · 120Hz 的螢幕不會跑成兩倍快
+  //   · 拉近時走得慢、拉遠時走得快，兩種尺度手感一致
+  const PER_SEC = 0.55;                     // 橫越一個畫面約一秒八
   const ARROWS = {
     ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1],
   };
+  const held = new Set();
+  let raf = 0, last = 0;
+
+  const busy = () => document.querySelector('.overlay') || document.getElementById('hunt-ui');
+  // 焦點在滑桿或按鈕上時方向鍵是它們的（年代滑桿本來就靠左右鍵微調）。
+  // 🔴 問 activeElement 而不是 e.target：keydown 派到 window 時 target 是
+  // window，沒有 closest，一問就 TypeError——而全域 handler 會把它變成
+  // 整片紅色致命框。而且該問的本來就是「焦點在哪」。
+  const typing = () => {
+    const f = document.activeElement;
+    return f && f !== document.body && f.matches('input,button,select,textarea');
+  };
+  const halt = () => { held.clear(); cancelAnimationFrame(raf); raf = 0; last = 0; };
+  const tick = t => {
+    if (!held.size || busy()) return halt();
+    // 切到別的分頁再回來，t 會跳掉好幾秒；不夾住的話地圖會瞬移。
+    // last 為 0（第一幀）時算成一幀，這樣輕點一下也走得動。
+    const dt = Math.min((t - (last || t - 16)) / 1000, 0.1);
+    last = t;
+    let dx = 0, dy = 0;
+    for (const k of held) { dx += ARROWS[k][0]; dy += ARROWS[k][1]; }
+    const len = Math.hypot(dx, dy) || 1;    // 斜著走不該比直著走快
+    pan(dx / len * vb.w * PER_SEC * dt, dy / len * vb.h * PER_SEC * dt);
+    raf = requestAnimationFrame(tick);
+  };
+
   addEventListener('keydown', e => {
-    if (document.querySelector('.overlay') || document.getElementById('hunt-ui')) return;
-    // 焦點在滑桿或按鈕上時方向鍵是它們的（年代滑桿本來就靠左右鍵微調）。
-    // 🔴 問 activeElement 而不是 e.target：keydown 派到 window 時 target 是
-    // window，沒有 closest，一問就 TypeError——而全域 handler 會把它變成
-    // 整片紅色致命框。而且該問的本來就是「焦點在哪」。
-    const focus = document.activeElement;
-    if (focus && focus !== document.body && focus.matches('input,button,select,textarea')) return;
+    if (busy() || typing()) return;
     const c = { x: vb.x + vb.w / 2, y: vb.y + vb.h / 2 };
     if (e.key === '=' || e.key === '+') zoomTo(vb.w / 1.5, c.x, c.y);
     if (e.key === '-' || e.key === '_') zoomTo(vb.w * 1.5, c.x, c.y);
     if (e.key === '0') fitAll();                         // 迷路了按 0 回到全圖
-    const dir = ARROWS[e.key];
-    if (dir) { pan(dir[0] * vb.w * STEP, dir[1] * vb.h * STEP); e.preventDefault(); }
+    if (!ARROWS[e.key]) return;
+    e.preventDefault();                                  // 不要讓頁面跟著捲
+    held.add(e.key);
+    if (!raf) raf = requestAnimationFrame(tick);
   });
+  addEventListener('keyup', e => { held.delete(e.key); if (!held.size) halt(); });
+  // 按著方向鍵切走視窗，放開的那一下不在這個頁面——不清掉鍵會一直卡著走
+  addEventListener('blur', halt);
   // 不要用 setPointerCapture：capture 之後 pointerup 落在 svg 上，
   // click 就改派到 svg 而不是景點那個 <g>，onclick 永遠不會觸發。
   // svg 本來就滿版，不 capture 也不會跟丟。
