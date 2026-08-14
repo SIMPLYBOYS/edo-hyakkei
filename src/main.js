@@ -257,7 +257,27 @@ zfit.onclick = map.fitAll;
 map.onChange(() => { zin.disabled = map.atMin(); zout.disabled = map.atMax(); });
 
 const eraInput = document.getElementById('era');
-eraInput.oninput = () => map.setEra(eraInput.value / 1000);
+const eraNow = document.getElementById('eranow');
+// 拖動時要看得到自己在哪。
+//
+// 🔴 但**不內插年份**。這條滑桿只有兩份圖資：2026 的 OSM 與 1858 的江戶層，
+// 中間是交叉淡入，沒有 1900 也沒有 1942。在半路印「1942 年」等於告訴玩家
+// 昭和十七年的東京長這樣——那是 distortions 的 _rule 禁的同一件事，
+// 遊戲裡言之鑿鑿的假知識。所以讀數講的是「疊了多少」，不是哪一年。
+//
+// 兩端才報年份，因為那兩端是真的有資料的年份。
+let eraFade;
+eraInput.oninput = () => {
+  const t = eraInput.value / 1000;
+  map.setEra(t);
+  eraNow.textContent = t > 0.98 ? '安政五年 1858 の地圖'
+    : t < 0.02 ? '2026 現在の地圖'
+    : `兩張圖疊著 — 江戶 ${Math.round(t * 100)}%`;
+  // 停手兩秒就淡出：它是拖動時的回饋，不是常駐的抬頭顯示
+  eraNow.classList.add('on');
+  clearTimeout(eraFade);
+  eraFade = setTimeout(() => eraNow.classList.remove('on'), 2000);
+};
 // §2.10 視點狩獵。不動收集進度與日期，但揭曉頁能找變造，那筆要記住——
 // 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
 document.getElementById('hunt').onclick = () =>
@@ -269,4 +289,7 @@ document.getElementById('reset').onclick = () => {
 // 用滑桿當下的值開場，不要寫死 1——瀏覽器重整時會還原表單值，
 // 寫死的話滑桿位置與地圖年代會對不上。
 eraInput.oninput();
+// 開場那次不該留著讀數：它是「你剛剛拖到這裡」的回饋，玩家還沒碰過它。
+eraNow.classList.remove('on');
+clearTimeout(eraFade);
 paint();
