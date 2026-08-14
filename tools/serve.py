@@ -18,6 +18,7 @@ token 取 src/ 底下最新的 mtime——動過任何一個檔，整包的網�
 
 用法： python3 tools/serve.py [port]
 """
+import errno
 import re
 import sys
 from functools import partial
@@ -75,5 +76,15 @@ if __name__ == "__main__":
     assert IMPORT_RE.sub("X", "import x from 'https://cdn/y.js'") == "import x from 'https://cdn/y.js'"
 
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
+    try:
+        server = HTTPServer(("", port), partial(Dev, directory=str(ROOT)))
+    except OSError as e:
+        if e.errno != errno.EADDRINUSE:
+            raise
+        # traceback 的最後一行是 socket.bind，看不出「是誰佔著」。
+        # 這台通常已經在另一個視窗開著，或是被別的工具開起來忘了關。
+        sys.exit(f"port {port} 已經有人在用了。\n"
+                 f"  誰佔著： lsof -nP -iTCP:{port} -sTCP:LISTEN\n"
+                 f"  換一個： python3 tools/serve.py {port + 1}")
     print(f"http://localhost:{port}  （import 會自動帶版本號，改完重整就好）")
-    HTTPServer(("", port), partial(Dev, directory=str(ROOT))).serve_forever()
+    server.serve_forever()
