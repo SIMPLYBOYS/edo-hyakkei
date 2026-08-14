@@ -305,13 +305,19 @@ export function createMap(svg, views, geo, places, onPick) {
   // 而王子與羽田這種邊緣景本來就該用拖的找。
   const fitCity = () => frame(pct(XS, .05), pct(XS, .95), pct(YS, .05), pct(YS, .95));
 
+  // 別讓地圖被拖到畫面外完全不見：左上角限制在內容範圍加半個畫面的餘裕。
+  // 拖曳、縮放、方向鍵三條路都要夾同一組界線，所以只寫在這裡。
+  const rein = () => {
+    vb.x = clamp(vb.x, -vb.w * 0.6, W - vb.w * 0.4);
+    vb.y = clamp(vb.y, -vb.h * 0.6, H - vb.h * 0.4);
+  };
+  const pan = (dx, dy) => { vb.x += dx; vb.y += dy; rein(); apply(); };
+
   function zoomTo(nw, cx, cy) {
     nw = clamp(nw, MIN, MAX);
     const f = nw / vb.w;
     vb = { x: cx - (cx - vb.x) * f, y: cy - (cy - vb.y) * f, w: nw, h: (H / W) * nw };
-    // 別讓地圖被拖到畫面外完全不見：中心點限制在內容範圍加半個畫面的餘裕
-    vb.x = clamp(vb.x, -vb.w * 0.6, W - vb.w * 0.4);
-    vb.y = clamp(vb.y, -vb.h * 0.6, H - vb.h * 0.4);
+    rein();
     svg.classList.toggle('zoomed', nw < W * 0.45);  // 拉近才顯示地名，否則市中心疊成一團
     apply();
   }
@@ -327,12 +333,26 @@ export function createMap(svg, views, geo, places, onPick) {
   };
   svg.ondblclick = e => { const [cx, cy] = toSvg(e); zoomTo(vb.w / 2, cx, cy); };
   addEventListener('resize', remax);   // 視窗長寬比變了，全図需要的寬度也變了
+  // 方向鍵走一步＝畫面的六分之一。整格會暈，太小又要按半天；
+  // 用比例而不是固定距離，拉近時走小步、拉遠時走大步，兩種尺度都合手。
+  const STEP = 1 / 6;
+  const ARROWS = {
+    ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1],
+  };
   addEventListener('keydown', e => {
-    if (document.querySelector('.overlay')) return;      // 看畫時不要動地圖
+    if (document.querySelector('.overlay') || document.getElementById('hunt-ui')) return;
+    // 焦點在滑桿或按鈕上時方向鍵是它們的（年代滑桿本來就靠左右鍵微調）。
+    // 🔴 問 activeElement 而不是 e.target：keydown 派到 window 時 target 是
+    // window，沒有 closest，一問就 TypeError——而全域 handler 會把它變成
+    // 整片紅色致命框。而且該問的本來就是「焦點在哪」。
+    const focus = document.activeElement;
+    if (focus && focus !== document.body && focus.matches('input,button,select,textarea')) return;
     const c = { x: vb.x + vb.w / 2, y: vb.y + vb.h / 2 };
     if (e.key === '=' || e.key === '+') zoomTo(vb.w / 1.5, c.x, c.y);
     if (e.key === '-' || e.key === '_') zoomTo(vb.w * 1.5, c.x, c.y);
     if (e.key === '0') fitAll();                         // 迷路了按 0 回到全圖
+    const dir = ARROWS[e.key];
+    if (dir) { pan(dir[0] * vb.w * STEP, dir[1] * vb.h * STEP); e.preventDefault(); }
   });
   // 不要用 setPointerCapture：capture 之後 pointerup 落在 svg 上，
   // click 就改派到 svg 而不是景點那個 <g>，onclick 永遠不會觸發。
@@ -347,10 +367,7 @@ export function createMap(svg, views, geo, places, onPick) {
     if (!drag) return;
     const [x, y] = toSvg(e);
     moved += Math.abs(x - drag.x) + Math.abs(y - drag.y);
-    // 拖曳同樣要夾住，否則可以把地圖整個拖出畫面外
-    vb.x = clamp(vb.x - (x - drag.x), -vb.w * 0.6, W - vb.w * 0.4);
-    vb.y = clamp(vb.y - (y - drag.y), -vb.h * 0.6, H - vb.h * 0.4);
-    apply();
+    pan(-(x - drag.x), -(y - drag.y));
   };
   // 拖曳結束時滑鼠常常正好停在某個景上，不擋掉的話一拖就誤入該景
   dragged = () => moved > 6;
