@@ -101,6 +101,16 @@
   #eranow.on { opacity:.85 }
   #attr { font-size:10px; opacity:.4; margin-top:4px }   /* ODbL 要求標示出處 */
 
+  /* 和紙的紙紋。
+     做法選的是「把濾鏡包成 data: URI 當 CSS 背景圖」而不是「feTurbulence
+     當 SVG 濾鏡疊在地圖上」——前者瀏覽器光柵化一次然後平鋪，後者每一幀
+     重算。交錯量測下兩者都還撞得到 60fps，但便宜是結構上的，不必靠量測背書。
+     而且它固定在螢幕上不隨地圖平移——紙是螢幕這張紙，不是地圖的一部分，
+     拖動時紙紋跟著跑反而會露餡。 */
+  #washi { position:fixed; inset:0; pointer-events:none; z-index:5; opacity:.11;
+           mix-blend-mode:multiply;
+           background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E") }
+
   /* 縮放控制：快捷鍵藏著等於不存在，要有看得見的按鈕 */
   #zoom { position:fixed; right:20px; bottom:96px; display:flex; flex-direction:column; gap:1px }
   #zoom button { width:38px; height:38px; padding:0; font-size:17px; line-height:1;
@@ -241,6 +251,8 @@
 </style>
 
 <svg id="map"></svg>
+<!-- 紙紋。壓在地圖上、所有介面之下（z-index 5，HUD 是 10 以上）。 -->
+<div id="washi"></div>
 
 <div id="hud">
   <span id="date"></span>

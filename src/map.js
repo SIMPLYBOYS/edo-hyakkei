@@ -71,11 +71,16 @@ export function createMap(svg, views, geo, places, onPick) {
            框外交給 body 的 --sea 底色——那是「圖到此為止」，不是海也不是陸。
            不裁的話陸地多邊形會一路鋪到框外幾十公里，全是沒資料的米色。 -->
       <clipPath id="sheet"><rect x="0" y="0" width="${W}" height="${H}"/></clipPath>
+      <!-- 路與軌各畫兩層（下面 #modern）。幾何只存一份，用 <use> 引兩次——
+           把那兩串 d 複製一遍會讓 DOM 多幾十萬個字元，而它們是整份資料裡最肥的。 -->
+      <path id="roadgeo" d="${multi(geo.road)}"/>
+      <path id="railgeo" d="${multi(geo.rail)}"/>
     </defs>
     <g clip-path="url(#sheet)">
     <rect x="0" y="0" width="${W}" height="${H}" fill="var(--sea)"/>
-    <!-- 底層畫的是現代陸地（含新生地），江戶的海岸線靠上面的 #reclaimed 蓋出來 -->
-    <path d="${modernLand}" fill="var(--land)"/>
+    <!-- 底層畫的是現代陸地（含新生地），江戶的海岸線靠上面的 #reclaimed 蓋出來。
+         描邊讓水陸交界有一條線，海灣的形狀在全圖時比較認得出來。 -->
+    <path d="${modernLand}" fill="var(--land)" stroke="#8ea3b4" stroke-width="1.1" opacity=".95"/>
     <g clip-path="url(#land)">
     <path id="park" d="${multi(geo.park)}Z" fill="#b9c4a6" opacity=".5"/>
     <!-- 堀與川是江戶就有的（半蔵濠、千鳥ヶ淵、日本橋川…），兩個年代都畫 -->
@@ -83,10 +88,17 @@ export function createMap(svg, views, geo, places, onPick) {
     <path id="wline" d="${multi(geo.water_line)}" fill="none" stroke="var(--river)"
           stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>
     <!-- 鐵路與幹道才是現代的，滑到 1858 要消失 -->
-    <g id="modern">
-      <path d="${multi(geo.road)}" fill="none" stroke="#a89880" stroke-width="1.1" opacity=".6"/>
-      <path d="${multi(geo.rail)}" fill="none" stroke="#8a7f72" stroke-width="1"
-            stroke-dasharray="5 3" opacity=".7"/>
+    <g id="modern" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 道路兩層：寬的深色打底、窄的淺色壓上。一條線看起來是「線」，
+           兩層疊起來才看起來是「路」——而且交叉口會自己接成路網，
+           不必知道哪條壓哪條。這是製圖的 casing，不是裝飾。
+           鐵路同理：實線打底＋淺色虛線壓上＝枕木。原本是一條棕色虛線，
+           粗細與顏色都跟道路太接近，兩者分不出來。 -->
+      <use href="#roadgeo" stroke="#9a8a71" stroke-width="2.4" opacity=".38"/>
+      <use href="#roadgeo" stroke="#f2ead6" stroke-width="1.2" opacity=".95"/>
+      <use href="#railgeo" stroke="#6d645a" stroke-width="1.6" opacity=".5"/>
+      <use href="#railgeo" stroke="#efe8d8" stroke-width="1.1"
+           stroke-dasharray="3.5 3.5" opacity=".85"/>
     </g>
     </g>
     <!-- 新生地。1858 那側用海把它蓋回去——連同上面畫的碼頭運河一起蓋掉，
