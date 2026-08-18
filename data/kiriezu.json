@@ -1,0 +1,316 @@
+{
+  "_": "江戶切繪圖（尾張屋清七板）。國立國會圖書館數位典藏，IIIF，公有領域。",
+  "_use": "當**文獻**用，不當底圖：切繪圖方位各異、比例不均、街區是示意格網，疊到現代地圖上會產生看起來很權威的系統性錯誤。理由詳見 tools/fetch-kiriezu.py。",
+  "_how": "PID 以掃描 manifest 標題取得，不連號（見該檔的 PIDS）。",
+  "_todo": "covers：每張涵蓋哪一帶，用來把 118 景各自對到一張。尚未填。",
+  "sheets": [
+    {
+      "pid": 1286207,
+      "title": "下谷絵図",
+      "full_title": "〔江戸切絵図〕. 下谷絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286207/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286208,
+      "title": "今戸箕輪浅草絵図",
+      "full_title": "〔江戸切絵図〕. 今戸箕輪浅草絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286208/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286209,
+      "title": "浅草御蔵前辺図",
+      "full_title": "〔江戸切絵図〕. 浅草御蔵前辺図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286209/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286645,
+      "title": "日本橋北神田浜町絵図",
+      "full_title": "〔江戸切絵図〕. 日本橋北神田浜町絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286645/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286656,
+      "title": "御江戸大名小路絵図",
+      "full_title": "〔江戸切絵図〕. 御江戸大名小路絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286656/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286657,
+      "title": "外桜田永田町絵図",
+      "full_title": "〔江戸切絵図〕. 外桜田永田町絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286657/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286658,
+      "title": "御江戸番町絵図",
+      "full_title": "〔江戸切絵図〕. 御江戸番町絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286658/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286659,
+      "title": "駿河台小川町絵図",
+      "full_title": "〔江戸切絵図〕. 駿河台小川町絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286659/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286660,
+      "title": "築地八町堀日本橋南絵図",
+      "full_title": "〔江戸切絵図〕. 築地八町堀日本橋南絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286660/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286662,
+      "title": "芝愛宕下絵図",
+      "full_title": "〔江戸切絵図〕. 芝愛宕下絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286662/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286663,
+      "title": "芝高輪辺絵図",
+      "full_title": "〔江戸切絵図〕. 芝高輪辺絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286663/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286664,
+      "title": "目黒白金辺図",
+      "full_title": "〔江戸切絵図〕. 目黒白金辺図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286664/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286665,
+      "title": "麻布絵図",
+      "full_title": "〔江戸切絵図〕. 麻布絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286665/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286666,
+      "title": "赤坂絵図",
+      "full_title": "〔江戸切絵図〕. 赤坂絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286666/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286667,
+      "title": "青山渋谷絵図",
+      "full_title": "〔江戸切絵図〕. 青山渋谷絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286667/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286668,
+      "title": "四ツ谷絵図",
+      "full_title": "〔江戸切絵図〕. 四ツ谷絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286668/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286669,
+      "title": "内藤新宿千駄ヶ谷絵図",
+      "full_title": "〔江戸切絵図〕. 内藤新宿千駄ヶ谷絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286669/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286670,
+      "title": "市ヶ谷牛込絵図",
+      "full_title": "〔江戸切絵図〕. 市ヶ谷牛込絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286670/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286671,
+      "title": "大久保絵図",
+      "full_title": "〔江戸切絵図〕. 大久保絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286671/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286672,
+      "title": "小日向絵図",
+      "full_title": "〔江戸切絵図〕. 小日向絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286672/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286673,
+      "title": "音羽絵図",
+      "full_title": "〔江戸切絵図〕. 音羽絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286673/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286674,
+      "title": "巣鴨絵図",
+      "full_title": "〔江戸切絵図〕. 巣鴨絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286674/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286675,
+      "title": "駒込絵図",
+      "full_title": "〔江戸切絵図〕. 駒込絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286675/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286676,
+      "title": "本郷湯島絵図",
+      "full_title": "〔江戸切絵図〕. 本郷湯島絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286676/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286677,
+      "title": "根岸谷中辺絵図",
+      "full_title": "〔江戸切絵図〕. 根岸谷中辺絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286677/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286678,
+      "title": "隅田川向島絵図",
+      "full_title": "〔江戸切絵図〕. 隅田川向島絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286678/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286679,
+      "title": "本所絵図",
+      "full_title": "〔江戸切絵図〕. 本所絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286679/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    },
+    {
+      "pid": 1286680,
+      "title": "深川絵図",
+      "full_title": "〔江戸切絵図〕. 深川絵図",
+      "published": null,
+      "iiif": "https://dl.ndl.go.jp/api/iiif/1286680/R0000001",
+      "px": [
+        6144,
+        4096
+      ]
+    }
+  ]
+}
