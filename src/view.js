@@ -41,7 +41,12 @@ function lore(v) {
     ? `<a href="${s.url}" target="_blank" rel="noopener">${s.institution}</a>`
     : s.institution}${v.accession ? `　${v.accession}` : ''}${
     s.license ? `　${s.license}` : ''}</p>` : '';
-  const body = cite('江戶名所圖會', v.pair?.meishozue, '丁')
+  // 現在地を最初に置く：これは「今どこか」への答えで、玩家が実際に
+  // 立ちに行ける唯一の手がかり。tools/derive-place.py が OSM の行政界から出す。
+  const pl = v.place ?? {};
+  const now = pl.modern_ward
+    ? `<p class="now">現在　<b>${pl.modern_ward}${pl.modern_town ?? ''}</b></p>` : '';
+  const body = now + cite('江戶名所圖會', v.pair?.meishozue, '丁')
     + cite('繪本江戶土產', v.pair?.miyage, '頁') + b + prov;
   return body ? `<div class="lore">${body}</div>` : '';
 }
