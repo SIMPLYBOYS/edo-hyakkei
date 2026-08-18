@@ -10,3 +10,4 @@ research/miyage/
 __pycache__/
 *.pyc
 .DS_Store
+research/dem/

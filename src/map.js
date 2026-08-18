@@ -82,6 +82,14 @@ export function createMap(svg, views, geo, places, onPick) {
          描邊讓水陸交界有一條線，海灣的形狀在全圖時比較認得出來。 -->
     <path d="${modernLand}" fill="var(--land)" stroke="#8ea3b4" stroke-width="1.1" opacity=".95"/>
     <g clip-path="url(#land)">
+    <!-- 起伏。国土地理院の標高タイル（DEM5A ＋ DEM10B）から tools/fetch-dem.py が
+         焼いた一枚。江戸の形は地形そのもの——山の手（20m 前後の台地）と
+         下町（2m 前後の沖積低地）の段差が町の性格も広重の構図も決めている。
+         そして §2.10 視点狩りは「地形を読め」と要求しているのに、
+         この段差が地図に一本も描かれていなかった。
+         紙と同じ等距円筒に焼き直してあるので、そのまま枠に貼れば重なる。 -->
+    <image href="data/geo/relief.jpg" x="0" y="0" width="${W}" height="${H}"
+           preserveAspectRatio="none" opacity=".62"/>
     <path id="park" d="${multi(geo.park)}Z" fill="#b9c4a6" opacity=".5"/>
     <!-- 堀與川是江戶就有的（半蔵濠、千鳥ヶ淵、日本橋川…），兩個年代都畫 -->
     <path id="warea" d="${multi(geo.water_area)}Z" fill="var(--river)" opacity=".55"/>
