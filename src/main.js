@@ -129,7 +129,25 @@ const noteLie = (id, i) => { (state.found[id] ??= []).push(i); save(state); };
 
 // 從歲時記翻回來重看。不移動、不耗日、不能再收一次——收過的畫本來就是你的了，
 // 再看一次不該有代價。變造照樣找得，記在同一格。
-const reopen = v => showView(v, { found: state.found[v.id] ?? [], onFind: i => noteLie(v.id, i) });
+//
+// 前後翻頁的順序＝歲時記畫面上的順序（春夏秋冬，季內依景號），不是景號本身。
+// 玩家看到的是那本簿子的排法，翻頁跟著它走才不會覺得跳來跳去。
+const SEASON_ORDER = ['spring', 'summer', 'autumn', 'winter'];
+const inBook = () => SEASON_ORDER.flatMap(s =>
+  views.filter(v => v.season === s && state.collected.includes(v.id)));
+
+const reopen = v => {
+  const book = inBook();
+  const at = book.findIndex(x => x.id === v.id);
+  // step(dir) 回傳「開下一張的函式」或 null——null 就把鈕變灰。
+  // 未收的景不在 book 裡，所以自然跳過，不必另外濾。
+  const step = dir => {
+    const nx = book[at + dir];
+    return nx ? () => reopen(nx) : null;
+  };
+  showView(v, { found: state.found[v.id] ?? [], onFind: i => noteLie(v.id, i),
+                step: at < 0 ? undefined : step });
+};
 
 function pick(v) {
   const clock = clockFrom(state.day);

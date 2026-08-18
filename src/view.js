@@ -62,7 +62,7 @@ function lore(v) {
   return body ? `<div class="lore">${body}</div>` : '';
 }
 
-export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
+export function showView(v, { onCollect, onClose, found: seen = [], onFind, step }) {
   const el = document.createElement('div');
   el.className = 'overlay';
   el.innerHTML = `
@@ -93,6 +93,12 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
         </div>
         ${lore(v)}
       </figcaption>
+      <!-- 歲時記翻回來時才有：在已收的景之間前後翻，不必關掉再點下一張。
+           剛收到一景時不放——那時該看的是這一景，不是整本。 -->
+      ${step ? `<nav class="flip">
+        <button id="prev" ${step(-1) ? '' : 'disabled'} title="上一景（←）">‹</button>
+        <button id="next" ${step(1) ? '' : 'disabled'} title="下一景（→）">›</button>
+      </nav>` : ''}
     </figure>`;
 
   // §2.4 的玩法是玩家「自己找」，所以 hitbox 不預先顯示——
@@ -157,8 +163,24 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
     });
   });
 
-  const close = () => { el.remove(); onClose?.(); };
-  if (onCollect) el.querySelector('#collect').onclick = () => { el.remove(); onCollect(); };
+  // 翻頁：關掉這一張、開下一張。鍵盤的 ←/→ 也走同一條路。
+  // （地圖的方向鍵在 .overlay 存在時本來就會讓開，見 map.js 的 busy()）
+  const go = dir => { const nx = step?.(dir); if (!nx) return; el.remove(); nx(); };
+  if (step) {
+    el.querySelector('#prev').onclick = () => go(-1);
+    el.querySelector('#next').onclick = () => go(1);
+  }
+  const keys = e => {
+    if (e.key === 'Escape') return close();
+    if (!step) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+  };
+  addEventListener('keydown', keys);
+
+  const close = () => { removeEventListener('keydown', keys); el.remove(); onClose?.(); };
+  if (onCollect) el.querySelector('#collect').onclick =
+    () => { removeEventListener('keydown', keys); el.remove(); onCollect(); };
   el.querySelector('#leave').onclick = close;
   el.onclick = e => { if (e.target === el) close(); };
   document.body.append(el);

@@ -188,6 +188,15 @@
   .overlay { position:fixed; inset:0; background:#0b1a28f2; display:grid; place-items:center;
              padding:24px; overflow:auto; z-index:10 }
   .overlay figure { display:flex; gap:28px; align-items:center; max-width:1100px }
+  /* 歲時記的前後翻頁。貼在畫的兩側外緣，不壓到畫也不擠說明欄。 */
+  .overlay nav.flip { position:fixed; inset:0; pointer-events:none;
+                      display:flex; justify-content:space-between; align-items:center;
+                      padding:0 14px }
+  .overlay nav.flip button { pointer-events:auto; width:44px; height:64px; padding:0;
+                             font-size:26px; line-height:1; background:#12283ceb;
+                             border:1px solid #ffffff2e; opacity:.55 }
+  .overlay nav.flip button:hover:not(:disabled) { opacity:1 }
+  .overlay nav.flip button:disabled { opacity:.12; cursor:default }
   .overlay img { max-height:82vh; max-width:56vw; box-shadow:0 8px 40px #0008 }
   /* 圖會是橫幅跨頁，跟直幅的百景比例差很多，放寬一點才看得清地名 */
   .overlay img.zue { max-width:66vw }
