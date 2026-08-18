@@ -16,7 +16,7 @@
 
 用法： python3 tools/fetch-osm.py
 """
-import json, urllib.parse
+import json, math, urllib.parse
 from pathlib import Path
 
 from fetchlib import fetch
@@ -44,6 +44,8 @@ QUERY = f"""[out:json][timeout:240];
   way["railway"="rail"]["usage"!="industrial"]["service"!~"."]({BBOX});
   way["highway"~"^(motorway|trunk|primary)$"]({BBOX});
   node["place"="city"]["name"]({BBOX});
+  way["amenity"="place_of_worship"]["religion"~"^(buddhist|shinto)$"]["name"]({BBOX});
+  rel["amenity"="place_of_worship"]["religion"~"^(buddhist|shinto)$"]["name"]({BBOX});
 );
 out geom;"""
 
@@ -63,6 +65,25 @@ SKIP_CITY = {"東京都", "浦安市"}
 # 給實際尺度而不是給一個必定通過的大數，遠近才有一致的疏密。
 CITY_SIZE = 0.045
 
+# 寺社の境内。江戸は寺の町だった——寺町はまとめて配置された都市計画の産物で、
+# 谷中・三田・浅草あたりに固まって出るのはそのなごり。百景も寺社を繰り返し描く。
+#
+# 面積で足切りする理由：OSM には 1,447 件あるが、その大半は路地裏の小さな堂で、
+# 全部描けば地図が斑になるだけ。**大きな境内は江戸期の開創がほとんど**という
+# 相関が使える——実測で上位はそのまま浅草寺・増上寺・護国寺・目黒不動・
+# 日枝神社・根津神社・泉岳寺・富岡八幡宮・寛永寺・神田明神と並ぶ。
+WORSHIP_MIN_M2 = 2000.0
+
+# 🔴 面積順に採ると明治以降のものが混ざる。これらは 1858 年に存在しないので
+# **現代層（rail/road と同じ扱い）**へ回し、江戸側では消えるようにする。
+# ここに挙げたのは名前から確実に明治以降と分かるものだけ。**残りの数百件を
+# 一つずつ検証したわけではない**——だからこの層は名前を出さず、
+# 「このあたりは寺社の地」という濃淡としてしか描かない。
+POST_EDO = {
+    "明治神宮", "東郷神社", "乃木神社", "靖国神社", "宮中三殿",
+    "立正佼成会", "佛所護念會教團本部", "霊友会", "大本山 護国寺 別院",
+}
+
 
 def classify(t):
     if t.get("waterway") in ("river", "canal"):
@@ -71,6 +92,8 @@ def classify(t):
         return "water_area"
     if t.get("leisure") == "park":
         return "park"
+    if t.get("amenity") == "place_of_worship":
+        return "worship_modern" if t.get("name") in POST_EDO else "worship"
     if t.get("railway") == "rail":
         return "rail"
     if t.get("highway"):
@@ -80,8 +103,21 @@ def classify(t):
 
 # 抽稀強度分層：水系是主角要留細節，鐵路道路只是背景紋理，粗一點沒差。
 # OSM 把路網切成上萬條小段，不分層抽稀檔案會到 2.5MB，開場直接被拖垮。
+# 2026/08/18：寺社層を足したら 1983KB になり上限 2000KB に張りついた。
+# いちばん情報密度の低い road を 0.0009 → 0.0014 に粗くして場所を空けた。
+# 道は「街区の形」が分かればよく、一本一本の曲がりは読まれない。
 TOL = {"water_line": 0.00025, "water_area": 0.00025, "park": 0.0004,
-       "rail": 0.0009, "road": 0.0009}
+       "rail": 0.0009, "road": 0.0014,
+       # 境内は数十メートル四方。park と同じ強さで抜くと形が消える
+       "worship": 0.00012, "worship_modern": 0.00012}
+
+
+def area_m2(pts):
+    """閉じた輪の面積（平面近似）。この緯度・この大きさなら十分。"""
+    k = 111320 * math.cos(math.radians(35.67))
+    q = [(x * k, y * 110540) for x, y in pts]
+    return abs(sum(q[i][0] * q[i - 1][1] - q[i - 1][0] * q[i][1]
+                   for i in range(len(q)))) / 2
 
 
 def simplify(pts, tol):
@@ -127,7 +163,7 @@ def main():
     def inbox(p):
         return bw <= p[0] <= be and bs <= p[1] <= bn
 
-    geo, cand, cities = {}, {}, []
+    geo, cand, cities, worship_names = {}, {}, [], []
     for e in els:
         tags = e.get("tags") or {}
         # 現代地名是 node，沒有 geometry，走不進下面那條抽稀的路
@@ -152,6 +188,11 @@ def main():
             # 路口切出來的碎段留著只是徒增檔案大小，畫出來也看不到
             if len(pts) < 2 or extent(raw) < TOL[layer] * 3:
                 continue
+            # 小さな堂は落とす（理由は WORSHIP_MIN_M2 のところ）
+            if layer.startswith("worship"):
+                if area_m2(raw) < WORSHIP_MIN_M2:
+                    continue
+                worship_names.append((area_m2(raw), n, layer))
             geo.setdefault(layer, []).append(pts)
 
             # 地名。江戶城的堀連名字都沒改（半蔵濠、千鳥ヶ淵…），這些字就是江戶層本身。
@@ -186,6 +227,11 @@ def main():
     for k in sorted(geo):
         print(f"  {k:<11} {len(geo[k]):>5} 條 / {sum(len(w) for w in geo[k]):>6} 點")
     print(f"  {'labels':<11} {len(labels):>5} 個地名")
+    worship_names.sort(reverse=True)
+    print(f"  寺社 {len(worship_names)} 件（≥{WORSHIP_MIN_M2:.0f}m²）"
+          f"／うち明治以降に回した "
+          f"{sum(1 for _, _, l in worship_names if l == 'worship_modern')} 件")
+    print("    大きい順:", "・".join(n for _, n, _ in worship_names[:8]))
 
     # 先組好內容、跑完所有檢查，最後才落地。
     # 先前是寫檔在前、assert 在後——檢查擋下來的時候壞資料已經蓋掉好資料了
@@ -200,6 +246,14 @@ def main():
     print("最大的 12 個地名:", "・".join(l["name"] for l in labels[:12]))
 
     assert geo.get("water_line") and geo.get("rail"), "關鍵圖層是空的，查詢可能失效"
+    # 寺社も点で確かめる。「300 件採れた」では、肝心の寺が抜けていても気づけない。
+    # この五つは百景が描き、江戸名所図会が立項し、今も同じ場所にある。
+    got = {n for _, n, l in worship_names if l == "worship"}
+    must = ["金龍山 浅草寺", "増上寺", "亀戸天神社", "富岡八幡宮", "神田明神"]
+    missing = [m for m in must if m not in got]
+    assert not missing, f"寺社層に {missing} が無い。面積の足切りか religion のタグが変わった"
+    # 明治以降のものが江戸側に残っていないこと
+    assert not (POST_EDO & got), f"明治以降の {POST_EDO & got} が江戸側の層に入っている"
     assert kb < 2000, f"{kb:.0f}KB 太大，開場會被拖垮，抽稀要再狠一點"
     # 江戶城的堀是這份資料的賣點（見檔頭），抓不到就是查詢或 bbox 壞了
     moats = [l["name"] for l in labels if "濠" in l["name"] or "淵" in l["name"]]

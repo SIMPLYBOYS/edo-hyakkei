@@ -91,6 +91,14 @@ export function createMap(svg, views, geo, places, onPick) {
     <image href="data/geo/relief.jpg" x="0" y="0" width="${W}" height="${H}"
            preserveAspectRatio="none" opacity=".62"/>
     <path id="park" d="${multi(geo.park)}Z" fill="#b9c4a6" opacity=".5"/>
+    <!-- 寺社の境内。江戸は寺の町——寺町はまとめて配置された都市計画の産物で、
+         谷中・三田・浅草に固まって出るのはそのなごり。百景も寺社を繰り返し描く。
+         **名前は出さない**：面積で採った 300 件のうち、一件ずつ開創年を
+         確かめたのは明治以降と分かる数件だけ（fetch-osm.py の POST_EDO）。
+         「このあたりは寺社の地」という濃淡までなら言えるが、
+         「この寺は 1858 年にここに在った」とは言えない。言えない分は描かない。 -->
+    <path id="worship" d="${multi(geo.worship)}Z" fill="#b5674a" opacity=".34"
+          stroke="#8e4a30" stroke-width=".7" stroke-opacity=".5"/>
     <!-- 堀與川是江戶就有的（半蔵濠、千鳥ヶ淵、日本橋川…），兩個年代都畫 -->
     <path id="warea" d="${multi(geo.water_area)}Z" fill="var(--river)" opacity=".55"/>
     <path id="wline" d="${multi(geo.water_line)}" fill="none" stroke="var(--river)"
@@ -107,6 +115,10 @@ export function createMap(svg, views, geo, places, onPick) {
       <use href="#railgeo" stroke="#6d645a" stroke-width="1.6" opacity=".5"/>
       <use href="#railgeo" stroke="#efe8d8" stroke-width="1.1"
            stroke-dasharray="3.5 3.5" opacity=".85"/>
+      <!-- 明治以降の境内（明治神宮・靖国・乃木…）。1858 年に無いので
+           鐵路と同じくここに置く——年代滑桿で一緒に消える。 -->
+      <path d="${multi(geo.worship_modern)}Z" fill="#b5674a" opacity=".34"
+            stroke="#8e4a30" stroke-width=".7" stroke-opacity=".5"/>
     </g>
     </g>
     <!-- 新生地。1858 那側用海把它蓋回去——連同上面畫的碼頭運河一起蓋掉，
