@@ -120,6 +120,8 @@ def main():
     # 3.7km）や、境目にある景（上野広小路）で隣の図に落ちる。実際に落ちた。
     owned = []          # (町名, lng, lat, 図)
     for s in kz["sheets"]:
+        if s.get("role") == "suburb":
+            continue          # 江戸全周を覆う一枚。町点で重心を出すものではない
         kws = KEYWORDS.get(s["title"])
         assert kws, f"{s['title']} の斷詞が無い"
         hit = [(n, lo, la) for n, lo, la in nodes if match(n, kws)]
@@ -148,7 +150,8 @@ def main():
 
     vp = ROOT / "data" / "views.json"
     views = json.loads(vp.read_text(encoding="utf-8"))
-    hit = 0
+    suburb = next((s for s in kz["sheets"] if s.get("role") == "suburb"), None)
+    hit = out_of_city = 0
     for v in views:
         s0 = v.get("subject") or {}
         v.setdefault("place", {})
@@ -162,9 +165,16 @@ def main():
                 best, bd, bn = sh, d, n
         if bd <= NEAR_KM:
             v["place"]["kiriezu"] = {"pid": best["pid"], "title": best["title"],
-                                     "km": round(bd, 2), "near": bn}
+                                     "role": "city", "km": round(bd, 2), "near": bn}
             hit += 1
-    print(f"\n対応がついた景 {hit} / {len(views)}（{NEAR_KM}km 以内）")
+        elif suburb:
+            # 市街図の外——江戸の外周。近郊図が受け持つ。
+            # 「この一帯の市街圖」ではなく「江戸近郊の圖」として出す（村の地図なので）。
+            v["place"]["kiriezu"] = {"pid": suburb["pid"], "title": suburb["title"],
+                                     "role": "suburb"}
+            out_of_city += 1
+    print(f"\n市街図に対応 {hit} 景（{NEAR_KM}km 以内）／近郊図 {out_of_city} 景"
+          f"／未対応 {sum(1 for v in views if not v['place'].get('kiriezu'))} 景")
 
     # ── 検査。点名で。総数では「肝心の景が外れている」を捕まえられない ──
     by = {v["id"]: v for v in views}
@@ -176,7 +186,8 @@ def main():
     must = {99: "今戸箕輪浅草絵図", 69: "深川絵図", 111: "目黒白金辺図",
             1: "日本橋北神田浜町絵図", 51: "御江戸番町絵図", 13: "下谷絵図",
             79: "芝愛宕下絵図", 106: "深川絵図", 92: "隅田川向島絵図",
-            87: None}       # 井之頭は三鷹、最寄りの町点から 15km——これは疑いない
+            # 井之頭は三鷹——市街図の外。近郊図（西は小金井橋まで）が受け持つ
+            87: "江戸近郊図"}
     for i, want in must.items():
         got = (by[i]["place"]["kiriezu"] or {}).get("title")
         print(f"  no.{i:<4}{by[i]['title']['ja'][:16]:<18}{str(got):<22}（{want} を期待）")

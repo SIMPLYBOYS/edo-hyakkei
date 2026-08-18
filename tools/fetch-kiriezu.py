@@ -41,6 +41,17 @@ MANIFEST = "https://dl.ndl.go.jp/api/iiif/{pid}/manifest.json"
 PIDS = [1286207, 1286208, 1286209, 1286645] + \
        [p for p in range(1286656, 1286681) if p != 1286661]
 
+# 尾張屋版の切繪圖は**江戸の市街**しか描かない。百景の 13 景（大森・蒲田・
+# 羽田・砂村・小松川・中川・新宿・市川・国府台・真間・浦安・川口・三鷹）は
+# その外にある。そこは〔江戸近郊図〕が受け持つ——村名・道・神社佛寺・郡界を
+# 描いた広域図で、凡例に「名所古跡／佛寺／神社／郡界／村名／新田／里塚／道」。
+# 図中の説明に西は小金井橋・南は羽田・北は大宮とあり、東は「下総国」の界線が
+# 引かれている（実物で確認）。13 景はすべてこの内側。
+#
+# **市街図ではないので、画面での言い方も変える**（村の地図であって町の地図ではない）。
+SUBURB_PID = 2543086
+SUBURB_PX = 3600      # 原寸 13042px。村名まで読ませたいので他より大きく採る
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -50,8 +61,16 @@ def main():
     ap.add_argument("--size", type=int, default=1600)
     args = ap.parse_args()
 
+    # 🔴 このファイルは derive-kiriezu-covers.py が covers を書き足す先でもある。
+    # 素で書き直すと、その派生結果を黙って消す——実際に消した（--assets を
+    # 走らせた拍子に 28 枚ぶんの covers が飛んだ）。既存の値は拾って戻す。
+    kp = ROOT / "data" / "kiriezu.json"
+    prev = {}
+    if kp.exists():
+        prev = {s["pid"]: s for s in json.loads(kp.read_text(encoding="utf-8"))["sheets"]}
+
     sheets = []
-    for pid in PIDS:
+    for pid in PIDS + [SUBURB_PID]:
         m = get_json(MANIFEST.format(pid=pid), UA)
         label = m.get("label", "")
         md = {d["label"]: d["value"] for d in m.get("metadata", [])}
@@ -61,15 +80,20 @@ def main():
         r = c["images"][0]["resource"]
         sheets.append({
             "pid": pid,
-            "title": label.split(".")[-1].strip(),
+            "role": "suburb" if pid == SUBURB_PID else "city",
+            "title": label.split(".")[-1].strip().strip("[]〔〕") or "江戸近郊図",
             "full_title": label,
             "published": str(md.get("出版年月日等", "")).strip() or None,
             "iiif": r["service"]["@id"],
             "px": [r.get("width"), r.get("height")],
         })
-        print(f"  {pid}  {sheets[-1]['title']:<22}{r.get('width')}×{r.get('height')}")
+        if "covers" in prev.get(pid, {}):
+            sheets[-1]["covers"] = prev[pid]["covers"]
+        print(f"  {pid}  {sheets[-1]['title']:<22}{r.get('width')}×{r.get('height')}"
+              + ("  covers 保留" if "covers" in sheets[-1] else ""))
 
-    assert len(sheets) >= 28, f"只抓到 {len(sheets)} 張，尾張屋版該有 28 張以上"
+    assert len(sheets) >= 29, f"只抓到 {len(sheets)} 張（市街 28 ＋ 近郊 1）"
+    assert any(x["role"] == "suburb" for x in sheets), "近郊図が無い"
     # 點名：百景畫得最密的幾區缺一不可。只數總數的話，
     # 缺了浅草或深川也一樣是「28 張」。
     got = {s["title"] for s in sheets}
@@ -86,7 +110,7 @@ def main():
         "_todo": "covers：每張涵蓋哪一帶，用來把 118 景各自對到一張。尚未填。",
         "sheets": sheets,
     }
-    p = ROOT / "data" / "kiriezu.json"
+    p = kp
     p.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"\n{len(sheets)} 張 → data/kiriezu.json")
 
@@ -99,7 +123,8 @@ def main():
             f = d / f"{s2['pid']}.jpg"
             if f.exists():
                 continue
-            f.write_bytes(fetch(f"{s2['iiif']}/full/2400,/0/default.jpg",
+            px = SUBURB_PX if s2["pid"] == SUBURB_PID else 2400
+            f.write_bytes(fetch(f"{s2['iiif']}/full/{px},/0/default.jpg",
                                 UA, timeout=240, retry_on=(429, 502, 503, 504)).read())
             print(f"    {f.name}  {f.stat().st_size/1024:.0f}KB  {s2['title']}")
         tot = sum(f.stat().st_size for f in d.glob("*.jpg")) / 1024 / 1024

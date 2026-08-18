@@ -29,6 +29,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.15,
     "near": "日本橋一丁目"
    }
@@ -103,6 +104,7 @@
    "kiriezu": {
     "pid": 1286657,
     "title": "外桜田永田町絵図",
+    "role": "city",
     "km": 0.13,
     "near": "霞が関二丁目"
    }
@@ -176,6 +178,7 @@
    "kiriezu": {
     "pid": 1286656,
     "title": "御江戸大名小路絵図",
+    "role": "city",
     "km": 0.28,
     "near": "有楽町一丁目"
    }
@@ -238,6 +241,7 @@
    "kiriezu": {
     "pid": 1286680,
     "title": "深川絵図",
+    "role": "city",
     "km": 0.26,
     "near": "佐賀一丁目"
    }
@@ -300,6 +304,7 @@
    "kiriezu": {
     "pid": 1286679,
     "title": "本所絵図",
+    "role": "city",
     "km": 0.15,
     "near": "横網"
    }
@@ -374,6 +379,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.13,
     "near": "日本橋馬喰町一丁目"
    }
@@ -436,6 +442,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.06,
     "near": "日本橋本町"
    }
@@ -498,6 +505,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.07,
     "near": "日本橋室町二丁目"
    }
@@ -572,6 +580,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.13,
     "near": "神田淡路町二丁目"
    }
@@ -634,6 +643,7 @@
    "kiriezu": {
     "pid": 1286676,
     "title": "本郷湯島絵図",
+    "role": "city",
     "km": 0.28,
     "near": "湯島一丁目"
    }
@@ -696,6 +706,7 @@
    "kiriezu": {
     "pid": 1286207,
     "title": "下谷絵図",
+    "role": "city",
     "km": 0.27,
     "near": "上野"
    }
@@ -758,6 +769,7 @@
    "kiriezu": {
     "pid": 1286207,
     "title": "下谷絵図",
+    "role": "city",
     "km": 0.15,
     "near": "上野四丁目"
    }
@@ -820,6 +832,7 @@
    "kiriezu": {
     "pid": 1286207,
     "title": "下谷絵図",
+    "role": "city",
     "km": 0.11,
     "near": "上野一丁目"
    }
@@ -882,6 +895,7 @@
    "kiriezu": {
     "pid": 1286677,
     "title": "根岸谷中辺絵図",
+    "role": "city",
     "km": 0.16,
     "near": "西日暮里三丁目"
    }
@@ -944,6 +958,7 @@
    "kiriezu": {
     "pid": 1286677,
     "title": "根岸谷中辺絵図",
+    "role": "city",
     "km": 0.13,
     "near": "西日暮里三丁目"
    }
@@ -1007,6 +1022,7 @@
    "kiriezu": {
     "pid": 1286675,
     "title": "駒込絵図",
+    "role": "city",
     "km": 0.64,
     "near": "本駒込三丁目"
    }
@@ -1080,6 +1096,7 @@
    "kiriezu": {
     "pid": 1286674,
     "title": "巣鴨絵図",
+    "role": "city",
     "km": 1.15,
     "near": "西巣鴨四丁目"
    }
@@ -1143,6 +1160,7 @@
    "kiriezu": {
     "pid": 1286674,
     "title": "巣鴨絵図",
+    "role": "city",
     "km": 1.46,
     "near": "西巣鴨四丁目"
    }
@@ -1206,6 +1224,7 @@
    "kiriezu": {
     "pid": 1286674,
     "title": "巣鴨絵図",
+    "role": "city",
     "km": 1.11,
     "near": "西巣鴨四丁目"
    }
@@ -1265,7 +1284,11 @@
    "modern_landmark": null,
    "modern_town": "金山町",
    "modern_town_km": 0.25,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1336,6 +1359,7 @@
    "kiriezu": {
     "pid": 1286662,
     "title": "芝愛宕下絵図",
+    "role": "city",
     "km": 0.08,
     "near": "愛宕一丁目"
    }
@@ -1398,6 +1422,7 @@
    "kiriezu": {
     "pid": 1286664,
     "title": "目黒白金辺図",
+    "role": "city",
     "km": 0.22,
     "near": "白金三丁目"
    }
@@ -1460,6 +1485,7 @@
    "kiriezu": {
     "pid": 1286664,
     "title": "目黒白金辺図",
+    "role": "city",
     "km": 0.22,
     "near": "目黒一丁目"
    }
@@ -1522,6 +1548,7 @@
    "kiriezu": {
     "pid": 1286664,
     "title": "目黒白金辺図",
+    "role": "city",
     "km": 0.19,
     "near": "中目黒一丁目"
    }
@@ -1585,6 +1612,7 @@
    "kiriezu": {
     "pid": 1286664,
     "title": "目黒白金辺図",
+    "role": "city",
     "km": 0.19,
     "near": "上目黒一丁目"
    }
@@ -1656,7 +1684,11 @@
    "modern_landmark": null,
    "modern_town": "山王二丁目",
    "modern_town_km": 0.15,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1724,7 +1756,11 @@
    "modern_landmark": null,
    "modern_town": "東蒲田",
    "modern_town_km": 0.23,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1795,6 +1831,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 0.71,
     "near": "高輪四丁目"
    }
@@ -1854,7 +1891,11 @@
    "modern_landmark": null,
    "modern_town": "南砂七丁目",
    "modern_town_km": 0.2,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1914,6 +1955,7 @@
    "kiriezu": {
     "pid": 1286679,
     "title": "本所絵図",
+    "role": "city",
     "km": 1.58,
     "near": "本所四丁目"
    }
@@ -1962,6 +2004,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 1.69,
     "near": "向島四丁目"
    }
@@ -2024,6 +2067,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 1.03,
     "near": "向島四丁目"
    }
@@ -2087,6 +2131,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 1.51,
     "near": "東向島五丁目"
    }
@@ -2160,6 +2205,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 0.09,
     "near": "向島二丁目"
    }
@@ -2222,6 +2268,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 0.13,
     "near": "堤通"
    }
@@ -2285,6 +2332,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.31,
     "near": "橋場二丁目"
    }
@@ -2348,6 +2396,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.22,
     "near": "橋場二丁目"
    }
@@ -2411,6 +2460,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.35,
     "near": "東浅草二丁目"
    }
@@ -2473,6 +2523,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.25,
     "near": "浅草七丁目"
    }
@@ -2536,6 +2587,7 @@
    "kiriezu": {
     "pid": 1286672,
     "title": "小日向絵図",
+    "role": "city",
     "km": 0.27,
     "near": "関口二丁目"
    }
@@ -2609,6 +2661,7 @@
    "kiriezu": {
     "pid": 1286670,
     "title": "市ヶ谷牛込絵図",
+    "role": "city",
     "km": 0.09,
     "near": "市谷八幡町"
    }
@@ -2671,6 +2724,7 @@
    "kiriezu": {
     "pid": 1286669,
     "title": "内藤新宿千駄ヶ谷絵図",
+    "role": "city",
     "km": 0.47,
     "near": "千駄ヶ谷五丁目"
    }
@@ -2733,6 +2787,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.13,
     "near": "日本橋室町一丁目"
    }
@@ -2806,6 +2861,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.15,
     "near": "日本橋二丁目"
    }
@@ -2868,6 +2924,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.07,
     "near": "日本橋本石町一丁目"
    }
@@ -2931,6 +2988,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.08,
     "near": "日本橋小網町"
    }
@@ -3005,6 +3063,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.13,
     "near": "神田淡路町二丁目"
    }
@@ -3067,6 +3126,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.17,
     "near": "神田三崎町二丁目"
    }
@@ -3140,6 +3200,7 @@
    "kiriezu": {
     "pid": 1286674,
     "title": "巣鴨絵図",
+    "role": "city",
     "km": 0.98,
     "near": "西巣鴨四丁目"
    }
@@ -3202,6 +3263,7 @@
    "kiriezu": {
     "pid": 1286671,
     "title": "大久保絵図",
+    "role": "city",
     "km": 1.44,
     "near": "百人町一丁目"
    }
@@ -3275,6 +3337,7 @@
    "kiriezu": {
     "pid": 1286658,
     "title": "御江戸番町絵図",
+    "role": "city",
     "km": 0.26,
     "near": "麹町一丁目"
    }
@@ -3338,6 +3401,7 @@
    "kiriezu": {
     "pid": 1286666,
     "title": "赤坂絵図",
+    "role": "city",
     "km": 0.16,
     "near": "赤坂三丁目"
    }
@@ -3400,6 +3464,7 @@
    "kiriezu": {
     "pid": 1286665,
     "title": "麻布絵図",
+    "role": "city",
     "km": 0.25,
     "near": "東麻布一丁目"
    }
@@ -3462,6 +3527,7 @@
    "kiriezu": {
     "pid": 1286657,
     "title": "外桜田永田町絵図",
+    "role": "city",
     "km": 0.2,
     "near": "霞が関二丁目"
    }
@@ -3525,6 +3591,7 @@
    "kiriezu": {
     "pid": 1286660,
     "title": "築地八町堀日本橋南絵図",
+    "role": "city",
     "km": 0.77,
     "near": "築地七丁目"
    }
@@ -3587,6 +3654,7 @@
    "kiriezu": {
     "pid": 1286680,
     "title": "深川絵図",
+    "role": "city",
     "km": 0.2,
     "near": "清澄"
    }
@@ -3650,6 +3718,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.18,
     "near": "日本橋中洲"
    }
@@ -3713,6 +3782,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.25,
     "near": "日本橋中洲"
    }
@@ -3786,6 +3856,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.1,
     "near": "東日本橋二丁目"
    }
@@ -3848,6 +3919,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.11,
     "near": "東日本橋二丁目"
    }
@@ -3911,6 +3983,7 @@
    "kiriezu": {
     "pid": 1286209,
     "title": "浅草御蔵前辺図",
+    "role": "city",
     "km": 0.13,
     "near": "蔵前一丁目"
    }
@@ -3984,6 +4057,7 @@
    "kiriezu": {
     "pid": 1286209,
     "title": "浅草御蔵前辺図",
+    "role": "city",
     "km": 0.27,
     "near": "駒形一丁目"
    }
@@ -4046,6 +4120,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 0.64,
     "near": "堤通二丁目"
    }
@@ -4108,6 +4183,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 1.38,
     "near": "堤通二丁目"
    }
@@ -4181,6 +4257,7 @@
    "kiriezu": {
     "pid": 1286679,
     "title": "本所絵図",
+    "role": "city",
     "km": 1.3,
     "near": "石原四丁目"
    }
@@ -4243,6 +4320,7 @@
    "kiriezu": {
     "pid": 1286679,
     "title": "本所絵図",
+    "role": "city",
     "km": 2.0,
     "near": "亀沢四丁目"
    }
@@ -4302,7 +4380,11 @@
    "modern_landmark": null,
    "modern_town": "小松川",
    "modern_town_km": 0.34,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4362,6 +4444,7 @@
    "kiriezu": {
     "pid": 1286680,
     "title": "深川絵図",
+    "role": "city",
     "km": 0.17,
     "near": "門前仲町二丁目"
    }
@@ -4424,6 +4507,7 @@
    "kiriezu": {
     "pid": 1286680,
     "title": "深川絵図",
+    "role": "city",
     "km": 0.52,
     "near": "門前仲町二丁目"
    }
@@ -4483,7 +4567,11 @@
    "modern_landmark": null,
    "modern_town": "東砂二丁目",
    "modern_town_km": 0.36,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4551,7 +4639,11 @@
    "modern_landmark": null,
    "modern_town": "広尾二丁目",
    "modern_town_km": 0.23,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4608,7 +4700,11 @@
    "modern_landmark": null,
    "modern_town": "羽田二丁目",
    "modern_town_km": 0.39,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4679,6 +4775,7 @@
    "kiriezu": {
     "pid": 1286660,
     "title": "築地八町堀日本橋南絵図",
+    "role": "city",
     "km": 0.03,
     "near": "京橋一丁目"
    }
@@ -4742,6 +4839,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.07,
     "near": "日本橋大伝馬町"
    }
@@ -4804,6 +4902,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.04,
     "near": "神田西福田町"
    }
@@ -4867,6 +4966,7 @@
    "kiriezu": {
     "pid": 1286660,
     "title": "築地八町堀日本橋南絵図",
+    "role": "city",
     "km": 0.09,
     "near": "京橋三丁目"
    }
@@ -4940,6 +5040,7 @@
    "kiriezu": {
     "pid": 1286660,
     "title": "築地八町堀日本橋南絵図",
+    "role": "city",
     "km": 0.34,
     "near": "八丁堀四丁目"
    }
@@ -5003,6 +5104,7 @@
    "kiriezu": {
     "pid": 1286660,
     "title": "築地八町堀日本橋南絵図",
+    "role": "city",
     "km": 0.49,
     "near": "築地七丁目"
    }
@@ -5065,6 +5167,7 @@
    "kiriezu": {
     "pid": 1286662,
     "title": "芝愛宕下絵図",
+    "role": "city",
     "km": 0.52,
     "near": "新橋六丁目"
    }
@@ -5127,6 +5230,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 0.49,
     "near": "芝浦一丁目"
    }
@@ -5189,6 +5293,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 0.25,
     "near": "高輪二丁目"
    }
@@ -5262,6 +5367,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 0.72,
     "near": "高輪四丁目"
    }
@@ -5335,6 +5441,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 0.9,
     "near": "高輪四丁目"
    }
@@ -5408,6 +5515,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 0.13,
     "near": "三田二丁目"
    }
@@ -5482,6 +5590,7 @@
    "kiriezu": {
     "pid": 1286666,
     "title": "赤坂絵図",
+    "role": "city",
     "km": 0.29,
     "near": "元赤坂一丁目"
    }
@@ -5545,6 +5654,7 @@
    "kiriezu": {
     "pid": 1286669,
     "title": "内藤新宿千駄ヶ谷絵図",
+    "role": "city",
     "km": 0.58,
     "near": "千駄ヶ谷五丁目"
    }
@@ -5615,7 +5725,11 @@
    "modern_landmark": null,
    "modern_town": "御殿山一丁目",
    "modern_town_km": 0.27,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5686,6 +5800,7 @@
    "kiriezu": {
     "pid": 1286674,
     "title": "巣鴨絵図",
+    "role": "city",
     "km": 0.98,
     "near": "西巣鴨四丁目"
    }
@@ -5759,6 +5874,7 @@
    "kiriezu": {
     "pid": 1286207,
     "title": "下谷絵図",
+    "role": "city",
     "km": 0.29,
     "near": "上野"
    }
@@ -5821,6 +5937,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.05,
     "near": "浅草六丁目"
    }
@@ -5894,6 +6011,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 0.14,
     "near": "向島四丁目"
    }
@@ -5956,6 +6074,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 0.04,
     "near": "堤通二丁目"
    }
@@ -6026,7 +6145,11 @@
    "modern_landmark": null,
    "modern_town": "新宿二丁目",
    "modern_town_km": 0.25,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6083,7 +6206,11 @@
    "modern_landmark": null,
    "modern_town": "真間四丁目",
    "modern_town_km": 0.06,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6151,7 +6278,11 @@
    "modern_landmark": null,
    "modern_town": "国府台三丁目",
    "modern_town_km": 0.12,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6209,7 +6340,11 @@
    "modern_landmark": null,
    "modern_town": "猫実二丁目",
    "modern_town_km": 0.2,
-   "kiriezu": null
+   "kiriezu": {
+    "pid": 2543086,
+    "title": "江戸近郊図",
+    "role": "suburb"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6270,6 +6405,7 @@
    "kiriezu": {
     "pid": 1286679,
     "title": "本所絵図",
+    "role": "city",
     "km": 1.73,
     "near": "亀沢四丁目"
    }
@@ -6332,6 +6468,7 @@
    "kiriezu": {
     "pid": 1286645,
     "title": "日本橋北神田浜町絵図",
+    "role": "city",
     "km": 0.18,
     "near": "東日本橋二丁目"
    }
@@ -6394,6 +6531,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.17,
     "near": "浅草一丁目"
    }
@@ -6467,6 +6605,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 0.23,
     "near": "東浅草二丁目"
    }
@@ -6540,6 +6679,7 @@
    "kiriezu": {
     "pid": 1286207,
     "title": "下谷絵図",
+    "role": "city",
     "km": 0.5,
     "near": "下谷三丁目"
    }
@@ -6614,6 +6754,7 @@
    "kiriezu": {
     "pid": 1286677,
     "title": "根岸谷中辺絵図",
+    "role": "city",
     "km": 0.23,
     "near": "東日暮里三丁目"
    }
@@ -6676,6 +6817,7 @@
    "kiriezu": {
     "pid": 1286208,
     "title": "今戸箕輪浅草絵図",
+    "role": "city",
     "km": 1.16,
     "near": "三ノ輪二丁目"
    }
@@ -6749,6 +6891,7 @@
    "kiriezu": {
     "pid": 1286678,
     "title": "隅田川向島絵図",
+    "role": "city",
     "km": 0.31,
     "near": "向島三丁目"
    }
@@ -6822,6 +6965,7 @@
    "kiriezu": {
     "pid": 1286209,
     "title": "浅草御蔵前辺図",
+    "role": "city",
     "km": 0.12,
     "near": "蔵前二丁目"
    }
@@ -6884,6 +7028,7 @@
    "kiriezu": {
     "pid": 1286680,
     "title": "深川絵図",
+    "role": "city",
     "km": 0.94,
     "near": "深川二丁目"
    }
@@ -6946,6 +7091,7 @@
    "kiriezu": {
     "pid": 1286680,
     "title": "深川絵図",
+    "role": "city",
     "km": 1.63,
     "near": "清澄三丁目"
    }
@@ -7020,6 +7166,7 @@
    "kiriezu": {
     "pid": 1286660,
     "title": "築地八町堀日本橋南絵図",
+    "role": "city",
     "km": 0.45,
     "near": "築地五丁目"
    }
@@ -7082,6 +7229,7 @@
    "kiriezu": {
     "pid": 1286663,
     "title": "芝高輪辺絵図",
+    "role": "city",
     "km": 2.43,
     "near": "高輪四丁目"
    }
@@ -7145,6 +7293,7 @@
    "kiriezu": {
     "pid": 1286664,
     "title": "目黒白金辺図",
+    "role": "city",
     "km": 2.14,
     "near": "目黒本町五丁目"
    }
@@ -7218,6 +7367,7 @@
    "kiriezu": {
     "pid": 1286664,
     "title": "目黒白金辺図",
+    "role": "city",
     "km": 0.15,
     "near": "下目黒一丁目"
    }
@@ -7291,6 +7441,7 @@
    "kiriezu": {
     "pid": 1286662,
     "title": "芝愛宕下絵図",
+    "role": "city",
     "km": 0.06,
     "near": "虎ノ門一丁目"
    }
@@ -7353,6 +7504,7 @@
    "kiriezu": {
     "pid": 1286662,
     "title": "芝愛宕下絵図",
+    "role": "city",
     "km": 0.17,
     "near": "虎ノ門二丁目"
    }
@@ -7415,6 +7567,7 @@
    "kiriezu": {
     "pid": 1286656,
     "title": "御江戸大名小路絵図",
+    "role": "city",
     "km": 0.29,
     "near": "丸の内三丁目"
    }
@@ -7478,6 +7631,7 @@
    "kiriezu": {
     "pid": 1286671,
     "title": "大久保絵図",
+    "role": "city",
     "km": 0.45,
     "near": "戸山三丁目"
    }
@@ -7540,6 +7694,7 @@
    "kiriezu": {
     "pid": 1286672,
     "title": "小日向絵図",
+    "role": "city",
     "km": 0.62,
     "near": "目白台一丁目"
    }
@@ -7602,6 +7757,7 @@
    "kiriezu": {
     "pid": 1286676,
     "title": "本郷湯島絵図",
+    "role": "city",
     "km": 0.06,
     "near": "湯島"
    }
@@ -7664,6 +7820,7 @@
    "kiriezu": {
     "pid": 1286674,
     "title": "巣鴨絵図",
+    "role": "city",
     "km": 1.61,
     "near": "西巣鴨四丁目"
    }
@@ -7737,6 +7894,7 @@
    "kiriezu": {
     "pid": 1286666,
     "title": "赤坂絵図",
+    "role": "city",
     "km": 0.16,
     "near": "元赤坂一丁目"
    }

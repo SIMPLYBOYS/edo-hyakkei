@@ -48,10 +48,15 @@ function lore(v) {
     ? `<p class="now">現在　<b>${pl.modern_ward}${pl.modern_town ?? ''}</b></p>` : '';
   // 切繪圖は**この一帯**の図であって、この一点がどこに描かれているかまでは
   // 言えない（図幅は数 km 四方、方位も比例も一定でない）。だから「〜あたりの」。
-  const kz = pl.kiriezu
-    ? `<p class="cite"><b>《江戶切繪圖》</b>〈${pl.kiriezu.title.replace(/絵図$|辺図$/, '')}〉
-       <span>當時這一帶的市街圖。町名、大名屋敷的戶名、寺社、橋與御門都在上面。</span></p>`
-    : '';
+  // 市街図と近郊図で言い方を分ける。近郊図は町の地図ではなく**村の地図**——
+  // 描いてあるのは町名ではなく村名で、尺度も範囲も別物。同じ文句で出すと嘘になる。
+  const kz = !pl.kiriezu ? ''
+    : pl.kiriezu.role === 'suburb'
+    ? `<p class="cite"><b>《江戶近郊圖》</b>
+       <span>這一景在江戶市街之外，切繪圖畫不到。這是當時江戶周邊的廣域圖——
+       村名、道路、神社佛寺與郡界。</span></p>`
+    : `<p class="cite"><b>《江戶切繪圖》</b>〈${pl.kiriezu.title.replace(/絵図$|辺図$/, '')}〉
+       <span>當時這一帶的市街圖。町名、大名屋敷的戶名、寺社、橋與御門都在上面。</span></p>`;
   const body = now + kz + cite('江戶名所圖會', v.pair?.meishozue, '丁')
     + cite('繪本江戶土產', v.pair?.miyage, '頁') + b + prov;
   return body ? `<div class="lore">${body}</div>` : '';
@@ -82,7 +87,8 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
           ${onCollect ? `<button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>` : ''}
           ${v.assets.meishozue ? '<button id="flip" class="ghost">看《名所圖會》</button>' : ''}
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
-          ${v.place?.kiriezu ? '<button id="flip3" class="ghost">看《江戶切繪圖》</button>' : ''}
+          ${v.place?.kiriezu ? `<button id="flip3" class="ghost">看《${
+            v.place.kiriezu.role === 'suburb' ? '江戶近郊圖' : '江戶切繪圖'}》</button>` : ''}
           <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
         ${lore(v)}
@@ -118,7 +124,8 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
     ['#flip2', miyage(v.id), '《江戶土產》', ''],
     // 切繪圖は横長でしかも字が細かい。zue より更に広く出し、
     // それでも足りないので押すと原寸まで開く（下の #zoom）。
-    ['#flip3', kz && kiriezu(kz.pid), '《江戶切繪圖》', 'map'],
+    ['#flip3', kz && kiriezu(kz.pid),
+     kz?.role === 'suburb' ? '《江戶近郊圖》' : '《江戶切繪圖》', 'map'],
   ].map(([sel, src, label, cls]) => {
     const b = el.querySelector(sel);
     return b && src && { b, src, label, cls, on: false };
@@ -141,7 +148,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
   // 切繪圖は縮めると町名が潰れる——押したら原寸（2400px）まで開いて、
   // .overlay の overflow:auto にそのまま巻かせる。もう一度押すと戻る。
   img.addEventListener('click', () => {
-    if (img.dataset.other !== '《江戶切繪圖》') return;
+    if (!/切繪圖|近郊圖/.test(img.dataset.other ?? '')) return;
     const on = img.classList.toggle('big');
     // 開いた直後は左上に巻かれている。押した意味は「近くで見たい」なので中央へ。
     if (on) requestAnimationFrame(() => {
