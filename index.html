@@ -191,6 +191,14 @@
   .overlay img { max-height:82vh; max-width:56vw; box-shadow:0 8px 40px #0008 }
   /* 圖會是橫幅跨頁，跟直幅的百景比例差很多，放寬一點才看得清地名 */
   .overlay img.zue { max-width:66vw }
+  /* 切繪圖は横長で字が細かい。まず幅いっぱいに、押されたら原寸まで開く——
+     .overlay は overflow:auto なので、はみ出せばそのまま巻ける。 */
+  .overlay img.map { max-width:78vw; cursor:zoom-in }
+  .overlay img.map.big { max-width:none; max-height:none; width:2400px; cursor:zoom-out }
+  /* 原寸に開いたら figure の 1100px 上限を外す。外さないと画像だけが
+     はみ出して、説明欄が画像の上に乗ったまま取り残される。 */
+  .overlay figure:has(img.big) { max-width:none; flex-direction:column; align-items:flex-start }
+  .overlay figure:has(img.big) figcaption { max-width:min(900px,90vw) }
   figcaption .hint { font-size:12px; opacity:.5; margin-top:14px; line-height:1.7 }
   figcaption { max-width:300px }
   figcaption .no { font-size:12px; opacity:.6; letter-spacing:.2em }

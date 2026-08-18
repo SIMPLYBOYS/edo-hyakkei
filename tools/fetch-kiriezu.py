@@ -45,6 +45,8 @@ PIDS = [1286207, 1286208, 1286209, 1286645] + \
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--download", action="store_true")
+    ap.add_argument("--assets", action="store_true",
+                    help="遊戲用：2400px 落到 assets/kiriezu/{pid}.jpg")
     ap.add_argument("--size", type=int, default=1600)
     args = ap.parse_args()
 
@@ -87,6 +89,21 @@ def main():
     p = ROOT / "data" / "kiriezu.json"
     p.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"\n{len(sheets)} 張 → data/kiriezu.json")
+
+    if args.assets:
+        # 遊戲畫面用。原寸 6144px を丸ごと置いても、重ねて表示する枠は
+        # せいぜい 800px——2400px なら拡大しても字が潰れず、28 枚で 30MB 前後。
+        d = ROOT / "assets" / "kiriezu"
+        d.mkdir(parents=True, exist_ok=True)
+        for s2 in sheets:
+            f = d / f"{s2['pid']}.jpg"
+            if f.exists():
+                continue
+            f.write_bytes(fetch(f"{s2['iiif']}/full/2400,/0/default.jpg",
+                                UA, timeout=240, retry_on=(429, 502, 503, 504)).read())
+            print(f"    {f.name}  {f.stat().st_size/1024:.0f}KB  {s2['title']}")
+        tot = sum(f.stat().st_size for f in d.glob("*.jpg")) / 1024 / 1024
+        print(f"  assets/kiriezu/ 合計 {tot:.0f}MB")
 
     if args.download:
         d = ROOT / "research" / "kiriezu"

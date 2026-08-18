@@ -52,7 +52,11 @@ export function findLies(img, v, seen, { onFind, onShow, prompt }) {
   // 畫面還在叫你找一次不存在的東西。
   const done = () => { if (prompt && found.size === v.distortions.length) prompt.remove(); };
   done();
-  img.onclick = e => {
+  img.addEventListener('click', e => {
+    // 🔴 対照版を表示している間は当たり判定を止める。翻頁は同じ <img> の src を
+    // 差し替えるだけなので、止めないと**圖會の絵をクリックして広重の変造が
+    // 「見つかった」ことになる**。座標も別の絵のものなので出鱈目に当たる。
+    if (img.dataset.other) return;
     const r = img.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
     const hit = v.distortions.findIndex((d, i) =>
@@ -66,6 +70,6 @@ export function findLies(img, v, seen, { onFind, onShow, prompt }) {
     onFind?.(hit);
     draw(hit);
     done();
-  };
+  });
   return found;
 }

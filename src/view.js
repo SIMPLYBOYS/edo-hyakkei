@@ -1,6 +1,6 @@
 // 單張畫面呈現。進一景 → 看畫 → 收入歲時記。
 import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
-import { plate, hires, meishozue, miyage } from './paths.js';
+import { plate, hires, meishozue, miyage, kiriezu } from './paths.js';
 import { findLies, md } from './lie.js';
 
 // ── 來歷。這些資料一直躺在 repo 裡，畫面上一個字都沒出現過 ────────────────
@@ -82,6 +82,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
           ${onCollect ? `<button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>` : ''}
           ${v.assets.meishozue ? '<button id="flip" class="ghost">看《名所圖會》</button>' : ''}
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
+          ${v.place?.kiriezu ? '<button id="flip3" class="ghost">看《江戶切繪圖》</button>' : ''}
           <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
         ${lore(v)}
@@ -111,12 +112,16 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
   // 玩家不知道下一下會看到什麼。
   const img = el.querySelector('img');
   const print = img.getAttribute('src');
+  const kz = v.place?.kiriezu;
   const flips = [
-    ['#flip', meishozue, '《名所圖會》', true],
-    ['#flip2', miyage, '《江戶土產》', false],
-  ].map(([sel, path, label, wide]) => {
+    ['#flip', meishozue(v.id), '《名所圖會》', 'zue'],
+    ['#flip2', miyage(v.id), '《江戶土產》', ''],
+    // 切繪圖は横長でしかも字が細かい。zue より更に広く出し、
+    // それでも足りないので押すと原寸まで開く（下の #zoom）。
+    ['#flip3', kz && kiriezu(kz.pid), '《江戶切繪圖》', 'map'],
+  ].map(([sel, src, label, cls]) => {
     const b = el.querySelector(sel);
-    return b && { b, path, label, wide, on: false };
+    return b && src && { b, src, label, cls, on: false };
   }).filter(Boolean);
 
   for (const f of flips) {
@@ -126,10 +131,25 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
         g.on = g === f && want;
         g.b.textContent = g.on ? '看廣重的版本' : `看${g.label}`;
       }
-      img.src = want ? f.path(v.id) : print;
-      img.classList.toggle('zue', want && f.wide);
+      img.src = want ? f.src : print;
+      img.classList.remove('zue', 'map', 'big');
+      if (want && f.cls) img.classList.add(f.cls);
+      // findLies が読む印。対照版のあいだは当たり判定を止める（lie.js 参照）
+      if (want) img.dataset.other = f.label; else delete img.dataset.other;
     };
   }
+  // 切繪圖は縮めると町名が潰れる——押したら原寸（2400px）まで開いて、
+  // .overlay の overflow:auto にそのまま巻かせる。もう一度押すと戻る。
+  img.addEventListener('click', () => {
+    if (img.dataset.other !== '《江戶切繪圖》') return;
+    const on = img.classList.toggle('big');
+    // 開いた直後は左上に巻かれている。押した意味は「近くで見たい」なので中央へ。
+    if (on) requestAnimationFrame(() => {
+      el.scrollTo({ left: (el.scrollWidth - el.clientWidth) / 2,
+                    top: (el.scrollHeight - el.clientHeight) / 2 });
+    });
+  });
+
   const close = () => { el.remove(); onClose?.(); };
   if (onCollect) el.querySelector('#collect').onclick = () => { el.remove(); onCollect(); };
   el.querySelector('#leave').onclick = close;

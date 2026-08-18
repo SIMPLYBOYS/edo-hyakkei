@@ -8,3 +8,6 @@ export const hires = id => `assets/hires/${n(id)}.jpg`;       // 研究用，多
 export const thumb = id => `assets/thumbs/${n(id)}.jpg`;      // 歲時記
 export const meishozue = id => `assets/meishozue/${n(id)}.jpg`;
 export const miyage = id => `assets/miyage/${n(id)}.jpg`;   // §7-12 廣重自己的另一種答案
+// 切繪圖只有 28 張，多景共用一張，所以鍵是圖的 PID 不是景的 id——
+// 這是唯一一個不照 {id:03d} 規則的素材，因為它本來就不是「每景一張」。
+export const kiriezu = pid => `assets/kiriezu/${pid}.jpg`;
