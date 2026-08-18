@@ -25,7 +25,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋一丁目",
-   "modern_town_km": 0.15
+   "modern_town_km": 0.15,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.15,
+    "near": "日本橋一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -93,7 +99,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "霞が関二丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286657,
+    "title": "外桜田永田町絵図",
+    "km": 0.13,
+    "near": "霞が関二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -160,7 +172,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "日比谷公園",
-   "modern_town_km": 0.14
+   "modern_town_km": 0.14,
+   "kiriezu": {
+    "pid": 1286656,
+    "title": "御江戸大名小路絵図",
+    "km": 0.28,
+    "near": "有楽町一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -216,7 +234,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "佐賀一丁目",
-   "modern_town_km": 0.26
+   "modern_town_km": 0.26,
+   "kiriezu": {
+    "pid": 1286680,
+    "title": "深川絵図",
+    "km": 0.26,
+    "near": "佐賀一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -272,7 +296,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "両国二丁目",
-   "modern_town_km": 0.06
+   "modern_town_km": 0.06,
+   "kiriezu": {
+    "pid": 1286679,
+    "title": "本所絵図",
+    "km": 0.15,
+    "near": "横網"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -340,7 +370,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋馬喰町一丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.13,
+    "near": "日本橋馬喰町一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -396,7 +432,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋本町",
-   "modern_town_km": 0.06
+   "modern_town_km": 0.06,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.06,
+    "near": "日本橋本町"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -452,7 +494,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋室町二丁目",
-   "modern_town_km": 0.07
+   "modern_town_km": 0.07,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.07,
+    "near": "日本橋室町二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -520,7 +568,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "神田淡路町二丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.13,
+    "near": "神田淡路町二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -576,7 +630,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "外神田二丁目",
-   "modern_town_km": 0.15
+   "modern_town_km": 0.15,
+   "kiriezu": {
+    "pid": 1286676,
+    "title": "本郷湯島絵図",
+    "km": 0.28,
+    "near": "湯島一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -632,7 +692,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "上野",
-   "modern_town_km": 0.27
+   "modern_town_km": 0.27,
+   "kiriezu": {
+    "pid": 1286207,
+    "title": "下谷絵図",
+    "km": 0.27,
+    "near": "上野"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -688,7 +754,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "上野四丁目",
-   "modern_town_km": 0.15
+   "modern_town_km": 0.15,
+   "kiriezu": {
+    "pid": 1286207,
+    "title": "下谷絵図",
+    "km": 0.15,
+    "near": "上野四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -744,7 +816,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "上野一丁目",
-   "modern_town_km": 0.11
+   "modern_town_km": 0.11,
+   "kiriezu": {
+    "pid": 1286207,
+    "title": "下谷絵図",
+    "km": 0.11,
+    "near": "上野一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -800,7 +878,13 @@
    "modern_ward": "荒川区",
    "modern_landmark": null,
    "modern_town": "西日暮里三丁目",
-   "modern_town_km": 0.16
+   "modern_town_km": 0.16,
+   "kiriezu": {
+    "pid": 1286677,
+    "title": "根岸谷中辺絵図",
+    "km": 0.16,
+    "near": "西日暮里三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -856,7 +940,13 @@
    "modern_ward": "荒川区",
    "modern_landmark": null,
    "modern_town": "西日暮里三丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286677,
+    "title": "根岸谷中辺絵図",
+    "km": 0.13,
+    "near": "西日暮里三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -913,7 +1003,13 @@
    "modern_ward": "文京区",
    "modern_landmark": null,
    "modern_town": "千駄木",
-   "modern_town_km": 0.12
+   "modern_town_km": 0.12,
+   "kiriezu": {
+    "pid": 1286675,
+    "title": "駒込絵図",
+    "km": 0.64,
+    "near": "本駒込三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -980,7 +1076,13 @@
    "modern_ward": "北区",
    "modern_landmark": null,
    "modern_town": "王子一丁目",
-   "modern_town_km": 0.2
+   "modern_town_km": 0.2,
+   "kiriezu": {
+    "pid": 1286674,
+    "title": "巣鴨絵図",
+    "km": 1.15,
+    "near": "西巣鴨四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1037,7 +1139,13 @@
    "modern_ward": "北区",
    "modern_landmark": null,
    "modern_town": "岸町一丁目",
-   "modern_town_km": 0.1
+   "modern_town_km": 0.1,
+   "kiriezu": {
+    "pid": 1286674,
+    "title": "巣鴨絵図",
+    "km": 1.46,
+    "near": "西巣鴨四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1094,7 +1202,13 @@
    "modern_ward": "北区",
    "modern_landmark": null,
    "modern_town": "王子本町一丁目",
-   "modern_town_km": 0.29
+   "modern_town_km": 0.29,
+   "kiriezu": {
+    "pid": 1286674,
+    "title": "巣鴨絵図",
+    "km": 1.11,
+    "near": "西巣鴨四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1150,7 +1264,8 @@
    "modern_ward": "川口市",
    "modern_landmark": null,
    "modern_town": "金山町",
-   "modern_town_km": 0.25
+   "modern_town_km": 0.25,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -1217,7 +1332,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "愛宕一丁目",
-   "modern_town_km": 0.08
+   "modern_town_km": 0.08,
+   "kiriezu": {
+    "pid": 1286662,
+    "title": "芝愛宕下絵図",
+    "km": 0.08,
+    "near": "愛宕一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1273,7 +1394,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "白金三丁目",
-   "modern_town_km": 0.22
+   "modern_town_km": 0.22,
+   "kiriezu": {
+    "pid": 1286664,
+    "title": "目黒白金辺図",
+    "km": 0.22,
+    "near": "白金三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1329,7 +1456,13 @@
    "modern_ward": "目黒区",
    "modern_landmark": null,
    "modern_town": "目黒一丁目",
-   "modern_town_km": 0.22
+   "modern_town_km": 0.22,
+   "kiriezu": {
+    "pid": 1286664,
+    "title": "目黒白金辺図",
+    "km": 0.22,
+    "near": "目黒一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1385,7 +1518,13 @@
    "modern_ward": "目黒区",
    "modern_landmark": null,
    "modern_town": "中目黒一丁目",
-   "modern_town_km": 0.19
+   "modern_town_km": 0.19,
+   "kiriezu": {
+    "pid": 1286664,
+    "title": "目黒白金辺図",
+    "km": 0.19,
+    "near": "中目黒一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1442,7 +1581,13 @@
    "modern_ward": "目黒区",
    "modern_landmark": null,
    "modern_town": "上目黒一丁目",
-   "modern_town_km": 0.19
+   "modern_town_km": 0.19,
+   "kiriezu": {
+    "pid": 1286664,
+    "title": "目黒白金辺図",
+    "km": 0.19,
+    "near": "上目黒一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1510,7 +1655,8 @@
    "modern_ward": "大田区",
    "modern_landmark": null,
    "modern_town": "山王二丁目",
-   "modern_town_km": 0.15
+   "modern_town_km": 0.15,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -1577,7 +1723,8 @@
    "modern_ward": "大田区",
    "modern_landmark": null,
    "modern_town": "東蒲田",
-   "modern_town_km": 0.23
+   "modern_town_km": 0.23,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -1644,7 +1791,13 @@
    "modern_ward": "品川区",
    "modern_landmark": null,
    "modern_town": "北品川四丁目",
-   "modern_town_km": 0.03
+   "modern_town_km": 0.03,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 0.71,
+    "near": "高輪四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1700,7 +1853,8 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "南砂七丁目",
-   "modern_town_km": 0.2
+   "modern_town_km": 0.2,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -1756,7 +1910,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "亀戸三丁目",
-   "modern_town_km": 0.14
+   "modern_town_km": 0.14,
+   "kiriezu": {
+    "pid": 1286679,
+    "title": "本所絵図",
+    "km": 1.58,
+    "near": "本所四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1798,7 +1958,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "立花一丁目",
-   "modern_town_km": 0.21
+   "modern_town_km": 0.21,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 1.69,
+    "near": "向島四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1854,7 +2020,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "業平五丁目",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 1.03,
+    "near": "向島四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1911,7 +2083,13 @@
    "modern_ward": "葛飾区",
    "modern_landmark": null,
    "modern_town": "四つ木",
-   "modern_town_km": 0.03
+   "modern_town_km": 0.03,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 1.51,
+    "near": "東向島五丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -1978,7 +2156,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "向島二丁目",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 0.09,
+    "near": "向島二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2034,7 +2218,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "堤通",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 0.13,
+    "near": "堤通"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2091,7 +2281,13 @@
    "modern_ward": "荒川区",
    "modern_landmark": null,
    "modern_town": "南千住三丁目",
-   "modern_town_km": 0.21
+   "modern_town_km": 0.21,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.31,
+    "near": "橋場二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2148,7 +2344,13 @@
    "modern_ward": "荒川区",
    "modern_landmark": null,
    "modern_town": "橋場二丁目",
-   "modern_town_km": 0.22
+   "modern_town_km": 0.22,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.22,
+    "near": "橋場二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2205,7 +2407,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "千束四丁目",
-   "modern_town_km": 0.03
+   "modern_town_km": 0.03,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.35,
+    "near": "東浅草二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2261,7 +2469,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "浅草七丁目",
-   "modern_town_km": 0.25
+   "modern_town_km": 0.25,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.25,
+    "near": "浅草七丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2318,7 +2532,13 @@
    "modern_ward": "文京区",
    "modern_landmark": null,
    "modern_town": "関口二丁目",
-   "modern_town_km": 0.27
+   "modern_town_km": 0.27,
+   "kiriezu": {
+    "pid": 1286672,
+    "title": "小日向絵図",
+    "km": 0.27,
+    "near": "関口二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2385,7 +2605,13 @@
    "modern_ward": "新宿区",
    "modern_landmark": null,
    "modern_town": "市谷八幡町",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286670,
+    "title": "市ヶ谷牛込絵図",
+    "km": 0.09,
+    "near": "市谷八幡町"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2441,7 +2667,13 @@
    "modern_ward": "新宿区",
    "modern_landmark": null,
    "modern_town": "新宿四丁目",
-   "modern_town_km": 0.19
+   "modern_town_km": 0.19,
+   "kiriezu": {
+    "pid": 1286669,
+    "title": "内藤新宿千駄ヶ谷絵図",
+    "km": 0.47,
+    "near": "千駄ヶ谷五丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2497,7 +2729,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋室町一丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.13,
+    "near": "日本橋室町一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2564,7 +2802,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋二丁目",
-   "modern_town_km": 0.15
+   "modern_town_km": 0.15,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.15,
+    "near": "日本橋二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2620,7 +2864,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋本石町一丁目",
-   "modern_town_km": 0.07
+   "modern_town_km": 0.07,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.07,
+    "near": "日本橋本石町一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2677,7 +2927,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋小網町",
-   "modern_town_km": 0.08
+   "modern_town_km": 0.08,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.08,
+    "near": "日本橋小網町"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2745,7 +3001,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "神田淡路町二丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.13,
+    "near": "神田淡路町二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2801,7 +3063,13 @@
    "modern_ward": "文京区",
    "modern_landmark": null,
    "modern_town": "神田三崎町二丁目",
-   "modern_town_km": 0.17
+   "modern_town_km": 0.17,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.17,
+    "near": "神田三崎町二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2868,7 +3136,13 @@
    "modern_ward": "北区",
    "modern_landmark": null,
    "modern_town": "滝野川二丁目",
-   "modern_town_km": 0.2
+   "modern_town_km": 0.2,
+   "kiriezu": {
+    "pid": 1286674,
+    "title": "巣鴨絵図",
+    "km": 0.98,
+    "near": "西巣鴨四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2924,7 +3198,13 @@
    "modern_ward": "新宿区",
    "modern_landmark": null,
    "modern_town": "西新宿五丁目",
-   "modern_town_km": 0.32
+   "modern_town_km": 0.32,
+   "kiriezu": {
+    "pid": 1286671,
+    "title": "大久保絵図",
+    "km": 1.44,
+    "near": "百人町一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -2991,7 +3271,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "半蔵門",
-   "modern_town_km": 0.03
+   "modern_town_km": 0.03,
+   "kiriezu": {
+    "pid": 1286658,
+    "title": "御江戸番町絵図",
+    "km": 0.26,
+    "near": "麹町一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3048,7 +3334,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "赤坂三丁目",
-   "modern_town_km": 0.16
+   "modern_town_km": 0.16,
+   "kiriezu": {
+    "pid": 1286666,
+    "title": "赤坂絵図",
+    "km": 0.16,
+    "near": "赤坂三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3104,7 +3396,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "東麻布一丁目",
-   "modern_town_km": 0.25
+   "modern_town_km": 0.25,
+   "kiriezu": {
+    "pid": 1286665,
+    "title": "麻布絵図",
+    "km": 0.25,
+    "near": "東麻布一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3160,7 +3458,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "霞が関二丁目",
-   "modern_town_km": 0.2
+   "modern_town_km": 0.2,
+   "kiriezu": {
+    "pid": 1286657,
+    "title": "外桜田永田町絵図",
+    "km": 0.2,
+    "near": "霞が関二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3217,7 +3521,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "佃一丁目",
-   "modern_town_km": 0.1
+   "modern_town_km": 0.1,
+   "kiriezu": {
+    "pid": 1286660,
+    "title": "築地八町堀日本橋南絵図",
+    "km": 0.77,
+    "near": "築地七丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3273,7 +3583,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "常盤一丁目",
-   "modern_town_km": 0.16
+   "modern_town_km": 0.16,
+   "kiriezu": {
+    "pid": 1286680,
+    "title": "深川絵図",
+    "km": 0.2,
+    "near": "清澄"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3330,7 +3646,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋中洲",
-   "modern_town_km": 0.18
+   "modern_town_km": 0.18,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.18,
+    "near": "日本橋中洲"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3387,7 +3709,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "常盤一丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.25,
+    "near": "日本橋中洲"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3454,7 +3782,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "東日本橋二丁目",
-   "modern_town_km": 0.1
+   "modern_town_km": 0.1,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.1,
+    "near": "東日本橋二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3510,7 +3844,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "東日本橋二丁目",
-   "modern_town_km": 0.11
+   "modern_town_km": 0.11,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.11,
+    "near": "東日本橋二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3567,7 +3907,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "蔵前一丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286209,
+    "title": "浅草御蔵前辺図",
+    "km": 0.13,
+    "near": "蔵前一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3634,7 +3980,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "雷門二丁目",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286209,
+    "title": "浅草御蔵前辺図",
+    "km": 0.27,
+    "near": "駒形一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3690,7 +4042,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "千住曙町",
-   "modern_town_km": 0.36
+   "modern_town_km": 0.36,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 0.64,
+    "near": "堤通二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3746,7 +4104,13 @@
    "modern_ward": "葛飾区",
    "modern_landmark": null,
    "modern_town": "堀切二丁目",
-   "modern_town_km": 0.07
+   "modern_town_km": 0.07,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 1.38,
+    "near": "堤通二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3813,7 +4177,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "亀戸三丁目",
-   "modern_town_km": 0.3
+   "modern_town_km": 0.3,
+   "kiriezu": {
+    "pid": 1286679,
+    "title": "本所絵図",
+    "km": 1.3,
+    "near": "石原四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3869,7 +4239,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "大島三丁目",
-   "modern_town_km": 0.31
+   "modern_town_km": 0.31,
+   "kiriezu": {
+    "pid": 1286679,
+    "title": "本所絵図",
+    "km": 2.0,
+    "near": "亀沢四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -3925,7 +4301,8 @@
    "modern_ward": "江戸川区",
    "modern_landmark": null,
    "modern_town": "小松川",
-   "modern_town_km": 0.34
+   "modern_town_km": 0.34,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -3981,7 +4358,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "門前仲町二丁目",
-   "modern_town_km": 0.17
+   "modern_town_km": 0.17,
+   "kiriezu": {
+    "pid": 1286680,
+    "title": "深川絵図",
+    "km": 0.17,
+    "near": "門前仲町二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4037,7 +4420,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "富岡二丁目",
-   "modern_town_km": 0.07
+   "modern_town_km": 0.07,
+   "kiriezu": {
+    "pid": 1286680,
+    "title": "深川絵図",
+    "km": 0.52,
+    "near": "門前仲町二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4093,7 +4482,8 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "東砂二丁目",
-   "modern_town_km": 0.36
+   "modern_town_km": 0.36,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -4160,7 +4550,8 @@
    "modern_ward": "市川市",
    "modern_landmark": null,
    "modern_town": "広尾二丁目",
-   "modern_town_km": 0.23
+   "modern_town_km": 0.23,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -4216,7 +4607,8 @@
    "modern_ward": "川崎市",
    "modern_landmark": null,
    "modern_town": "羽田二丁目",
-   "modern_town_km": 0.39
+   "modern_town_km": 0.39,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -4283,7 +4675,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "京橋一丁目",
-   "modern_town_km": 0.03
+   "modern_town_km": 0.03,
+   "kiriezu": {
+    "pid": 1286660,
+    "title": "築地八町堀日本橋南絵図",
+    "km": 0.03,
+    "near": "京橋一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4340,7 +4738,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "日本橋大伝馬町",
-   "modern_town_km": 0.07
+   "modern_town_km": 0.07,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.07,
+    "near": "日本橋大伝馬町"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4396,7 +4800,13 @@
    "modern_ward": "千代田区",
    "modern_landmark": null,
    "modern_town": "神田西福田町",
-   "modern_town_km": 0.04
+   "modern_town_km": 0.04,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.04,
+    "near": "神田西福田町"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4453,7 +4863,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "京橋三丁目",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286660,
+    "title": "築地八町堀日本橋南絵図",
+    "km": 0.09,
+    "near": "京橋三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4520,7 +4936,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "湊一丁目",
-   "modern_town_km": 0.12
+   "modern_town_km": 0.12,
+   "kiriezu": {
+    "pid": 1286660,
+    "title": "築地八町堀日本橋南絵図",
+    "km": 0.34,
+    "near": "八丁堀四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4577,7 +4999,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "月島一丁目",
-   "modern_town_km": 0.2
+   "modern_town_km": 0.2,
+   "kiriezu": {
+    "pid": 1286660,
+    "title": "築地八町堀日本橋南絵図",
+    "km": 0.49,
+    "near": "築地七丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4633,7 +5061,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "芝大門",
-   "modern_town_km": 0.04
+   "modern_town_km": 0.04,
+   "kiriezu": {
+    "pid": 1286662,
+    "title": "芝愛宕下絵図",
+    "km": 0.52,
+    "near": "新橋六丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4689,7 +5123,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "芝大門二丁目",
-   "modern_town_km": 0.22
+   "modern_town_km": 0.22,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 0.49,
+    "near": "芝浦一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4745,7 +5185,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "高輪二丁目",
-   "modern_town_km": 0.25
+   "modern_town_km": 0.25,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 0.25,
+    "near": "高輪二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4812,7 +5258,13 @@
    "modern_ward": "品川区",
    "modern_landmark": null,
    "modern_town": "北品川一丁目",
-   "modern_town_km": 0.04
+   "modern_town_km": 0.04,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 0.72,
+    "near": "高輪四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4879,7 +5331,13 @@
    "modern_ward": "品川区",
    "modern_landmark": null,
    "modern_town": "北品川一丁目",
-   "modern_town_km": 0.23
+   "modern_town_km": 0.23,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 0.9,
+    "near": "高輪四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -4946,7 +5404,13 @@
    "modern_ward": "目黒区",
    "modern_landmark": null,
    "modern_town": "三田二丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 0.13,
+    "near": "三田二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5014,7 +5478,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "元赤坂一丁目",
-   "modern_town_km": 0.29
+   "modern_town_km": 0.29,
+   "kiriezu": {
+    "pid": 1286666,
+    "title": "赤坂絵図",
+    "km": 0.29,
+    "near": "元赤坂一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5071,7 +5541,13 @@
    "modern_ward": "新宿区",
    "modern_landmark": null,
    "modern_town": "新宿二丁目",
-   "modern_town_km": 0.17
+   "modern_town_km": 0.17,
+   "kiriezu": {
+    "pid": 1286669,
+    "title": "内藤新宿千駄ヶ谷絵図",
+    "km": 0.58,
+    "near": "千駄ヶ谷五丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5138,7 +5614,8 @@
    "modern_ward": "三鷹市",
    "modern_landmark": null,
    "modern_town": "御殿山一丁目",
-   "modern_town_km": 0.27
+   "modern_town_km": 0.27,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -5205,7 +5682,13 @@
    "modern_ward": "北区",
    "modern_landmark": null,
    "modern_town": "王子本町三丁目",
-   "modern_town_km": 0.18
+   "modern_town_km": 0.18,
+   "kiriezu": {
+    "pid": 1286674,
+    "title": "巣鴨絵図",
+    "km": 0.98,
+    "near": "西巣鴨四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5272,7 +5755,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "上野",
-   "modern_town_km": 0.29
+   "modern_town_km": 0.29,
+   "kiriezu": {
+    "pid": 1286207,
+    "title": "下谷絵図",
+    "km": 0.29,
+    "near": "上野"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5328,7 +5817,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "浅草六丁目",
-   "modern_town_km": 0.05
+   "modern_town_km": 0.05,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.05,
+    "near": "浅草六丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5395,7 +5890,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "向島四丁目",
-   "modern_town_km": 0.14
+   "modern_town_km": 0.14,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 0.14,
+    "near": "向島四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5451,7 +5952,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "堤通二丁目",
-   "modern_town_km": 0.04
+   "modern_town_km": 0.04,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 0.04,
+    "near": "堤通二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5518,7 +6025,8 @@
    "modern_ward": "葛飾区",
    "modern_landmark": null,
    "modern_town": "新宿二丁目",
-   "modern_town_km": 0.25
+   "modern_town_km": 0.25,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -5574,7 +6082,8 @@
    "modern_ward": "市川市",
    "modern_landmark": null,
    "modern_town": "真間四丁目",
-   "modern_town_km": 0.06
+   "modern_town_km": 0.06,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -5641,7 +6150,8 @@
    "modern_ward": "市川市",
    "modern_landmark": null,
    "modern_town": "国府台三丁目",
-   "modern_town_km": 0.12
+   "modern_town_km": 0.12,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -5698,7 +6208,8 @@
    "modern_ward": "浦安市",
    "modern_landmark": null,
    "modern_town": "猫実二丁目",
-   "modern_town_km": 0.2
+   "modern_town_km": 0.2,
+   "kiriezu": null
   },
   "conditions": {
    "time_of_day": null
@@ -5755,7 +6266,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "猿江二丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286679,
+    "title": "本所絵図",
+    "km": 1.73,
+    "near": "亀沢四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5811,7 +6328,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "両国一丁目",
-   "modern_town_km": 0.12
+   "modern_town_km": 0.12,
+   "kiriezu": {
+    "pid": 1286645,
+    "title": "日本橋北神田浜町絵図",
+    "km": 0.18,
+    "near": "東日本橋二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5867,7 +6390,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "雷門二丁目",
-   "modern_town_km": 0.16
+   "modern_town_km": 0.16,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.17,
+    "near": "浅草一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -5934,7 +6463,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "千束四丁目",
-   "modern_town_km": 0.14
+   "modern_town_km": 0.14,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 0.23,
+    "near": "東浅草二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6001,7 +6536,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "千束三丁目",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286207,
+    "title": "下谷絵図",
+    "km": 0.5,
+    "near": "下谷三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6069,7 +6610,13 @@
    "modern_ward": "荒川区",
    "modern_landmark": null,
    "modern_town": "東日暮里三丁目",
-   "modern_town_km": 0.23
+   "modern_town_km": 0.23,
+   "kiriezu": {
+    "pid": 1286677,
+    "title": "根岸谷中辺絵図",
+    "km": 0.23,
+    "near": "東日暮里三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6125,7 +6672,13 @@
    "modern_ward": "足立区",
    "modern_landmark": null,
    "modern_town": "千住橋戸町",
-   "modern_town_km": 0.18
+   "modern_town_km": 0.18,
+   "kiriezu": {
+    "pid": 1286208,
+    "title": "今戸箕輪浅草絵図",
+    "km": 1.16,
+    "near": "三ノ輪二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6192,7 +6745,13 @@
    "modern_ward": "墨田区",
    "modern_landmark": null,
    "modern_town": "吾妻橋三丁目",
-   "modern_town_km": 0.26
+   "modern_town_km": 0.26,
+   "kiriezu": {
+    "pid": 1286678,
+    "title": "隅田川向島絵図",
+    "km": 0.31,
+    "near": "向島三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6259,7 +6818,13 @@
    "modern_ward": "台東区",
    "modern_landmark": null,
    "modern_town": "蔵前二丁目",
-   "modern_town_km": 0.12
+   "modern_town_km": 0.12,
+   "kiriezu": {
+    "pid": 1286209,
+    "title": "浅草御蔵前辺図",
+    "km": 0.12,
+    "near": "蔵前二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6315,7 +6880,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "平野四丁目",
-   "modern_town_km": 0.16
+   "modern_town_km": 0.16,
+   "kiriezu": {
+    "pid": 1286680,
+    "title": "深川絵図",
+    "km": 0.94,
+    "near": "深川二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6371,7 +6942,13 @@
    "modern_ward": "江東区",
    "modern_landmark": null,
    "modern_town": "千石",
-   "modern_town_km": 0.03
+   "modern_town_km": 0.03,
+   "kiriezu": {
+    "pid": 1286680,
+    "title": "深川絵図",
+    "km": 1.63,
+    "near": "清澄三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6439,7 +7016,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "勝どき五丁目",
-   "modern_town_km": 0.29
+   "modern_town_km": 0.29,
+   "kiriezu": {
+    "pid": 1286660,
+    "title": "築地八町堀日本橋南絵図",
+    "km": 0.45,
+    "near": "築地五丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6495,7 +7078,13 @@
    "modern_ward": "品川区",
    "modern_landmark": null,
    "modern_town": "東大井一丁目",
-   "modern_town_km": 0.21
+   "modern_town_km": 0.21,
+   "kiriezu": {
+    "pid": 1286663,
+    "title": "芝高輪辺絵図",
+    "km": 2.43,
+    "near": "高輪四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6552,7 +7141,13 @@
    "modern_ward": "大田区",
    "modern_landmark": null,
    "modern_town": "南千束",
-   "modern_town_km": 0.09
+   "modern_town_km": 0.09,
+   "kiriezu": {
+    "pid": 1286664,
+    "title": "目黒白金辺図",
+    "km": 2.14,
+    "near": "目黒本町五丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6619,7 +7214,13 @@
    "modern_ward": "目黒区",
    "modern_landmark": null,
    "modern_town": "下目黒一丁目",
-   "modern_town_km": 0.15
+   "modern_town_km": 0.15,
+   "kiriezu": {
+    "pid": 1286664,
+    "title": "目黒白金辺図",
+    "km": 0.15,
+    "near": "下目黒一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6686,7 +7287,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "虎ノ門一丁目",
-   "modern_town_km": 0.06
+   "modern_town_km": 0.06,
+   "kiriezu": {
+    "pid": 1286662,
+    "title": "芝愛宕下絵図",
+    "km": 0.06,
+    "near": "虎ノ門一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6742,7 +7349,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "虎ノ門二丁目",
-   "modern_town_km": 0.17
+   "modern_town_km": 0.17,
+   "kiriezu": {
+    "pid": 1286662,
+    "title": "芝愛宕下絵図",
+    "km": 0.17,
+    "near": "虎ノ門二丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6798,7 +7411,13 @@
    "modern_ward": "中央区",
    "modern_landmark": null,
    "modern_town": "八重洲二丁目",
-   "modern_town_km": 0.28
+   "modern_town_km": 0.28,
+   "kiriezu": {
+    "pid": 1286656,
+    "title": "御江戸大名小路絵図",
+    "km": 0.29,
+    "near": "丸の内三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6855,7 +7474,13 @@
    "modern_ward": "新宿区",
    "modern_landmark": null,
    "modern_town": "西早稲田",
-   "modern_town_km": 0.04
+   "modern_town_km": 0.04,
+   "kiriezu": {
+    "pid": 1286671,
+    "title": "大久保絵図",
+    "km": 0.45,
+    "near": "戸山三丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6911,7 +7536,13 @@
    "modern_ward": "新宿区",
    "modern_landmark": null,
    "modern_town": "西早稲田三丁目",
-   "modern_town_km": 0.13
+   "modern_town_km": 0.13,
+   "kiriezu": {
+    "pid": 1286672,
+    "title": "小日向絵図",
+    "km": 0.62,
+    "near": "目白台一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -6967,7 +7598,13 @@
    "modern_ward": "文京区",
    "modern_landmark": null,
    "modern_town": "湯島",
-   "modern_town_km": 0.06
+   "modern_town_km": 0.06,
+   "kiriezu": {
+    "pid": 1286676,
+    "title": "本郷湯島絵図",
+    "km": 0.06,
+    "near": "湯島"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -7023,7 +7660,13 @@
    "modern_ward": "北区",
    "modern_landmark": null,
    "modern_town": "王子二丁目",
-   "modern_town_km": 0.22
+   "modern_town_km": 0.22,
+   "kiriezu": {
+    "pid": 1286674,
+    "title": "巣鴨絵図",
+    "km": 1.61,
+    "near": "西巣鴨四丁目"
+   }
   },
   "conditions": {
    "time_of_day": null
@@ -7090,7 +7733,13 @@
    "modern_ward": "港区",
    "modern_landmark": null,
    "modern_town": "元赤坂一丁目",
-   "modern_town_km": 0.16
+   "modern_town_km": 0.16,
+   "kiriezu": {
+    "pid": 1286666,
+    "title": "赤坂絵図",
+    "km": 0.16,
+    "near": "元赤坂一丁目"
+   }
   },
   "conditions": {
    "time_of_day": null

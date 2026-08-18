@@ -46,7 +46,13 @@ function lore(v) {
   const pl = v.place ?? {};
   const now = pl.modern_ward
     ? `<p class="now">現在　<b>${pl.modern_ward}${pl.modern_town ?? ''}</b></p>` : '';
-  const body = now + cite('江戶名所圖會', v.pair?.meishozue, '丁')
+  // 切繪圖は**この一帯**の図であって、この一点がどこに描かれているかまでは
+  // 言えない（図幅は数 km 四方、方位も比例も一定でない）。だから「〜あたりの」。
+  const kz = pl.kiriezu
+    ? `<p class="cite"><b>《江戶切繪圖》</b>〈${pl.kiriezu.title.replace(/絵図$|辺図$/, '')}〉
+       <span>當時這一帶的市街圖。町名、大名屋敷的戶名、寺社、橋與御門都在上面。</span></p>`
+    : '';
+  const body = now + kz + cite('江戶名所圖會', v.pair?.meishozue, '丁')
     + cite('繪本江戶土產', v.pair?.miyage, '頁') + b + prov;
   return body ? `<div class="lore">${body}</div>` : '';
 }
