@@ -188,7 +188,7 @@ function goSeason(season) {
   if (d == null) return say(`${seasonJa(season)}的景都收齊了`);
   const n = d - state.day;
   advance(n);
-  say(`${seasonJa(season)}へ——${clockFrom(state.day).label}（${n} 日後）`);
+  say(`到${seasonJa(season)}——${clockFrom(state.day).label}（${n} 日後）`);
 }
 
 const seasonBar = document.getElementById('seasons');
@@ -233,7 +233,7 @@ function showEnd() {
       不在這一百十八景之內。</p>
     <div class="act">
       <button id="endbook">看歲時記</button>
-      <button id="endclose" class="ghost">続ける</button>
+      <button id="endclose" class="ghost">繼續</button>
     </div></div>`;
   el.querySelector('#endclose').onclick = () => { el.remove(); paint(); };
   el.querySelector('#endbook').onclick = () =>
@@ -270,8 +270,8 @@ let eraFade;
 eraInput.oninput = () => {
   const t = eraInput.value / 1000;
   map.setEra(t);
-  eraNow.textContent = t > 0.98 ? '安政五年 1858 の地圖'
-    : t < 0.02 ? '2026 現在の地圖'
+  eraNow.textContent = t > 0.98 ? '安政五年 1858 的地圖'
+    : t < 0.02 ? '2026 現在的地圖'
     : `兩張圖疊著 — 江戶 ${Math.round(t * 100)}%`;
   // 停手兩秒就淡出：它是拖動時的回饋，不是常駐的抬頭顯示
   eraNow.classList.add('on');

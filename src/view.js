@@ -28,7 +28,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
           ${onCollect ? `<button id="collect">收入歲時記（耗${kanjiDays(DAYS_PER_VIEW)}日）</button>` : ''}
           ${v.assets.meishozue ? '<button id="flip" class="ghost">看《名所圖會》</button>' : ''}
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
-          <button id="leave" class="ghost">${onCollect ? '先不看' : '閉じる'}</button>
+          <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
         ${v.assets.meishozue ? `<p class="hint">《名所圖會》是地誌——俯瞰、寫實、地名齊全。
           廣重畫的是同一個地方，但他動了手腳。兩邊對著看。</p>` : ''}

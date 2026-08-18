@@ -97,7 +97,7 @@ const km = (a, b) => {                       // 這個尺度用等距近似就�
 // 帶狀評語。門檻照江戶的尺度訂：城東西約 30km，六題最遠相距 22km，
 // 亂猜期望誤差約 7km——所以 3km 大約是「認得出是哪一區」，1km 是「認得出是哪座橋」。
 const BANDS = [
-  [0.3, '的中', 5], [1, '見事', 4], [3, '惜しい', 3], [8, '遠い', 2], [Infinity, '大外れ', 1],
+  [0.3, '正中', 5], [1, '精準', 4], [3, '可惜', 3], [8, '偏了', 2], [Infinity, '差得遠', 1],
 ];
 const band = d => BANDS.find(([lim]) => d <= lim);
 const dist = d => (d < 1 ? `${Math.round(d * 1000)} m` : `${d.toFixed(1)} km`);
@@ -118,7 +118,7 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
   // 🔴 離開鈕以前寫在各畫面的 innerHTML 裡，而揭曉那頁忘了寫——
   // 答完第一題就出不去，只能一路按到結果。每個畫面各自負責同一顆鈕，
   // 就一定會有一頁漏掉。改成掛在會被重寫的區塊外面，三個畫面共用一顆。
-  el.innerHTML = '<button id="hquit" class="ghost">やめる</button><div id="hbody"></div>';
+  el.innerHTML = '<button id="hquit" class="ghost">放棄</button><div id="hbody"></div>';
   const body = el.querySelector('#hbody');
   el.querySelector('#hquit').onclick = quit;
   const esc = e => { if (e.key === 'Escape') quit(); };
@@ -146,7 +146,7 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
       <div class="body">
         <p class="n">${i + 1} / ${rounds.length}　${rounds[i].from}</p>
         <p class="q">這是江戶的哪裡？在地圖上點一下</p>
-        <div class="act"><button id="hgo" disabled>ここだ</button></div>
+        <div class="act"><button id="hgo" disabled>就是這裡</button></div>
       </div>`;
     el.querySelector('#hgo').onclick = answer;
   }
@@ -169,7 +169,7 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
         <div id="tally"></div>
         <p class="why">${why}</p>
         <div class="act">
-          <button id="hnext">${i + 1 < rounds.length ? '次へ' : '結果'}</button>
+          <button id="hnext">${i + 1 < rounds.length ? '下一題' : '看結果'}</button>
         </div>
       </div>`;
     // 不直接把答案印出來——印了，玩家之後在 §2.4 打開同一景就沒得找。
@@ -189,14 +189,14 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
     const total = results.reduce((a, r) => a + r.pts, 0);
     const best = results.reduce((a, r) => (r.d < a.d ? r : a));
     map.hunt.clear();
-    el.querySelector('#hquit').textContent = '閉じる';   // 走到底了，這顆不再是「放棄」
+    el.querySelector('#hquit').textContent = '關閉';   // 走到底了，這顆不再是「放棄」
     body.innerHTML = `
       <div class="body">
-        <h3>視点狩り</h3>
+        <h3>視點狩獵</h3>
         <p class="verdict">${total} / ${results.length * 5}</p>
         <ul class="list">${results.map(r =>
           `<li><span>${r.v.title.ja}</span><b>${dist(r.d)}</b></li>`).join('')}</ul>
-        <p class="why">最も近かったのは「${best.v.title.ja}」（${dist(best.d)}）。</p>
+        <p class="why">最接近的是〈${best.v.title.ja}〉，差 ${dist(best.d)}。</p>
       </div>`;
   }
 

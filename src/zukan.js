@@ -31,7 +31,7 @@ export function showZukan(views, state, { onClose, onPick } = {}) {
   el.innerHTML = `<div class="sheet">
     <header><h2>歲時記</h2><span>${state.collected.length} / ${total}</span>
       ${traps ? `<span class="traps">廣重的手腳 ${got} / ${traps}</span>` : ''}
-      <button id="x" class="ghost">閉じる</button></header>
+      <button id="x" class="ghost">關閉</button></header>
     ${groups}</div>`;
   el.querySelector('#x').onclick = () => { el.remove(); onClose?.(); };
   el.onclick = e => {
