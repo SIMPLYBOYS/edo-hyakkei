@@ -55,13 +55,18 @@ const grab = async url => {
   return r.json();
 };
 
-const [all, world, edo, hist] = await Promise.all([
+const [all, world, edo, hist, zueMap, miyMap] = await Promise.all([
   grab('data/views.json'),
   grab('data/geo/modern.json'),
   // 地名只是裝飾，掛掉不該連地圖一起拖下水（§2.7）
   grab('data/edo-places.json').catch(e => (console.warn('江戶地名層略過:', e), { places: [] })),
   // 史實事件同理，掛掉只是少了註腳（§2.9）
   grab('data/events.json').catch(e => (console.warn('史實事件層略過:', e), { events: [] })),
+  // 對照書的配對筆記。這兩份是人工比對的成果（卷・丁・頁名＋「這兩張圖差在哪」），
+  // 一直只有工具在讀，畫面上一個字都沒出現過——按了「看《名所圖會》」只換圖，
+  // 不說你正在看哪一頁，也不說這兩張圖是什麼關係。
+  grab('data/meishozue-map.json').catch(e => (console.warn('圖會配對略過:', e), { pairs: [] })),
+  grab('data/miyage-map.json').catch(e => (console.warn('土產配對略過:', e), { pairs: [] })),
 ]);
 // §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
 // 座標只有一個來源，重抓才不會有兩份會對不上的位置。
@@ -88,7 +93,10 @@ const EVENTS = (hist.events ?? []).map(e => ({ ...e, day: dateDay(e.date) }))
 // 資料裡留著（那是完整的），但遊戲只玩 1–118——先前地圖收得到、歲時記卻不算，
 // 會跑出「119 / 118」這種分數。要一致就兩邊都排除。
 // （這一枚該怎麼記在全集裡是 §6.1 未決的另一個問題，與此無關。）
-const views = all.filter(v => v.id <= 118);
+const byId = m => new Map((m.pairs ?? []).map(q => [q.id, q]));
+const zuePair = byId(zueMap), miyPair = byId(miyMap);
+const views = all.filter(v => v.id <= 118)
+  .map(v => ({ ...v, pair: { meishozue: zuePair.get(v.id), miyage: miyPair.get(v.id) } }));
 const TOTAL = views.length;
 const state = load();
 

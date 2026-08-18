@@ -18,7 +18,7 @@
 // 但都落在頂部那一帶——而那裡是天空／遠山／和歌。出題時遮掉頂部，
 // 幾乎不損失地理資訊；揭曉時整張放出來。
 import { meishozue, miyage, plate } from './paths.js';
-import { findLies } from './lie.js';
+import { findLies, md } from './lie.js';
 
 // 題庫。挑選標準：出題那張要讀得出地形，而且要涵蓋整個畫框。
 // 這是人工判斷，理由逐筆寫在後面（與 fetch-plates.py 的 PAIRS 同一個規矩）。
@@ -179,7 +179,7 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
       findLies(body.querySelector('img'), v, found[v.id] ?? [], {
         onFind: n => onFind?.(v.id, n),
         prompt: body.querySelector('.hunt'),
-        onShow(x) { tally.innerHTML = `<b>${x.target}</b>${x.note}`; tally.classList.add('on'); },
+        onShow(x) { tally.innerHTML = `<b>${x.target}</b>${md(x.note)}`; tally.classList.add('on'); },
       });
     }
     el.querySelector('#hnext').onclick = () => { i++; i < rounds.length ? ask() : summary(); };

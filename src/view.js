@@ -1,7 +1,50 @@
 // 單張畫面呈現。進一景 → 看畫 → 收入歲時記。
 import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
 import { plate, hires, meishozue, miyage } from './paths.js';
-import { findLies } from './lie.js';
+import { findLies, md } from './lie.js';
+
+// ── 來歷。這些資料一直躺在 repo 裡，畫面上一個字都沒出現過 ────────────────
+// 對照書的卷・丁・頁名與「這兩張圖差在哪」是人工比對寫下來的（meishozue-map.json
+// 與 miyage-map.json），先前只有工具在讀；bearing 是從畫中地標反推的視線方位
+// （tools/derive-bearing.py），先前只畫成地圖上的扇形，沒有一句說明；
+// 典藏館與編號則是連提都沒提過——那既是知識點，也是本來就該給的致謝。
+const KANJI = '〇一二三四五六七八九';
+const kanji = n => n < 10 ? KANJI[n] : n < 20 ? '十' + (n % 10 ? KANJI[n % 10] : '')
+  : KANJI[Math.floor(n / 10)] + '十' + (n % 10 ? KANJI[n % 10] : '');
+// v01 → 卷一。丁は和本の数え方（表裏で一丁）なので「頁」ではなく「丁」
+const vol = v => v ? `卷${kanji(+v.replace(/\D/g, ''))}・` : '';
+
+// 方位を言葉に。±30° の不確かさがあるので 16 方位まで刻む意味はない
+const DIRS = ['北', '東北', '東', '東南', '南', '西南', '西', '西北'];
+const compass = deg => DIRS[Math.round(deg / 45) % 8];
+
+// notes.bearing 是給工程看的（英文地標名、還寫著算它的腳本路徑），
+// 不能直接倒給玩家。取出地標、換成中文，說一句人話。
+const LANDMARK = { 'Mount Fuji': '富士山', 'Mount Tsukuba': '筑波山',
+                   'Edo Castle': '江戶城', 'Nihonbashi': '日本橋' };
+const why = v => {
+  const m = /「([^」]+)」/.exec(v.notes?.bearing ?? '');
+  const l = m && (LANDMARK[m[1]] ?? m[1]);
+  return l ? `由畫中的${l}推得，誤差約 ±30°` : '誤差約 ±30°';
+};
+
+const cite = (label, p, unit) => p ? `<p class="cite"><b>《${label}》</b>
+  ${unit === '丁' ? vol(p.vol) : ''}${p.page ? `第${kanji(p.page)}${unit}` : ''}
+  ${p.plate ? `〈${p.plate}〉` : ''}
+  ${p.note ? `<span>${md(p.note)}</span>` : ''}</p>` : '';
+
+function lore(v) {
+  const b = v.bearing != null ? `<p class="bearing">廣重朝<b>${compass(v.bearing)}</b>看
+    <span>${Math.round(v.bearing)}°　${why(v)}</span></p>` : '';
+  const s = v.source ?? {};
+  const prov = s.institution ? `<p class="prov">${s.url
+    ? `<a href="${s.url}" target="_blank" rel="noopener">${s.institution}</a>`
+    : s.institution}${v.accession ? `　${v.accession}` : ''}${
+    s.license ? `　${s.license}` : ''}</p>` : '';
+  const body = cite('江戶名所圖會', v.pair?.meishozue, '丁')
+    + cite('繪本江戶土產', v.pair?.miyage, '頁') + b + prov;
+  return body ? `<div class="lore">${body}</div>` : '';
+}
 
 export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
   const el = document.createElement('div');
@@ -30,11 +73,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
           <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
-        ${v.assets.meishozue ? `<p class="hint">《名所圖會》是地誌——俯瞰、寫實、地名齊全。
-          廣重畫的是同一個地方，但他動了手腳。兩邊對著看。</p>` : ''}
-        ${v.assets.miyage ? `<p class="hint">《繪本江戶土產》是<b>廣重本人</b>畫的同一個地方。
-          跟圖會比是「別人怎麼畫」，跟土產比是<b>他自己怎麼畫</b>——
-          同一雙手，只是用途不同。</p>` : ''}
+        ${lore(v)}
       </figcaption>
     </figure>`;
 
@@ -48,7 +87,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind }) {
     findLies(el.querySelector('img'), v, seen, {
       onFind,
       prompt: el.querySelector('.hunt'),      // 空點三次後這行會變成提示
-      onShow(d) { tally.innerHTML = `<b>${d.target}</b>${d.note}`; tally.classList.add('on'); },
+      onShow(d) { tally.innerHTML = `<b>${d.target}</b>${md(d.note)}`; tally.classList.add('on'); },
     });
   }
 

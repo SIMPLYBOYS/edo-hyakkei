@@ -211,6 +211,19 @@
   #tally b { display:block; color:var(--gold); font-weight:400; margin-bottom:2px }
   .act { margin-top:22px; display:flex; gap:10px; flex-wrap:wrap }
 
+  /* 來歷。逐景的出處與比對筆記——資料一直都在，只是從沒顯示過。
+     排在按鈕之後、字級壓到 12px：它是註腳，不該跟畫本身搶。 */
+  .lore { margin-top:20px; border-top:1px solid #ffffff1f; padding-top:14px;
+          font-size:12px; line-height:1.85 }
+  .lore p { margin:0 0 8px }
+  .lore p:last-child { margin-bottom:0 }
+  .lore b { font-weight:400; color:var(--gold); opacity:.9 }
+  /* 比對筆記自己一行、再淡一級——「這兩張圖差在哪」是敘述，不是標題 */
+  .lore .cite span { display:block; opacity:.62 }
+  .lore .bearing span { display:block; opacity:.5; font-size:11px }
+  .lore .prov { opacity:.42; font-size:11px; letter-spacing:.02em }
+  .lore .prov a { color:inherit }
+
   /* 結局。收滿 118 景時唯一會出現的畫面，安靜一點——
      這是一段走完的路，不是通關獎勵。 */
   .ending .sheet { background:#12283c; border:1px solid #ffffff1f; padding:34px 40px;
