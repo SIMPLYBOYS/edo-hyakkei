@@ -22,8 +22,27 @@ const save = s => localStorage[SAVE] = JSON.stringify(s);
 const fatal = msg => document.body.insertAdjacentHTML('beforeend',
   `<div id="err"><b>地圖載入失敗</b><code>${msg}</code>
    <small>先確認 <code>python3 tools/serve.py</code> 還開著，再看 Console</small></div>`);
-addEventListener('error', e => fatal(e.message));
-addEventListener('unhandledrejection', e => fatal(e.reason?.message ?? e.reason));
+// 🔴 但「任何錯誤」抓得太寬了。瀏覽器外掛會往每個頁面注入程式並丟錯，
+// 而那跟這個遊戲毫無關係——實測 MetaMask 的「Failed to connect to MetaMask」
+// 把整張地圖蓋掉了，地圖其實好好地在底下。
+// 這個框存在的理由是「解釋白畫面」，所以只在兩個條件同時成立時才蓋畫面：
+//   1. 還沒開完場（開完了就表示地圖是好的，之後的錯誤不該蓋掉它）
+//   2. 錯誤真的是我們自己的程式丟的（堆疊裡有本站的網址）
+// 其餘一律只留在 Console——資訊還在，只是不再劫持整個畫面。
+let booted = false;
+const ours = trace => typeof trace === 'string' && trace.includes(location.origin);
+const filtered = (why, msg) => console.error(`[不蓋畫面：${why}]`, msg);
+addEventListener('error', e => {
+  if (booted) return filtered('開場已完成', e.message);
+  if (!ours(e.filename || e.error?.stack || '')) return filtered('不是本站的程式', e.message);
+  fatal(e.message);
+});
+addEventListener('unhandledrejection', e => {
+  const msg = e.reason?.message ?? e.reason;
+  if (booted) return filtered('開場已完成', msg);
+  if (!ours(e.reason?.stack || '')) return filtered('不是本站的程式', msg);
+  fatal(msg);
+});
 
 // 本機開發一律繞過快取。serve.py 已經送 no-store，實測仍然擋不住：
 // 把 data/views.json 從硬碟移走之後，瀏覽器照樣 fetch 到 200 與完整內容。
@@ -293,3 +312,5 @@ eraInput.oninput();
 eraNow.classList.remove('on');
 clearTimeout(eraFade);
 paint();
+// 走到這裡＝地圖畫出來了。之後再出什麼錯都不該蓋掉它（見上面的 fatal）。
+booted = true;
