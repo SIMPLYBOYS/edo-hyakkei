@@ -62,6 +62,27 @@ function lore(v) {
   return body ? `<div class="lore">${body}</div>` : '';
 }
 
+// 全螢幕原寸檢視。作法照 tokaido：fit ↔ 原寸兩段式，點背景或 Esc 關掉。
+//
+// 廣重的畫看的是 assets/hires——那批是 NDL 等館的檔案級全幅拍攝，
+// 4096–7503px（展示用的 originals 只有 790×1200，差 5–9 倍）。
+// **它們帶著色卡、比例尺與館藏印**，所以不能當遊戲畫面（見上面 <img> 的註解）；
+// 但在這裡反而是對的：這一格看的不是「畫」，是**那張掃描件本身**。
+function lightbox(src, note) {
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = `<img src="${src}" alt="">
+    <div class="tip">點圖切換 原寸 ⇄ 全幅　·　點背景或 Esc 關閉${
+      note ? `　·　${note}` : ''}</div>`;
+  const img = lb.querySelector('img');
+  img.onclick = e => { e.stopPropagation(); lb.classList.toggle('zoom'); };
+  const close = () => { removeEventListener('keydown', esc); lb.remove(); };
+  const esc = e => { if (e.key === 'Escape') close(); };
+  addEventListener('keydown', esc);
+  lb.onclick = close;
+  document.body.append(lb);
+}
+
 export function showView(v, { onCollect, onClose, found: seen = [], onFind, step }) {
   const el = document.createElement('div');
   el.className = 'overlay';
@@ -89,6 +110,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
           ${v.place?.kiriezu ? `<button id="flip3" class="ghost">看《${
             v.place.kiriezu.role === 'suburb' ? '江戶近郊圖' : '江戶切繪圖'}》</button>` : ''}
+          <button id="zoom" class="ghost" title="看原寸的掃描件">原寸</button>
           <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
         ${lore(v)}
@@ -151,17 +173,17 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
       if (want) img.dataset.other = f.label; else delete img.dataset.other;
     };
   }
-  // 切繪圖は縮めると町名が潰れる——押したら原寸（2400px）まで開いて、
-  // .overlay の overflow:auto にそのまま巻かせる。もう一度押すと戻る。
-  img.addEventListener('click', () => {
-    if (!/切繪圖|近郊圖/.test(img.dataset.other ?? '')) return;
-    const on = img.classList.toggle('big');
-    // 開いた直後は左上に巻かれている。押した意味は「近くで見たい」なので中央へ。
-    if (on) requestAnimationFrame(() => {
-      el.scrollTo({ left: (el.scrollWidth - el.clientWidth) / 2,
-                    top: (el.scrollHeight - el.clientHeight) / 2 });
-    });
-  });
+  // 「原寸」是看**現在顯示的那一版**。廣重的畫有更大的掃描件（hires），
+  // 其餘來源本機只有一種尺寸，但全螢幕比塞在 56vw 的框裡看得清楚得多。
+  // 先前切繪圖另做了一套 .big 就地放大——兩套縮放沒必要，併掉了。
+  el.querySelector('#zoom').onclick = () => {
+    const other = img.dataset.other;
+    if (other) return lightbox(img.getAttribute('src'), other);
+    const big = new Image();
+    big.onload = () => lightbox(hires(v.id), '館藏的全幅掃描，帶色卡與館藏印');
+    big.onerror = () => lightbox(print);       // hires 沒有這一張就退回展示版
+    big.src = hires(v.id);
+  };
 
   // 翻頁：關掉這一張、開下一張。鍵盤的 ←/→ 也走同一條路。
   // （地圖的方向鍵在 .overlay 存在時本來就會讓開，見 map.js 的 busy()）
@@ -171,6 +193,11 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
     el.querySelector('#next').onclick = () => go(1);
   }
   const keys = e => {
+    // 原寸檢視開著時這一層完全讓開：Esc 要先關掉上面那層，←/→ 也不該翻頁。
+    // 🔴 不能靠 stopPropagation——兩個 handler 都掛在 window 上，
+    // 同一個節點上的監聽不會被 stopPropagation 擋住（要 stopImmediate，
+    // 而那又得賭註冊順序）。讓下層自己判斷才不必賭。
+    if (document.querySelector('.lightbox')) return;
     if (e.key === 'Escape') return close();
     if (!step) return;
     if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }

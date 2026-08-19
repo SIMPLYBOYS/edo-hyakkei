@@ -136,6 +136,20 @@
   #hunt-ui .qimg { position:relative; width:100%; aspect-ratio:1.37;
                    filter:drop-shadow(0 6px 24px #0009) }
   #hunt-ui .qimg img { width:100%; height:100%; object-fit:contain; object-position:top }
+  /* 全螢幕原寸檢視。fit（整張入鏡）⇄ zoom（原寸，可捲）兩段式。 */
+  .lightbox { position:fixed; inset:0; z-index:40; display:flex;
+              background:#0b1a28f5; overflow:auto; cursor:zoom-out }
+  .lightbox img { max-width:100%; max-height:100%; margin:auto; display:block;
+                  cursor:zoom-in }
+  .lightbox.zoom { display:block }
+  .lightbox.zoom img { max-width:none; max-height:none; margin:0; cursor:zoom-out }
+  /* 提示會壓在畫上，而畫什麼顏色都有——自己帶一塊底才讀得到
+     （跟狩獵那顆離開鈕同一個教訓） */
+  .lightbox .tip { position:fixed; left:50%; bottom:16px; transform:translateX(-50%);
+                   font-size:12px; letter-spacing:.06em; pointer-events:none;
+                   white-space:nowrap; background:#0b1a28d9; color:var(--land);
+                   padding:6px 14px; border-radius:3px; opacity:.9 }
+
   /* 揭曉的廣重是直幅，而且要點得到——.found 的座標是相對容器的百分比，
      所以框必須剛好包住圖。object-fit 的留白會讓整組圈偏掉。
      只鎖高度、寬度自動，比例才不會被壓；64vw 是為了不撐出 44vw 的面板。
@@ -200,16 +214,9 @@
   .overlay img { max-height:82vh; max-width:56vw; box-shadow:0 8px 40px #0008 }
   /* 圖會是橫幅跨頁，跟直幅的百景比例差很多，放寬一點才看得清地名 */
   .overlay img.zue { max-width:66vw }
-  /* 切繪圖は横長で字が細かい。まず幅いっぱいに、押されたら原寸まで開く——
-     .overlay は overflow:auto なので、はみ出せばそのまま巻ける。 */
-  .overlay img.map { max-width:78vw; cursor:zoom-in }
-  /* width を書かない：素材そのままの寸法で開く。市街図は 2400px、
-     近郊図は 3600px（原寸 13042px の広域図なので、村名を読ませるには要る）。 */
-  .overlay img.map.big { max-width:none; max-height:none; cursor:zoom-out }
-  /* 原寸に開いたら figure の 1100px 上限を外す。外さないと画像だけが
-     はみ出して、説明欄が画像の上に乗ったまま取り残される。 */
-  .overlay figure:has(img.big) { max-width:none; flex-direction:column; align-items:flex-start }
-  .overlay figure:has(img.big) figcaption { max-width:min(900px,90vw) }
+  /* 切繪圖は横長で字が細かい。ここでは幅いっぱいまで——
+     もっと寄りたいときは「原寸」ボタン（.lightbox）へ。 */
+  .overlay img.map { max-width:78vw }
   figcaption .hint { font-size:12px; opacity:.5; margin-top:14px; line-height:1.7 }
   figcaption { max-width:300px }
   figcaption .no { font-size:12px; opacity:.6; letter-spacing:.2em }
