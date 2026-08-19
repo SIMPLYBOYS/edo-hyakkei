@@ -5,6 +5,7 @@ import { createMap } from './map.js';
 import { showView } from './view.js';
 import { showHunt } from './hunt.js';
 import { showZukan } from './zukan.js';
+import { showEmaki } from './emaki.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -282,7 +283,8 @@ function showEnd() {
     </div></div>`;
   el.querySelector('#endclose').onclick = () => { el.remove(); paint(); };
   el.querySelector('#endbook').onclick = () =>
-    { el.remove(); showZukan(views, state, { onClose: paint, onPick: reopen }); };
+    { el.remove(); showZukan(views, state,
+        { onClose: paint, onPick: reopen, onEmaki: openEmaki }); };
   document.body.append(el);
 }
 
@@ -327,7 +329,11 @@ eraInput.oninput = () => {
 // 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
 document.getElementById('hunt').onclick = () =>
   showHunt(views, map, { found: state.found, onFind: noteLie, onDone: paint });
-document.getElementById('book').onclick = () => showZukan(views, state, { onPick: reopen });
+// 歲時記 →（繪卷）→ 看畫，三層都留在原地：繪卷點一張開看畫，關掉回繪卷，
+// 再關掉回歲時記。回頭路不該把前面兩層一起收掉。
+const openBook = () => showZukan(views, state, { onPick: reopen, onEmaki: openEmaki });
+const openEmaki = () => showEmaki(views, state, reopen);
+document.getElementById('book').onclick = openBook;
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }
 };

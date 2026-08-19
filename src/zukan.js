@@ -5,7 +5,7 @@ import { thumb } from './paths.js';
 
 const ORDER = ['spring', 'summer', 'autumn', 'winter'];
 
-export function showZukan(views, state, { onClose, onPick } = {}) {
+export function showZukan(views, state, { onClose, onPick, onEmaki } = {}) {
   const el = document.createElement('div');
   el.className = 'overlay zukan';
   const groups = ORDER.map(s => {
@@ -31,9 +31,12 @@ export function showZukan(views, state, { onClose, onPick } = {}) {
   el.innerHTML = `<div class="sheet">
     <header><h2>歲時記</h2><span>${state.collected.length} / ${total}</span>
       ${traps ? `<span class="traps">廣重的手腳 ${got} / ${traps}</span>` : ''}
+      ${state.collected.length ? '<button id="emaki" class="ghost">繪卷</button>' : ''}
       <button id="x" class="ghost">關閉</button></header>
     ${groups}</div>`;
   el.querySelector('#x').onclick = () => { el.remove(); onClose?.(); };
+  // 繪卷不等收滿才給——歲時記的空白本來就是內容，卷子跟著長就好
+  if (el.querySelector('#emaki')) el.querySelector('#emaki').onclick = () => onEmaki?.();
   el.onclick = e => {
     // 縮圖點得開大圖。歲時記不關掉——看完那一張要能接著翻下一張。
     const cell = e.target.closest('.cell.has');

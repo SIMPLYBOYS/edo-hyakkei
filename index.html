@@ -281,6 +281,32 @@
   .cell.has { cursor:pointer; transition:border-color .15s }
   .cell.has:hover { border-color:var(--gold) }
   .cell.has:hover img { opacity:.85 }
+
+  /* 繪卷。收過的景連成一卷，由右向左展讀（row-reverse）。 */
+  .overlay.emaki { display:flex; flex-direction:column; padding:0; place-items:stretch }
+  .ebar { display:flex; align-items:center; gap:14px; padding:14px 20px; flex:none }
+  .ebar .etip { font-size:12px; opacity:.5 }
+  .ebar .ecount { margin-left:auto; font-size:13px; opacity:.6;
+                  font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
+  #escroll { flex:1; display:flex; flex-direction:row-reverse; align-items:center;
+             overflow-x:auto; overflow-y:hidden; padding:24px 0;
+             /* 紙的兩緣壓深一點，看起來才像卷起來的 */
+             background:linear-gradient(#c9bfa4, var(--land) 8%, var(--land) 92%, #c9bfa4) }
+  .epanel { flex:0 0 auto; position:relative; cursor:pointer }
+  .epanel img { height:64vh; display:block; border-left:2px solid #2b2c2c38 }
+  .epanel:hover img { filter:brightness(1.06) }
+  /* 題簽：直書，貼在畫的右上角——和百景自己的短冊題簽同一個位置 */
+  .elabel { position:absolute; top:12px; right:12px; writing-mode:vertical-rl;
+            font-size:14px; letter-spacing:2px; color:var(--ink);
+            background:#e6d8b7eb; padding:8px 5px; border:1px solid #2b2c2c2e;
+            max-height:calc(64vh - 24px); overflow:hidden }
+  /* 季の変わり目。東海道は驛站で切れるが、百景は一年で切れる */
+  .emark { flex:0 0 auto; writing-mode:vertical-rl; font-size:30px; letter-spacing:.4em;
+           color:#7a3b2e; padding:0 22px; opacity:.75 }
+  /* 軸。これが無いと「絵が並んでいる」だけで、巻物に見えない */
+  .ejiku { flex:0 0 auto; width:16px; height:72vh; border-radius:8px;
+           background:linear-gradient(90deg,#4a3b2a,#7a6244 40%,#3d3122);
+           box-shadow:0 4px 18px #0006 }
 </style>
 
 <svg id="map"></svg>
