@@ -77,19 +77,30 @@ function lightbox(src, note) {
       <button id="lout" title="縮小">－</button>
       <button id="lfit" title="整張入鏡">全幅</button>
     </div>
-    <div class="tip">拖曳移動・滾輪或 ＋ － 縮放　·　點背景或 Esc 關閉${
+    <div class="tip">拖曳或方向鍵移動・滾輪或 ＋ － 縮放　·　點背景或 Esc 關閉${
       note ? `　·　${note}` : ''}</div>`;
   const img = lb.querySelector('img');
 
   // 連續縮放。先前是 fit ⇄ 原寸兩段跳，點一下就衝到最大，中間沒有東西。
   // 這裡用 transform 自己算：scale 與位移都是連續量，滾輪轉多少就走多少。
   let k = 1, x = 0, y = 0, fit = 1;
-  const apply = () => { img.style.transform = `translate(${x}px,${y}px) scale(${k})`; };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  // 夾住位移。沒有它可以把圖整個拖到畫面外，然後就找不回來了——
+  // 放大後用方向鍵連續移動更容易撞到這件事。
+  // 圖比畫面大：邊緣不准跑進畫面內。比畫面小：置中，沒有可移動的餘地。
+  const rein = () => {
+    const w = img.naturalWidth * k, h = img.naturalHeight * k;
+    const W = lb.clientWidth, H = lb.clientHeight;
+    x = w <= W ? (W - w) / 2 : clamp(x, W - w, 0);
+    y = h <= H ? (H - h) / 2 : clamp(y, H - h, 0);
+  };
+  const apply = () => {
+    rein();
+    img.style.transform = `translate(${x}px,${y}px) scale(${k})`;
+  };
   // 按鈕跳一步時補一段短過場，才不會是「啪」的一下；
   // 滾輪與拖曳要即時，補了過場反而變成拖尾，所以每次都先關掉。
   const ease = on => { img.style.transition = on ? 'transform .18s ease-out' : ''; };
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-
   function reset() {
     const w = img.naturalWidth, h = img.naturalHeight;
     if (!w) return;
@@ -176,9 +187,45 @@ function lightbox(src, note) {
     else zoomAt(e.clientX - r.left, e.clientY - r.top, hi / k);
   });
 
-  const close = () => { removeEventListener('keydown', esc); lb.remove(); };
-  const esc = e => { if (e.key === 'Escape') close(); };
-  addEventListener('keydown', esc);
+  // 方向鍵移動。按住連續走，跟地圖那邊同一套手感（見 map.js）：
+  // 每秒走 0.7 個畫面，用時間差算而不是每幀固定量——120Hz 的螢幕不會跑兩倍快。
+  const ARROWS = { ArrowLeft: [1, 0], ArrowRight: [-1, 0], ArrowUp: [0, 1], ArrowDown: [0, -1] };
+  const held = new Set();
+  let raf = 0, last = 0;
+  const halt = () => { held.clear(); cancelAnimationFrame(raf); raf = 0; last = 0; };
+  const tick = t => {
+    if (!held.size) return halt();
+    const dt = Math.min((t - (last || t - 16)) / 1000, 0.1);
+    last = t;
+    let dx = 0, dy = 0;
+    for (const key of held) { dx += ARROWS[key][0]; dy += ARROWS[key][1]; }
+    const len = Math.hypot(dx, dy) || 1;      // 斜著走不該比直著走快
+    ease(false);
+    x += dx / len * lb.clientWidth * 0.7 * dt;
+    y += dy / len * lb.clientHeight * 0.7 * dt;
+    apply();
+    raf = requestAnimationFrame(tick);
+  };
+
+  const close = () => {
+    halt();
+    removeEventListener('keydown', keys); removeEventListener('keyup', up);
+    removeEventListener('blur', halt); lb.remove();
+  };
+  const keys = e => {
+    if (e.key === 'Escape') return close();
+    if (e.key === '+' || e.key === '=') return bump(1.35);
+    if (e.key === '-' || e.key === '_') return bump(1 / 1.35);
+    if (e.key === '0') { ease(true); reset(); return setTimeout(() => ease(false), 200); }
+    if (!ARROWS[e.key]) return;
+    e.preventDefault();
+    held.add(e.key);
+    if (!raf) raf = requestAnimationFrame(tick);
+  };
+  const up = e => { held.delete(e.key); if (!held.size) halt(); };
+  addEventListener('keydown', keys);
+  addEventListener('keyup', up);
+  addEventListener('blur', halt);       // 按著鍵切走視窗，放開的那一下不在這裡
   // 拖曳結束時滑鼠常停在畫面上，不擋掉的話一拖就關掉（map.js 踩過同一個坑）
   lb.onclick = () => { if (moved <= 6) close(); };
   document.body.append(lb);
