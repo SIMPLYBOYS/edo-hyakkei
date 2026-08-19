@@ -72,14 +72,77 @@ function lightbox(src, note) {
   const lb = document.createElement('div');
   lb.className = 'lightbox';
   lb.innerHTML = `<img src="${src}" alt="">
-    <div class="tip">點圖切換 原寸 ⇄ 全幅　·　點背景或 Esc 關閉${
+    <div class="tip">滾輪縮放・拖曳移動・雙擊切換原寸　·　點背景或 Esc 關閉${
       note ? `　·　${note}` : ''}</div>`;
   const img = lb.querySelector('img');
-  img.onclick = e => { e.stopPropagation(); lb.classList.toggle('zoom'); };
+
+  // 連續縮放。先前是 fit ⇄ 原寸兩段跳，點一下就衝到最大，中間沒有東西。
+  // 這裡用 transform 自己算：scale 與位移都是連續量，滾輪轉多少就走多少。
+  let k = 1, x = 0, y = 0, fit = 1;
+  const apply = () => { img.style.transform = `translate(${x}px,${y}px) scale(${k})`; };
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  function reset() {
+    const w = img.naturalWidth, h = img.naturalHeight;
+    if (!w) return;
+    fit = Math.min(lb.clientWidth / w, lb.clientHeight / h);
+    k = fit;
+    x = (lb.clientWidth - w * k) / 2;
+    y = (lb.clientHeight - h * k) / 2;
+    apply();
+  }
+  // 縮到比 fit 還小沒有意義（周圍只會多出空白）；
+  // 放到比 1 更大也沒有意義——超過原寸就只是把同一顆像素放大成糊的。
+  const bounds = () => [Math.min(fit, 1), Math.max(1, fit)];
+
+  function zoomAt(cx, cy, factor) {
+    const [lo, hi] = bounds();
+    const k2 = clamp(k * factor, lo, hi);
+    if (k2 === k) return;
+    // 游標底下的那一點要留在原地：這是「以游標為中心」的全部意思
+    x = cx - (cx - x) * (k2 / k);
+    y = cy - (cy - y) * (k2 / k);
+    k = k2;
+    apply();
+  }
+
+  img.onload = reset;
+  if (img.complete) reset();
+  addEventListener('resize', reset);
+
+  lb.addEventListener('wheel', e => {
+    e.preventDefault();
+    const r = lb.getBoundingClientRect();
+    // exp 讓每一格滾輪的比例一致——用加減的話拉近時會愈走愈快
+    zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY * 0.0015));
+  }, { passive: false });
+
+  // 拖曳。不用 setPointerCapture，理由同 map.js：capture 之後 click 會改派，
+  // 底下那層的「點背景關閉」就叫不出來了。
+  let drag = null, moved = 0;
+  lb.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; moved = 0; });
+  addEventListener('pointermove', e => {
+    if (!drag) return;
+    x += e.clientX - drag.x; y += e.clientY - drag.y;
+    moved += Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y);
+    drag = { x: e.clientX, y: e.clientY };
+    apply();
+  });
+  addEventListener('pointerup', () => { drag = null; });
+
+  lb.addEventListener('dblclick', e => {
+    const r = lb.getBoundingClientRect();
+    const [, hi] = bounds();
+    // 已經放大過就回到 fit，否則跳到原寸——雙擊是捷徑，不是唯一的路
+    if (k > fit * 1.01) reset();
+    else zoomAt(e.clientX - r.left, e.clientY - r.top, hi / k);
+  });
+
   const close = () => { removeEventListener('keydown', esc); lb.remove(); };
   const esc = e => { if (e.key === 'Escape') close(); };
   addEventListener('keydown', esc);
-  lb.onclick = close;
+  // 拖曳結束時滑鼠常停在畫面上，不擋掉的話一拖就關掉（map.js 踩過同一個坑）
+  lb.onclick = () => { if (moved <= 6) close(); };
   document.body.append(lb);
 }
 

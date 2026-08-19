@@ -136,13 +136,13 @@
   #hunt-ui .qimg { position:relative; width:100%; aspect-ratio:1.37;
                    filter:drop-shadow(0 6px 24px #0009) }
   #hunt-ui .qimg img { width:100%; height:100%; object-fit:contain; object-position:top }
-  /* 全螢幕原寸檢視。fit（整張入鏡）⇄ zoom（原寸，可捲）兩段式。 */
-  .lightbox { position:fixed; inset:0; z-index:40; display:flex;
-              background:#0b1a28f5; overflow:auto; cursor:zoom-out }
-  .lightbox img { max-width:100%; max-height:100%; margin:auto; display:block;
-                  cursor:zoom-in }
-  .lightbox.zoom { display:block }
-  .lightbox.zoom img { max-width:none; max-height:none; margin:0; cursor:zoom-out }
+  /* 全螢幕檢視。縮放與位移都由 view.js 用 transform 連續控制，
+     所以這裡不再用 overflow:auto ＋ max-width 切換那套兩段式。 */
+  .lightbox { position:fixed; inset:0; z-index:40; overflow:hidden;
+              background:#0b1a28f5; cursor:grab; touch-action:none }
+  .lightbox:active { cursor:grabbing }
+  .lightbox img { position:absolute; top:0; left:0; transform-origin:0 0;
+                  max-width:none; max-height:none; will-change:transform }
   /* 提示會壓在畫上，而畫什麼顏色都有——自己帶一塊底才讀得到
      （跟狩獵那顆離開鈕同一個教訓） */
   .lightbox .tip { position:fixed; left:50%; bottom:16px; transform:translateX(-50%);
