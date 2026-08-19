@@ -1,91 +1,78 @@
-// BGM。Web Audio 合成，零音檔——素材已經 424MB，不該再為配樂加檔案。
-// 排程用 look-ahead（setInterval 粗排、AudioContext 的時鐘細排），
-// 這是 Web Audio 的標準作法：setTimeout 的精度撐不起節拍。
+// BGM。**江戶時期實際唱過的曲子**，不是自己編的。
 //
-// **三首用不同的音階分**，那是真的有分別的東西，不是換個旋律而已：
+// 這個作品裡每樣東西都是真的文獻——畫、名所圖會、江戶土產、切繪圖、
+// 國土地理院的標高。配樂原本是我編的，它是唯一的異物；使用者指出來之後換掉。
 //
-//   道中（地圖）  陽音階   D E G A B    —— 民謠的音階，明亮、沒有半音
-//   狩り（狩獵）  都節音階 D E♭ G A B♭  —— 江戶市井的音階，半音讓它帶著緊
-//   繪卷（看畫）  律音階   D E G A C    —— 雅樂的音階，寬、慢、不推進
+// 三首，而且**歌詞本身就對得上玩家在做的事**：
 //
-// 陽と都節の差は半音の有無で、それが「野」と「街」の差になっている。
-// 同じ旋律を移調しただけでは出ない差なので、三曲は別々に書いてある。
+//   地圖    通りゃんせ    「ここはどこの細道じゃ」——這遊戲就是在問這個
+//   狩獵    かごめかごめ  「うしろの正面だあれ」——猜謎的歌，而狩獵就是猜
+//   看畫    江戸子守唄    慢、靜
 //
-// 瀏覽器規定要有使用者手勢才出得了聲，所以第一次點擊才啟動。
+// 旋律由 tools/fetch-bgm.py 從 ja.wikipedia 的 <score>（LilyPond）解析成
+// data/bgm.json——**不憑記憶抄譜**，抄錯比自己寫更糟。
+//
+// 合成仍是 Web Audio、零音檔（素材已經 424MB）。排程用 look-ahead：
+// setInterval 粗排、AudioContext 的時鐘細排，setTimeout 的精度撐不起節拍。
 const KEY = 'edo-hyakkei/bgm';
 
-const T = (lead, bass, bpm) => ({ lead, bass, bpm, beats: lead.reduce((a, [, d]) => a + d, 0) });
-
-// [MIDI, 拍長]，0 ＝ 休止
-const TRACKS = {
-  // 道中：步行的拍子。四小節一句，句尾落回主音——走了一段、停下來看一眼
-  map: T([
-    [62, 1], [64, .5], [67, .5], [69, 1], [67, 1],
-    [69, .5], [71, .5], [74, 1], [71, 1.5], [69, .5],
-    [67, 1], [69, .5], [67, .5], [64, 1], [62, 1],
-    [64, 1.5], [62, .5], [0, 2],
-    [69, 1], [71, .5], [74, .5], [76, 1], [74, 1],
-    [71, 1], [69, .5], [67, .5], [69, 2],
-    [67, 1], [64, .5], [62, .5], [64, 1], [59, 1],
-    [62, 2], [0, 2],
-  ], [50, 55, 57, 50, 57, 55, 52, 50], 84),
-
-  // 狩り：句子短、留白多——在找東西的時候不該有人一直唱歌。
-  // E♭ 與 B♭ 那兩個半音是這首的全部性格
-  hunt: T([
-    [62, 1], [63, 1], [0, 1], [67, 1],
-    [69, 1.5], [67, .5], [63, 1], [0, 1],
-    [70, 1], [69, 1], [0, 1], [67, 1],
-    [63, 2], [0, 2],
-    [67, 1], [69, .5], [70, .5], [69, 1], [0, 1],
-    [63, 1.5], [62, .5], [0, 2],
-  ], [50, 51, 55, 50, 55, 51, 50, 50], 72),
-
-  // 繪卷：長音為主，幾乎不推進。翻卷子的時候，音樂不該催你
-  scroll: T([
-    [69, 3], [67, 1], [64, 4],
-    [62, 3], [64, 1], [67, 4],
-    [72, 3], [69, 1], [67, 4],
-    [64, 2], [62, 2], [0, 4],
-  ], [50, 45, 47, 50], 56),
-};
+// 由 main.js 在開場時餵進來（data/bgm.json）
+let TRACKS = {};
+export function bgmLoad(data) { TRACKS = data?.tracks ?? {}; }
 
 const st = {
   ctx: null, master: null, timer: 0, next: 0, beat: 0,
   name: 'map', on: localStorage.getItem(KEY) !== 'off', started: false,
 };
 
-function note(midi, at, dur, type, gain) {
+// 撥弦的包絡：起音極短、之後一路衰減。箏與三味線是撥出來的，
+// 用「按著不放」的持續音會立刻變成電子遊戲的聲音——這幾首是傳統曲，
+// 音色不對的話旋律再真也白搭。
+function note(midi, at, dur, gain) {
   const c = st.ctx;
   const o = c.createOscillator(), g = c.createGain();
-  o.type = type;
+  o.type = 'triangle';
   o.frequency.value = 440 * 2 ** ((midi - 69) / 12);
-  // 起音給 20ms、收尾拉長：方波直接切會有「喀」的一聲
   g.gain.setValueAtTime(0.0001, at);
-  g.gain.linearRampToValueAtTime(gain, at + 0.02);
-  g.gain.setValueAtTime(gain, at + dur * 0.7);
-  g.gain.linearRampToValueAtTime(0.0001, at + dur);
+  g.gain.linearRampToValueAtTime(gain, at + 0.006);        // 撥的那一下
+  g.gain.exponentialRampToValueAtTime(0.0001, at + Math.min(dur * 2.2, 2.6));
+  o.connect(g); g.connect(st.master);
+  o.start(at); o.stop(at + Math.min(dur * 2.2, 2.6) + 0.05);
+}
+
+// 低音は主音のドローンだけ。伝統曲に機能和声の低音を付けると
+// 途端に「西洋の曲を日本風に編曲したもの」になる——付けないほうが近い。
+function drone(midi, at, dur) {
+  const c = st.ctx;
+  const o = c.createOscillator(), g = c.createGain();
+  o.type = 'sine';
+  o.frequency.value = 440 * 2 ** ((midi - 69) / 12);
+  g.gain.setValueAtTime(0.0001, at);
+  g.gain.linearRampToValueAtTime(0.045, at + 0.4);
+  g.gain.setValueAtTime(0.045, at + dur * 0.6);
+  g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
   o.connect(g); g.connect(st.master);
   o.start(at); o.stop(at + dur + 0.05);
 }
 
 function tick() {
   const c = st.ctx, t = TRACKS[st.name];
+  if (!t) return;
   const beat = 60 / t.bpm;
+  const total = t.lead.reduce((a, [, d]) => a + d, 0);
   // 往前排 0.4 秒。排太短會被主執行緒的卡頓咬到，排太長則換曲要等很久
   while (st.next < c.currentTime + 0.4) {
-    const b = st.beat % t.beats;
+    const b = +(st.beat % total).toFixed(4);
     let at = 0;
     for (const [n, d] of t.lead) {
-      if (at === b && n) note(n, st.next, d * beat * 0.92, 'triangle', 0.10);
+      if (+at.toFixed(4) === b && n) note(n, st.next, d * beat, 0.085);
       at += d;
     }
-    // 低音兩拍一擊，一小節換一個根音
-    if (b % 2 === 0) {
-      note(t.bass[Math.floor(b / 4) % t.bass.length], st.next, beat * 1.6, 'square', 0.03);
-    }
-    st.beat += 0.5;
-    st.next += beat * 0.5;
+    // 主音のドローンは八拍に一度。曲全体の半分ごとにしていたら
+    // 通りゃんせでは 19 秒に一度になり、事実上鳴っていなかった（実測 0 回）。
+    if (b % 8 === 0) drone(t.tonic - 12, st.next, beat * 8);
+    st.beat = +(st.beat + 0.25).toFixed(4);
+    st.next += beat * 0.25;
   }
 }
 

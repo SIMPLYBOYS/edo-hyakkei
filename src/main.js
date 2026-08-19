@@ -6,7 +6,7 @@ import { showView } from './view.js';
 import { showHunt } from './hunt.js';
 import { showZukan } from './zukan.js';
 import { showEmaki } from './emaki.js';
-import { bgmInit, bgmTo } from './bgm.js';
+import { bgmInit, bgmTo, bgmLoad } from './bgm.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -57,7 +57,7 @@ const grab = async url => {
   return r.json();
 };
 
-const [all, world, edo, hist, zueMap, miyMap] = await Promise.all([
+const [all, world, edo, hist, zueMap, miyMap, tunes] = await Promise.all([
   grab('data/views.json'),
   grab('data/geo/modern.json'),
   // 地名只是裝飾，掛掉不該連地圖一起拖下水（§2.7）
@@ -69,6 +69,8 @@ const [all, world, edo, hist, zueMap, miyMap] = await Promise.all([
   // 不說你正在看哪一頁，也不說這兩張圖是什麼關係。
   grab('data/meishozue-map.json').catch(e => (console.warn('圖會配對略過:', e), { pairs: [] })),
   grab('data/miyage-map.json').catch(e => (console.warn('土產配對略過:', e), { pairs: [] })),
+  // 配樂的旋律（江戶期のわらべ唄・子守唄）。掛掉只是沒有聲音，不該擋住遊戲。
+  grab('data/bgm.json').catch(e => (console.warn('配樂略過:', e), { tracks: {} })),
 ]);
 // §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
 // 座標只有一個來源，重抓才不會有兩份會對不上的位置。
@@ -355,6 +357,7 @@ document.getElementById('reset').onclick = () => {
 };
 // 用滑桿當下的值開場，不要寫死 1——瀏覽器重整時會還原表單值，
 // 寫死的話滑桿位置與地圖年代會對不上。
+bgmLoad(tunes);
 bgmInit(document.getElementById('bgm'));
 eraInput.oninput();
 // 開場那次不該留著讀數：它是「你剛剛拖到這裡」的回饋，玩家還沒碰過它。
