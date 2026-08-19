@@ -6,6 +6,7 @@ import { showView } from './view.js';
 import { showHunt } from './hunt.js';
 import { showZukan } from './zukan.js';
 import { showEmaki } from './emaki.js';
+import { bgmInit, bgmTo } from './bgm.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -125,6 +126,16 @@ function paint() {
   save(state);
 }
 
+// 配樂跟著**現在最上層開著的是什麼**走，不是跟著「誰呼叫了誰」走。
+// 散在各個 callback 裡判斷會漂掉：繪卷關掉是回歲時記不是回地圖，
+// 看畫關掉可能回繪卷也可能回歲時記——每個路口各判一次，遲早有一個判錯。
+// 問畫面現在長什麼樣，就只有一個地方會錯。
+function syncBgm() {
+  bgmTo(document.querySelector('.overlay') ? 'scroll'
+      : document.getElementById('hunt-ui') ? 'hunt'
+      : 'map');
+}
+
 // 找到廣重動的手腳就記一筆。看畫（§2.4）與狩獵揭曉（§2.10）共用同一格。
 const noteLie = (id, i) => { (state.found[id] ??= []).push(i); save(state); };
 
@@ -147,7 +158,8 @@ const reopen = v => {
     return nx ? () => reopen(nx) : null;
   };
   showView(v, { found: state.found[v.id] ?? [], onFind: i => noteLie(v.id, i),
-                step: at < 0 ? undefined : step });
+                step: at < 0 ? undefined : step, onClose: syncBgm });
+  syncBgm();
 };
 
 function pick(v) {
@@ -172,8 +184,9 @@ function pick(v) {
       state.collected.push(v.id);
       advance(DAYS_PER_VIEW);                  // 入景耗日（§2.1）
     },
-    onClose: paint,
+    onClose: () => { syncBgm(); paint(); },
   });
+  syncBgm();
 }
 
 /** 這一天有沒有景可收 */
@@ -327,18 +340,22 @@ eraInput.oninput = () => {
 };
 // §2.10 視點狩獵。不動收集進度與日期，但揭曉頁能找變造，那筆要記住——
 // 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
-document.getElementById('hunt').onclick = () =>
-  showHunt(views, map, { found: state.found, onFind: noteLie, onDone: paint });
+document.getElementById('hunt').onclick = () => {
+  showHunt(views, map, { found: state.found, onFind: noteLie,
+                         onDone: () => { syncBgm(); paint(); } });
+  syncBgm();
+};
 // 歲時記 →（繪卷）→ 看畫，三層都留在原地：繪卷點一張開看畫，關掉回繪卷，
 // 再關掉回歲時記。回頭路不該把前面兩層一起收掉。
 const openBook = () => showZukan(views, state, { onPick: reopen, onEmaki: openEmaki });
-const openEmaki = () => showEmaki(views, state, reopen);
+const openEmaki = () => { showEmaki(views, state, reopen, syncBgm); syncBgm(); };
 document.getElementById('book').onclick = openBook;
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }
 };
 // 用滑桿當下的值開場，不要寫死 1——瀏覽器重整時會還原表單值，
 // 寫死的話滑桿位置與地圖年代會對不上。
+bgmInit(document.getElementById('bgm'));
 eraInput.oninput();
 // 開場那次不該留著讀數：它是「你剛剛拖到這裡」的回饋，玩家還沒碰過它。
 eraNow.classList.remove('on');

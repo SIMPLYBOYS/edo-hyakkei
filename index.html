@@ -86,6 +86,9 @@
   #seasons button.now { background:var(--gold); color:#12283c; border-color:var(--gold) }
   #seasons button:disabled { opacity:.3; cursor:default }
   #count { margin-left:auto }
+  /* 配樂開關。關掉時字變灰並劃掉——一眼看得出現在是關的 */
+  #bgm { min-width:34px; text-align:center }
+  #bgm.off { opacity:.35; text-decoration:line-through }
   button { font:inherit; font-size:13px; color:var(--land); background:#ffffff1a;
            border:1px solid #ffffff33; border-radius:3px; padding:5px 12px; cursor:pointer }
   button:hover { background:#ffffff2e }
@@ -337,6 +340,7 @@
   <button id="hunt" title="給你一張畫，你指出它畫的是哪裡">視點狩獵</button>
   <span id="count"></span>
   <button id="book">歲時記</button>
+  <button id="bgm" class="ghost" title="配樂">♪</button>
   <button id="reset" class="ghost">重來</button>
 </div>
 
