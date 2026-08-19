@@ -72,7 +72,12 @@ function lightbox(src, note) {
   const lb = document.createElement('div');
   lb.className = 'lightbox';
   lb.innerHTML = `<img src="${src}" alt="">
-    <div class="tip">滾輪縮放・拖曳移動・雙擊切換原寸　·　點背景或 Esc 關閉${
+    <div class="lzoom">
+      <button id="lin" title="放大（滾輪也可以）">＋</button>
+      <button id="lout" title="縮小">－</button>
+      <button id="lfit" title="整張入鏡">全幅</button>
+    </div>
+    <div class="tip">拖曳移動・滾輪或 ＋ － 縮放　·　點背景或 Esc 關閉${
       note ? `　·　${note}` : ''}</div>`;
   const img = lb.querySelector('img');
 
@@ -80,6 +85,9 @@ function lightbox(src, note) {
   // 這裡用 transform 自己算：scale 與位移都是連續量，滾輪轉多少就走多少。
   let k = 1, x = 0, y = 0, fit = 1;
   const apply = () => { img.style.transform = `translate(${x}px,${y}px) scale(${k})`; };
+  // 按鈕跳一步時補一段短過場，才不會是「啪」的一下；
+  // 滾輪與拖曳要即時，補了過場反而變成拖尾，所以每次都先關掉。
+  const ease = on => { img.style.transition = on ? 'transform .18s ease-out' : ''; };
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
   function reset() {
@@ -90,6 +98,7 @@ function lightbox(src, note) {
     x = (lb.clientWidth - w * k) / 2;
     y = (lb.clientHeight - h * k) / 2;
     apply();
+    grey();
   }
   // 縮到比 fit 還小沒有意義（周圍只會多出空白）；
   // 放到比 1 更大也沒有意義——超過原寸就只是把同一顆像素放大成糊的。
@@ -104,7 +113,23 @@ function lightbox(src, note) {
     y = cy - (cy - y) * (k2 / k);
     k = k2;
     apply();
+    grey();
   }
+
+  // 按到底了就把鈕變灰——按下去沒反應會讓人以為壞了（跟地圖的縮放鈕同一條）
+  const grey = () => {
+    const [lo, hi] = bounds();
+    lb.querySelector('#lin').disabled = k >= hi - 1e-6;
+    lb.querySelector('#lout').disabled = k <= lo + 1e-6;
+    lb.querySelector('#lfit').disabled = Math.abs(k - fit) < 1e-6;
+  };
+  // 鈕以畫面中心為基準（沒有游標可用），一步 1.35 倍——
+  // 比滾輪一格大，因為按鈕是「明確要跳一階」，不是連續微調
+  const bump = f => {
+    ease(true);
+    zoomAt(lb.clientWidth / 2, lb.clientHeight / 2, f);
+    setTimeout(() => ease(false), 200);
+  };
 
   img.onload = reset;
   if (img.complete) reset();
@@ -112,15 +137,28 @@ function lightbox(src, note) {
 
   lb.addEventListener('wheel', e => {
     e.preventDefault();
+    ease(false);
     const r = lb.getBoundingClientRect();
-    // exp 讓每一格滾輪的比例一致——用加減的話拉近時會愈走愈快
-    zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY * 0.0015));
+    // exp 讓每一格滾輪的比例一致——用加減的話拉近時會愈走愈快。
+    // 係數 0.0007：滑鼠一格（deltaY 120）約 ×1.09，fit→原寸要滾約 24 格。
+    // 先前 0.0015（每格 ×1.20）跳得太粗，這是使用者指出來的。
+    zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY * 0.0007));
   }, { passive: false });
+
+  // 控制鈕。stopPropagation 是必要的——不擋的話按完會冒泡到 lb 把檢視關掉
+  const ctl = lb.querySelector('.lzoom');
+  ctl.addEventListener('pointerdown', e => e.stopPropagation());
+  ctl.addEventListener('click', e => e.stopPropagation());
+  lb.querySelector('#lin').onclick = () => bump(1.35);
+  lb.querySelector('#lout').onclick = () => bump(1 / 1.35);
+  lb.querySelector('#lfit').onclick = () => { ease(true); reset(); setTimeout(() => ease(false), 200); };
 
   // 拖曳。不用 setPointerCapture，理由同 map.js：capture 之後 click 會改派，
   // 底下那層的「點背景關閉」就叫不出來了。
   let drag = null, moved = 0;
-  lb.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY }; moved = 0; });
+  lb.addEventListener('pointerdown', e => {
+    ease(false); drag = { x: e.clientX, y: e.clientY }; moved = 0;
+  });
   addEventListener('pointermove', e => {
     if (!drag) return;
     x += e.clientX - drag.x; y += e.clientY - drag.y;

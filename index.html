@@ -143,6 +143,16 @@
   .lightbox:active { cursor:grabbing }
   .lightbox img { position:absolute; top:0; left:0; transform-origin:0 0;
                   max-width:none; max-height:none; will-change:transform }
+  /* 縮放鈕。外觀跟地圖右下那組一致——同一件事在同一個作品裡該長一樣。 */
+  .lzoom { position:fixed; right:20px; bottom:64px; z-index:1;
+           display:flex; flex-direction:column; gap:1px }
+  .lzoom button { width:38px; height:38px; padding:0; font-size:16px; line-height:1;
+                  background:#0e2233e6; border:1px solid #ffffff2e; border-radius:0 }
+  .lzoom button:first-child { border-radius:4px 4px 0 0 }
+  .lzoom button:last-child { border-radius:0 0 4px 4px; font-size:12px; height:30px }
+  .lzoom button + button { border-top:none }
+  .lzoom button:disabled { opacity:.3; cursor:default; background:#0e2233e6 }
+
   /* 提示會壓在畫上，而畫什麼顏色都有——自己帶一塊底才讀得到
      （跟狩獵那顆離開鈕同一個教訓） */
   .lightbox .tip { position:fixed; left:50%; bottom:16px; transform:translateX(-50%);
