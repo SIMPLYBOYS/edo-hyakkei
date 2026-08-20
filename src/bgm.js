@@ -5,9 +5,12 @@
 //
 // 三首，而且**歌詞本身就對得上玩家在做的事**：
 //
-//   地圖    通りゃんせ    「ここはどこの細道じゃ」——這遊戲就是在問這個
-//   狩獵    かごめかごめ  「うしろの正面だあれ」——猜謎的歌，而狩獵就是猜
-//   看畫    江戸子守唄    慢、靜
+//   地圖  通りゃんせ「ここはどこの細道じゃ」／お江戸日本橋「七つ立ち」——
+//         這遊戲就是在問路，而起點正是日本橋
+//   狩獵  かごめかごめ「うしろの正面だあれ」／ずいずいずっころばし——都是猜的遊戲歌
+//   看畫  江戸子守唄／うさぎ（『山家鳥虫歌』1772）——慢、靜
+//
+// **一個場面配一組，一曲播完換下一曲**：一首循環到底會膩。
 //
 // 旋律由 tools/fetch-bgm.py 從 ja.wikipedia 的 <score>（LilyPond）解析成
 // data/bgm.json——**不憑記憶抄譜**，抄錯比自己寫更糟。
@@ -16,9 +19,17 @@
 // setInterval 粗排、AudioContext 的時鐘細排，setTimeout 的精度撐不起節拍。
 const KEY = 'edo-hyakkei/bgm';
 
-// 由 main.js 在開場時餵進來（data/bgm.json）
+// 由 main.js 在開場時餵進來（data/bgm.json）。每個場面是一組曲子。
 let TRACKS = {};
 export function bgmLoad(data) { TRACKS = data?.tracks ?? {}; }
+// 現在這個場面播到第幾首。換場面時不歸零——回到地圖時接著上次那首之後，
+// 不然每次從地圖進出都從同一首開始，等於沒有輪播。
+//
+// 🔴 名字不能叫 at：tick() 裡有個走訪旋律用的區域變數也叫 at，
+// 會把這個蓋掉，然後對一個數字設屬性。而且錯誤被 main.js 的過濾器接住
+// 只記進 console——音樂照播，只是永遠不換曲，看畫面完全看不出來。
+const spun = {};
+const cur = () => (TRACKS[st.name] ?? [])[(spun[st.name] ?? 0) % (TRACKS[st.name]?.length || 1)];
 
 const st = {
   ctx: null, master: null, timer: 0, next: 0, beat: 0,
@@ -56,7 +67,7 @@ function drone(midi, at, dur) {
 }
 
 function tick() {
-  const c = st.ctx, t = TRACKS[st.name];
+  const c = st.ctx, t = cur();
   if (!t) return;
   const beat = 60 / t.bpm;
   const total = t.lead.reduce((a, [, d]) => a + d, 0);
@@ -73,6 +84,12 @@ function tick() {
     if (b % 8 === 0) drone(t.tonic - 12, st.next, beat * 8);
     st.beat = +(st.beat + 0.25).toFixed(4);
     st.next += beat * 0.25;
+    // 一曲播完就換下一首。beat 歸零，下一輪的 cur() 會拿到新的曲子
+    if (st.beat >= total) {
+      st.beat = 0;
+      spun[st.name] = ((spun[st.name] ?? 0) + 1) % (TRACKS[st.name]?.length || 1);
+      return;                    // 這一輪排到這裡為止，下次 tick 用新曲的拍長
+    }
   }
 }
 
@@ -92,7 +109,7 @@ function boot() {
 
 /** 換曲。淡出→換→淡入，硬切會像斷電 */
 export function bgmTo(name) {
-  if (!TRACKS[name] || st.name === name) return;
+  if (!TRACKS[name]?.length || st.name === name) return;
   if (!st.ctx) { st.name = name; return; }
   const g = st.master.gain, now = st.ctx.currentTime;
   g.cancelScheduledValues(now);
