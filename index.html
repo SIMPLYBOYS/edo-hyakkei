@@ -329,6 +329,47 @@
   .ejiku { flex:0 0 auto; width:16px; height:72vh; border-radius:8px;
            background:linear-gradient(90deg,#4a3b2a,#7a6244 40%,#3d3122);
            box-shadow:0 4px 18px #0006 }
+
+  /* ── 起程門與開場。結構照 tokaido；z-index 壓在原寸檢視（40）之上 ── */
+  #gate { position:fixed; inset:0; z-index:60; background:var(--off); display:grid;
+          place-items:center; cursor:pointer; text-align:center; transition:opacity .6s }
+  #gate h1 { font-size:clamp(32px,6vw,64px); font-weight:400; letter-spacing:.18em }
+  #gate .g-sub { margin-top:14px; font-size:14px; letter-spacing:.3em; opacity:.6 }
+  #gate .g-go { margin-top:48px; font-size:13px; letter-spacing:.4em; color:var(--gold);
+                animation:breathe 2.6s ease-in-out infinite }
+  @keyframes breathe { 50% { opacity:.35 } }
+
+  #intro { position:fixed; inset:0; z-index:55; background:var(--off); display:none; overflow:hidden }
+  #intro.on { display:block }
+  /* 推鏡靠 transform（translate＋scale），跟原寸檢視同一套；12 秒的過場寫在 JS */
+  #intro-img { position:absolute; top:0; left:0; transform-origin:0 0; max-width:none;
+               will-change:transform }
+  /* 字幕開始捲時壓一層暗，圖退成背景——字在鳥瞰的密線上直接讀不了 */
+  #intro-veil { position:absolute; inset:0; opacity:0; transition:opacity 1.6s; pointer-events:none;
+                background:linear-gradient(#0b1a28d9, #0b1a28a6 40%, #0b1a28d9) }
+  #intro-veil.show { opacity:1 }
+  #intro-title { position:absolute; inset:0; display:grid; place-items:center; text-align:center;
+                 opacity:0; transition:opacity 1.4s; pointer-events:none; text-shadow:0 2px 18px #000c }
+  #intro-title.show { opacity:1 }
+  #intro-title h1 { font-size:clamp(36px,7vw,76px); font-weight:400; letter-spacing:.2em }
+  #intro-title div { margin-top:10px; font-size:16px; letter-spacing:.5em; color:var(--gold) }
+  #intro-scroll { position:absolute; left:50%; top:0; width:min(640px,88vw);
+                  transform:translateX(-50%) translateY(100vh); text-align:center;
+                  line-height:1.9; font-size:16px; text-shadow:0 1px 10px #000 }
+  #intro-scroll h2 { font-size:30px; font-weight:400; letter-spacing:.2em; color:var(--gold);
+                     margin:1.2em 0 .2em }
+  #intro-scroll .sub { font-size:11px; letter-spacing:.26em; opacity:.6 }
+  #intro-scroll p { margin:1.1em 0 }
+  #intro-scroll b { color:var(--gold); font-weight:400 }
+  #intro-scroll .sep { color:#b5674a; margin:1.9em 0; letter-spacing:.6em }
+  /* 跳過／重播浮在圖上，.ghost 的透明底會看不見——跟狩獵的離開鈕同一個教訓 */
+  #intro-ctl { position:absolute; right:20px; bottom:20px; display:flex; gap:8px }
+  #intro-ctl button { background:#0e2233d9; border-color:#ffffff2e; font-size:12px }
+  /* 會暈的人把 12 秒推鏡與呼吸動畫關掉：直接落在終點，字幕照捲 */
+  @media (prefers-reduced-motion:reduce) {
+    #gate .g-go { animation:none }
+    #intro-img { transition:none !important }
+  }
 </style>
 
 <svg id="map"></svg>
@@ -342,6 +383,7 @@
   <button id="hunt" title="給你一張畫，你指出它畫的是哪裡">視點狩獵</button>
   <span id="count"></span>
   <button id="book">歲時記</button>
+  <button id="intro-btn" class="ghost" title="重看開場">開場</button>
   <button id="bgm" class="ghost" title="配樂">♪</button>
   <button id="reset" class="ghost">重來</button>
 </div>

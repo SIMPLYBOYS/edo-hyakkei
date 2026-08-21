@@ -1,0 +1,17 @@
+{
+ "_": "開場動畫的鳥瞰圖。為什麼是這張見 tools/fetch-intro.py。",
+ "title": "江戸名所之繪",
+ "artist": "鍬形蕙斎（北尾政美）",
+ "year": 1803,
+ "era": "享和三年",
+ "source": "https://commons.wikimedia.org/wiki/File:Famous-Places-of-Edo-1803-Kuwagata-Shoshin.jpg",
+ "license": "Public domain",
+ "px": [
+  4583,
+  3545
+ ],
+ "nihonbashi": {
+  "x": 0.536,
+  "y": 0.501
+ }
+}

@@ -7,6 +7,7 @@ import { showHunt } from './hunt.js';
 import { showZukan } from './zukan.js';
 import { showEmaki } from './emaki.js';
 import { bgmInit, bgmLoad } from './bgm.js';
+import { introInit } from './intro.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -351,3 +352,14 @@ clearTimeout(eraFade);
 paint();
 // 走到這裡＝地圖畫出來了。之後再出什麼錯都不該蓋掉它（見上面的 fatal）。
 booted = true;
+
+// 開場。放在地圖畫好之後：開場淡出時底下正好是起點（日本橋的紅點）。
+// 素材在 assets/（gitignore），由 tools/fetch-intro.py 重建；沒抓的話就沒有開場，
+// 遊戲照常——開場是門面，不是門檻。
+const introMeta = await grab('data/intro.json').catch(e => (console.warn('開場略過:', e), null));
+if (introMeta) {
+  introInit({ image: 'assets/intro/keisai-1803.jpg', target: introMeta.nihonbashi,
+              button: document.getElementById('intro-btn') });
+} else {
+  document.getElementById('intro-btn').remove();
+}
