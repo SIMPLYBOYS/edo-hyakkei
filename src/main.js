@@ -6,7 +6,7 @@ import { showView } from './view.js';
 import { showHunt } from './hunt.js';
 import { showZukan } from './zukan.js';
 import { showEmaki } from './emaki.js';
-import { bgmInit, bgmTo, bgmLoad } from './bgm.js';
+import { bgmInit, bgmLoad } from './bgm.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -70,7 +70,7 @@ const [all, world, edo, hist, zueMap, miyMap, tunes] = await Promise.all([
   grab('data/meishozue-map.json').catch(e => (console.warn('圖會配對略過:', e), { pairs: [] })),
   grab('data/miyage-map.json').catch(e => (console.warn('土產配對略過:', e), { pairs: [] })),
   // 配樂的旋律（江戶期のわらべ唄・子守唄）。掛掉只是沒有聲音，不該擋住遊戲。
-  grab('data/bgm.json').catch(e => (console.warn('配樂略過:', e), { tracks: {} })),
+  grab('data/bgm.json').catch(e => (console.warn('配樂略過:', e), { tracks: [] })),
 ]);
 // §2.7 江戶地名。白名單只存名字，錨點與大小留在 OSM 那份——
 // 座標只有一個來源，重抓才不會有兩份會對不上的位置。
@@ -128,16 +128,6 @@ function paint() {
   save(state);
 }
 
-// 配樂跟著**現在最上層開著的是什麼**走，不是跟著「誰呼叫了誰」走。
-// 散在各個 callback 裡判斷會漂掉：繪卷關掉是回歲時記不是回地圖，
-// 看畫關掉可能回繪卷也可能回歲時記——每個路口各判一次，遲早有一個判錯。
-// 問畫面現在長什麼樣，就只有一個地方會錯。
-function syncBgm() {
-  bgmTo(document.querySelector('.overlay') ? 'scroll'
-      : document.getElementById('hunt-ui') ? 'hunt'
-      : 'map');
-}
-
 // 找到廣重動的手腳就記一筆。看畫（§2.4）與狩獵揭曉（§2.10）共用同一格。
 const noteLie = (id, i) => { (state.found[id] ??= []).push(i); save(state); };
 
@@ -160,8 +150,7 @@ const reopen = v => {
     return nx ? () => reopen(nx) : null;
   };
   showView(v, { found: state.found[v.id] ?? [], onFind: i => noteLie(v.id, i),
-                step: at < 0 ? undefined : step, onClose: syncBgm });
-  syncBgm();
+                step: at < 0 ? undefined : step });
 };
 
 function pick(v) {
@@ -186,9 +175,8 @@ function pick(v) {
       state.collected.push(v.id);
       advance(DAYS_PER_VIEW);                  // 入景耗日（§2.1）
     },
-    onClose: () => { syncBgm(); paint(); },
+    onClose: paint,
   });
-  syncBgm();
 }
 
 /** 這一天有沒有景可收 */
@@ -342,15 +330,12 @@ eraInput.oninput = () => {
 };
 // §2.10 視點狩獵。不動收集進度與日期，但揭曉頁能找變造，那筆要記住——
 // 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
-document.getElementById('hunt').onclick = () => {
-  showHunt(views, map, { found: state.found, onFind: noteLie,
-                         onDone: () => { syncBgm(); paint(); } });
-  syncBgm();
-};
+document.getElementById('hunt').onclick = () =>
+  showHunt(views, map, { found: state.found, onFind: noteLie, onDone: paint });
 // 歲時記 →（繪卷）→ 看畫，三層都留在原地：繪卷點一張開看畫，關掉回繪卷，
 // 再關掉回歲時記。回頭路不該把前面兩層一起收掉。
 const openBook = () => showZukan(views, state, { onPick: reopen, onEmaki: openEmaki });
-const openEmaki = () => { showEmaki(views, state, reopen, syncBgm); syncBgm(); };
+const openEmaki = () => showEmaki(views, state, reopen);
 document.getElementById('book').onclick = openBook;
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }

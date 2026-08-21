@@ -3,14 +3,13 @@
 // 這個作品裡每樣東西都是真的文獻——畫、名所圖會、江戶土產、切繪圖、
 // 國土地理院的標高。配樂原本是我編的，它是唯一的異物；使用者指出來之後換掉。
 //
-// 三首，而且**歌詞本身就對得上玩家在做的事**：
+// 六首連續輪播，**不隨場面切換**。先前是「一個場面一組曲」，
+// 但每次開看畫就淡出淡入一次，很突兀——而那個切換也沒承載什麼意義：
+// 玩家開一張畫來看，不需要音樂跟著換情緒。tokaido 就是一條連續的清單，照它。
 //
-//   地圖  通りゃんせ「ここはどこの細道じゃ」／お江戸日本橋「七つ立ち」——
-//         這遊戲就是在問路，而起點正是日本橋
-//   狩獵  かごめかごめ「うしろの正面だあれ」／ずいずいずっころばし——都是猜的遊戲歌
-//   看畫  江戸子守唄／うさぎ（『山家鳥虫歌』1772）——慢、靜
-//
-// **一個場面配一組，一曲播完換下一曲**：一首循環到底會膩。
+//   通りゃんせ「ここはどこの細道じゃ」／お江戸日本橋「七つ立ち」
+//   かごめかごめ「うしろの正面だあれ」／ずいずいずっころばし（お茶壺道中）
+//   江戸子守唄／うさぎ（『山家鳥虫歌』1772）
 //
 // 旋律由 tools/fetch-bgm.py 從 ja.wikipedia 的 <score>（LilyPond）解析成
 // data/bgm.json——**不憑記憶抄譜**，抄錯比自己寫更糟。
@@ -19,21 +18,19 @@
 // setInterval 粗排、AudioContext 的時鐘細排，setTimeout 的精度撐不起節拍。
 const KEY = 'edo-hyakkei/bgm';
 
-// 由 main.js 在開場時餵進來（data/bgm.json）。每個場面是一組曲子。
-let TRACKS = {};
-export function bgmLoad(data) { TRACKS = data?.tracks ?? {}; }
-// 現在這個場面播到第幾首。換場面時不歸零——回到地圖時接著上次那首之後，
-// 不然每次從地圖進出都從同一首開始，等於沒有輪播。
-//
-// 🔴 名字不能叫 at：tick() 裡有個走訪旋律用的區域變數也叫 at，
-// 會把這個蓋掉，然後對一個數字設屬性。而且錯誤被 main.js 的過濾器接住
-// 只記進 console——音樂照播，只是永遠不換曲，看畫面完全看不出來。
-const spun = {};
-const cur = () => (TRACKS[st.name] ?? [])[(spun[st.name] ?? 0) % (TRACKS[st.name]?.length || 1)];
+// 由 main.js 在開場時餵進來（data/bgm.json）
+let TRACKS = [];
+let idx = 0;
+export function bgmLoad(data) {
+  TRACKS = data?.tracks ?? [];
+  // 起始曲隨機，跟 tokaido 一樣——每次開遊戲都從同一首開始會很快聽膩
+  idx = TRACKS.length ? Math.floor(Math.random() * TRACKS.length) : 0;
+}
+const cur = () => TRACKS[idx % (TRACKS.length || 1)];
 
 const st = {
   ctx: null, master: null, timer: 0, next: 0, beat: 0,
-  name: 'map', on: localStorage.getItem(KEY) !== 'off', started: false,
+  on: localStorage.getItem(KEY) !== 'off', started: false,
 };
 
 // 撥弦的包絡：起音極短、之後一路衰減。箏與三味線是撥出來的，
@@ -87,7 +84,7 @@ function tick() {
     // 一曲播完就換下一首。beat 歸零，下一輪的 cur() 會拿到新的曲子
     if (st.beat >= total) {
       st.beat = 0;
-      spun[st.name] = ((spun[st.name] ?? 0) + 1) % (TRACKS[st.name]?.length || 1);
+      idx = (idx + 1) % (TRACKS.length || 1);
       return;                    // 這一輪排到這裡為止，下次 tick 用新曲的拍長
     }
   }
@@ -105,26 +102,6 @@ function boot() {
   st.next = c.currentTime + 0.1;
   st.beat = 0;
   st.timer = setInterval(tick, 150);
-}
-
-/** 換曲。淡出→換→淡入，硬切會像斷電 */
-export function bgmTo(name) {
-  if (!TRACKS[name]?.length || st.name === name) return;
-  if (!st.ctx) { st.name = name; return; }
-  const g = st.master.gain, now = st.ctx.currentTime;
-  g.cancelScheduledValues(now);
-  g.setValueAtTime(g.value, now);
-  g.linearRampToValueAtTime(0.0001, now + 0.5);
-  setTimeout(() => {
-    st.name = name;
-    st.beat = 0;                       // 新的一首從頭起，不要接在半句上
-    st.next = st.ctx.currentTime + 0.05;
-    if (!st.on) return;
-    const t2 = st.ctx.currentTime;
-    g.cancelScheduledValues(t2);
-    g.setValueAtTime(0.0001, t2);
-    g.linearRampToValueAtTime(0.5, t2 + 0.6);
-  }, 520);
 }
 
 function start() {

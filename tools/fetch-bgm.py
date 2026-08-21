@@ -30,28 +30,24 @@ ROOT = Path(__file__).resolve().parent.parent
 UA = "edo-hyakkei/1.0 (research; contact via repo)"
 API = "https://ja.wikipedia.org/w/api.php"
 
-# 曲 → 遊戲裡的哪個場面。**一個場面配一組，輪流播**——
-# 一首曲子循環到底會膩，這是使用者指出來的。
+# 六首，**連續輪播**。
+#
+# 先前是「一個場面一組曲」（地圖／狩獵／看畫各兩首），但每次開看畫就淡出
+# 淡入一次，很突兀——而那個切換也沒承載什麼意義：玩家開一張畫來看，
+# 不需要音樂跟著換情緒。tokaido 就是一條連續的播放清單，這裡照它。
 #
 # 年代：全部是江戶期（或更早）的わらべ唄・流行り唄・子守唄。
 # 成立年代に諸説あるものが多いので、**個々の年を書かない**——
 # 書けば学説の引用になり、§2.4 の _rule に触れる。
 # うさぎ だけは『山家鳥虫歌』(1772) に載るのが確かなので、それは書く。
-PIECES = {
-    "map": [
-        ("通りゃんせ",   "「ここはどこの細道じゃ」——問路的歌，這遊戲就是在問這個"),
-        ("お江戸日本橋", "「お江戸日本橋七つ立ち」——出發的歌，而這遊戲的起點就是日本橋"),
-    ],
-    "hunt": [
-        ("かごめかごめ",         "「うしろの正面だあれ」——猜的歌，而狩獵就是猜"),
-        ("ずいずいずっころばし", "數指頭決定誰當鬼的歌；詞裡的お茶壺道中是江戶的制度"),
-    ],
-    "scroll": [
-        ("江戸子守唄", "江戶的搖籃曲"),
-        ("うさぎ (童謡)", "『山家鳥虫歌』(1772) にも見えるわらべ唄"),
-    ],
-}
-LABEL = {"map": "道中", "hunt": "狩り", "scroll": "静か"}
+PIECES = [
+    ("通りゃんせ",           "「ここはどこの細道じゃ」——問路的歌，這遊戲就是在問這個"),
+    ("お江戸日本橋",         "「お江戸日本橋七つ立ち」——出發的歌，而這遊戲的起點就是日本橋"),
+    ("かごめかごめ",         "「うしろの正面だあれ」——猜的歌"),
+    ("ずいずいずっころばし", "數指頭決定誰當鬼的歌；詞裡的お茶壺道中是江戶的制度"),
+    ("江戸子守唄",           "江戶的搖籃曲"),
+    ("うさぎ (童謡)",        "『山家鳥虫歌』(1772) にも見えるわらべ唄"),
+]
 
 # LilyPond（オランダ式音名）→ 半音。is＝♯、es＝♭
 STEP = {"c": 0, "d": 2, "e": 4, "f": 5, "g": 7, "a": 9, "b": 11}
@@ -127,37 +123,32 @@ def main():
     ap.add_argument("--write", action="store_true")
     args = ap.parse_args()
 
-    tracks = {}
-    for key, lst in PIECES.items():
-        tracks[key] = []
-        for page, why in lst:
-            u = (API + "?action=parse&format=json&prop=wikitext&page="
-                 + urllib.parse.quote(page))
-            w = json.load(fetch(u, UA, timeout=60,
-                                retry_on=(429, 503)))["parse"]["wikitext"]["*"]
-            m = re.search(r"<score[^>]*>(.*?)</score>", w, re.S)
-            assert m, f"{page} に <score> が無い"
-            src = m.group(1)
-            tm = re.search(r"\\tempo\s*4\s*=\s*(\d+)", src)
-            bpm = float(tm.group(1)) if tm else 80.0
-            lead = lily(src)
-            tonic = next((n for n, _ in reversed(lead) if n), 0)
-            tracks[key].append({
-                "title": page.split(" (")[0], "label": LABEL[key], "why": why,
-                "bpm": bpm, "tonic": tonic,
-                "lead": [[n, d] for n, d in lead],
-                "source": f"ja.wikipedia「{page}」の <score>（LilyPond）",
-            })
-            ps = sorted({n for n, _ in lead if n})
-            print(f"  {key:<7}{page.split(' (')[0]:<12}{len(lead):>3} 音  "
-                  f"{sum(d for _, d in lead):>5.1f} 拍  {bpm:>3.0f}BPM  音域 {max(ps)-min(ps)}")
+    tracks = []
+    for page, why in PIECES:
+        u = (API + "?action=parse&format=json&prop=wikitext&page="
+             + urllib.parse.quote(page))
+        w = json.load(fetch(u, UA, timeout=60,
+                            retry_on=(429, 503)))["parse"]["wikitext"]["*"]
+        m = re.search(r"<score[^>]*>(.*?)</score>", w, re.S)
+        assert m, f"{page} に <score> が無い"
+        src = m.group(1)
+        tm = re.search(r"\\tempo\s*4\s*=\s*(\d+)", src)
+        bpm = float(tm.group(1)) if tm else 80.0
+        lead = lily(src)
+        tonic = next((n for n, _ in reversed(lead) if n), 0)
+        tracks.append({
+            "title": page.split(" (")[0], "why": why, "bpm": bpm, "tonic": tonic,
+            "lead": [[n, d] for n, d in lead],
+            "source": f"ja.wikipedia「{page}」の <score>（LilyPond）",
+        })
+        ps = sorted({n for n, _ in lead if n})
+        print(f"  {page.split(' (')[0]:<12}{len(lead):>3} 音  "
+              f"{sum(d for _, d in lead):>5.1f} 拍  {bpm:>3.0f}BPM  音域 {max(ps)-min(ps)}")
 
     # ── 檢査。曲ごとに「知られている形」で照合する ──────────────
     # 総数だけでは、解析が半分で止まっても気づけない
-    assert set(tracks) == set(PIECES)
-    flat = [(k, t) for k, lst in tracks.items() for t in lst]
-    assert len(flat) == sum(len(v) for v in PIECES.values())
-    for k, t in flat:
+    assert len(tracks) == len(PIECES)
+    for t in tracks:
         n = t["title"]
         assert 16 <= len(t["lead"]) <= 300, f"{n} の音数 {len(t['lead'])} がおかしい"
         assert sum(d for _, d in t["lead"]) >= 8, f"{n} が短すぎる"
@@ -166,14 +157,13 @@ def main():
         # 八度選択がそこから連鎖して狂い、音域が跳ね上がる（実測 36 半音）。
         assert max(ps) - min(ps) <= 24, f"{n} の音域 {max(ps)-min(ps)} 半音は広すぎる"
         assert 30 <= t["bpm"] <= 200, f"{n} の速度 {t['bpm']} がおかしい"
-    # わらべ唄は主音で終わる。終止音が音域の中でいちばん低いか、それに近いこと
-    kg = tracks["hunt"][0]["lead"]
-    assert kg[0][0] % 12 == 9, f"かごめの初音が a でない（{kg[0][0]}）"
-    assert tracks["map"][0]["lead"][0][0] % 12 == 9, "通りゃんせの初音が a でない"
+    by = {t["title"]: t for t in tracks}
+    assert by["かごめかごめ"]["lead"][0][0] % 12 == 9, "かごめの初音が a でない"
+    assert by["通りゃんせ"]["lead"][0][0] % 12 == 9, "通りゃんせの初音が a でない"
 
     out = {
         "_": "江戶期のわらべ唄・子守唄。旋律は公有領域、譜は ja.wikipedia の <score> から。",
-        "_use": "単声部の旋律のみ。編曲は取っていない。",
+        "_use": "単声部の旋律のみ。編曲は取っていない。六曲を順に流す（場面では切り替えない）。",
         "tracks": tracks,
     }
     p = ROOT / "data" / "bgm.json"
