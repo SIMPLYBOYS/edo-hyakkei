@@ -76,40 +76,65 @@ function lightbox(src, note) {
       <button id="lin" title="放大（滾輪也可以）">＋</button>
       <button id="lout" title="縮小">－</button>
       <button id="lfit" title="整張入鏡">全幅</button>
+      <button id="lccw" title="逆時針轉 90°">↺</button>
+      <button id="lcw" title="順時針轉 90°（R）">↻</button>
     </div>
-    <div class="tip">拖曳或方向鍵移動・滾輪或 ＋ － 縮放　·　點背景或 Esc 關閉${
+    <div class="tip">拖曳或方向鍵移動・滾輪或 ＋ － 縮放・↺ ↻ 轉向　·　點背景或 Esc 關閉${
       note ? `　·　${note}` : ''}</div>`;
   const img = lb.querySelector('img');
 
   // 連續縮放。先前是 fit ⇄ 原寸兩段跳，點一下就衝到最大，中間沒有東西。
   // 這裡用 transform 自己算：scale 與位移都是連續量，滾輪轉多少就走多少。
-  let k = 1, x = 0, y = 0, fit = 1;
+  let k = 1, x = 0, y = 0, fit = 1, rot = 0;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  // 旋轉後內容在「影像座標」裡的外接框。90/270° 時寬高互換，
+  // 而且因為是繞影像中心轉，框的原點也跟著位移——不算進去的話，
+  // 夾邊與置中會用錯的尺寸，圖會偏出去。
+  const box = () => {
+    const W = img.naturalWidth, H = img.naturalHeight;
+    const bw = (rot % 180) ? H : W, bh = (rot % 180) ? W : H;
+    return { bx: (W - bw) / 2, by: (H - bh) / 2, bw, bh };
+  };
   // 夾住位移。沒有它可以把圖整個拖到畫面外，然後就找不回來了——
   // 放大後用方向鍵連續移動更容易撞到這件事。
   // 圖比畫面大：邊緣不准跑進畫面內。比畫面小：置中，沒有可移動的餘地。
   const rein = () => {
-    const w = img.naturalWidth * k, h = img.naturalHeight * k;
-    const W = lb.clientWidth, H = lb.clientHeight;
-    x = w <= W ? (W - w) / 2 : clamp(x, W - w, 0);
-    y = h <= H ? (H - h) / 2 : clamp(y, H - h, 0);
+    const { bx, by, bw, bh } = box();
+    const w = bw * k, h = bh * k, W = lb.clientWidth, H = lb.clientHeight;
+    x = w <= W ? (W - w) / 2 - bx * k : clamp(x, W - w - bx * k, -bx * k);
+    y = h <= H ? (H - h) / 2 - by * k : clamp(y, H - h - by * k, -by * k);
   };
   const apply = () => {
     rein();
-    img.style.transform = `translate(${x}px,${y}px) scale(${k})`;
+    // 旋轉夾在 scale 之後，繞影像自己的中心轉——這樣 scale 之前的座標系
+    // 仍然是「影像像素」，上面 zoomAt 那套以游標為中心的算法不必改。
+    const cx = img.naturalWidth / 2, cy = img.naturalHeight / 2;
+    img.style.transform = `translate(${x}px,${y}px) scale(${k})`
+      + (rot ? ` translate(${cx}px,${cy}px) rotate(${rot}deg) translate(${-cx}px,${-cy}px)` : '');
   };
   // 按鈕跳一步時補一段短過場，才不會是「啪」的一下；
   // 滾輪與拖曳要即時，補了過場反而變成拖尾，所以每次都先關掉。
   const ease = on => { img.style.transition = on ? 'transform .18s ease-out' : ''; };
   function reset() {
-    const w = img.naturalWidth, h = img.naturalHeight;
-    if (!w) return;
-    fit = Math.min(lb.clientWidth / w, lb.clientHeight / h);
+    if (!img.naturalWidth) return;
+    const { bw, bh } = box();
+    fit = Math.min(lb.clientWidth / bw, lb.clientHeight / bh);
     k = fit;
-    x = (lb.clientWidth - w * k) / 2;
-    y = (lb.clientHeight - h * k) / 2;
-    apply();
+    apply();          // 置中交給 rein()，它已經知道旋轉後的框
     grey();
+  }
+
+  // 轉 90°。古地圖的字各朝各的方向（切繪圖的方位記號散在四角），
+  // 不轉就看不了——這是使用者指出來的。
+  function turn(d) {
+    const wasFit = Math.abs(k - fit) < 1e-6;
+    rot = (rot + d + 360) % 360;
+    const { bw, bh } = box();
+    fit = Math.min(lb.clientWidth / bw, lb.clientHeight / bh);   // 轉了之後 fit 會變
+    ease(true);
+    if (wasFit) reset(); else { apply(); grey(); }
+    setTimeout(() => ease(false), 220);
   }
   // 縮到比 fit 還小沒有意義（周圍只會多出空白）；
   // 放到比 1 更大也沒有意義——超過原寸就只是把同一顆像素放大成糊的。
@@ -163,6 +188,8 @@ function lightbox(src, note) {
   lb.querySelector('#lin').onclick = () => bump(1.35);
   lb.querySelector('#lout').onclick = () => bump(1 / 1.35);
   lb.querySelector('#lfit').onclick = () => { ease(true); reset(); setTimeout(() => ease(false), 200); };
+  lb.querySelector('#lccw').onclick = () => turn(-90);
+  lb.querySelector('#lcw').onclick = () => turn(90);
 
   // 拖曳。不用 setPointerCapture，理由同 map.js：capture 之後 click 會改派，
   // 底下那層的「點背景關閉」就叫不出來了。
@@ -217,6 +244,7 @@ function lightbox(src, note) {
     if (e.key === '+' || e.key === '=') return bump(1.35);
     if (e.key === '-' || e.key === '_') return bump(1 / 1.35);
     if (e.key === '0') { ease(true); reset(); return setTimeout(() => ease(false), 200); }
+    if (e.key === 'r' || e.key === 'R') return turn(e.shiftKey ? -90 : 90);
     if (!ARROWS[e.key]) return;
     e.preventDefault();
     held.add(e.key);
