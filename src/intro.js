@@ -42,11 +42,11 @@ const TEXT = `
 let timers = [];
 const clear = () => { timers.forEach(clearTimeout); timers = []; };
 
-export function introInit({ image, target, button }) {
+export function introInit({ image, target, art, button }) {
   const el = document.createElement('div');
   el.id = 'intro';
   el.innerHTML = `
-    <img id="intro-img" src="${image}" alt="">
+    <canvas id="intro-canvas"></canvas>
     <div id="intro-veil"></div>
     <div id="intro-title"><h1>名所江戶百景</h1><div>漫遊記</div></div>
     <div id="intro-scroll"></div>
@@ -55,25 +55,102 @@ export function introInit({ image, target, button }) {
       <button id="intro-skip" class="ghost">跳過</button>
     </div>`;
   document.body.append(el);
-  const img = el.querySelector('#intro-img');
+  const cv = el.querySelector('#intro-canvas');
+  const ctx = cv.getContext('2d');
   const sc = el.querySelector('#intro-scroll');
 
-  // 兩個取景：wide＝整張入鏡；near＝cover-fit 到日本橋周圍那一塊
+  // 🔴 推鏡不再是 CSS transform 一張 <img>，改成每幀往 canvas 畫視窗大小的一塊。
+  //
+  // 為什麼換掉：手機上 zoom in 會**一塊一塊**渲染。原本是把 4583×3545 的 <img>
+  // 用 transform 放大，終點時那個合成圖層有 4.5 個視窗寬（手機上換算成裝置像素
+  // 超過 60MP）——瀏覽器不可能一次光柵化，只能邊放大邊補磚，補一塊就看到一塊。
+  // 先試過 decode()（Chrome 上量不出差別）、也看過 will-change，都不是這件事的因。
+  //
+  // canvas 沒有這個問題：畫布永遠只有視窗那麼大，每幀 drawImage 一塊原圖上去，
+  // 沒有超大圖層可以分塊。終點取樣的是原圖同一批像素，**畫質跟原本一模一樣**。
+  //
+  // 前提是取景改成 cover（見 fit）：contain 的起點只有 0.083 倍，整段要跨 13 倍
+  // 縮放，每幀都在大幅縮小取樣；cover 之後最大縮小倍率不到 2 倍，一次 drawImage
+  // 就是一次普通的全螢幕貼圖。
+  const src = new Image();
+  src.src = image;
+  // decode() 而不是 onload。Chrome 上兩者量起來一樣（img.onload 本來就等到解碼完，
+  // 8× 節流下三次對三次完全重疊）；Safari 的 load 早於解碼，那裡才有差。
+  const ready = src.decode().then(() => true, () => false);
+
+  // 畫布配合視窗與螢幕密度。dpr 封頂 3：再高原圖也供不出那麼多像素。
+  const resize = () => {
+    const dpr = Math.min(devicePixelRatio || 1, 3);
+    cv.width = Math.round(innerWidth * dpr); cv.height = Math.round(innerHeight * dpr);
+  };
+  resize();
+
+  // 🔴 取景只在**畫心**裡，不是整個檔案。掃描件四周還留著裝裱布與黑框線
+  // （上 63px、左 96px……），直式手機用 cover 是高度貼齊，那兩條就會出現在
+  // 畫面上下緣——正是「一開始看到原圖的邊角」。畫心的座標量在 data/intro.json，
+  // 由 tools/fetch-intro.py 掃框線掃出來。沒有這筆就退回整張，開場照跑。
+  const A = art && art.length === 4
+    ? { x: art[0], y: art[1], w: art[2], h: art[3] } : null;
+  const area = () => A || { x: 0, y: 0, w: src.naturalWidth, h: src.naturalHeight };
+
+  // 兩個取景。回傳的是「螢幕座標 = 畫心座標 × s + t」，跟原本用 transform 時同一組參數。
+  // wide 從 contain（Math.min × 0.98）改成 cover（Math.max）：contain 會在四周留白，
+  // 那不是要的畫面，而且起點只有 0.083 倍——整段要跨 13 倍縮放，才需要分塊。
   const fit = mode => {
-    const vw = innerWidth, vh = innerHeight, nw = img.naturalWidth, nh = img.naturalHeight;
-    if (!nw) return null;
+    const vw = innerWidth, vh = innerHeight;
+    if (!src.naturalWidth) return null;
+    const { w: nw, h: nh } = area();
     if (mode === 'wide') {
-      const s = Math.min(vw / nw, vh / nh) * 0.98;
+      const s = Math.max(vw / nw, vh / nh);
       return { s, tx: (vw - nw * s) / 2, ty: (vh - nh * s) / 2 };
     }
-    const R = { x: target.x - 0.11, y: target.y - 0.11, w: 0.22, h: 0.22 };
+    // target 是「整張檔案」的比例（資料先有、畫心後加），換算到畫心的比例
+    const a = area(), tx0 = (target.x * src.naturalWidth - a.x) / a.w,
+                      ty0 = (target.y * src.naturalHeight - a.y) / a.h;
+    const R = { x: tx0 - 0.11, y: ty0 - 0.11, w: 0.22, h: 0.22 };
     const rw = R.w * nw, rh = R.h * nh, s = Math.max(vw / rw, vh / rh);
     return { s, tx: -R.x * nw * s + (vw - rw * s) / 2, ty: -R.y * nh * s + (vh - rh * s) / 2 };
   };
-  const apply = t => { if (t) img.style.transform = `translate(${t.tx}px,${t.ty}px) scale(${t.s})`; };
+
+  // 把 (s, tx, ty) 換回原圖上的一塊，畫滿畫布。夾在畫心內，裝裱就永遠不會入鏡。
+  const apply = t => {
+    if (!t || !src.naturalWidth) return;
+    const a = area();
+    const sw = Math.min(innerWidth / t.s, a.w), sh = Math.min(innerHeight / t.s, a.h);
+    const sx = a.x + Math.max(0, Math.min(-t.tx / t.s, a.w - sw));
+    const sy = a.y + Math.max(0, Math.min(-t.ty / t.s, a.h - sh));
+    ctx.drawImage(src, sx, sy, sw, sh, 0, 0, cv.width, cv.height);
+  };
+
+  // CSS 的 cubic-bezier(.45,0,.15,1)。canvas 這邊沒有 transition 可用，自己解：
+  // 二分法從 x 找回參數 u，再取 y。24 次的誤差在一格畫面之下。
+  const ease = (() => {
+    const at = (a, b, u) => 3 * (1 - u) ** 2 * u * a + 3 * (1 - u) * u * u * b + u ** 3;
+    return x => {
+      let lo = 0, hi = 1;
+      for (let k = 0; k < 24; k++) { const m = (lo + hi) / 2; at(.45, .15, m) < x ? lo = m : hi = m; }
+      return at(0, 1, (lo + hi) / 2);
+    };
+  })();
+
+  let raf = 0;
+  const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+  // 每幀重算取景，所以轉螢幕、手機網址列伸縮都自然跟上，不必特別處理。
+  const zoomTo = () => {
+    const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const t0 = performance.now();
+    const step = now => {
+      const a = fit('wide'), b = fit('near');
+      const u = reduce ? 1 : Math.min(1, (now - t0) / (ZOOM_SECS * 1000));
+      const e = ease(u);
+      apply({ s: a.s + (b.s - a.s) * e, tx: a.tx + (b.tx - a.tx) * e, ty: a.ty + (b.ty - a.ty) * e });
+      raf = u < 1 ? requestAnimationFrame(step) : 0;
+    };
+    stop(); raf = requestAnimationFrame(step);
+  };
 
   function end() {
-    clear();
+    clear(); stop();
     el.style.transition = 'opacity .8s'; el.style.opacity = '0';
     timers.push(setTimeout(() => {
       el.classList.remove('on'); el.style.opacity = ''; el.style.transition = '';
@@ -84,19 +161,18 @@ export function introInit({ image, target, button }) {
   function play() {
     clear();
     el.style.transition = ''; el.style.opacity = ''; el.classList.add('on');
+    const title = el.querySelector('#intro-title');
     const run = () => {
       sc.innerHTML = TEXT;
-      el.querySelector('#intro-title').classList.remove('show');
       el.querySelector('#intro-veil').classList.remove('show');
-      img.style.transition = 'none'; apply(fit('wide'));
+      apply(fit('wide'));
       sc.style.transition = 'none'; sc.style.transform = 'translateX(-50%) translateY(100vh)';
-      void img.offsetWidth;                                       // reflow，讓 none 生效
-      el.querySelector('#intro-title').classList.add('show');
-      img.style.transition = `transform ${ZOOM_SECS}s cubic-bezier(.45,0,.15,1)`;
-      apply(fit('near'));
+      void sc.offsetWidth;                                        // reflow，讓 none 生效
+      title.classList.add('show');
+      zoomTo();
       const tTitle = ZOOM_SECS * 550, tCredits = ZOOM_SECS * 640;
       timers.push(setTimeout(() => {
-        el.querySelector('#intro-title').classList.remove('show');
+        title.classList.remove('show');
         el.querySelector('#intro-veil').classList.add('show');
       }, tTitle));
       timers.push(setTimeout(() => {
@@ -105,15 +181,21 @@ export function introInit({ image, target, button }) {
       }, tCredits));
       timers.push(setTimeout(end, tCredits + SCROLL_SECS * 1000 + 800));
     };
+    // 解碼還沒好就先把題名亮起來——黑底加標題本來就是開場的第一格，
+    // 這樣「等」看起來是設計，不是當掉。（重播時要先復位再亮。）
+    title.classList.remove('show'); void title.offsetWidth; title.classList.add('show');
     // 圖沒載到（素材沒抓、或 404）就直接收場，不然會卡在一片黑只剩兩顆鈕
-    img.onerror = end;
-    if (img.complete && img.naturalWidth) run(); else img.onload = run;
+    ready.then(ok => (ok ? run : end)());
   }
 
   el.querySelector('#intro-skip').onclick = end;
   el.querySelector('#intro-replay').onclick = play;
   if (button) button.onclick = play;
-  addEventListener('resize', () => { if (el.classList.contains('on')) apply(fit('near')); });
+  addEventListener('resize', () => {
+    if (!el.classList.contains('on')) return;
+    resize();                                   // 畫布跟著視窗；取景在 step 裡每幀重算
+    if (!raf) apply(fit('near'));               // 推鏡已結束就重畫終點那一格
+  });
 
   // 第一次來：起程門。點擊本身就是瀏覽器要的使用者手勢，配樂也靠它啟動
   // （bgm.js 聽的是 window 的 click，這一下會冒泡到那裡）。

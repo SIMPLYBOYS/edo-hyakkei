@@ -347,9 +347,11 @@
 
   #intro { position:fixed; inset:0; z-index:55; background:var(--off); display:none; overflow:hidden }
   #intro.on { display:block }
-  /* 推鏡靠 transform（translate＋scale），跟原寸檢視同一套；12 秒的過場寫在 JS */
-  #intro-img { position:absolute; top:0; left:0; transform-origin:0 0; max-width:none;
-               will-change:transform }
+  /* 🔴 推鏡畫在 canvas 上，不是把一張 <img> 用 transform 放大。
+     舊做法在手機上會一塊一塊渲染：終點的合成圖層有 4.5 個視窗寬，瀏覽器
+     只能邊放大邊補磚。畫布永遠只有視窗這麼大，就沒有東西可以分塊。原因與
+     取捨寫在 src/intro.js。 */
+  #intro-canvas { position:absolute; inset:0; width:100%; height:100%; display:block }
   /* 字幕開始捲時壓一層暗，圖退成背景——字在鳥瞰的密線上直接讀不了 */
   #intro-veil { position:absolute; inset:0; opacity:0; transition:opacity 1.6s; pointer-events:none;
                 background:linear-gradient(#0b1a28d9, #0b1a28a6 40%, #0b1a28d9) }
@@ -371,10 +373,9 @@
   /* 跳過／重播浮在圖上，.ghost 的透明底會看不見——跟狩獵的離開鈕同一個教訓 */
   #intro-ctl { position:absolute; right:20px; bottom:20px; display:flex; gap:8px }
   #intro-ctl button { background:#0e2233d9; border-color:#ffffff2e; font-size:12px }
-  /* 會暈的人把 12 秒推鏡與呼吸動畫關掉：直接落在終點，字幕照捲 */
+  /* 會暈的人把呼吸動畫關掉；推鏡直接落在終點那一格，由 intro.js 讀同一條查詢 */
   @media (prefers-reduced-motion:reduce) {
     #gate .g-go { animation:none }
-    #intro-img { transition:none !important }
   }
 
   /* ── 手機。整個介面原本是桌機寬度寫的，一個斷點都沒有——實測 390px：

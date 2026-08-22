@@ -56,11 +56,15 @@ python3 tools/upgrade-hires.py --apply       # 升到 4096px（NDL-DC 批次）
 python3 tools/fetch-plates.py --write        # 圖會對照
 python3 tools/make-thumbs.py                 # 歲時記縮圖
 python3 tools/fetch-kiriezu.py --assets      # 江戶切繪圖 29 張
-python3 tools/fetch-intro.py                 # 開場的鳥瞰圖
+python3 tools/fetch-intro.py                 # 開場的鳥瞰圖（順便量出畫心）
 python3 tools/fetch-osm.py                   # 街圖向量 data/geo/modern.json（已含在 repo）
 python3 tools/fetch-dem.py --write           # 標高 data/geo/relief.jpg（已含在 repo）
 python3 tools/fetch-bgm.py --write           # 配樂旋律 data/bgm.json（已含在 repo）
 ```
+
+開場改動之後跑 `node tools/check-intro.mjs`：它把推鏡停在起點與終點，
+看畫布四角有沒有掃描件的裝裱布入鏡——那個錯在桌機上看不出來（contain 取景四周本來就留白），
+只有手機直式會把它壓在畫面上下緣。
 
 順序不能跳：`fetch-brooklyn` 要先為 Commons 缺號建骨架記錄，
 否則後面的腳本沒有 id 可對，別家有那張畫也接不上（而且不會報錯）。

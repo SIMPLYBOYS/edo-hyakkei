@@ -359,7 +359,7 @@ booted = true;
 const introMeta = await grab('data/intro.json').catch(e => (console.warn('開場略過:', e), null));
 if (introMeta) {
   introInit({ image: 'assets/intro/keisai-1803.jpg', target: introMeta.nihonbashi,
-              button: document.getElementById('intro-btn') });
+              art: introMeta.art, button: document.getElementById('intro-btn') });
 } else {
   document.getElementById('intro-btn').remove();
 }
