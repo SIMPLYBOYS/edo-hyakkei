@@ -1,6 +1,10 @@
-# 素材不進版控：1GB 的掃描檔，而且每一份都能用 tools/ 重建。
-# 這也是每支腳本都附 self-check 的用意——repo 裡沒有圖，clone 完跑腳本就有。
-assets/
+# 🔴 2026/08/22 上線：assets/ 改成進版控。
+#
+# 原本的理由（「每一份都能用 tools/ 重建」）仍然成立，但 GitHub Pages
+# **不服務 Git LFS 的檔案**，而遊戲的圖就是它的內容——不進 repo 就沒得玩。
+# 427MB：單檔最大 3.6MB（限制 100MB）、總量遠低於 1GB 的建議值。
+#
+# research/ 維持在外：那是整冊掃描（約 1GB），研究材料，遊戲不讀。
 research/meishozue/
 research/miyage/
 
