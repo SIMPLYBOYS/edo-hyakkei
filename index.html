@@ -6,9 +6,9 @@
           /* 圖框外。與 --sea 同色系但更暗——不然灣內的海會跟框外連成一片 */
           --off:#101d29; }
   * { box-sizing:border-box; margin:0 }
-  body { background:var(--off); color:var(--land); height:100vh; overflow:hidden;
+  body { background:var(--off); color:var(--land); height:100vh; height:100dvh; overflow:hidden;
          font-family:"Hiragino Mincho ProN","Yu Mincho",serif }
-  #map { display:block; width:100vw; height:100vh; cursor:grab; touch-action:none }
+  #map { display:block; width:100vw; height:100vh; height:100dvh; cursor:grab; touch-action:none }
   #map:active { cursor:grabbing }
 
   /* 玩家點畫在最上層，不擋掉底下景點的點擊——紅點一定停在剛去過的景上面 */
@@ -369,6 +369,70 @@
   @media (prefers-reduced-motion:reduce) {
     #gate .g-go { animation:none }
     #intro-img { transition:none !important }
+  }
+
+  /* ── 手機。整個介面原本是桌機寬度寫的，一個斷點都沒有——實測 390px：
+     HUD 單排溢出（四顆鈕按不到）、看畫的圖與說明欄重疊 78px、狩獵面板 44vw。
+     這裡不重排結構，只改版面：同一份 DOM，窄的時候換一種疊法。 ── */
+  @media (max-width:700px) {
+    /* HUD 三排：日期＋剩餘｜季節＋狩獵＋計數｜其餘按鈕。
+       #left 吃掉第一排剩下的寬度，季節鈕就被推到第二排——靠 flex-wrap，不加 DOM。 */
+    /* 多排之後漸層底只蓋得住第一排，第二排的透明鈕壓在亮色地圖上幾乎看不見
+       （實測截圖）。手機上給實底，桌機維持漸層。 */
+    #hud { flex-wrap:wrap; row-gap:6px; column-gap:8px; padding:8px 10px; align-items:center;
+           background:#0e2233e6; border-bottom:1px solid #ffffff14 }
+    #date { font-size:16px; letter-spacing:.06em; white-space:nowrap }
+    #date .ad { display:none }
+    /* 「還剩 N 日・已出 N 景」在手機上被擠成零寬度（實測），留著只是個看不見的
+       幽靈元素。明確藏掉：這行是輔助資訊，季節鈕與計數才是必要的。 */
+    #left { display:none }
+    #seasons button { padding:4px 8px; font-size:12px }
+    #hud button { font-size:12px; padding:4px 9px }
+    #count { margin-left:auto }
+    #toast { top:118px; max-width:92vw }
+
+    /* 底欄：滑桿自己一排，標籤縮小 */
+    #bar { padding:8px 10px 10px }
+    #bar label { font-size:11px; margin:0 4px }
+    #era { width:86vw; display:block; margin:4px auto }
+    #attr { font-size:9px; line-height:1.5 }
+    #zoom { right:10px; bottom:128px }
+
+    /* 看畫：直排。圖在上（限高，留位置給說明），說明在下，整個 overlay 可捲。 */
+    .overlay { padding:12px; place-items:start center }
+    .overlay figure { flex-direction:column; gap:14px; align-items:center; max-width:100% }
+    .overlay img, .overlay img.zue, .overlay img.map { max-width:92vw; max-height:46vh }
+    figcaption { max-width:92vw; width:92vw }
+    figcaption h2 { font-size:24px }
+    .act { gap:8px }
+    .act button { font-size:12px; padding:5px 10px }
+    .overlay nav.flip button { width:30px; height:46px; font-size:20px; opacity:.7 }
+    .overlay nav.flip { padding:0 4px }
+
+    /* 狩獵：左側面板改成底部抽屜。地圖留在上半，出題圖限高、說明在抽屜裡捲。 */
+    #hunt-ui { left:0; right:0; top:auto; bottom:0; width:auto; max-height:56vh;
+               padding:10px 10px 10px; gap:8px; background:#12283cf2;
+               border-top:1px solid #ffffff1f; pointer-events:auto }
+    #hunt-ui > #hquit { position:absolute; right:10px; top:8px; z-index:1 }
+    #hunt-ui #hbody { overflow-y:auto; flex:1 }
+    #hunt-ui .qimg { width:min(100%, 26vh * 1.37); align-self:center }
+    #hunt-ui .qimg.plate { height:min(28vh, 60vw) }
+    #hunt-ui .body { padding:12px 12px }
+
+    /* 原寸檢視：鈕往角落收、提示改成可換行 */
+    .lzoom { right:10px; bottom:54px }
+    .lightbox .tip { font-size:10px; white-space:normal; max-width:86vw; bottom:8px;
+                     line-height:1.5 }
+
+    /* 歲時記、結局、事件、繪卷 */
+    .zukan .sheet { padding:14px 12px }
+    .zukan header { flex-wrap:wrap; gap:6px 12px }
+    .zukan header button { margin-left:0 }
+    .ending .sheet { max-width:92vw; padding:22px 18px }
+    .ebar { flex-wrap:wrap; gap:8px 10px; padding:10px 12px }
+    .epanel img { height:54vh }
+    .emark { font-size:22px; padding:0 14px }
+    #intro-ctl { right:10px; bottom:10px }
   }
 </style>
 

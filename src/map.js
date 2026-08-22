@@ -426,12 +426,40 @@ export function createMap(svg, views, geo, places, onPick) {
   // click 就改派到 svg 而不是景點那個 <g>，onclick 永遠不會觸發。
   // svg 本來就滿版，不 capture 也不會跟丟。
   let drag = null, moved = 0;
+  // 兩指縮放。touch-action:none 把瀏覽器自己的縮放擋掉了，所以手機上要自己做——
+  // 不做的話地圖在手機上只能拖不能縮（實測之前就是這樣）。
+  // ptrs 記現在按著的每一指；兩指時走 pinch，不走拖曳。
+  const ptrs = new Map();
+  let pinch = null;                      // 上一幀兩指的距離與中點（螢幕座標）
+  const gauge = () => {
+    const [a, b] = [...ptrs.values()];
+    return { d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY),
+             mx: (a.clientX + b.clientX) / 2, my: (a.clientY + b.clientY) / 2 };
+  };
   svg.onpointerdown = e => {
+    ptrs.set(e.pointerId, e);
+    if (ptrs.size === 2) { pinch = gauge(); drag = null; moved = 99; return; }
+    if (ptrs.size > 2) return;
     const [x, y] = toSvg(e);
     drag = { x, y }; moved = 0;
   };
-  addEventListener('pointerup', () => { drag = null; });
+  // 放開任一指就結束這一輪：剩下那一指不該接著被當成新的拖曳或點擊
+  const lift = e => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch = null; drag = null; };
+  addEventListener('pointerup', lift);
+  addEventListener('pointercancel', lift);
   svg.onpointermove = e => {
+    if (ptrs.has(e.pointerId)) ptrs.set(e.pointerId, e);
+    if (ptrs.size === 2 && pinch) {
+      const g = gauge();
+      // 先記下「舊中點底下是地圖的哪一點」，繞新中點縮放，再把那一點移到新中點底下——
+      // 這樣兩指張開時畫面跟著手指，不會漂
+      const [sx, sy] = toSvg({ clientX: pinch.mx, clientY: pinch.my });
+      const [cx, cy] = toSvg({ clientX: g.mx, clientY: g.my });
+      zoomTo(vb.w * pinch.d / g.d, cx, cy);
+      pan(sx - cx, sy - cy);
+      pinch = g; moved = 99;
+      return;
+    }
     if (!drag) return;
     const [x, y] = toSvg(e);
     moved += Math.abs(x - drag.x) + Math.abs(y - drag.y);

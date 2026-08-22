@@ -194,17 +194,43 @@ function lightbox(src, note) {
   // 拖曳。不用 setPointerCapture，理由同 map.js：capture 之後 click 會改派，
   // 底下那層的「點背景關閉」就叫不出來了。
   let drag = null, moved = 0;
+  // 兩指縮放，跟 map.js 同一套：ptrs 記每一指，兩指時走 pinch。
+  // 縮放以兩指中點為中心（zoomAt 已經會把中點底下那一點留在原地），
+  // 再跟著中點的位移平移，手指張開時畫面就跟著手指。
+  const ptrs = new Map();
+  let pinch = null;
+  const gauge = () => {
+    const [a, b] = [...ptrs.values()];
+    return { d: Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY),
+             mx: (a.clientX + b.clientX) / 2, my: (a.clientY + b.clientY) / 2 };
+  };
   lb.addEventListener('pointerdown', e => {
-    ease(false); drag = { x: e.clientX, y: e.clientY }; moved = 0;
+    ease(false);
+    ptrs.set(e.pointerId, e);
+    if (ptrs.size === 2) { pinch = gauge(); drag = null; moved = 99; return; }
+    if (ptrs.size > 2) return;
+    drag = { x: e.clientX, y: e.clientY }; moved = 0;
   });
   addEventListener('pointermove', e => {
+    if (ptrs.has(e.pointerId)) ptrs.set(e.pointerId, e);
+    if (ptrs.size === 2 && pinch) {
+      const g = gauge(), r = lb.getBoundingClientRect();
+      zoomAt(g.mx - r.left, g.my - r.top, g.d / pinch.d);
+      x += g.mx - pinch.mx; y += g.my - pinch.my;
+      apply();
+      pinch = g; moved = 99;
+      return;
+    }
     if (!drag) return;
     x += e.clientX - drag.x; y += e.clientY - drag.y;
     moved += Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y);
     drag = { x: e.clientX, y: e.clientY };
     apply();
   });
-  addEventListener('pointerup', () => { drag = null; });
+  // 放開任一指就結束這一輪；moved 留著 99，放開後補發的 click 才不會把檢視關掉
+  const lift = e => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch = null; drag = null; };
+  addEventListener('pointerup', lift);
+  addEventListener('pointercancel', lift);
 
   lb.addEventListener('dblclick', e => {
     const r = lb.getBoundingClientRect();
@@ -286,7 +312,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
           ${v.place?.kiriezu ? `<button id="flip3" class="ghost">看《${
             v.place.kiriezu.role === 'suburb' ? '江戶近郊圖' : '江戶切繪圖'}》</button>` : ''}
-          <button id="zoom" class="ghost" title="看原寸的掃描件">原寸</button>
+          <button id="full" class="ghost" title="看原寸的掃描件">原寸</button>
           <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
         ${lore(v)}
@@ -327,7 +353,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
     ['#flip', meishozue(v.id), '《名所圖會》', 'zue'],
     ['#flip2', miyage(v.id), '《江戶土產》', ''],
     // 切繪圖は横長でしかも字が細かい。zue より更に広く出し、
-    // それでも足りないので押すと原寸まで開く（下の #zoom）。
+    // それでも足りないので「原寸」（下の #full）で全画面に開く。
     ['#flip3', kz && kiriezu(kz.pid),
      kz?.role === 'suburb' ? '《江戶近郊圖》' : '《江戶切繪圖》', 'map'],
   ].map(([sel, src, label, cls]) => {
@@ -352,7 +378,10 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
   // 「原寸」是看**現在顯示的那一版**。廣重的畫有更大的掃描件（hires），
   // 其餘來源本機只有一種尺寸，但全螢幕比塞在 56vw 的框裡看得清楚得多。
   // 先前切繪圖另做了一套 .big 就地放大——兩套縮放沒必要，併掉了。
-  el.querySelector('#zoom').onclick = () => {
+  // 🔴 id 不能叫 zoom：地圖右下那組縮放鈕的容器就是 #zoom，CSS 的 position:fixed
+  // 會套到這顆鈕上，讓它浮到畫面右下角壓住來歷文字——桌機上正好疊在地圖縮放鈕
+  // 的位置，所以一直沒人發現，縮到手機寬度才露出來。跟 #hunt 撞名是同一類。
+  el.querySelector('#full').onclick = () => {
     const other = img.dataset.other;
     if (other) return lightbox(img.getAttribute('src'), other);
     const big = new Image();
