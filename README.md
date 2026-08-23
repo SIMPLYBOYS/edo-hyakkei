@@ -62,6 +62,11 @@ python3 tools/fetch-dem.py --write           # 標高 data/geo/relief.jpg（已�
 python3 tools/fetch-bgm.py --write           # 配樂旋律 data/bgm.json（已含在 repo）
 ```
 
+動到地圖的取景或介面尺寸之後跑 `node tools/check-map.mjs`：它用直式視窗量，
+驗開場有沒有把江戶本體框進來、地名與圓點畫出來是不是該有的 CSS 像素數。
+`preserveAspectRatio` 是 slice，「哪一邊綁住縮放」在桌機是寬邊、直式手機是高邊——
+只按寬邊寫的公式在桌機碰巧會對，錯只在手機現形。
+
 開場改動之後跑 `node tools/check-intro.mjs`：它把推鏡停在起點與終點，
 看畫布四角有沒有掃描件的裝裱布入鏡——那個錯在桌機上看不出來（contain 取景四周本來就留白），
 只有手機直式會把它壓在畫面上下緣。

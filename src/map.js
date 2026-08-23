@@ -185,19 +185,30 @@ export function createMap(svg, views, geo, places, onPick) {
   function relabel() {
     // 字級與描邊要抵銷縮放，否則 viewBox 一變字就跟著放大縮小。
     // 景名（#marks）跟地名（#places）都要，兩邊在畫面上才是同一個尺度。
-    const px = vb.w / svg.getBoundingClientRect().width;
-    placesG.setAttribute('font-size', (px * 12).toFixed(2));
-    placesG.setAttribute('stroke-width', (px * 3).toFixed(2));
+    // 🔴 一個 CSS 像素等於幾個地圖單位。**不是 vb.w / 視窗寬**——那只在寬邊綁住時
+    // 成立。slice 的倍率是 max(視窗寬/vb.w, 視窗高/vb.h)，直式手機是高綁住，
+    // 舊寫法在那裡高估 1.85 倍：地名與圓點被畫成 17.7px 而不是 12px。
+    // 跟 toSvg 用的是同一個倍率，兩邊必須一致，否則點到的位置會跟看到的差一截。
+    const r = svg.getBoundingClientRect();
+    const px = 1 / Math.max(r.width / vb.w, r.height / vb.h);
+    // 🔴 介面元件在窄螢幕上等比縮一點。地名與圓點是拿「螢幕像素」定尺寸的，
+    // 所以手機上的絕對大小跟桌機一模一樣——但畫面只有 390px 寬，同一顆點佔掉的
+    // 版面是桌機的三倍，看起來就是「比例太大」。
+    // 沒有縮到跟桌機同比例（那會是 6.8px 的字、4.5px 的點）：字要讀得到、點要按得到。
+    // 0.8 是可讀與不擁擠之間的折衷。斷點跟 CSS 的 700px 對齊。
+    const upx = px * (r.width < 700 ? 0.8 : 1);
+    placesG.setAttribute('font-size', (upx * 12).toFixed(2));
+    placesG.setAttribute('stroke-width', (upx * 3).toFixed(2));
     // 標記整組等比縮回螢幕尺度：圓點、圖會環、視線扇形、景名一次全對。
     // 形狀是用螢幕像素畫在原點的，scale(px) 之後在畫面上就是那個像素數。
-    for (const m of pins) m.g.setAttribute('transform', `translate(${m.x} ${m.y}) scale(${px})`);
-    player.setAttribute('r', (px * 7).toFixed(2));
-    player.setAttribute('stroke-width', (px * 2.5).toFixed(2));
+    for (const m of pins) m.g.setAttribute('transform', `translate(${m.x} ${m.y}) scale(${upx})`);
+    player.setAttribute('r', (upx * 7).toFixed(2));
+    player.setAttribute('stroke-width', (upx * 2.5).toFixed(2));
     // 針與正解跟標記同一套：形狀用螢幕像素畫在原點，scale 回去
-    if (pinAt) pinEl.setAttribute('transform', `translate(${pinAt[0]} ${pinAt[1]}) scale(${px})`);
-    if (truthAt) truthEl.setAttribute('transform', `translate(${truthAt[0]} ${truthAt[1]}) scale(${px})`);
-    linkEl.setAttribute('stroke-width', (px * 1.5).toFixed(2));
-    linkEl.setAttribute('stroke-dasharray', `${(px * 4).toFixed(1)} ${(px * 4).toFixed(1)}`);
+    if (pinAt) pinEl.setAttribute('transform', `translate(${pinAt[0]} ${pinAt[1]}) scale(${upx})`);
+    if (truthAt) truthEl.setAttribute('transform', `translate(${truthAt[0]} ${truthAt[1]}) scale(${upx})`);
+    linkEl.setAttribute('stroke-width', (upx * 1.5).toFixed(2));
+    linkEl.setAttribute('stroke-dasharray', `${(upx * 4).toFixed(1)} ${(upx * 4).toFixed(1)}`);
 
     // 先決定地名的文字內容（避讓要用字數估寬度，得先知道字是什麼）
     for (const l of labels) {
@@ -219,7 +230,7 @@ export function createMap(svg, views, geo, places, onPick) {
       return true;
     };
     // 只跟畫面內的標籤搶位置，畫面外的不該佔位
-    const visH = svg.getBoundingClientRect().height * px;
+    const visH = r.height * px;
     const vy = vb.y + (vb.h - visH) / 2;
     const onScreen = (x, y) => x > vb.x && x < vb.x + vb.w && y > vy && y < vy + visH;
 
@@ -231,8 +242,8 @@ export function createMap(svg, views, geo, places, onPick) {
         const t = m.g.querySelector('text');
         const show = zoomed && m.g.classList.contains(want) && onScreen(m.x, m.y)
           // 文字靠左起排在點的右邊（x=11），所以中心要往右推半個字串寬
-          && place(m.x + px * (11 + t.textContent.length * 13 / 2), m.y + px * 2,
-                   px * 13 * t.textContent.length, px * 15);
+          && place(m.x + upx * (11 + t.textContent.length * 13 / 2), m.y + upx * 2,
+                   upx * 13 * t.textContent.length, upx * 15);
         // 用 class 不用 inline display：inline 的 display:none 連 :hover 都蓋掉，
         // 被擠掉的景名就再也叫不出來了（上一版的退步）。交給 CSS 才有 hover 的餘地。
         if (m.g.classList.contains(want)) t.classList.toggle('crowded', !show);
@@ -247,8 +258,8 @@ export function createMap(svg, views, geo, places, onPick) {
       const inEra = !l.city || era <= 0.5;
       l.el.style.display = inEra
         && l.span / vb.w > SHOW && onScreen(+l.el.getAttribute('x'), +l.el.getAttribute('y'))
-        && place(+l.el.getAttribute('x'), +l.el.getAttribute('y') - px * 4,
-                 px * 12 * n, px * 14) ? '' : 'none';
+        && place(+l.el.getAttribute('x'), +l.el.getAttribute('y') - upx * 4,
+                 upx * 12 * n, upx * 14) ? '' : 'none';
     }
   }
 
@@ -317,10 +328,21 @@ export function createMap(svg, views, geo, places, onPick) {
   const pct = (a, p) => a.slice().sort((m, n) => m - n)[Math.round(p * (a.length - 1))];
 
   // slice 會裁滿畫面：要讓一塊矩形完整入鏡，viewBox 得寬到長寬比追上視窗。
-  // 直幅的內容擺在橫幅的視窗裡，算出來的寬度會比矩形本身寬不少，這是幾何不是 bug。
+  // 把一塊內容框進畫面：回傳需要的 viewBox 寬度。
+  //
+  // 🔴 舊版寫成 max(w, h × 視窗寬高比)，那**只對橫幅視窗成立**。
+  // preserveAspectRatio 是 slice（填滿、溢出的用拖的），縮放倍率是
+  // max(視窗寬/vb.w, 視窗高/vb.h)——哪一邊綁住，取決於視窗寬高比 R 與地圖寬高比
+  // 的關係，不是永遠綁寬邊。直式手機（R≈0.59）是**高**綁住，於是同一個 vb.w
+  // 只看得到 0.54 倍的寬度，舊公式少算了一半以上：開場的 fitCity 在手機上只框到
+  // 約 260 個地圖單位（桌機 833），畫面看起來大得多，拖兩下就到邊。
   const cover = (w, h) => {
     const r = svg.getBoundingClientRect();
-    return Math.max(w, h * (r.width / r.height));
+    if (!r.width || !r.height) return Math.max(w, h);          // 還沒排版，先給個合理值
+    const R = r.width / r.height, A = H / W;
+    // 看得見的範圍 = (vb.w × kx, vb.w × ky)
+    const [kx, ky] = R >= 1 / A ? [1, 1 / R] : [A * R, A];
+    return Math.max(w / kx, h / ky);
   };
   const PAD = 40;
   const frame = (x0, x1, y0, y1) => {
