@@ -68,6 +68,23 @@ function lore(v) {
 // 4096–7503px（展示用的 originals 只有 790×1200，差 5–9 倍）。
 // **它們帶著色卡、比例尺與館藏印**，所以不能當遊戲畫面（見上面 <img> 的註解）；
 // 但在這裡反而是對的：這一格看的不是「畫」，是**那張掃描件本身**。
+// 等待時的一格。用文字不用轉圈：這個作品裡沒有別的旋轉元件，
+// 而且「載入原寸」比一個 spinner 更說得清楚在等什麼。
+// 可以點掉或按 Esc——慢速網路下卡著一個不能取消的全螢幕遮罩比沒有還糟。
+// done() 回報「取消之前就好了嗎」，呼叫端據此決定要不要真的開燈箱。
+function loading(text) {
+  const el = document.createElement('div');
+  el.className = 'loading';
+  el.innerHTML = `<span>${text}<span class="dots"></span></span>`;
+  const key = e => { if (e.key === 'Escape') off(); };   // 下層看到 .loading 會自己讓開
+  const off = () => { el.remove(); removeEventListener('keydown', key); };
+  el.onclick = off;
+  addEventListener('keydown', key);
+  document.body.append(el);
+  requestAnimationFrame(() => el.classList.add('on'));       // 讓 transition 生效
+  return { done: () => { const live = el.isConnected; off(); return live; } };
+}
+
 function lightbox(src, note) {
   const lb = document.createElement('div');
   lb.className = 'lightbox';
@@ -384,9 +401,12 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
   el.querySelector('#full').onclick = () => {
     const other = img.dataset.other;
     if (other) return lightbox(img.getAttribute('src'), other);
+    // 🔴 原本是「載完才開燈箱」，那幾秒畫面完全沒反應，玩家會以為沒點到。
+    // 先開一格「載入原寸」，載完（或失敗）再換上燈箱；中途按掉就不開了。
+    const wait = loading('載入原寸');
     const big = new Image();
-    big.onload = () => lightbox(hires(v.id), '館藏的全幅掃描，帶色卡與館藏印');
-    big.onerror = () => lightbox(print);       // hires 沒有這一張就退回展示版
+    big.onload = () => { if (wait.done()) lightbox(hires(v.id), '館藏的全幅掃描，帶色卡與館藏印'); };
+    big.onerror = () => { if (wait.done()) lightbox(print); };   // hires 沒這張就退回展示版
     big.src = hires(v.id);
   };
 
@@ -399,10 +419,11 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
   }
   const keys = e => {
     // 原寸檢視開著時這一層完全讓開：Esc 要先關掉上面那層，←/→ 也不該翻頁。
+    // 「載入原寸」那格同理——Esc 是要取消載入，不是連看畫一起關掉。
     // 🔴 不能靠 stopPropagation——兩個 handler 都掛在 window 上，
     // 同一個節點上的監聽不會被 stopPropagation 擋住（要 stopImmediate，
     // 而那又得賭註冊順序）。讓下層自己判斷才不必賭。
-    if (document.querySelector('.lightbox')) return;
+    if (document.querySelector('.lightbox, .loading')) return;
     if (e.key === 'Escape') return close();
     if (!step) return;
     if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
