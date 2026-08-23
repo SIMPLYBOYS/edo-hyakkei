@@ -2,6 +2,7 @@
 // 依目録的春夏秋冬分部排，未收的留白——空白本身就是「還沒走過那個季節」。
 import { seasonJa } from './calendar.js';
 import { thumb } from './paths.js';
+import { waitImg } from './ui.js';
 
 const ORDER = ['spring', 'summer', 'autumn', 'winter'];
 
@@ -34,6 +35,9 @@ export function showZukan(views, state, { onClose, onPick, onEmaki } = {}) {
       ${state.collected.length ? '<button id="emaki" class="ghost">繪卷</button>' : ''}
       <button id="x" class="ghost">關閉</button></header>
     ${groups}</div>`;
+  // 縮圖各 24KB，但一次會是上百格。只留一層淡底不寫字——每格都寫「載入中」太吵。
+  // 格子本身有 aspect-ratio，所以版面不會跳，這層只是說「這格有東西，正在來」。
+  for (const t of el.querySelectorAll('.cell.has img')) waitImg(t);
   el.querySelector('#x').onclick = () => { el.remove(); onClose?.(); };
   // 繪卷不等收滿才給——歲時記的空白本來就是內容，卷子跟著長就好
   if (el.querySelector('#emaki')) el.querySelector('#emaki').onclick = () => onEmaki?.();

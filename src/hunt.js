@@ -19,6 +19,7 @@
 // 幾乎不損失地理資訊；揭曉時整張放出來。
 import { meishozue, miyage, plate } from './paths.js';
 import { findLies, md } from './lie.js';
+import { waitImg } from './ui.js';
 
 // 題庫。挑選標準：出題那張要讀得出地形，而且要涵蓋整個畫框。
 // 這是人工判斷，理由逐筆寫在後面（與 fetch-plates.py 的 PAIRS 同一個規矩）。
@@ -148,6 +149,8 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
         <p class="q">這是江戶的哪裡？在地圖上點一下</p>
         <div class="act"><button id="hgo" disabled>就是這裡</button></div>
       </div>`;
+    // 題目圖是圖會或土產（0.3–1.1MB）。沒有提示的話，開狩獵之後那幾秒是一片空白。
+    waitImg(el.querySelector('.qimg img'), '載入圖片');
     el.querySelector('#hgo').onclick = answer;
   }
 
@@ -182,6 +185,7 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
         onShow(x) { tally.innerHTML = `<b>${x.target}</b>${md(x.note)}`; tally.classList.add('on'); },
       });
     }
+    waitImg(el.querySelector('.qimg.plate img'), '載入畫作');
     el.querySelector('#hnext').onclick = () => { i++; i < rounds.length ? ask() : summary(); };
   }
 

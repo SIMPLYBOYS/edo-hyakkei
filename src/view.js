@@ -2,6 +2,7 @@
 import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
 import { plate, hires, meishozue, miyage, kiriezu } from './paths.js';
 import { findLies, md } from './lie.js';
+import { loading, waitImg } from './ui.js';
 
 // ── 來歷。這些資料一直躺在 repo 裡，畫面上一個字都沒出現過 ────────────────
 // 對照書的卷・丁・頁名與「這兩張圖差在哪」是人工比對寫下來的（meishozue-map.json
@@ -68,23 +69,6 @@ function lore(v) {
 // 4096–7503px（展示用的 originals 只有 790×1200，差 5–9 倍）。
 // **它們帶著色卡、比例尺與館藏印**，所以不能當遊戲畫面（見上面 <img> 的註解）；
 // 但在這裡反而是對的：這一格看的不是「畫」，是**那張掃描件本身**。
-// 等待時的一格。用文字不用轉圈：這個作品裡沒有別的旋轉元件，
-// 而且「載入原寸」比一個 spinner 更說得清楚在等什麼。
-// 可以點掉或按 Esc——慢速網路下卡著一個不能取消的全螢幕遮罩比沒有還糟。
-// done() 回報「取消之前就好了嗎」，呼叫端據此決定要不要真的開燈箱。
-function loading(text) {
-  const el = document.createElement('div');
-  el.className = 'loading';
-  el.innerHTML = `<span>${text}<span class="dots"></span></span>`;
-  const key = e => { if (e.key === 'Escape') off(); };   // 下層看到 .loading 會自己讓開
-  const off = () => { el.remove(); removeEventListener('keydown', key); };
-  el.onclick = off;
-  addEventListener('keydown', key);
-  document.body.append(el);
-  requestAnimationFrame(() => el.classList.add('on'));       // 讓 transition 生效
-  return { done: () => { const live = el.isConnected; off(); return live; } };
-}
-
 function lightbox(src, note) {
   const lb = document.createElement('div');
   lb.className = 'lightbox';
@@ -99,6 +83,9 @@ function lightbox(src, note) {
     <div class="tip">拖曳或方向鍵移動・滾輪或 ＋ － 縮放・↺ ↻ 轉向　·　點背景或 Esc 關閉${
       note ? `　·　${note}` : ''}</div>`;
   const img = lb.querySelector('img');
+  // hires 那條路已經預載完才進來，這裡會直接跳過；
+  // 但「看對照版的原寸」是拿現在顯示的那張，圖可能還沒到。
+  waitImg(img, '載入圖片');
 
   // 連續縮放。先前是 fit ⇄ 原寸兩段跳，點一下就衝到最大，中間沒有東西。
   // 這裡用 transform 自己算：scale 與位移都是連續量，滾輪轉多少就走多少。
@@ -365,6 +352,8 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
   // 玩家不知道下一下會看到什麼。
   const img = el.querySelector('img');
   const print = img.getAttribute('src');
+  // 展示圖約 0.9MB。開景時 <img> 還是空的，手機上要等好幾秒——先在框裡說一聲。
+  waitImg(img, '載入畫作');
   const kz = v.place?.kiriezu;
   const flips = [
     ['#flip', meishozue(v.id), '《名所圖會》', 'zue'],
@@ -385,7 +374,10 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
         g.on = g === f && want;
         g.b.textContent = g.on ? '看廣重的版本' : `看${g.label}`;
       }
-      img.src = want ? f.src : print;
+      // 圖會 0.3MB、切繪圖與土產 1.1MB。換版時舊圖會先消失，中間那幾秒
+      // 只有鈕的字變了、畫面是空的——看起來像壞掉。
+      // src 交給 waitImg 換（見那邊的註解：自己指派會被「已快取」的判斷擋掉）。
+      waitImg(img, want ? `載入${f.label}` : '載入廣重的版本', want ? f.src : print);
       img.classList.remove('zue', 'map', 'big');
       if (want && f.cls) img.classList.add(f.cls);
       // findLies が読む印。対照版のあいだは当たり判定を止める（lie.js 参照）

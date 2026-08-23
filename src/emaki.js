@@ -8,6 +8,7 @@
 // 收三景就是三景的卷子，短，但它會跟著長。
 import { plate } from './paths.js';
 import { seasonJa } from './calendar.js';
+import { waitImg } from './ui.js';
 
 const KANJI = '〇一二三四五六七八九';
 const kanji = n => n < 10 ? KANJI[n]
@@ -51,6 +52,7 @@ export function showEmaki(views, state, onPick, onClose) {
     p.innerHTML = `<img src="${plate(v.id)}" alt="${v.title.ja ?? ''}" loading="lazy">
       <div class="elabel">${kanji(v.id)}　${v.title.ja ?? ''}</div>`;
     p.onclick = () => { play(false); onPick?.(v); };
+    waitImg(p.querySelector('img'));
     sc.append(p);
   }
   sc.append(jiku());

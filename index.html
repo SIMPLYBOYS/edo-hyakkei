@@ -147,6 +147,20 @@
   #hunt-ui .qimg img { width:100%; height:100%; object-fit:contain; object-position:top }
   /* 全螢幕檢視。縮放與位移都由 view.js 用 transform 連續控制，
      所以這裡不再用 overflow:auto ＋ max-width 切換那套兩段式。 */
+  /* 圖還沒到時的就地提示。疊在圖自己的框裡，其他內容照樣可讀。
+     延遲 .12s 才淡入，跟 .loading 同一個理由：已快取時不該閃一下。 */
+  .imgwait { position:absolute; inset:0; display:grid; place-items:center; z-index:1;
+             background:#ffffff08; opacity:0; animation:fadein .18s .12s forwards;
+             letter-spacing:.24em; color:var(--land); font-size:12px; pointer-events:none }
+  @keyframes fadein { to { opacity:1 } }
+  /* 第一次開景時 .plate 是 0×0（.overlay img 只有 max 沒有 min），要先撐開一個框。
+     118 張展示圖的比例量過是 0.640–0.750、中位數 0.658，取中位數。
+     高度跟著 .overlay img 的兩個上限走：桌機 max-height:82vh / max-width:56vw
+     （56 ÷ .658 ≈ 85vw），手機那組是 46vh / 92vw（92 ÷ .658 ≈ 140vw）。 */
+  .plate.waiting { aspect-ratio:.658; height:min(82vh, 85vw) }
+  /* 繪卷的畫格：圖沒到之前寬度是 0，一整排會疊在一起。高度是 CSS 給的，補上寬度。 */
+  .epanel.waiting { width:calc(64vh * .658) }
+
   /* 等原寸掃描下載的那一格。hires 是 1.8–3.6MB，手機上要等好幾秒，
      沒有這格畫面完全沒反應，會以為沒點到。
      延遲 .12s 才淡入：桌機或已快取時整段不到一格，不該閃一下。 */
@@ -418,6 +432,7 @@
     .overlay { padding:12px; place-items:start center }
     .overlay figure { flex-direction:column; gap:14px; align-items:center; max-width:100% }
     .overlay img, .overlay img.zue, .overlay img.map { max-width:92vw; max-height:46vh }
+    .plate.waiting { height:min(46vh, 140vw) }        /* 跟上面那行的兩個上限對應 */
     figcaption { max-width:92vw; width:92vw }
     figcaption h2 { font-size:24px }
     .act { gap:8px }
@@ -447,6 +462,7 @@
     .ending .sheet { max-width:92vw; padding:22px 18px }
     .ebar { flex-wrap:wrap; gap:8px 10px; padding:10px 12px }
     .epanel img { height:54vh }
+    .epanel.waiting { width:calc(54vh * .658) }
     .emark { font-size:22px; padding:0 14px }
     #intro-ctl { right:10px; bottom:10px }
   }
