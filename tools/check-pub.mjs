@@ -5,7 +5,7 @@
 // 兩者都不會噴錯，只會讓玩家卡住找不到原因，所以要用資料實際驗過。
 import { readFileSync } from 'node:fs';
 import assert from 'node:assert';
-import { pubDay, clockFrom, DAYS_PER_VIEW } from '../src/calendar.js';
+import { pubDay, clockFrom, DAYS_PER_VIEW, SHORTEST_DAYS } from '../src/calendar.js';
 
 const views = JSON.parse(readFileSync(new URL('../data/views.json', import.meta.url), 'utf8'))
   .filter(v => v.id <= 118);
@@ -64,6 +64,60 @@ assert.equal(ok.got, views.length,
   `即使能跳季節也只收到 ${ok.got}/${views.length}——遊戲不可完成`);
 console.log(`可完成性：不能跳季節 → 卡在 ${stuck.got}/${views.length}（第 ${stuck.day} 日）；`
   + `能跳 → ${ok.got}/${views.length}，第 ${ok.day} 日、跳 ${ok.jumps} 次共 ${ok.jumped} 日`);
+
+// ── 結局要顯示的「最短可能」──────────────────────────────────
+// 遊戲會把 SHORTEST_DAYS 秀給玩家看（「最短是 1151 日，你多等了 N 日」），
+// 所以那個數字不能是寫死之後就沒人管的常數。這裡重新算一次並釘住：
+//   一、上面那場貪心走法本身就是目前已知的最短
+//   二、收景的日子是固定的，其餘全是等季節——這條讓結局的「走 X 日／等 Y 日」成立
+//   三、灑一批隨機走法，確認沒有更短的（是搜尋不是證明，所以要真的搜）
+assert.equal(ok.day, SHORTEST_DAYS,
+  `最短走法變成 ${ok.day} 日，但 calendar.js 的 SHORTEST_DAYS 還寫 ${SHORTEST_DAYS}`);
+assert.equal(ok.day - views.length * DAYS_PER_VIEW, ok.jumped,
+  '總日數扣掉收景的日子不等於跳季節的日子——結局的「走 X 日／等 Y 日」會對不起來');
+
+// 這一段要跑幾千次，所以先把兩個慢的地方拿掉：
+//   clockFrom(d) 每次都往前後掃季節邊界 → 季節查表一次算好
+//   openAt() 每次都 filter 全部 118 景 → 只留「該季未收景裡最早的出版日」，
+//                                       「第 d 天有沒有景可收」就變成一次比較
+// 沒優化的版本 400 次要 34 秒，而且 400 次還搜不到最短的那條路。
+const SEASONS4 = ['spring', 'summer', 'autumn', 'winter'];
+const HORIZON = 2600;
+const seasonAtDay = Array.from({ length: HORIZON }, (_, d) => clockFrom(d).season);
+
+function randomRun(seed0) {
+  let day = 0, seed = seed0, left = views.length;
+  const rnd = n => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) % n;
+  // 每一季：未收景的出版日，由早到晚
+  const pool = {};
+  for (const t of SEASONS4) {
+    pool[t] = views.filter(v => v.season === t).map(v => pubDay(v.published)).sort((a, b) => a - b);
+  }
+  const openCount = (d, t) => { let n = 0; for (const p of pool[t]) { if (p > d) break; n++; } return n; };
+  while (left) {
+    if (day >= HORIZON) return Infinity;
+    const s = seasonAtDay[day], n = openCount(day, s);
+    if (n) { pool[s].splice(rnd(n), 1); left--; day += DAYS_PER_VIEW; continue; }
+    const cand = [];
+    for (const t of SEASONS4) {
+      if (!pool[t].length) continue;
+      for (let d = day + 1; d < Math.min(day + 900, HORIZON); d++) {
+        if (seasonAtDay[d] !== t) continue;
+        if (openCount(d, t)) { cand.push(d); break; }
+      }
+    }
+    if (!cand.length) return Infinity;
+    day = cand[rnd(cand.length)];
+  }
+  return day;
+}
+let found = Infinity;
+for (let i = 1; i <= 4000; i++) found = Math.min(found, randomRun(i));
+assert.ok(found >= SHORTEST_DAYS,
+  `隨機走法找到更短的 ${found} 日——SHORTEST_DAYS 該改成它`);
+console.log(`最短 ${SHORTEST_DAYS} 日 ＝ 收景 ${views.length * DAYS_PER_VIEW} 日`
+  + `（${views.length} × ${DAYS_PER_VIEW}）＋ 等季節 ${ok.jumped} 日`
+  + `　（另灑 4000 種隨機走法，最短 ${found} 日）`);
 
 const byYear = {};
 for (const v of views) (byYear[v.published.slice(0, 4)] ??= []).push(v);

@@ -1,6 +1,6 @@
 // 進入點：狀態、遇景判定、存檔。
 // ponytail: 遇景邏輯只有十幾行，沒有另開 roam.js——一個檔就講得完的事不必拆兩個。
-import { clockFrom, dateDay, DAYS_PER_VIEW, pubDay, seasonJa } from './calendar.js';
+import { clockFrom, dateDay, DAYS_PER_VIEW, pubDay, seasonJa, SHORTEST_DAYS } from './calendar.js';
 import { createMap } from './map.js';
 import { showView } from './view.js';
 import { showHunt } from './hunt.js';
@@ -274,12 +274,23 @@ function showEvents([e, ...rest]) {
 // 不是通關獎勵。這裡只報你自己的數字，不加敘事。
 function showEnd() {
   const clock = clockFrom(state.day);
+  const walk = TOTAL * DAYS_PER_VIEW;          // 收景的日子：每個玩家都一樣
+  const wait = state.day - walk;               // 其餘全是等季節
+  const extra = state.day - SHORTEST_DAYS;
   const el = document.createElement('div');
   el.className = 'overlay ending';
   el.innerHTML = `<div class="sheet">
     <h2>歳時記 満</h2>
     <p class="date">${clock.label}<span class="dim">　${clock.iso}</span></p>
-    <p>一百十八景走完，歷時 ${(state.day / 365).toFixed(1)} 年。</p>
+    <p>一百十八景走完，歷時 ${(state.day / 365).toFixed(1)} 年（${state.day} 日）。</p>
+    <!-- 「你花了多久」是這場遊戲裡唯一因人而異的量。收景的日子誰都一樣（118×8），
+         差別全在等季節——在還有景可收時離開一季，下次就得多等一整年。
+         先前結局只寫「歷時 3.2 年」，沒有對照，玩家不知道那是快是慢。 -->
+    <p class="pace">走 ${walk} 日　等 ${wait} 日${extra <= 0
+      ? '<br><span class="dim">最短的走法就是這樣——你一天都沒多等。</span>'
+      : `<br><span class="dim">最短是 ${SHORTEST_DAYS} 日，你多等了 ${extra} 日。</span>`}</p>
+    <p class="note dim">等待歸不了零：春有四十二景，而一個春天最多收十一二景——
+      誰都得走過四個春天。夏三個、秋三個、冬兩個。</p>
     <p class="note dim">第百十九枚〈赤坂桐畑雨中夕けい〉是二代廣重於安政六年四月補的，
       不在這一百十八景之內。</p>
     <div class="act">
