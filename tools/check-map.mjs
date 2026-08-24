@@ -8,6 +8,9 @@
 //       手機上開場只框到 254 個地圖單位（該有 468），拖兩下就到邊。
 //   二、px 寫成 vb.w / 視窗寬，同樣只對寬邊綁住成立。
 //       手機上高估 1.85 倍，地名被畫成 22px 而不是 12px、圓點畫成 26px 而不是 14px。
+//   三、resize 只叫了 remax()，沒重跑 relabel()——視窗一變，尺寸還是用**舊的**視窗寬
+//       算的，要等玩家拖動地圖才會修正。量過：1200×835 縮到 700×900，地名 12→9.8px。
+//       全螢幕是一次大幅 resize，正面撞上這個，所以下面每個尺寸都會再 resize 一次驗。
 //
 // 兩個在桌機上都看不出來（那裡剛好是寬邊綁住，公式碰巧對）。所以這支一定要
 // 用直式視窗量，不然它只會一直綠。
@@ -89,6 +92,20 @@ try {
       + `只看得到 ${Math.round(vis.w)}×${Math.round(vis.h)}）`);
     if (Math.abs(p.fontCss - wantFont) > 0.6) bad.push(`${name}：地名 ${p.fontCss}px，應為 ${wantFont.toFixed(1)}px`);
     if (Math.abs(p.dotCss - wantDot) > 0.4) bad.push(`${name}：圓點半徑 ${p.dotCss}px，應為 ${wantDot.toFixed(1)}px`);
+    // 換個視窗大小再量一次：尺寸必須立刻跟上，不能等玩家拖地圖。
+    // （全螢幕、轉螢幕、手機網址列伸縮走的都是這條路。）
+    const vp = page.viewportSize();
+    await page.setViewportSize({ width: vp.height, height: vp.width });   // 轉個向
+    await sleep(500);
+    const q = await page.evaluate(probe);
+    const want2 = q.vp[0] < 700 ? [12 * 0.8, 7 * 0.8] : [12, 7];
+    console.log(`  └ 轉成 ${q.vp.join('×')} 之後：地名 ${q.fontCss}px  圓點半徑 ${q.dotCss}px`);
+    if (Math.abs(q.fontCss - want2[0]) > 0.6)
+      bad.push(`${name} resize 後：地名 ${q.fontCss}px，應為 ${want2[0].toFixed(1)}px`
+             + '——resize 沒有重跑 relabel()');
+    if (Math.abs(q.dotCss - want2[1]) > 0.4)
+      bad.push(`${name} resize 後：圓點半徑 ${q.dotCss}px，應為 ${want2[1].toFixed(1)}px`);
+
     if (errs.length) bad.push(`${name} 主控台有錯：${errs.slice(0, 2).join(' / ')}`);
     await ctx.close();
   }

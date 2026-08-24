@@ -338,6 +338,43 @@ document.getElementById('hunt').onclick = () =>
 const openBook = () => showZukan(views, state, { onPick: reopen, onEmaki: openEmaki });
 const openEmaki = () => showEmaki(views, state, reopen);
 document.getElementById('book').onclick = openBook;
+// 全螢幕。用原生的 Fullscreen API——這件事不值得為它裝任何東西。
+//
+// 🔴 **iPhone 的 Safari 沒有這個 API**（iPad 有）。手機上的全螢幕是「加到主畫面」
+// 之後的獨立視窗，靠 index.html 那份 manifest 與 apple-* meta，跟這顆鈕無關。
+// 所以不支援就把鈕拿掉——留一顆按了沒反應的鈕比沒有這顆鈕更糟。
+// 已經在獨立視窗裡跑的也拿掉：瀏覽器的邊框本來就不在了，那顆鈕沒有意義。
+{
+  const btn = document.getElementById('fs');
+  const alone = matchMedia('(display-mode: standalone)').matches
+             || matchMedia('(display-mode: fullscreen)').matches
+             || navigator.standalone === true;
+  if (alone || !document.documentElement.requestFullscreen) {
+    btn.remove();
+  } else {
+    // 圖示與說明跟著實際狀態走：使用者也可能按 F11 或 Esc，不是只有這顆鈕會改變狀態
+    const sync = () => {
+      const on = !!document.fullscreenElement;
+      btn.textContent = on ? '⤡' : '⤢';
+      btn.title = on ? '離開全螢幕（Esc）' : '全螢幕（F）';
+    };
+    const flip = () => (document.fullscreenElement
+      ? document.exitFullscreen()
+      : document.documentElement.requestFullscreen()).catch(() => {});
+    btn.onclick = flip;
+    addEventListener('fullscreenchange', sync);
+    // F 是遊戲的慣例。這個作品沒有任何文字輸入框，但還是讓開——
+    // 之後真的加了輸入框，這裡不會變成「打不出 f」的怪 bug。
+    addEventListener('keydown', e => {
+      if (e.key !== 'f' && e.key !== 'F') return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (document.activeElement?.matches('input, textarea, [contenteditable]')) return;
+      flip();
+    });
+    sync();
+  }
+}
+
 document.getElementById('reset').onclick = () => {
   if (confirm('清除進度，從安政三年春天重來？')) { localStorage.removeItem(SAVE); location.reload(); }
 };

@@ -62,6 +62,11 @@ python3 tools/fetch-dem.py --write           # 標高 data/geo/relief.jpg（已�
 python3 tools/fetch-bgm.py --write           # 配樂旋律 data/bgm.json（已含在 repo）
 ```
 
+全螢幕有兩條路，因為 **iPhone 的 Safari 沒有 Fullscreen API**（iPad 有）：
+桌機與 Android 走 HUD 上的 ⤢（或按 F）；iPhone 只能「加到主畫面」，
+靠 `manifest.webmanifest` 與 `apple-*` meta 開成獨立視窗（圖示：`python3 tools/make-icons.py`）。
+不支援、或已經在獨立視窗裡跑的，那顆鈕會自己拿掉——按了沒反應的鈕比沒有更糟。
+
 動到地圖的取景或介面尺寸之後跑 `node tools/check-map.mjs`：它用直式視窗量，
 驗開場有沒有把江戶本體框進來、地名與圓點畫出來是不是該有的 CSS 像素數。
 `preserveAspectRatio` 是 slice，「哪一邊綁住縮放」在桌機是寬邊、直式手機是高邊——

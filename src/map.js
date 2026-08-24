@@ -392,7 +392,10 @@ export function createMap(svg, views, geo, places, onPick) {
     zoomTo(vb.w * k, cx, cy);
   };
   svg.ondblclick = e => { const [cx, cy] = toSvg(e); zoomTo(vb.w / 2, cx, cy); };
-  addEventListener('resize', remax);   // 視窗長寬比變了，全図需要的寬度也變了
+  // 🔴 resize 之後也要重畫一次。先前只叫 remax()，於是視窗一變，地名與圓點還是
+  // 用**舊的**視窗寬度算的尺寸——量過：1200×835 縮到 700×900，地名從 12px 變成
+  // 9.8px，而且要等玩家拖動地圖才會修正。全螢幕是一次大幅 resize，會正面撞上這個。
+  addEventListener('resize', () => { remax(); apply(); });   // 長寬比變了，全図需要的寬度也變了
   // 方向鍵是按住連續走，不是一下跳一格。
   // 交給作業系統的按鍵重複也不行——先卡半秒再暴衝，那不叫綿密，
   // 所以自己開 rAF，每一幀推一點點。

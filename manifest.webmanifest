@@ -1,0 +1,19 @@
+{
+  "_": "加到主畫面之後用獨立視窗開——iPhone 的 Safari 沒有 Fullscreen API，那是手機上唯一的全螢幕。圖示由 tools/make-icons.py 產生。",
+  "name": "名所江戶百景・漫遊記",
+  "short_name": "江戶百景",
+  "description": "廣重《名所江戶百景》118 景，一趟在江戶地圖上的四季漫遊。",
+  "lang": "zh-Hant",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "background_color": "#101d29",
+  "theme_color": "#101d29",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
