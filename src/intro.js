@@ -13,6 +13,7 @@
 // 推鏡終點是日本橋，不是江戶城。城是畫面的視覺中心，但遊戲從日本橋開始，
 // 而且淡出之後底下地圖上的紅點就在那裡——鏡頭要落在同一個地方。
 import { kanjiDays } from './calendar.js';
+import { canFullscreen, standalone } from './ui.js';
 
 const KEY = 'edo-hyakkei/intro';
 const ZOOM_SECS = 12;
@@ -204,8 +205,14 @@ export function introInit({ image, target, art, button }) {
   if (seen) return;
   const gate = document.createElement('div');
   gate.id = 'gate';
+  // 🔴 沒有 Fullscreen API 又不在獨立視窗裡＝iPhone 的 Safari。
+  // 那邊的全螢幕只有「加到主畫面」一條路，而那件事網頁沒辦法代勞——只能講。
+  // 講一次就好：起程門只有第一次會出現，之後不再打擾。
+  // 用能力偵測不用 UA：要判斷的本來就是「有沒有那個功能」。
+  const tip = !canFullscreen() && !standalone()
+    ? `<div class="g-tip">想全螢幕玩：分享鈕 <b>⇧</b> → <b>加入主畫面</b></div>` : '';
   gate.innerHTML = `<div><h1>名所江戶百景</h1><div class="g-sub">漫遊記 ・ 安政四年、江戶</div>
-    <div class="g-go">— 點擊啟程 —</div></div>`;
+    <div class="g-go">— 點擊啟程 —</div>${tip}</div>`;
   document.body.append(gate);
   gate.addEventListener('click', () => {
     gate.style.opacity = '0';

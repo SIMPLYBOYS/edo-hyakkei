@@ -61,3 +61,14 @@ export function waitImg(img, text = '', src = null) {
   img.addEventListener('error', off, { once: true });
   if (src != null) img.src = src;          // 佈置好才換，順序反了提示就不會出現
 }
+
+// 已經在獨立視窗裡跑嗎（加到主畫面之後開的）。瀏覽器的邊框本來就不在了。
+export const standalone = () =>
+  matchMedia('(display-mode: standalone)').matches
+  || matchMedia('(display-mode: fullscreen)').matches
+  || navigator.standalone === true;
+
+// 這台裝置按得出全螢幕嗎。**iPhone 的 Safari 沒有 Fullscreen API**（iPad 有），
+// 那邊唯一的全螢幕是「加到主畫面」。用能力偵測不用 UA 字串：要判斷的本來就是
+// 「有沒有這個功能」，而 UA 會說謊、也會過期。
+export const canFullscreen = () => !!document.documentElement.requestFullscreen;

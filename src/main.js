@@ -8,6 +8,7 @@ import { showZukan } from './zukan.js';
 import { showEmaki } from './emaki.js';
 import { bgmInit, bgmLoad } from './bgm.js';
 import { introInit } from './intro.js';
+import { canFullscreen, standalone } from './ui.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -346,16 +347,19 @@ document.getElementById('book').onclick = openBook;
 // 已經在獨立視窗裡跑的也拿掉：瀏覽器的邊框本來就不在了，那顆鈕沒有意義。
 {
   const btn = document.getElementById('fs');
-  const alone = matchMedia('(display-mode: standalone)').matches
-             || matchMedia('(display-mode: fullscreen)').matches
-             || navigator.standalone === true;
-  if (alone || !document.documentElement.requestFullscreen) {
+  if (standalone() || !canFullscreen()) {
     btn.remove();
   } else {
-    // 圖示與說明跟著實際狀態走：使用者也可能按 F11 或 Esc，不是只有這顆鈕會改變狀態
+    // 四個角：向外＝進去，向內＝出來。不用文字（「全螢幕」三個字會把桌機的 HUD
+    // 從 64px 擠成 94px），也不用字型裡的 ⤢（看起來像「外部連結」，而且不是每套
+    // 字型都有那個字）。圖示與說明跟著**實際狀態**走——使用者也可能按 F11 或 Esc。
+    const icon = d => `<svg viewBox="0 0 16 16" fill="none" stroke="currentColor"`
+      + ` stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+    const OUT = 'M6 1.5H1.5V6M10 1.5H14.5V6M6 14.5H1.5V10M10 14.5H14.5V10';
+    const IN = 'M1.5 6H6V1.5M14.5 6H10V1.5M1.5 10H6V14.5M14.5 10H10V14.5';
     const sync = () => {
       const on = !!document.fullscreenElement;
-      btn.textContent = on ? '⤡' : '⤢';
+      btn.innerHTML = icon(on ? IN : OUT);
       btn.title = on ? '離開全螢幕（Esc）' : '全螢幕（F）';
     };
     const flip = () => (document.fullscreenElement

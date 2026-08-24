@@ -92,6 +92,13 @@
   #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
               font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
   #left, #count { font-size:13px; opacity:.75 }
+  /* 全螢幕鈕畫成四個角，不用文字也不用字型裡的箭頭：
+     「全螢幕」三個字會把桌機的 HUD 從 64px 擠成 94px（吃掉 30px 地圖），
+     而單獨一個 ⤢ 看起來像「外部連結」，何況那個字不是每套字型都有。
+     🔴 #hud 是 align-items:baseline，而 <svg> 沒有基線——只有圖示的鈕會沉到
+     其他鈕下面。補一個等高的行框把基線帶回來（::before 的零寬空白）。 */
+  #fs::before { content:'\200b' }   /* 零寬空白：把行高與基線帶回來，高度才跟鄰居一致 */
+  #fs svg { display:inline-block; width:14px; height:14px; vertical-align:-2px }
   /* §2.2 季節由玩家選。按下去＝把時鐘推進到那個季節——日期永遠是真的，
      出版與事件照舊。這同時取代了舊的「待つ」，並消掉整類卡死 bug。 */
   #seasons { display:inline-flex; gap:1px }
@@ -374,6 +381,11 @@
           place-items:center; cursor:pointer; text-align:center; transition:opacity .6s }
   #gate h1 { font-size:clamp(32px,6vw,64px); font-weight:400; letter-spacing:.18em }
   #gate .g-sub { margin-top:14px; font-size:14px; letter-spacing:.3em; opacity:.6 }
+  /* 只有 iPhone 會看到（見 intro.js）：那邊沒有 Fullscreen API，
+     全螢幕只能靠「加到主畫面」，而那件事網頁沒辦法代勞，只能講一次。 */
+  #gate .g-tip { margin-top:22px; font-size:11px; letter-spacing:.12em; opacity:.4;
+                 line-height:1.9 }
+  #gate .g-tip b { color:var(--gold); font-weight:400 }
   #gate .g-go { margin-top:48px; font-size:13px; letter-spacing:.4em; color:var(--gold);
                 animation:breathe 2.6s ease-in-out infinite }
   @keyframes breathe { 50% { opacity:.35 } }
@@ -492,7 +504,7 @@
   <button id="intro-btn" class="ghost" title="重看開場">開場</button>
   <button id="bgm" class="ghost" title="配樂">♪</button>
   <!-- 不支援（iPhone）或已經在獨立視窗裡跑，main.js 會把這顆拿掉 -->
-  <button id="fs" class="ghost" title="全螢幕（F）">⤢</button>
+  <button id="fs" class="ghost" title="全螢幕（F）"></button>
   <button id="reset" class="ghost">重來</button>
 </div>
 
