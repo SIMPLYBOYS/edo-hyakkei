@@ -88,7 +88,7 @@ export function createMap(svg, views, geo, places, onPick) {
          そして §2.10 視点狩りは「地形を読め」と要求しているのに、
          この段差が地図に一本も描かれていなかった。
          紙と同じ等距円筒に焼き直してあるので、そのまま枠に貼れば重なる。 -->
-    <image href="data/geo/relief.jpg" x="0" y="0" width="${W}" height="${H}"
+    <image id="relief" href="data/geo/relief.jpg" x="0" y="0" width="${W}" height="${H}"
            preserveAspectRatio="none" opacity=".62"/>
     <path id="park" d="${multi(geo.park)}Z" fill="#b9c4a6" opacity=".5"/>
     <!-- 寺社の境内。江戸は寺の町——寺町はまとめて配置された都市計画の産物で、
@@ -299,9 +299,32 @@ export function createMap(svg, views, geo, places, onPick) {
   // 平移縮放：直接改 viewBox，不需要任何函式庫
   let vb = { x: 0, y: 0, w: W, h: H };
   let onChange = () => {};
+  // 🔴 地形圖有兩級，拉近了才換大的。
+  //
+  // 一張是不夠的：地圖可以縮放，而 relief.jpg 是 1536px（約 21m/px）——
+  // 拉到底時一個影像像素被撐成 12.5 個螢幕像素，地形就成了一張粗顆粒的
+  // 「概念圖」（實際被回報過）。但一開始就載 3072 那張，開場要多等 1.8MB。
+  // 所以：先用小的，等到真的看得出顆粒再換。兩張都由 tools/fetch-dem.py 一次焼く。
+  const reliefEl = svg.querySelector('#relief');
+  const RELIEF_BASE = 1536;                  // data/geo/relief.jpg 的寬度
+  let hiAsked = false;
+  const upgradeRelief = () => {
+    if (hiAsked) return;
+    const r = svg.getBoundingClientRect();
+    if (!r.width) return;
+    const s = Math.max(r.width / vb.w, r.height / vb.h);        // slice 的倍率
+    // 一個影像像素被撐成幾個螢幕像素。1.5 以下看不出來，以上開始有顆粒感。
+    if (s * W / RELIEF_BASE < 1.5) return;
+    hiAsked = true;
+    const big = new Image();
+    // 先載好再換 href。直接換的話中間會有一格空白——那比顆粒難看得多。
+    big.onload = () => reliefEl.setAttribute('href', big.src);
+    big.src = 'data/geo/relief-hi.jpg';
+  };
+
   const apply = () => {
     svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
-    relabel(); onChange();
+    relabel(); upgradeRelief(); onChange();
   };
   const toSvg = e => {
     const r = svg.getBoundingClientRect();

@@ -117,8 +117,15 @@
   button:hover { background:#ffffff2e }
   button.ghost { background:none }
 
+  /* 🔴 pointer-events:none——這一條是整片的，而且上半是透明漸層，看起來什麼都沒有，
+     卻會把落在上面的點擊全部吃掉。手機上它從 y=521 起算，正好蓋住縮放那一疊的
+     最後一顆「全圖」（428–536），變成一顆看得到卻按不到的鈕（桌機 739 對 740，
+     差一格躲過去了，所以一直沒被發現）。
+     擋住的是「空的地方」，所以讓空的地方透過去，滑桿自己收回 auto 就好。
+     順帶好處：時間軸那一帶也能直接拖地圖了。 */
   #bar { position:fixed; left:0; right:0; bottom:0; padding:12px 20px 18px; text-align:center;
-         background:linear-gradient(transparent,#0e2233cc 40%) }
+         pointer-events:none; background:linear-gradient(transparent,#0e2233cc 40%) }
+  #bar #era { pointer-events:auto }
   #era { width:min(420px,60vw); accent-color:var(--gold); vertical-align:middle }
   #bar label { font-size:12px; opacity:.7; margin:0 10px }
   /* 拖動時的讀數。固定高度，不然出現／消失時整條 bar 會跳。 */

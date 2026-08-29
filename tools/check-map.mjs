@@ -12,6 +12,10 @@
 //       算的，要等玩家拖動地圖才會修正。量過：1200×835 縮到 700×900，地名 12→9.8px。
 //       全螢幕是一次大幅 resize，正面撞上這個，所以下面每個尺寸都會再 resize 一次驗。
 //
+// 順帶驗地形圖的分級載入（relief.jpg 1536 → relief-hi.jpg 3072）：
+// 開場不該去載 1.8MB 的大圖，拉近了又非換不可。兩個方向壞掉都不會噴錯——
+// 一個只是開場變慢，一個只是地形變成粗顆粒的「概念圖」。
+//
 // 兩個在桌機上都看不出來（那裡剛好是寬邊綁住，公式碰巧對）。所以這支一定要
 // 用直式視窗量，不然它只會一直綠。
 //
@@ -72,6 +76,11 @@ try {
     const errs = [];
     page.on('pageerror', e => errs.push(String(e)));
     page.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
+    const relief = [];
+    page.on('response', r => {
+      const f = r.url().split('/').pop();
+      if (f.startsWith('relief')) relief.push(f);
+    });
 
     await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#gate', { timeout: 20000 });
@@ -92,6 +101,24 @@ try {
       + `只看得到 ${Math.round(vis.w)}×${Math.round(vis.h)}）`);
     if (Math.abs(p.fontCss - wantFont) > 0.6) bad.push(`${name}：地名 ${p.fontCss}px，應為 ${wantFont.toFixed(1)}px`);
     if (Math.abs(p.dotCss - wantDot) > 0.4) bad.push(`${name}：圓點半徑 ${p.dotCss}px，應為 ${wantDot.toFixed(1)}px`);
+    // 地形圖的分級：開場只該有小的，拉到底必須換成大的
+    if (relief.includes('relief-hi.jpg'))
+      bad.push(`${name}：開場就去載了 relief-hi.jpg（1.8MB）——那是拉近才該載的`);
+    if (!relief.includes('relief.jpg')) bad.push(`${name}：開場沒載 relief.jpg`);
+    for (let i = 0; i < 20; i++) {
+      if (await page.locator('#zin').isDisabled()) break;
+      await page.locator('#zin').click();
+      await sleep(140);
+    }
+    await sleep(2500);                       // 等大圖載完並換上
+    const used = await page.evaluate(() =>
+      document.querySelector('#relief').getAttribute('href').split('/').pop());
+    console.log(`  └ 地形圖：開場 ${relief[0]} → 拉到底 ${used}`);
+    if (used !== 'relief-hi.jpg')
+      bad.push(`${name}：拉到底了還在用 ${used}——地形會是粗顆粒的概念圖`);
+    await page.locator('#zfit').click();
+    await sleep(400);
+
     // 換個視窗大小再量一次：尺寸必須立刻跟上，不能等玩家拖地圖。
     // （全螢幕、轉螢幕、手機網址列伸縮走的都是這條路。）
     const vp = page.viewportSize();

@@ -60,7 +60,7 @@ python3 tools/make-thumbs.py                 # 歲時記縮圖
 python3 tools/fetch-kiriezu.py --assets      # 江戶切繪圖 29 張
 python3 tools/fetch-intro.py                 # 開場的鳥瞰圖（順便量出畫心）
 python3 tools/fetch-osm.py                   # 街圖向量 data/geo/modern.json（已含在 repo）
-python3 tools/fetch-dem.py --write           # 標高 data/geo/relief.jpg（已含在 repo）
+python3 tools/fetch-dem.py --write           # 標高 relief.jpg ＋ relief-hi.jpg（已含在 repo）
 python3 tools/fetch-bgm.py --write           # 配樂旋律 data/bgm.json（已含在 repo）
 ```
 

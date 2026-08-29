@@ -41,7 +41,24 @@ BASE = "https://cyberjapandata.gsi.go.jp/xyz"
 SOURCES = [("dem5a_png", 15), ("dem_png", 14)]
 # src/map.js の B と同じ枠。ここがずれたら地形だけ別の場所を指す
 S, W_, N, E = 35.535, 139.565, 35.805, 139.925
-OUT_W, OUT_H = 1536, 1418    # 1000×923（地図の紙）と同じ比。約 21m/px
+# 出力サイズ。1000×923（地図の紙）と同じ比を保つこと。--size で変えられる。
+# 1536 は約 21m/px。DEM5A は 5m メッシュ（z=15 のタイルで約 3.9m/px）なので
+# 素材の側はもっと出せる——どこまで出すかは data/geo の重さとの相談。
+OUT_W, OUT_H = 1536, 1418
+# 🔴 二段で焼く。地図は拡大できるので一枚では足りない——1536 は約 21m/px、
+# いちばん寄ったところでは 1 画素が画面の 12.5 画素に伸びて、地形が「概念図」に
+# 見えてしまう（実際にそう報告された）。かといって詳細版を最初から読ませると
+# 開始が重い。だから：
+#   relief.jpg     1536（439KB）  最初に読む。引いて見るぶんにはこれで足りる
+#   relief-hi.jpg  3072（1.8MB）  粒が見え始めたら差し替える（src/map.js）
+# 4096（3.2MB, 7.9m/px）も焼けるが、3072 で構造はもう戻る。効くのは 1536→3072 の
+# ほうで、3072→4096 は倍の重さで 1.33 倍にしかならない。展開後のメモリも
+# 35MB 対 62MB——携帯ではその差のほうが効く。上げたければ HI_W を変えるだけ。
+#
+# 詳細版から縮めて基本版を作る（別々に焼かない）：面積平均で縮めるほうがきれいだし、
+# 二度焼く時間も要らない。そして何より**一度の --write で両方が出る**——
+# 片方だけ古いという事故が起きない。
+HI_W = 3072
 
 
 def txf(lon, z): return (lon + 180) / 360 * 2 ** z
@@ -140,9 +157,14 @@ ZFACTOR = 14
 
 
 def main():
+    global OUT_W, OUT_H          # 関数の先頭で宣言すること（既定値でも参照は参照）
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
+    ap.add_argument("--size", type=int, default=HI_W, help=f"詳細版の横幅（既定 {HI_W}）")
+    ap.add_argument("--quality", type=int, default=85)
     args = ap.parse_args()
+    OUT_W = args.size
+    OUT_H = round(OUT_W * 923 / 1000)      # 地図の紙と同じ比を崩さない
 
     z = np.full((OUT_H, OUT_W), np.nan, dtype=np.float32)
     for src, lvl in SOURCES:
@@ -214,14 +236,26 @@ def main():
     # 4:4:4（subsampling=0）にしているのは、色差を間引くと標高帯の境目が
     # にじむから——帯の境目こそこの図が伝えたいものなので。
     buf = io.BytesIO()
-    img.save(buf, "JPEG", quality=85, subsampling=0, optimize=True)
+    img.save(buf, "JPEG", quality=args.quality, subsampling=0, optimize=True)
     kb = buf.tell() / 1024
-    print(f"\n{OUT_W}×{OUT_H}  {kb:.0f}KB")
-    assert kb < 600, f"{kb:.0f}KB は大きすぎる"
-    out = ROOT / "data" / "geo" / "relief.jpg"
+    mpx = OUT_W * OUT_H / 1e6
+    m_per_px = (E - W_) * 111320 * math.cos(math.radians((N + S) / 2)) / OUT_W
+    print(f"\n{OUT_W}×{OUT_H}  {kb:.0f}KB  ({mpx:.2f}MP, {kb/mpx:.0f}KB/MP, {m_per_px:.1f}m/px)")
+    # 1 メガ画素あたりで見る。絶対値で縛ると --size を上げた瞬間に必ず落ちる
+    assert kb / mpx < 320, f"{kb/mpx:.0f}KB/MP は大きすぎる（圧縮が効いていない）"
+    # 基本版は詳細版を縮めて作る。別に焼き直さない（上の HI_W のところ参照）
+    base = img.resize((1536, 1418), Image.LANCZOS)
+    bbuf = io.BytesIO()
+    base.save(bbuf, "JPEG", quality=args.quality, subsampling=0, optimize=True)
+    bkb = bbuf.tell() / 1024
+    print(f"1536×1418  {bkb:.0f}KB  (21.2m/px)  ← 最初に読むほう")
+    assert bkb < 600, f"基本版 {bkb:.0f}KB は大きすぎる"
+
+    geo = ROOT / "data" / "geo"
     if args.write:
-        out.write_bytes(buf.getvalue())
-        print(f"書き出した {out.relative_to(ROOT)}")
+        (geo / "relief-hi.jpg").write_bytes(buf.getvalue())
+        (geo / "relief.jpg").write_bytes(bbuf.getvalue())
+        print("書き出した data/geo/relief.jpg ＋ relief-hi.jpg")
     else:
         print("（--write で書き出し）")
     print("self-check ok")
