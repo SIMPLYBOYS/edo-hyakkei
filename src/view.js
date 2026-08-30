@@ -67,13 +67,27 @@ function lore(v) {
   // 沒座標就退回純文字。目前 118 景全都有（而且地圖本來就跳過沒座標的），
   // 但這一行在 lore 裡——它一 throw，整個看畫畫面就開不起來。不值得為它冒險。
   const where = `${pl.modern_ward}${pl.modern_town ?? ''}`;
+  // 🔴 同一個畫面上不能有兩個都寫著「街景」、行為卻不一樣的東西。
+  //
+  // 先前就是那樣：現在地開新分頁，「看今天」在框裡換——而看起來最像主要入口的
+  // 現在地，做的偏偏是**離開遊戲**。實際被問了兩次「為什麼點了會開新頁」。
+  //
+  // 所以有金鑰時，現在地跟「看今天」是同一件事（下面 flips 那段把它接到同一個
+  // handler），另開分頁降級成後面一個小連結、而且明說會另開。
+  // 沒金鑰時只有另開分頁一條路，那就照實寫。
+  const canEmbed = !!embedUrl(v);
+  const aim = v.bearing != null ? '，朝廣重看的方向望出去' : '';
   const now = !pl.modern_ward ? '' : !v.subject
     ? `<p class="now">現在　<b>${where}</b></p>`
-    : `<p class="now">現在　<a class="sv"
+    : `<p class="now">現在　<a class="sv" id="nowsv"
         href="${streetview(v)}" target="_blank" rel="noopener noreferrer"
-        title="在 Google 街景打開這個地點">${where}</a>
-      <span>${v.bearing != null
-        ? '街景　從這裡朝廣重看的方向望出去' : '街景　同一個地方的今天'}</span></p>`;
+        title="${canEmbed ? '在畫框裡換成今天的街景' : '在 Google 街景打開這個地點'}"
+        >${where}</a>
+      <span>${canEmbed
+        ? `街景　在畫框裡換成今天${aim}`
+          + `　·　<a class="ext" href="${streetview(v)}" target="_blank"
+               rel="noopener noreferrer">在 Google 地圖開啟 ↗</a>`
+        : `街景　同一個地方的今天${aim}（另開分頁）`}</span></p>`;
   // 切繪圖は**この一帯**の図であって、この一点がどこに描かれているかまでは
   // 言えない（図幅は数 km 四方、方位も比例も一定でない）。だから「〜あたりの」。
   // 市街図と近郊図で言い方を分ける。近郊図は町の地図ではなく**村の地図**——
@@ -405,6 +419,12 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
     const b = el.querySelector(sel);
     return b && src && { b, src, label, cls, on: false, embed: sel === '#today' };
   }).filter(Boolean);
+
+  // 現在地那行接到同一顆鈕：讀到「現在　北区王子一丁目」就想按下去，那是最自然的
+  // 入口，不該是唯一一個會把人帶離遊戲的東西。
+  const todayFlip = flips.find(f => f.embed);
+  const nowLink = el.querySelector('#nowsv');
+  if (todayFlip && nowLink) nowLink.onclick = e => { e.preventDefault(); todayFlip.b.click(); };
 
   for (const f of flips) {
     f.b.onclick = () => {
