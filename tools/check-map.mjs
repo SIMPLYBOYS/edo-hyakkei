@@ -92,6 +92,10 @@ try {
     await sleep(400);
     await page.evaluate(() => document.querySelector('#intro-skip')?.click());
     await sleep(1200);
+    // 第一次進來會自動開玩法。關掉它——後面是用 dispatchEvent 直接戳 SVG 元素
+    // （繞過命中測試），不關的話這支會在一個玩家根本看不到的狀態下量完，還一路綠。
+    await page.evaluate(() => document.querySelector('.howto #hx')?.click());
+    await sleep(300);
     const p = await page.evaluate(probe);
 
     const { vis, city } = p;

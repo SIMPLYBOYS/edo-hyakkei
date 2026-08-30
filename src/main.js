@@ -9,6 +9,7 @@ import { showEmaki } from './emaki.js';
 import { bgmInit, bgmLoad } from './bgm.js';
 import { introInit } from './intro.js';
 import { canFullscreen, standalone } from './ui.js';
+import { showHowTo, howToFirstRun, setReplay } from './howto.js';
 import { loadConfig } from './config.js';
 
 const SAVE = 'edo-hyakkei/v1';
@@ -413,8 +414,21 @@ booted = true;
 // 遊戲照常——開場是門面，不是門檻。
 const introMeta = await grab('data/intro.json').catch(e => (console.warn('開場略過:', e), null));
 if (introMeta) {
-  introInit({ image: 'assets/intro/keisai-1803.jpg', target: introMeta.nihonbashi,
-              art: introMeta.art, button: document.getElementById('intro-btn') });
+  // 開場放完（或按了跳過）才開玩法：兩層文字疊在一起沒人讀得下去。
+  // 不播開場的回訪玩家，onEnd 不會來，所以下面自己接一次。
+  const intro = introInit({
+    image: 'assets/intro/keisai-1803.jpg', target: introMeta.nihonbashi,
+    art: introMeta.art, onEnd: () => howToFirstRun(),
+  });
+  setReplay(intro.replay);            // 「重看開場」在玩法面板裡，不在 HUD 上
+  if (!intro.playing) howToFirstRun();
 } else {
-  document.getElementById('intro-btn').remove();
+  howToFirstRun();                    // 沒有開場素材也還是要有玩法
 }
+
+document.getElementById('howto').onclick = () => showHowTo();
+// ? 是說明的通用鍵。打字框裡不搶（這個遊戲沒有輸入框，但將來有的話不必回來改）
+addEventListener('keydown', e => {
+  if (e.key !== '?' || document.activeElement?.matches('input, textarea')) return;
+  showHowTo();
+});

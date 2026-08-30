@@ -43,7 +43,7 @@ const TEXT = `
 let timers = [];
 const clear = () => { timers.forEach(clearTimeout); timers = []; };
 
-export function introInit({ image, target, art, button }) {
+export function introInit({ image, target, art, button, onEnd }) {
   const el = document.createElement('div');
   el.id = 'intro';
   el.innerHTML = `
@@ -152,6 +152,7 @@ export function introInit({ image, target, art, button }) {
 
   function end() {
     clear(); stop();
+    onEnd?.();                     // 到地圖了。第一次進來的玩法說明接在這裡
     el.style.transition = 'opacity .8s'; el.style.opacity = '0';
     timers.push(setTimeout(() => {
       el.classList.remove('on'); el.style.opacity = ''; el.style.transition = '';
@@ -202,7 +203,9 @@ export function introInit({ image, target, art, button }) {
   // （bgm.js 聽的是 window 的 click，這一下會冒泡到那裡）。
   let seen = false;
   try { seen = !!localStorage.getItem(KEY); } catch {}
-  if (seen) return;
+  // 回報這次會不會播（不播的話 onEnd 永遠不會來，first-run 的東西得由呼叫端自己接），
+  // 順便把 play 交出去——「重看開場」那顆鈕現在住在玩法面板裡，那是開面板時才生出來的。
+  if (seen) return { playing: false, replay: play };
   const gate = document.createElement('div');
   gate.id = 'gate';
   // 🔴 沒有 Fullscreen API 又不在獨立視窗裡＝iPhone 的 Safari。
@@ -219,4 +222,5 @@ export function introInit({ image, target, art, button }) {
     setTimeout(() => gate.remove(), 600);
     play();
   }, { once: true });
+  return { playing: true, replay: play };
 }

@@ -498,7 +498,7 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
     // 🔴 不能靠 stopPropagation——兩個 handler 都掛在 window 上，
     // 同一個節點上的監聽不會被 stopPropagation 擋住（要 stopImmediate，
     // 而那又得賭註冊順序）。讓下層自己判斷才不必賭。
-    if (document.querySelector('.lightbox, .loading')) return;
+    if (document.querySelector('.lightbox, .loading, .howto')) return;
     if (e.key === 'Escape') return close();
     if (!step) return;
     if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }

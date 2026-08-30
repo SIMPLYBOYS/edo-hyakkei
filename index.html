@@ -302,6 +302,38 @@
      人卻永遠看不到畫——回報是「卡在地圖操作，圖回不來」。
      驗的時候要看**畫框中央那一點上是誰**，不是看 img 的 visibility：
      我第一次就是量了後者，量到 visible 以為好了。 */
+  /* 玩法。
+     🔴 沒有共用的 .overlay .sheet 規則——.zukan 與 .ending 各自定義背景、邊框與內距。
+     先前這裡只寫了寬高，於是面板沒有底，文字直接壓在地圖上。照歲時記那組寫齊。
+     刻意窄（620px）：這是拿來讀的，不是拿來展示的——一行太長就不會有人讀完。 */
+  .howto .sheet { background:#12283c; border:1px solid #ffffff1f; padding:22px 26px;
+                  max-width:620px; width:min(620px, 92vw); max-height:86vh;
+                  display:flex; flex-direction:column }
+  .howto header { display:flex; align-items:baseline; gap:14px; margin-bottom:16px }
+  .howto header h2 { font-weight:400; letter-spacing:.12em; margin:0 }
+  .howto header button:first-of-type { margin-left:auto }
+  .howto .body { overflow-y:auto; padding:4px 2px 2px; line-height:1.95; font-size:13px }
+  .howto section { margin-bottom:26px }
+  .howto h3 { font-size:15px; font-weight:400; letter-spacing:.14em; color:var(--gold);
+              margin:0 0 10px; opacity:.9 }
+  .howto p { margin:0 0 10px }
+  .howto b { font-weight:400; color:var(--gold); opacity:.92 }
+  .howto ul { margin:0; padding:0; list-style:none }
+  .howto li { margin-bottom:9px; padding-left:2px }
+  .howto .note { opacity:.62; font-size:12px; border-left:2px solid #ffffff1f; padding-left:12px }
+  .howto .tail { opacity:.5; font-size:12px; border-top:1px solid #ffffff1f; padding-top:14px }
+  /* 三種點就用地圖上那三種顏色畫，文字說不清楚的事讓它自己說 */
+  .howto i.d { display:inline-block; width:9px; height:9px; border-radius:50%;
+               margin-right:8px; vertical-align:1px }
+  .howto i.d.open { background:var(--gold) }
+  .howto i.d.closed { background:#8a8f93 }
+  .howto i.d.got { background:#7a9a6d }
+  .howto i.d.ring { background:var(--gold); box-shadow:0 0 0 3px #12283c, 0 0 0 4px var(--gold) }
+  .howto table { border-collapse:collapse; font-size:12px }
+  .howto td { padding:3px 0; vertical-align:top }
+  .howto td:first-child { color:var(--gold); opacity:.85; width:88px; white-space:nowrap;
+                          letter-spacing:.08em }
+
   .plate iframe.today { position:absolute; inset:0; width:100%; height:100%; border:0;
                         z-index:2; display:none }
   .plate.today iframe.today { display:block }
@@ -512,6 +544,7 @@
 
     /* 歲時記、結局、事件、繪卷 */
     .zukan .sheet { padding:14px 12px }
+    .howto .sheet { padding:16px 14px; max-height:88vh }
     .zukan header { flex-wrap:wrap; gap:6px 12px }
     .zukan header button { margin-left:0 }
     .ending .sheet { max-width:92vw; padding:22px 18px }
@@ -534,7 +567,7 @@
   <button id="hunt" title="給你一張畫，你指出它畫的是哪裡">視點狩獵</button>
   <span id="count"></span>
   <button id="book">歲時記</button>
-  <button id="intro-btn" class="ghost" title="重看開場">開場</button>
+  <button id="howto" class="ghost" title="玩法與操作說明（?）">玩法</button>
   <button id="bgm" class="ghost" title="配樂">♪</button>
   <!-- 不支援（iPhone）或已經在獨立視窗裡跑，main.js 會把這顆拿掉 -->
   <button id="fs" class="ghost" title="全螢幕（F）"></button>
