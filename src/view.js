@@ -34,6 +34,24 @@ const cite = (label, p, unit) => p ? `<p class="cite"><b>《${label}》</b>
   ${p.plate ? `〈${p.plate}〉` : ''}
   ${p.note ? `<span>${md(p.note)}</span>` : ''}</p>` : '';
 
+// 現在地 → Google 街景。
+//
+// 這套畫最強的一件事是：廣重畫的一百十八個地方**今天全都還在**，只是全都不一樣了。
+// 但「中央区日本橋一丁目」只是一個地名，讀了不會有感覺；能站到那裡轉一圈才會。
+// 所以現在地做成連結——按下去就是同一個地點的今天，自己拖著看。
+//
+// map_action=pano ＋ viewpoint 會找**最近的**街景球（Google Maps URLs API）。
+// 水上的視點（佃島、隅田川那幾景）會落到最近的橋或岸邊——那還是同一個地方的今天，
+// 不算跑掉。31 景有視線方位的連 heading 一起帶：一開街景就是廣重當年望出去的方向。
+// 手動組字串不用 URLSearchParams：viewpoint 的逗號被編成 %2C 雖然也能用，
+// 但官方文件寫的是不編碼的形式，照著寫比較不會哪天出事。
+const streetview = v => {
+  const p = [`api=1`, `map_action=pano`,
+             `viewpoint=${v.subject.lat},${v.subject.lng}`];
+  if (v.bearing != null) p.push(`heading=${Math.round(v.bearing)}`, 'pitch=0');
+  return `https://www.google.com/maps/@?${p.join('&')}`;
+};
+
 function lore(v) {
   const b = v.bearing != null ? `<p class="bearing">廣重朝<b>${compass(v.bearing)}</b>看
     <span>${Math.round(v.bearing)}°　${why(v)}</span></p>` : '';
@@ -45,8 +63,16 @@ function lore(v) {
   // 現在地を最初に置く：これは「今どこか」への答えで、玩家が実際に
   // 立ちに行ける唯一の手がかり。tools/derive-place.py が OSM の行政界から出す。
   const pl = v.place ?? {};
-  const now = pl.modern_ward
-    ? `<p class="now">現在　<b>${pl.modern_ward}${pl.modern_town ?? ''}</b></p>` : '';
+  // 沒座標就退回純文字。目前 118 景全都有（而且地圖本來就跳過沒座標的），
+  // 但這一行在 lore 裡——它一 throw，整個看畫畫面就開不起來。不值得為它冒險。
+  const where = `${pl.modern_ward}${pl.modern_town ?? ''}`;
+  const now = !pl.modern_ward ? '' : !v.subject
+    ? `<p class="now">現在　<b>${where}</b></p>`
+    : `<p class="now">現在　<a class="sv"
+        href="${streetview(v)}" target="_blank" rel="noopener noreferrer"
+        title="在 Google 街景打開這個地點">${where}</a>
+      <span>${v.bearing != null
+        ? '街景　從這裡朝廣重看的方向望出去' : '街景　同一個地方的今天'}</span></p>`;
   // 切繪圖は**この一帯**の図であって、この一点がどこに描かれているかまでは
   // 言えない（図幅は数 km 四方、方位も比例も一定でない）。だから「〜あたりの」。
   // 市街図と近郊図で言い方を分ける。近郊図は町の地図ではなく**村の地図**——

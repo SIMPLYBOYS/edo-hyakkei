@@ -316,6 +316,13 @@
   .lore .cite span { display:block; opacity:.62 }
   .lore .bearing span { display:block; opacity:.5; font-size:11px }
   .lore .now { letter-spacing:.04em }
+  /* 現在地是連結：按下去到 Google 街景看同一個地點的今天。
+     底線用 border 不用 text-decoration——中日文字的下劃線會壓到字，
+     border-bottom 才留得住那一格。 */
+  .lore .now a.sv { color:var(--gold); opacity:.9; text-decoration:none;
+                    border-bottom:1px solid #c9a22766; padding-bottom:1px }
+  .lore .now a.sv:hover { opacity:1; border-bottom-color:var(--gold) }
+  .lore .now span { display:block; opacity:.5; font-size:11px; margin-top:3px }
   .lore .prov { opacity:.42; font-size:11px; letter-spacing:.02em }
   .lore .prov a { color:inherit }
 

@@ -12,6 +12,9 @@ const views = JSON.parse(readFileSync(new URL('../data/views.json', import.meta.
 
 assert.equal(pubDay('1856-02'), 0, '起點該對齊系列第一枚出版');
 assert.ok(views.every(v => v.published), '有景沒有出版年月——閘門會把它當第 0 日誤放');
+// 現在地要能開 Google 街景（src/view.js 的 streetview），沒座標就給不出連結
+assert.ok(views.every(v => Number.isFinite(v.subject?.lat) && Number.isFinite(v.subject?.lng)),
+  '有景沒有座標——那一景的「現在地」就開不了街景，而且也上不了地圖');
 assert.ok(views.every(v => pubDay(v.published) >= 0), '有景的出版日早於遊戲起點');
 
 const day0 = clockFrom(0);
