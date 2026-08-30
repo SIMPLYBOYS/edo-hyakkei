@@ -101,6 +101,30 @@ try {
       + `只看得到 ${Math.round(vis.w)}×${Math.round(vis.h)}）`);
     if (Math.abs(p.fontCss - wantFont) > 0.6) bad.push(`${name}：地名 ${p.fontCss}px，應為 ${wantFont.toFixed(1)}px`);
     if (Math.abs(p.dotCss - wantDot) > 0.4) bad.push(`${name}：圓點半徑 ${p.dotCss}px，應為 ${wantDot.toFixed(1)}px`);
+    // 🔴 開一景。這一段是因為 view.js 有一次 const 遮蔽（把 paths.js 的 plate
+    // 遮成 TDZ）——整個看畫畫面開不起來，而當時所有檢查都還是綠的。
+    // 這裡只驗最粗的：點得開、圖在、來歷在、主控台沒噴東西。
+    await page.evaluate(() => {
+      const g = document.querySelector('#marks > g.mark.open');
+      const b = g.getBoundingClientRect();
+      for (const t of ['pointerdown', 'pointerup', 'mousedown', 'mouseup', 'click'])
+        g.dispatchEvent(new PointerEvent(t, { bubbles: true, pointerId: 1,
+          clientX: b.left + b.width / 2, clientY: b.top + b.height / 2 }));
+    });
+    await sleep(900);
+    const view = await page.evaluate(() => {
+      const img = document.querySelector('.overlay .plate img');
+      return { 圖: img?.getAttribute('src') ?? null,
+               寬: Math.round(img?.getBoundingClientRect().width ?? 0),
+               現在地: document.querySelector('.lore .now')?.textContent.trim().slice(0, 20) ?? null,
+               鈕: [...document.querySelectorAll('.overlay button')].length };
+    });
+    console.log(`  └ 看畫：${view.圖} ${view.寬}px　${view.現在地}　${view.鈕} 顆鈕`);
+    if (!view.圖 || view.寬 < 50) bad.push(`${name}：看畫畫面沒有畫（${JSON.stringify(view)}）`);
+    if (!view.現在地) bad.push(`${name}：看畫畫面沒有來歷（lore 掛了？）`);
+    await page.evaluate(() => document.querySelectorAll('.overlay').forEach(e => e.remove()));
+    await sleep(200);
+
     // 地形圖的分級：開場只該有小的，拉到底必須換成大的
     if (relief.includes('relief-hi.jpg'))
       bad.push(`${name}：開場就去載了 relief-hi.jpg（1.8MB）——那是拉近才該載的`);

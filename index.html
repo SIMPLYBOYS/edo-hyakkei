@@ -295,6 +295,10 @@
   /* overflow:hidden 是為了圈——變造若貼著畫面邊緣（橋柱、樹梢、天上的雁），
      hitbox 半徑會超出圖外，那個金圈就會畫到說明文字上。裁在畫內比較乾淨。 */
   .plate { position:relative; display:inline-block; line-height:0; overflow:hidden }
+  /* 「看今天」：街景疊在同一個畫框裡。圖用 visibility 藏不用 display——
+     要留著它的尺寸，不然框會塌成 0×0，iframe 就無處可貼。 */
+  .plate iframe.today { position:absolute; inset:0; width:100%; height:100%; border:0 }
+  .plate.today img { visibility:hidden }
   /* 找到的地方才顯示——標在前面就變成看圖說故事 */
   .found { position:absolute; transform:translate(-50%,-50%); border:2px solid var(--gold);
            border-radius:50%; pointer-events:none; animation:pop .4s ease-out }

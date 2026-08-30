@@ -9,6 +9,7 @@ import { showEmaki } from './emaki.js';
 import { bgmInit, bgmLoad } from './bgm.js';
 import { introInit } from './intro.js';
 import { canFullscreen, standalone } from './ui.js';
+import { loadConfig } from './config.js';
 
 const SAVE = 'edo-hyakkei/v1';
 const load = () => {
@@ -59,7 +60,9 @@ const grab = async url => {
   return r.json();
 };
 
-const [all, world, edo, hist, zueMap, miyMap, tunes] = await Promise.all([
+const [, all, world, edo, hist, zueMap, miyMap, tunes] = await Promise.all([
+  // 設定（目前只有 Google Maps 金鑰）。沒有就沒有——「看今天」不出現，其餘照常。
+  loadConfig(),
   grab('data/views.json'),
   grab('data/geo/modern.json'),
   // 地名只是裝飾，掛掉不該連地圖一起拖下水（§2.7）

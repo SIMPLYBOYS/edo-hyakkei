@@ -3,6 +3,7 @@ import { DAYS_PER_VIEW, kanjiDays, seasonJa } from './calendar.js';
 import { plate, hires, meishozue, miyage, kiriezu } from './paths.js';
 import { findLies, md } from './lie.js';
 import { loading, waitImg } from './ui.js';
+import { embedUrl } from './config.js';
 
 // ── 來歷。這些資料一直躺在 repo 裡，畫面上一個字都沒出現過 ────────────────
 // 對照書的卷・丁・頁名與「這兩張圖差在哪」是人工比對寫下來的（meishozue-map.json
@@ -342,7 +343,8 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
           ${v.assets.miyage ? '<button id="flip2" class="ghost">看《江戶土產》</button>' : ''}
           ${v.place?.kiriezu ? `<button id="flip3" class="ghost">看《${
             v.place.kiriezu.role === 'suburb' ? '江戶近郊圖' : '江戶切繪圖'}》</button>` : ''}
-          <button id="full" class="ghost" title="看原寸的掃描件">原寸</button>
+          ${embedUrl(v) ? '<button id="today" class="ghost" title="在同一個畫框裡看這個地點的今天">看今天</button>' : ''}
+        <button id="full" class="ghost" title="看原寸的掃描件">原寸</button>
           <button id="leave" class="ghost">${onCollect ? '先不看' : '關閉'}</button>
         </div>
         ${lore(v)}
@@ -381,6 +383,16 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
   // 展示圖約 0.9MB。開景時 <img> 還是空的，手機上要等好幾秒——先在框裡說一聲。
   waitImg(img, '載入畫作');
   const kz = v.place?.kiriezu;
+  //
+  // 「看今天」也排在這裡，不是另開一區——這一排問的一直是同一個問題：
+  // 同一個地方，別人怎麼畫、他自己另一次怎麼畫、**今天長什麼樣**。
+  // 而且是換在**同一個畫框**裡：左右並排就變成兩張圖，同一扇窗才叫對照。
+  // plateEl 不能叫 plate——那個名字被 paths.js 的 plate(id) 佔著，同名的 const
+  // 會把它整個遮掉，連上面 <img src="${plate(v.id)}"> 都變成 TDZ 錯誤。
+  // （跟 bgm.js 那次 at/spun 同一類：遮蔽不會噴在你動的那一行。）
+  const plateEl = el.querySelector('.plate');
+  const fullBtn = el.querySelector('#full');
+  let frame = null;                       // 街景的 iframe，按下去才建立
   const flips = [
     ['#flip', meishozue(v.id), '《名所圖會》', 'zue'],
     ['#flip2', miyage(v.id), '《江戶土產》', ''],
@@ -388,9 +400,10 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
     // それでも足りないので「原寸」（下の #full）で全画面に開く。
     ['#flip3', kz && kiriezu(kz.pid),
      kz?.role === 'suburb' ? '《江戶近郊圖》' : '《江戶切繪圖》', 'map'],
+    ['#today', embedUrl(v), '今天', ''],   // 這一個的 src 是街景網址，不是圖檔
   ].map(([sel, src, label, cls]) => {
     const b = el.querySelector(sel);
-    return b && src && { b, src, label, cls, on: false };
+    return b && src && { b, src, label, cls, on: false, embed: sel === '#today' };
   }).filter(Boolean);
 
   for (const f of flips) {
@@ -400,10 +413,29 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
         g.on = g === f && want;
         g.b.textContent = g.on ? '看廣重的版本' : `看${g.label}`;
       }
+      // 街景這一版換的不是 <img> 的 src，是在框裡疊一張 iframe（CSS 把圖藏起來，
+      // 但留著它的尺寸，框才不會塌）。iframe 到按下去才建立——沒按過的話，
+      // 這一頁不會有任何請求送去 Google。
+      const showEmbed = !!(want && f.embed);
+      plateEl.classList.toggle('today', showEmbed);
+      fullBtn.disabled = showEmbed;        // 街景沒有「原寸」可言
+      if (showEmbed && !frame) {
+        frame = document.createElement('iframe');
+        frame.className = 'today';
+        frame.title = '這個地點今天的街景';
+        frame.allow = 'fullscreen';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.src = f.src;
+        plateEl.append(frame);
+      }
       // 圖會 0.3MB、切繪圖與土產 1.1MB。換版時舊圖會先消失，中間那幾秒
       // 只有鈕的字變了、畫面是空的——看起來像壞掉。
       // src 交給 waitImg 換（見那邊的註解：自己指派會被「已快取」的判斷擋掉）。
-      waitImg(img, want ? `載入${f.label}` : '載入廣重的版本', want ? f.src : print);
+      // 🔴 只有真的要換才叫它：從街景切回來時 src 根本沒動過，指派同一個值
+      // 瀏覽器不會重載也不會發 load，那個「載入中」就永遠留在畫面上。
+      const next = want && !f.embed ? f.src : print;
+      if (img.getAttribute('src') !== next)
+        waitImg(img, want && !f.embed ? `載入${f.label}` : '載入廣重的版本', next);
       img.classList.remove('zue', 'map', 'big');
       if (want && f.cls) img.classList.add(f.cls);
       // findLies が読む印。対照版のあいだは当たり判定を止める（lie.js 参照）
