@@ -40,7 +40,7 @@
 
 ```bash
 python3 tools/serve.py          # 用了原生 ES modules，file:// 開不起來
-open http://localhost:8000
+open http://localhost:8000      # 要 localhost，不能用 127.0.0.1（見下）
 ```
 
 用 `tools/serve.py` 不用 `python3 -m http.server`：後者不送 Cache-Control，
@@ -106,7 +106,9 @@ GitHub Secret 能做的是「不進 git 歷史、可以隨時換掉」，不是�
 所以防護不靠隱藏，靠三道限制（設在 Google Cloud Console，不在程式裡）：
 
 1. **API 限制**：這把金鑰只准用 Maps Embed API
-2. **應用程式限制**：HTTP referrer 只准 `simplyboys.github.io/*`
+2. **應用程式限制**：HTTP referrer 只准 `simplyboys.github.io/*` 與 `localhost:8000/*`
+   （**`127.0.0.1` 不等於 `localhost`**——Google 當成兩個來源，本機開發要用後者，
+   `tools/check-map.mjs` 也因此固定跑在 8000 埠）
 3. **Maps Embed API 免費且無配額上限**（也沒有 QPS 限制）——被抄走也生不出帳單
 
 三道合起來，金鑰被看到也用不了。Google 的前端金鑰本來就是這樣設計的。

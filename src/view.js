@@ -443,7 +443,12 @@ export function showView(v, { onCollect, onClose, found: seen = [], onFind, step
         frame = document.createElement('iframe');
         frame.className = 'today';
         frame.title = '這個地點今天的街景';
-        frame.allow = 'fullscreen';
+        // accelerometer/gyroscope 是街景在手機上「轉動機身環顧四周」要的。
+        // 不給的話功能還在（照樣拖得動），但主控台每次都會噴一則
+        // Permissions policy violation——而且少了一個手機上很自然的操作。
+        // 只在玩家按下「看今天」之後才建立這個 frame，所以不是預設就把感測器
+        // 交出去；沒按過的話這一頁連請求都不會送給 Google。
+        frame.allow = 'accelerometer; gyroscope; fullscreen';
         frame.referrerPolicy = 'strict-origin-when-cross-origin';
         frame.src = f.src;
         plateEl.append(frame);

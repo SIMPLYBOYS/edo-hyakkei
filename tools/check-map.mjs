@@ -28,7 +28,11 @@ import { dirname, resolve } from 'node:path';
 
 const { chromium, devices } = createRequire(process.env.HOME + '/')('playwright');
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const PORT = 8128;
+// 🔴 一定要 8000。這支會按「看今天」，而那把 Google 金鑰的 referrer 白名單只放行
+// http://localhost:8000/*（線上是 simplyboys.github.io）。跑在別的埠，Google 會回
+// 403，主控台就多一則錯——那是限制正常運作，不是 bug，但會讓這支一直紅。
+// 換句話說：這個埠號是設定的一部分，不是隨便挑的。
+const PORT = 8000;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const server = spawn('python3', [resolve(ROOT, 'tools/serve.py'), String(PORT)],
@@ -122,6 +126,26 @@ try {
     console.log(`  └ 看畫：${view.圖} ${view.寬}px　${view.現在地}　${view.鈕} 顆鈕`);
     if (!view.圖 || view.寬 < 50) bad.push(`${name}：看畫畫面沒有畫（${JSON.stringify(view)}）`);
     if (!view.現在地) bad.push(`${name}：看畫畫面沒有來歷（lore 掛了？）`);
+
+    // 🔴 「看今天」翻回去，畫必須真的回得來。
+    // 出過的錯：iframe 的 CSS 沒綁 .today，建立之後就永遠蓋在圖上（z-index:2）。
+    // 那時 img 的 visibility 確實變回 visible——**量那個會以為是好的**，
+    // 但人看到的還是街景。所以這裡問的是「畫框中央那一點上是誰」。
+    // 沒填金鑰就沒有這顆鈕，跳過（clone 下來的預設狀態）。
+    const mid = () => page.evaluate(() => {
+      const p = document.querySelector('.plate'), r = p.getBoundingClientRect();
+      const el = document.elementFromPoint((r.left + r.right) / 2, (r.top + r.bottom) / 2);
+      return el?.tagName.toLowerCase() ?? '?';
+    });
+    if (await page.locator('#today').count()) {
+      await page.locator('#today').click(); await sleep(1200);
+      const on = await mid();
+      await page.locator('#today').click(); await sleep(1200);
+      const off = await mid();
+      console.log(`    看今天：開→框中央 ${on}　關→框中央 ${off}`);
+      if (on !== 'iframe') bad.push(`${name}：按了「看今天」，畫框中央卻是 ${on}`);
+      if (off !== 'img') bad.push(`${name}：翻回廣重之後，畫框中央還是 ${off}——畫被蓋住回不來`);
+    }
     await page.evaluate(() => document.querySelectorAll('.overlay').forEach(e => e.remove()));
     await sleep(200);
 

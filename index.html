@@ -297,7 +297,14 @@
   .plate { position:relative; display:inline-block; line-height:0; overflow:hidden }
   /* 「看今天」：街景疊在同一個畫框裡。圖用 visibility 藏不用 display——
      要留著它的尺寸，不然框會塌成 0×0，iframe 就無處可貼。 */
-  .plate iframe.today { position:absolute; inset:0; width:100%; height:100%; border:0; z-index:2 }
+  /* 🔴 兩條都要綁 .today。只寫 iframe 的樣式而不管它何時該消失，iframe 建立之後
+     就永遠蓋在圖上（z-index:2），切回廣重時 img 的 visibility 雖然變回 visible，
+     人卻永遠看不到畫——回報是「卡在地圖操作，圖回不來」。
+     驗的時候要看**畫框中央那一點上是誰**，不是看 img 的 visibility：
+     我第一次就是量了後者，量到 visible 以為好了。 */
+  .plate iframe.today { position:absolute; inset:0; width:100%; height:100%; border:0;
+                        z-index:2; display:none }
+  .plate.today iframe.today { display:block }
   .plate.today img { visibility:hidden }
   /* 🔴 街景蓋上來時，畫的「載入中」就不再關任何人的事。
      不藏的話：在展示圖還沒載完時按「看今天」，那行字會浮在街景上面
