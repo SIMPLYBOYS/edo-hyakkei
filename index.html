@@ -297,8 +297,13 @@
   .plate { position:relative; display:inline-block; line-height:0; overflow:hidden }
   /* 「看今天」：街景疊在同一個畫框裡。圖用 visibility 藏不用 display——
      要留著它的尺寸，不然框會塌成 0×0，iframe 就無處可貼。 */
-  .plate iframe.today { position:absolute; inset:0; width:100%; height:100%; border:0 }
+  .plate iframe.today { position:absolute; inset:0; width:100%; height:100%; border:0; z-index:2 }
   .plate.today img { visibility:hidden }
+  /* 🔴 街景蓋上來時，畫的「載入中」就不再關任何人的事。
+     不藏的話：在展示圖還沒載完時按「看今天」，那行字會浮在街景上面
+     （.imgwait 有 z-index，iframe 原本沒有）。本機圖在快取裡看不到這個，
+     線上有網路延遲才會露出來——所以是在線上實測時才抓到的。 */
+  .plate.today .imgwait { display:none }
   /* 找到的地方才顯示——標在前面就變成看圖說故事 */
   .found { position:absolute; transform:translate(-50%,-50%); border:2px solid var(--gold);
            border-radius:50%; pointer-events:none; animation:pop .4s ease-out }
