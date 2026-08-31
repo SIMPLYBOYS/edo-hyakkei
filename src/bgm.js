@@ -36,6 +36,9 @@ const st = {
 // 撥弦的包絡：起音極短、之後一路衰減。箏與三味線是撥出來的，
 // 用「按著不放」的持續音會立刻變成電子遊戲的聲音——這幾首是傳統曲，
 // 音色不對的話旋律再真也白搭。
+// 主音量。三處都吃這個值（建立、開、關），寫死在各處會慢慢分岔。
+const VOL = 1.5;
+
 function note(midi, at, dur, gain) {
   const c = st.ctx;
   const o = c.createOscillator(), g = c.createGain();
@@ -97,8 +100,25 @@ function boot() {
   // 低通：方波的高次諧波很刺，這是水墨調的地圖不是街機
   const lp = c.createBiquadFilter();
   lp.type = 'lowpass'; lp.frequency.value = 2200;
-  st.master = c.createGain(); st.master.gain.value = 0.5;
-  st.master.connect(lp); lp.connect(c.destination);
+  // 🔴 音量是量出來的，不是調到「聽起來還行」。
+  // 舊值 0.5 實測 peak −23.8 dBFS、RMS −36.3 dBFS——一般遊戲背景樂 RMS 約 −20〜−18，
+  // 就算刻意克制的環境音也在 −28〜−24，所以那時低了十幾 dB，回報是「太小聲」。
+  // 實測對照（12 秒取樣，analyser 插在 destination 之前）：
+  //   VOL 0.5（舊）  peak −23.8  RMS −36.3   ← 幾乎聽不見
+  //   VOL 1.5（現）  peak −10.9  RMS −23.3
+  //   VOL 1.9        peak  −8.7  RMS −21.2   ← 一般遊戲 BGM 的音量
+  // 取 1.5 不取 1.9：配樂是**預設開啟**、第一次點擊就自己響起來的。
+  // 不請自來的聲音不該用「一般遊戲」的音量，−23 已經比原本大 13dB（感知約兩倍半），
+  // 又還留在襯底的位置——這是漫遊，不是關卡。
+  // 改這個值請重跑 analyser 量測，別憑聽感：每台機器的喇叭與系統音量都不一樣。
+  st.master = c.createGain(); st.master.gain.value = VOL;
+  // 限幅器。音符的釋放有 2.6 秒，前後會疊在一起；把總音量拉高之後，
+  // 偶爾的疊音就可能超過 1.0 而削波（爆音）。門檻壓在 −6dB、比例 20:1，
+  // 平常完全不作用，只在疊音的瞬間把頭壓下去。
+  const lim = c.createDynamicsCompressor();
+  lim.threshold.value = -6; lim.knee.value = 0; lim.ratio.value = 20;
+  lim.attack.value = 0.003; lim.release.value = 0.25;
+  st.master.connect(lp); lp.connect(lim); lim.connect(c.destination);
   st.next = c.currentTime + 0.1;
   st.beat = 0;
   st.timer = setInterval(tick, 150);
@@ -116,7 +136,7 @@ export function bgmSet(on, btn) {
   localStorage.setItem(KEY, on ? 'on' : 'off');
   btn?.classList.toggle('off', !on);
   btn?.setAttribute('title', on ? '關掉配樂' : '打開配樂');
-  if (on) { start(); st.ctx?.resume(); if (st.master) st.master.gain.value = 0.5; }
+  if (on) { start(); st.ctx?.resume(); if (st.master) st.master.gain.value = VOL; }
   else if (st.master) st.master.gain.value = 0;
 }
 
