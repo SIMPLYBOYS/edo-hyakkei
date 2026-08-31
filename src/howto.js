@@ -76,22 +76,13 @@ const BODY = `
   收齊一百一十八景最短要 ${SHORTEST_DAYS} 日——其中 ${118 * DAYS_PER_VIEW} 日在路上，
   其餘全是等季節。</p>`;
 
-// 「重看開場」住在這裡，不在 HUD 上。
-// 🔴 它本來是 HUD 的一顆鈕，但那一列在 1200px 下已經滿了——多一顆「玩法」就從
-// 64px 擠成 94px 兩排，吃掉 30px 地圖（跟先前「全螢幕」寫成三個字時同一個病）。
-// 重看開場是稀用的 meta 動作，本來就該跟說明放在一起，不必占著常駐的位置。
-let replayIntro = null;
-export const setReplay = fn => { replayIntro = fn; };
-
 /** 開玩法。 */
 export function showHowTo({ onClose } = {}) {
   if (document.querySelector('.howto')) return;
   const el = document.createElement('div');
   el.className = 'overlay howto';
   el.innerHTML = `<div class="sheet">
-    <header><h2>玩法</h2>
-      ${replayIntro ? '<button id="hreplay" class="ghost">重看開場</button>' : ''}
-      <button id="hx" class="ghost">關閉</button></header>
+    <header><h2>玩法</h2><button id="hx" class="ghost">關閉</button></header>
     <div class="body">${BODY}</div></div>`;
   const close = () => {
     el.remove();
@@ -103,8 +94,6 @@ export function showHowTo({ onClose } = {}) {
   const keys = e => { if (e.key === 'Escape') close(); };
   addEventListener('keydown', keys);
   el.querySelector('#hx').onclick = close;
-  const rp = el.querySelector('#hreplay');
-  if (rp) rp.onclick = () => { close(); replayIntro(); };
   el.onclick = e => { if (e.target === el) close(); };
   document.body.append(el);
 }

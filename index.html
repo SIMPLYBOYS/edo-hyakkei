@@ -85,8 +85,20 @@
      不該跟水系與堀搶主體的份量 */
   #places .city { fill:#5b7188; opacity:.62; letter-spacing:.18em }
 
-  #hud { position:fixed; left:0; right:0; top:0; padding:14px 20px; display:flex;
-         gap:18px; align-items:baseline; background:linear-gradient(#0e2233dd,transparent) }
+  /* 🔴 gap 與 padding 是量出來的，不是挑好看的。
+     十一個項目排成一列，1200px 下內容要 1263px——差 63px 就換行，而換行會把
+     HUD 從 64px 撐成 94px，吃掉 30px 地圖。gap 18→12 省 60px、鈕的左右內距
+     9→7 再省 24px，合起來 84px，1100px 都還是一列。
+     要再加東西進這一列之前，先跑一下量：滿了就是滿了。 */
+  #hud { position:fixed; left:0; right:0; top:0; padding:14px 18px; display:flex;
+         flex-wrap:wrap; gap:12px 12px; align-items:baseline;
+         background:linear-gradient(#0e2233dd,transparent) }
+  /* 🔴 每一項不准自己斷字，要換就整項換到下一行。
+     先前沒有這兩條，1100px 下 flex 會把每一項壓扁、字從中間斷開——
+     「視點狩／獵」「歲時／記」「重／來」「1857-／02-01」。那不是兩排，是碎掉。
+     加上 nowrap＋wrap 之後，塞不下就是乾淨的第二排。
+     （HUD 是 position:fixed 浮在地圖上，多一排只是多遮一點，不會壓縮地圖。） */
+  #hud > * { white-space:nowrap }
   #date { font-size:22px; letter-spacing:.1em }
   /* 西元擺在和曆後面、小一級：和曆是這個遊戲的語氣，西元是給人對得上年代的 */
   #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
@@ -504,7 +516,7 @@
        幽靈元素。明確藏掉：這行是輔助資訊，季節鈕與計數才是必要的。 */
     #left { display:none }
     #seasons button { padding:4px 8px; font-size:12px }
-    #hud button { font-size:12px; padding:4px 9px }
+    #hud button { font-size:12px; padding:4px 7px }
     #count { margin-left:auto }
     #toast { top:118px; max-width:92vw }
 
@@ -568,6 +580,7 @@
   <span id="count"></span>
   <button id="book">歲時記</button>
   <button id="howto" class="ghost" title="玩法與操作說明（?）">玩法</button>
+  <button id="intro-btn" class="ghost" title="重看開場">開場</button>
   <button id="bgm" class="ghost" title="配樂">♪</button>
   <!-- 不支援（iPhone）或已經在獨立視窗裡跑，main.js 會把這顆拿掉 -->
   <button id="fs" class="ghost" title="全螢幕（F）"></button>
