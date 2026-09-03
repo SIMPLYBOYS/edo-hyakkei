@@ -562,6 +562,17 @@ export function createMap(svg, views, geo, places, onPick) {
       // relabel 平常只在縮放時跑，這裡要補一次，否則新收的景名要等到下次縮放才出現。
       relabel();
     },
+    /** 剛收下的那一景閃一圈。理由見 index.html 的 .mark.flash。 */
+    flash(id) {
+      const g = nodes.get(id);
+      if (!g) return;
+      // 連著收兩景時同一個節點要能再放一次：先拿掉、強迫重排、再加回去。
+      // 少了中間那一下，瀏覽器會把 remove/add 併成沒有變化，動畫不會重跑。
+      g.classList.remove('flash');
+      void g.getBoundingClientRect();
+      g.classList.add('flash');
+      setTimeout(() => g.classList.remove('flash'), 1000);
+    },
     // §2.10 視點狩獵。標記整組藏起來——它們本身就是答案。
     hunt: {
       on(cb) { onPin = cb; huntG.style.display = ''; svg.classList.add('hunting'); },

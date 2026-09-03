@@ -54,8 +54,21 @@
     0%        { transform:scale(1);   opacity:.45 }
     60%, 100% { transform:scale(3.2); opacity:0 }
   }
+  /* 🔴 剛收下的那一景閃一下。
+     收景是這個遊戲的核心動作，但它發生的那一刻**畫面中央的畫消失了，
+     改變全在角落**——點從金轉綠、日期跳八天、計數 +1，三件事同時發生在周邊，
+     而視線還停在剛剛看畫的地方。這一圈是給視線一個落點：它在這裡。
+     借用可收景那顆 .pulse 的形狀，換成綠的、只跑一次——不是慶祝，是「收好了」。 */
+  .mark.flash .pulse { animation:land .9s ease-out; fill:#7a9a6d }
+  @keyframes land {
+    0%   { transform:scale(3.4); opacity:0 }
+    35%  { opacity:.55 }
+    100% { transform:scale(1);   opacity:0 }
+  }
   /* 會暈車的人把動畫關掉是基本的，不是可選項 */
-  @media (prefers-reduced-motion:reduce) { .mark.open .pulse { animation:none } }
+  @media (prefers-reduced-motion:reduce) {
+    .mark.open .pulse, .mark.flash .pulse { animation:none }
+  }
 
   /* 滑鼠回饋。點得到的東西要看起來點得到——不在季的景點下去也有話說
      （會告訴你那是哪一季的景），所以一律給 pointer。 */

@@ -179,7 +179,11 @@ function pick(v) {
     onFind: i => noteLie(v.id, i),
     onCollect() {
       state.collected.push(v.id);
-      advance(DAYS_PER_VIEW);                  // 入景耗日（§2.1）
+      advance(DAYS_PER_VIEW, {                 // 入景耗日（§2.1）
+        fallback: `${v.title.ja ?? `第 ${v.id} 景`}　收入歲時記`,
+      });
+      // 地圖上那一點閃一圈。畫消失的那一刻，改變全在角落——給視線一個落點。
+      map.flash(v.id);
     },
     onClose: paint,
   });
@@ -198,11 +202,14 @@ const anythingOpen = day => {
 // 我跑過的每一支模擬在無景可收時都寫 day++，那個動作在遊戲裡不存在——
 // **模擬的是一個有「等待」的遊戲，而遊戲沒有。**
 /** days：推進幾日。
- *  word：呼叫端想說的話（例如季節鈕的「到秋——…（173 日後）」）。
- *        給了就蓋過這裡算出來的通則訊息——呼叫端知道得比較具體。
- *        交給這裡而不是自己 say()，是為了跟史實事件排好順序：
- *        有事件時要等最後一格「知道了」按掉才說，不然 toast 會被遮罩蓋住。 */
-function advance(days, word = null) {
+ *  word：呼叫端想說的話，**蓋過**這裡算出來的通則訊息——例如季節鈕的
+ *        「到秋——…（173 日後）」比「季節轉了」精確。
+ *  fallback：通則訊息也沒話說時才用的墊底句——例如收景的「◯◯　收入歲時記」。
+ *        收景多半不跨季也沒有新出版，那時整個畫面只有角落三個小地方變了。
+ *
+ *  兩者都交給這裡而不是自己 say()，是為了跟史實事件排好順序：
+ *  有事件時要等最後一格「知道了」按掉才說，不然 toast 會被遮罩蓋住。 */
+function advance(days, { word = null, fallback = '' } = {}) {
   const was = state.day, before = published(was);
   state.day += days;
   paint();
@@ -221,7 +228,7 @@ function advance(days, word = null) {
       : fresh ? `廣重又出了 ${fresh} 景`
       : clockFrom(state.day).season !== clockFrom(was).season
         ? `季節轉了——${seasonJa(clockFrom(state.day).season)}`
-        : '';
+        : fallback;
 
   // 跨過的史實事件優先講（§2.9）。另外補講起點之前的事——那是他走進這座城時，
   // 城剛經歷過的。
@@ -264,7 +271,7 @@ function goSeason(season) {
   const n = d - state.day;
   // 話交給 advance 說，不要自己 say——那一步可能會跳出史實事件，
   // 自己說的話會被遮罩蓋住，等玩家按掉時已經消失了。
-  advance(n, `到${seasonJa(season)}——${clockFrom(d).label}（${n} 日後）`);
+  advance(n, { word: `到${seasonJa(season)}——${clockFrom(d).label}（${n} 日後）` });
 }
 
 const seasonBar = document.getElementById('seasons');
