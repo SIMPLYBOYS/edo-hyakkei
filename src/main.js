@@ -197,24 +197,44 @@ const anythingOpen = day => {
 // 收到第 89 景、第 712 日時當季已無景可收，於是日期再也不動，剩下 29 景永遠拿不到。
 // 我跑過的每一支模擬在無景可收時都寫 day++，那個動作在遊戲裡不存在——
 // **模擬的是一個有「等待」的遊戲，而遊戲沒有。**
-function advance(days) {
+/** days：推進幾日。
+ *  word：呼叫端想說的話（例如季節鈕的「到秋——…（173 日後）」）。
+ *        給了就蓋過這裡算出來的通則訊息——呼叫端知道得比較具體。
+ *        交給這裡而不是自己 say()，是為了跟史實事件排好順序：
+ *        有事件時要等最後一格「知道了」按掉才說，不然 toast 會被遮罩蓋住。 */
+function advance(days, word = null) {
   const was = state.day, before = published(was);
   state.day += days;
   paint();
   if (state.collected.length === TOTAL) return showEnd();
-  // 跨過的史實事件優先講（§2.9）：台風跟「又出了三景」同時發生時，該講的是台風。
-  // 收下第一景時另外補講起點之前的事——那是他走進這座城時，城剛經歷過的。
-  const crossed = EVENTS.filter(e => e.day > was && e.day <= state.day)
-    .concat(state.collected.length === 1 ? EVENTS.filter(e => e.day <= 0) : []);
-  if (crossed.length) return showEvents(crossed.sort((a, b) => a.day - b.day));
+
+  // 🔴 這一次推進要說的話**先算好**，不要等到下面。
+  // 舊寫法是「有史實事件就 return」，於是同一次推進的「廣重又出了 3 景」
+  // 「季節轉了」整個被吞掉——而那是玩家唯一會知道地圖長大的管道。
+  // 順序仍然是事件優先（台風跟出版同時發生時該講台風），但後者改成
+  // 交給 showEvents，等最後一格「知道了」按掉再說。
   const fresh = published(state.day) - before;
-  // 跨過最後一枚出版的那一刻要說清楚，否則玩家只會覺得「怎麼不再長了」
-  if (before < TOTAL && published(state.day) === TOTAL) {
-    say('廣重畫完了最後一枚——此後地圖不會再長出新的景');
-  } else if (fresh) say(`廣重又出了 ${fresh} 景`);
-  else if (clockFrom(state.day).season !== clockFrom(was).season) {
-    say(`季節轉了——${seasonJa(clockFrom(state.day).season)}`);
-  }
+  word ??=
+    // 跨過最後一枚出版的那一刻要說清楚，否則玩家只會覺得「怎麼不再長了」
+    before < TOTAL && published(state.day) === TOTAL
+      ? '廣重畫完了最後一枚——此後地圖不會再長出新的景'
+      : fresh ? `廣重又出了 ${fresh} 景`
+      : clockFrom(state.day).season !== clockFrom(was).season
+        ? `季節轉了——${seasonJa(clockFrom(state.day).season)}`
+        : '';
+
+  // 跨過的史實事件優先講（§2.9）。另外補講起點之前的事——那是他走進這座城時，
+  // 城剛經歷過的。
+  //
+  // 🔴 條件是「時鐘第一次動」（was === 0），不是「已收一景」。
+  // 舊寫法 state.collected.length === 1 描述的是**狀態**不是**時刻**：
+  // 只要還停在一景，之後每一次 advance（按季節鈕也算）都會再講一遍台風。
+  // 實測收一景講一次、接著按「秋」又講一次。用 was === 0 就自然只有一次，
+  // 而且不必存旗標——重整之後 day 已經 > 0，本來就不會再觸發。
+  const crossed = EVENTS.filter(e => e.day > was && e.day <= state.day)
+    .concat(was === 0 ? EVENTS.filter(e => e.day <= 0) : []);
+  if (crossed.length) return showEvents(crossed.sort((a, b) => a.day - b.day), word);
+  if (word) say(word);
 }
 
 // §2.2 季節由玩家選（2026/08/08 改）。舊版是「收到換季為止」，
@@ -242,8 +262,9 @@ function goSeason(season) {
   const d = nextOpen(season);
   if (d == null) return say(`${seasonJa(season)}的景都收齊了`);
   const n = d - state.day;
-  advance(n);
-  say(`到${seasonJa(season)}——${clockFrom(state.day).label}（${n} 日後）`);
+  // 話交給 advance 說，不要自己 say——那一步可能會跳出史實事件，
+  // 自己說的話會被遮罩蓋住，等玩家按掉時已經消失了。
+  advance(n, `到${seasonJa(season)}——${clockFrom(d).label}（${n} 日後）`);
 }
 
 const seasonBar = document.getElementById('seasons');
@@ -255,8 +276,10 @@ for (const b of seasonBar.children) b.onclick = () => goSeason(b.dataset.s);
 // seen_in_data 那行是這個功能的重點：它寫的是 views.json 裡看得到的事實
 // （台風之後三個月沒有出版），**不是「因為台風所以沒出版」**。
 // 兩件事並列擺著，玩家自己看——與 §2.4 變造同一條規矩。
-function showEvents([e, ...rest]) {
-  if (!e) return paint();
+/** after：所有事件都按掉之後要說的那句話（見 advance 的註解）。
+ *  中途說沒有意義——toast 會被事件的遮罩蓋住。 */
+function showEvents([e, ...rest], after = '') {
+  if (!e) { paint(); if (after) say(after); return; }
   const el = document.createElement('div');
   el.className = 'overlay ending event';
   el.innerHTML = `<div class="sheet">
@@ -265,7 +288,7 @@ function showEvents([e, ...rest]) {
     <p class="note">${e.note}</p>
     ${e.seen_in_data ? `<p class="note seen">這套系列的出版紀錄裡：${e.seen_in_data}</p>` : ''}
     <div class="act"><button id="evok">知道了</button></div></div>`;
-  el.querySelector('#evok').onclick = () => { el.remove(); showEvents(rest); };
+  el.querySelector('#evok').onclick = () => { el.remove(); showEvents(rest, after); };
   document.body.append(el);
 }
 
