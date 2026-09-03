@@ -164,9 +164,12 @@ function pick(v) {
   if (state.collected.includes(v.id)) return say(`${v.title.ja} 已經收過了`);
   // §2.6 出版才出現。地圖上本來就藏起來了，這裡是點不到的保險（歲時記／鍵盤都可能繞過）。
   if (pubDay(v.published) > state.day) return say(`${v.title.ja} 廣重還沒畫`);
-  // 同一地點在不同季節是不同的景（§2.2）——季節不對就是遇不到
+  // 同一地點在不同季節是不同的景（§2.2）——季節不對就是遇不到。
+  // 🔴 光說「錯在哪」不夠，要說「怎麼辦」：這個遊戲的季節鈕不是切換圖層，
+  // 是把時鐘推過去，新玩家不會自己想到那一步。少了後半句，灰點就只是一則拒絕。
   if (v.season !== clock.season) {
-    return say(`${v.title.ja} 是${seasonJa(v.season)}的景，現在是${seasonJa(clock.season)}`);
+    return say(`${v.title.ja} 是${seasonJa(v.season)}的景，現在是${seasonJa(clock.season)}`
+             + `——按「${seasonJa(v.season)}」過去`);
   }
   state.pos = { lat: v.subject.lat, lng: v.subject.lng };   // 漫遊不耗時間（§2.1）
   paint();
@@ -407,7 +410,9 @@ document.getElementById('book').onclick = openBook;
     const sync = () => {
       const on = !!document.fullscreenElement;
       btn.innerHTML = icon(on ? IN : OUT);
+      // aria-label 要跟著狀態走。鈕面上只有圖示，讀螢幕的人全靠這一句。
       btn.title = on ? '離開全螢幕（Esc）' : '全螢幕（F）';
+      btn.ariaLabel = on ? '離開全螢幕' : '全螢幕';
     };
     const flip = () => (document.fullscreenElement
       ? document.exitFullscreen()

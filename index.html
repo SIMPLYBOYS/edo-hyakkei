@@ -119,6 +119,11 @@
   #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
               font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
   #left, #count { font-size:13px; opacity:.75 }
+  /* 🔴 鍵盤焦點要看得見。瀏覽器預設那圈細藍線在這套深藍配色裡幾乎讀不出來，
+     在金色的當季鈕上更是完全消失——用鍵盤玩的人會不知道自己在哪一顆。
+     :focus-visible 而不是 :focus：滑鼠點下去不該冒出框。 */
+  :focus-visible { outline:2px solid var(--gold); outline-offset:2px; border-radius:3px }
+  #seasons button.now:focus-visible { outline-color:#12283c }   /* 金底上要用深色 */
   /* 工具鈕一組。margin-left:auto 吃掉該列剩下的空白，所以不論在第一列還是
      第二列，這一組永遠貼右邊。 */
   #tools { margin-left:auto; display:flex; gap:12px; align-items:baseline }
@@ -551,8 +556,14 @@
     /* 「還剩 N 日・已出 N 景」在手機上被擠成零寬度（實測），留著只是個看不見的
        幽靈元素。明確藏掉：這行是輔助資訊，季節鈕與計數才是必要的。 */
     #left { display:none }
-    #seasons button { padding:4px 8px; font-size:12px }
-    #hud button { font-size:12px; padding:4px 7px }
+    /* 🔴 手機上的觸控目標。量到的舊值是**每一顆都 28px 高**、季節鈕只有 27px 寬，
+       而且四顆之間只隔 1px（分段控制的外觀）。WCAG 2.2 AA 的門檻是 24px，
+       所以舊值沒有違規——但 Apple HIG 與 AAA 要 44px，中間差很多。
+       季節鈕優先加大：按錯的代價不是「再按一次」，是時鐘跳掉上百天而且**不能復原**。
+       沒有一路加到 44：11 個項目在 390px 上本來就要兩排，加到 44 會讓 HUD
+       吃掉螢幕高度的兩成。這裡取的是「明顯變好而不搶版面」的中間值。 */
+    #seasons button { padding:10px 13px; font-size:12px }
+    #hud button { font-size:12px; padding:8px 9px }
     #count { margin-left:auto }
     #toast { top:118px; max-width:92vw }
 
@@ -621,18 +632,18 @@
        不分組的話「重來」會單獨掉到日期底下的左邊，看起來像排版壞了。
        成組之後整組一起換行、而且留在右邊，兩列都讀得出是刻意的。 -->
   <span id="tools">
-    <button id="bgm" class="ghost" title="配樂">♪</button>
+    <button id="bgm" class="ghost" title="配樂" aria-label="配樂">♪</button>
     <!-- 不支援（iPhone）或已經在獨立視窗裡跑，main.js 會把這顆拿掉 -->
-    <button id="fs" class="ghost" title="全螢幕（F）"></button>
+    <button id="fs" class="ghost" title="全螢幕（F）" aria-label="全螢幕"></button>
     <button id="reset" class="ghost">重來</button>
   </span>
 </div>
 
-<div id="toast"></div>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <div id="zoom">
-  <button id="zin" title="放大（+ 或雙擊）">＋</button>
-  <button id="zout" title="縮小（−）">−</button>
+  <button id="zin" title="放大（+ 或雙擊）" aria-label="放大">＋</button>
+  <button id="zout" title="縮小（−）" aria-label="縮小">−</button>
   <button id="zfit" title="全圖（0）">全圖</button>
 </div>
 

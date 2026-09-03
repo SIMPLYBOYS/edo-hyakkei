@@ -562,6 +562,14 @@ export function createMap(svg, views, geo, places, onPick) {
       // relabel 平常只在縮放時跑，這裡要補一次，否則新收的景名要等到下次縮放才出現。
       relabel();
     },
+    /** 把地圖內容往上推 dyPx 個**螢幕**像素，露出被下面的東西蓋住的那一塊。
+     *  手機的狩獵面板是從底部推上來的抽屜（max-height:56vh），而地圖是置中的——
+     *  題目問「這是江戶的哪裡」，江戶卻正好在抽屜底下。 */
+    nudgeUp(dyPx) {
+      const r = svg.getBoundingClientRect();
+      const s = Math.max(r.width / vb.w, r.height / vb.h);   // slice 的倍率
+      pan(0, dyPx / s);
+    },
     /** 剛收下的那一景閃一圈。理由見 index.html 的 .mark.flash。 */
     flash(id) {
       const g = nodes.get(id);

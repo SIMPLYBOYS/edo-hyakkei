@@ -206,4 +206,13 @@ export function showHunt(views, map, { found = {}, onFind, onDone } = {}) {
 
   function quit() { map.hunt.off(); removeEventListener('keydown', esc); el.remove(); onDone?.(); }
   ask();
+// 🔴 手機上這個面板是從底部推上來的抽屜，吃掉畫面下半——而地圖是置中的，
+// 江戶正好被蓋住（實測 360px 下城的中心落在面板底下）。題目要玩家「在地圖上
+// 點一下」，那就得先看得到才行。推半個面板高，城就落到可見帶的中間。
+// 桌機的面板在左側，不遮地圖，不必動。
+//
+// 一定要等 ask() 把題目畫進去之後才量：append 當下面板裡只有一顆「放棄」鈕，
+// offsetHeight 幾乎是零——先前就是那樣寫的，只推了 10px。
+// rAF 是等瀏覽器完成這一次排版，量到的才是最終高度。
+if (innerWidth <= 700) requestAnimationFrame(() => map.nudgeUp(el.offsetHeight / 2));
 }

@@ -115,11 +115,11 @@ function lightbox(src, note) {
   lb.className = 'lightbox';
   lb.innerHTML = `<img src="${src}" alt="">
     <div class="lzoom">
-      <button id="lin" title="放大（滾輪也可以）">＋</button>
-      <button id="lout" title="縮小">－</button>
+      <button id="lin" title="放大（滾輪也可以）" aria-label="放大">＋</button>
+      <button id="lout" title="縮小" aria-label="縮小">－</button>
       <button id="lfit" title="整張入鏡">全幅</button>
-      <button id="lccw" title="逆時針轉 90°">↺</button>
-      <button id="lcw" title="順時針轉 90°（R）">↻</button>
+      <button id="lccw" title="逆時針轉 90°" aria-label="逆時針轉九十度">↺</button>
+      <button id="lcw" title="順時針轉 90°（R）" aria-label="順時針轉九十度">↻</button>
     </div>
     <div class="tip">拖曳或方向鍵移動・滾輪或 ＋ － 縮放・↺ ↻ 轉向　·　點背景或 Esc 關閉${
       note ? `　·　${note}` : ''}</div>`;

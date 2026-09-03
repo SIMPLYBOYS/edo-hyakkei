@@ -145,7 +145,7 @@ export function bgmInit(btn) {
   // 建了 AudioContext 只會拿到一則警告與一個 suspended 的 context。
   // 真正開聲的是下面那個 click（或使用者自己按 ♪，那本身就是手勢）。
   btn.classList.toggle('off', !st.on);
-  btn.title = st.on ? '關掉配樂' : '打開配樂';
+  btn.title = btn.ariaLabel = st.on ? '關掉配樂' : '打開配樂';
   btn.onclick = () => bgmSet(!st.on, btn);
   // 觸控裝置的 pointerdown 不帶 user activation（瀏覽器分不清點擊或捲動），
   // 要用 click 才播得動。start() 內有防重入，重複觸發無害。
