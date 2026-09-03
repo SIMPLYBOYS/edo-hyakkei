@@ -98,11 +98,13 @@
      不該跟水系與堀搶主體的份量 */
   #places .city { fill:#5b7188; opacity:.62; letter-spacing:.18em }
 
-  /* 🔴 gap 與 padding 是量出來的，不是挑好看的。
-     十一個項目排成一列，1200px 下內容要 1263px——差 63px 就換行，而換行會把
-     HUD 從 64px 撐成 94px，吃掉 30px 地圖。gap 18→12 省 60px、鈕的左右內距
-     9→7 再省 24px，合起來 84px，1100px 都還是一列。
-     要再加東西進這一列之前，先跑一下量：滿了就是滿了。 */
+  /* gap 與 padding 收緊過（18→12、內距 9→7）。原本是為了把十一個項目擠進
+     1200px 的一列，但那條路已經放棄了——量到 1200px 一律換行（108px），
+     而且跟日期長短無關：差距只有幾 px，計數從「0 / 118」變成「11 / 118」
+     就吃掉了。
+     現在的做法是**接受兩列**（HUD 是 position:fixed 浮在地圖上，換行不壓縮
+     地圖，只是多遮一點），改讓兩列都看起來是刻意的——見上面 #tools。
+     收緊的值留著：它讓 1280px 舒服地待在一列，只是不再是那條命脈。 */
   #hud { position:fixed; left:0; right:0; top:0; padding:14px 18px; display:flex;
          flex-wrap:wrap; gap:12px 12px; align-items:baseline;
          background:linear-gradient(#0e2233dd,transparent) }
@@ -117,6 +119,14 @@
   #date .ad { font-size:13px; opacity:.5; letter-spacing:.06em; margin-left:12px;
               font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
   #left, #count { font-size:13px; opacity:.75 }
+  /* 工具鈕一組。margin-left:auto 吃掉該列剩下的空白，所以不論在第一列還是
+     第二列，這一組永遠貼右邊。 */
+  #tools { margin-left:auto; display:flex; gap:12px; align-items:baseline }
+  /* 🔴 HUD 的 .ghost 要自己帶一塊底。頂上的漸層在第二列已經淡到幾乎透明，
+     而 .ghost 是完全透明底——米色字壓在米色陸地上等於沒有。
+     （跟狩獵那顆離開鈕同一個教訓，見下面 #hquit 的註解。）
+     第一列本來就在漸層上，多這一層看不出來；第二列靠它才讀得到。 */
+  #hud .ghost { background:#0e2233a6 }
   /* 全螢幕鈕畫成四個角，不用文字也不用字型裡的箭頭：
      「全螢幕」三個字會把桌機的 HUD 從 64px 擠成 94px（吃掉 30px 地圖），
      而單獨一個 ⤢ 看起來像「外部連結」，何況那個字不是每套字型都有。
@@ -607,10 +617,15 @@
   <button id="book">歲時記</button>
   <button id="howto" class="ghost" title="玩法與操作說明（?）">玩法</button>
   <button id="intro-btn" class="ghost" title="重看開場">開場</button>
-  <button id="bgm" class="ghost" title="配樂">♪</button>
-  <!-- 不支援（iPhone）或已經在獨立視窗裡跑，main.js 會把這顆拿掉 -->
-  <button id="fs" class="ghost" title="全螢幕（F）"></button>
-  <button id="reset" class="ghost">重來</button>
+  <!-- 三顆工具鈕收成一組並靠右：這一列在 1200px 以下會換行，
+       不分組的話「重來」會單獨掉到日期底下的左邊，看起來像排版壞了。
+       成組之後整組一起換行、而且留在右邊，兩列都讀得出是刻意的。 -->
+  <span id="tools">
+    <button id="bgm" class="ghost" title="配樂">♪</button>
+    <!-- 不支援（iPhone）或已經在獨立視窗裡跑，main.js 會把這顆拿掉 -->
+    <button id="fs" class="ghost" title="全螢幕（F）"></button>
+    <button id="reset" class="ghost">重來</button>
+  </span>
 </div>
 
 <div id="toast"></div>
