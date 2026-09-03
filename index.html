@@ -384,7 +384,10 @@
   .lore .now a.sv:hover { opacity:1; border-bottom-color:var(--gold) }
   .lore .now span { display:block; opacity:.5; font-size:11px; margin-top:3px }
   /* 另開分頁降級成小連結：它是次要選項，不該跟主要入口長得一樣重 */
-  .lore .now a.ext { color:inherit; text-decoration:none; border-bottom:1px solid #ffffff26 }
+  /* 🔴 nowrap：這個連結會在「在 / Google」中間斷開，看起來像壞掉。
+     前面的「　·　」本來就是可以換行的地方，整段移到下一行才是對的斷法。 */
+  .lore .now a.ext { color:inherit; text-decoration:none; border-bottom:1px solid #ffffff26;
+                     white-space:nowrap }
   .lore .now a.ext:hover { border-bottom-color:#ffffff66 }
   .lore .prov { opacity:.42; font-size:11px; letter-spacing:.02em }
   .lore .prov a { color:inherit }
@@ -402,6 +405,16 @@
   .event h2 { font-size:22px; letter-spacing:.15em; margin:2px 0 10px }
   .event .date { font-size:13px; opacity:.6; letter-spacing:.05em; margin:0 }
   .event .date .dim { opacity:.5 }
+  /* 🔴 這一行在手機上放不下，所以問題從來不是「能不能一行」，是**該在哪裡斷**。
+     和曆與西元之間的全形空白是唯一合理的斷點，其餘都不是：
+       「1861-03-13」→「1861-03-」＋「13」   連字號在瀏覽器眼中是換行點，
+                                             但它在這裡是日期的一部分
+       「万延二年 春 四十一」＋「日」          只保護西元的話，斷點就跑進和曆
+     兩半都 nowrap，剩下的空白就成了唯一能斷的地方。
+     和曆為此包了一層 span（見 main.js）——裸文字節點沒得套 white-space。
+     🔴 那個全形空白必須在兩個 span **之外**。寫在 .dim 裡面的話它也被 nowrap
+     鎖住，唯一的斷點就消失了——320px 下整行溢出 54px（sheet 292/346）。 */
+  .ending .date > span, .event .date > span { white-space:nowrap }
   /* 資料觀察與史實敘述要分開，否則讀起來像因果 */
   .event .note.seen { border-left:2px solid #ffffff2e; padding-left:12px;
                       margin-top:16px; font-size:12px; opacity:.6 }

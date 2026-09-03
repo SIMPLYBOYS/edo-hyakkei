@@ -283,7 +283,7 @@ function showEvents([e, ...rest], after = '') {
   const el = document.createElement('div');
   el.className = 'overlay ending event';
   el.innerHTML = `<div class="sheet">
-    <p class="date">${e.day <= 0 ? '在你出發之前　' : ''}${e.wareki}<span class="dim">　${e.date}</span></p>
+    <p class="date">${e.day <= 0 ? '在你出發之前　' : ''}<span>${e.wareki}</span>　<span class="dim">${e.date}</span></p>
     <h2>${e.title}</h2>
     <p class="note">${e.note}</p>
     ${e.seen_in_data ? `<p class="note seen">這套系列的出版紀錄裡：${e.seen_in_data}</p>` : ''}
@@ -308,7 +308,9 @@ function showEnd() {
   el.className = 'overlay ending';
   el.innerHTML = `<div class="sheet">
     <h2>歳時記 満</h2>
-    <p class="date">${clock.label}<span class="dim">　${clock.iso}</span></p>
+    <!-- 和曆包在 span 裡不是為了樣式，是為了**不被拆開**（見 index.html 的 .date > span）。
+         裸文字節點沒得套 white-space。 -->
+    <p class="date"><span>${clock.label}</span>　<span class="dim">${clock.iso}</span></p>
     <p>一百十八景走完，歷時 ${(state.day / 365).toFixed(1)} 年（${state.day} 日）。</p>
     <!-- 「你花了多久」是這場遊戲裡唯一因人而異的量。收景的日子誰都一樣（118×8），
          差別全在等季節——在還有景可收時離開一季，下次就得多等一整年。
