@@ -168,8 +168,9 @@ function pick(v) {
   // 🔴 光說「錯在哪」不夠，要說「怎麼辦」：這個遊戲的季節鈕不是切換圖層，
   // 是把時鐘推過去，新玩家不會自己想到那一步。少了後半句，灰點就只是一則拒絕。
   if (v.season !== clock.season) {
-    return say(`${v.title.ja} 是${seasonJa(v.season)}的景，現在是${seasonJa(clock.season)}`
-             + `——按「${seasonJa(v.season)}」過去`);
+    say(`${v.title.ja} 是${seasonJa(v.season)}的景，現在是${seasonJa(clock.season)}`
+      + `——按「${seasonJa(v.season)}」過去`);
+    return howToFirstRun();          // 第一次撞牆＝最好的說明時機（見檔案末尾）
   }
   state.pos = { lat: v.subject.lat, lng: v.subject.lng };   // 漫遊不耗時間（§2.1）
   paint();
@@ -187,6 +188,7 @@ function pick(v) {
       });
       // 地圖上那一點閃一圈。畫消失的那一刻，改變全在角落——給視線一個落點。
       map.flash(v.id);
+      howToFirstRun();               // 沒撞過灰點的人，收完第一景也要看得到玩法
     },
     onClose: paint,
   });
@@ -368,18 +370,21 @@ const eraNow = document.getElementById('eranow');
 // 遊戲裡言之鑿鑿的假知識。所以讀數講的是「疊了多少」，不是哪一年。
 //
 // 兩端才報年份，因為那兩端是真的有資料的年份。
-let eraFade;
-eraInput.oninput = () => {
+//
+// 🔴 常駐，不淡出。
+// 舊版停手兩秒就淡掉，理由是「它是拖動時的回饋」——但這條滑桿的方向是
+// 左＝2026、右＝1858（跟繪卷同一個右到左的讀法，刻意的），而那跟多數人
+// 對滑桿的直覺相反。讀數淡掉之後，玩家就沒有任何線索知道自己現在疊的是哪一層。
+// 常駐一行小字，方向就不必猜。
+const eraSay = () => {
   const t = eraInput.value / 1000;
-  map.setEra(t);
   eraNow.textContent = t > 0.98 ? '安政五年 1858 的地圖'
     : t < 0.02 ? '2026 現在的地圖'
     : `兩張圖疊著 — 江戶 ${Math.round(t * 100)}%`;
-  // 停手兩秒就淡出：它是拖動時的回饋，不是常駐的抬頭顯示
   eraNow.classList.add('on');
-  clearTimeout(eraFade);
-  eraFade = setTimeout(() => eraNow.classList.remove('on'), 2000);
 };
+eraInput.oninput = () => { map.setEra(eraInput.value / 1000); eraSay(); };
+eraSay();                                          // 開場就先報一次
 // §2.10 視點狩獵。不動收集進度與日期，但揭曉頁能找變造，那筆要記住——
 // 兩個玩法用同一份 state.found，才不會互相把答案洩掉又各記各的。
 document.getElementById('hunt').onclick = () =>
@@ -438,10 +443,9 @@ document.getElementById('reset').onclick = () => {
 // 寫死的話滑桿位置與地圖年代會對不上。
 bgmLoad(tunes);
 bgmInit(document.getElementById('bgm'));
+// 用滑桿當下的值開場（重整時瀏覽器會還原表單值，寫死 1 會跟地圖對不上）。
+// 讀數現在是常駐的，開場就該顯示——不再像從前那樣開完立刻抹掉。
 eraInput.oninput();
-// 開場那次不該留著讀數：它是「你剛剛拖到這裡」的回饋，玩家還沒碰過它。
-eraNow.classList.remove('on');
-clearTimeout(eraFade);
 paint();
 // 走到這裡＝地圖畫出來了。之後再出什麼錯都不該蓋掉它（見上面的 fatal）。
 booted = true;
@@ -451,18 +455,20 @@ booted = true;
 // 遊戲照常——開場是門面，不是門檻。
 const introMeta = await grab('data/intro.json').catch(e => (console.warn('開場略過:', e), null));
 if (introMeta) {
-  // 開場放完（或按了跳過）才開玩法：兩層文字疊在一起沒人讀得下去。
-  // 不播開場的回訪玩家，onEnd 不會來，所以下面自己接一次。
-  const intro = introInit({
+  introInit({
     image: 'assets/intro/keisai-1803.jpg', target: introMeta.nihonbashi,
     art: introMeta.art, button: document.getElementById('intro-btn'),
-    onEnd: () => howToFirstRun(),
   });
-  if (!intro.playing) howToFirstRun();
 } else {
   document.getElementById('intro-btn').remove();   // 沒素材就沒得重看
-  howToFirstRun();                                 // 但玩法還是要有
 }
+// 🔴 玩法不再接在開場後面。
+// 舊順序是「34 秒字幕 → 立刻自動開玩法」，兩面文字牆連著來，第二面沒人讀。
+// 改成等玩家**第一次撞牆**才給：點到灰點（季節不對）的那一刻，他正好在問
+// 「為什麼點不開」——那時候的說明會被讀進去。
+// 保險在 pick() 的另一條路：收完第一景也開一次。有人可能一路只點金點，
+// 從來不會撞到灰點，那樣就永遠看不到玩法了。兩條路都走 howToFirstRun，
+// 它自己記得看過沒有，不會開兩次。
 
 document.getElementById('howto').onclick = () => showHowTo();
 // ? 是說明的通用鍵。打字框裡不搶（這個遊戲沒有輸入框，但將來有的話不必回來改）

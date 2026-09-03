@@ -474,7 +474,16 @@
   .ebar .etip { font-size:12px; opacity:.5 }
   .ebar .ecount { margin-left:auto; font-size:13px; opacity:.6;
                   font-family:ui-monospace,SFMono-Regular,Menlo,monospace }
-  #escroll { flex:1; display:flex; flex-direction:row-reverse; align-items:center;
+  /* 🔴 紙只展到有畫的地方。
+     舊寫法是 flex:1（撐滿整個寬度），收了一兩景時畫擠在右邊、左邊六成是空白紙——
+     看起來像沒載入完。真實的卷軸不會空著攤開：兩端的軸貼著現有的畫收攏，
+     收得越多卷越長，第一次打開就看得出它會生長。
+     width:max-content 讓紙等於內容寬，max-width:100% 讓長了之後照樣捲。
+     align-self:center 取代預設的 stretch，短卷就置中。
+     ⚠️ 捲動容器仍然是 #escroll 本身（row-reverse），所以 emaki.js 那些
+     scrollLeft 是負值的算法不受影響——不要為了置中在中間多包一層。 */
+  #escroll { flex:1; align-self:center; width:max-content; max-width:100%;
+             display:flex; flex-direction:row-reverse; align-items:center;
              overflow-x:auto; overflow-y:hidden; padding:24px 0;
              /* 紙的兩緣壓深一點，看起來才像卷起來的 */
              background:linear-gradient(#c9bfa4, var(--land) 8%, var(--land) 92%, #c9bfa4) }
